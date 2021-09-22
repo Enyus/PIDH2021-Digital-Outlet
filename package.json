@@ -1,0 +1,24 @@
+{
+  "name": "pidh2021-digital-outlet",
+  "version": "1.0.0",
+  "description": "Projeto Integrador do curso WebFullStack da Digital House do 2º Semestre de 2021. Digital Outlet é um projeto de marketplace.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Enyus/PIDH2021-Digital-Outlet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Enyus/PIDH2021-Digital-Outlet/issues"
+  },
+  "homepage": "https://github.com/Enyus/PIDH2021-Digital-Outlet#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-generator": "^4.16.1",
+    "nodemon": "^2.0.12"
+  }
+}
