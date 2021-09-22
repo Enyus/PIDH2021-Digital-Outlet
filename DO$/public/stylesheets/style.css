@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -13,18 +13,22 @@ body {
 header {
   background-color: #FFFFFF;
   width: 100%;
-  padding: 0 5%;
+  padding: 0 3%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 header section {
   display: flex;
-  padding: 20px 0;
+  padding: 10px 0;
   align-items: center;
 }
 
 header section.header-principal .logo {
   width: 20%;
+}
+
+header section.header-principal .logo img {
+  max-width: 100%;
 }
 
 header .header-principal .busca {
@@ -48,12 +52,22 @@ header .header-principal .busca input {
   line-height: 23px;
 }
 
+header .header-principal .busca button {
+  background: none;
+  border: none;
+  position: relative;
+  left: -35px;
+}
+
 header .header-principal .hbutton {
   width: 30%;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
   text-align: center;
+}
+
+header .header-principal .hbutton img {
+  height: 50%;
 }
 
 header .header-principal .hbutton div {
@@ -64,10 +78,46 @@ header .header-menu {
   justify-content: space-around;
 }
 
-header a {
+header a, footer a {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
   color: #000;
   text-decoration: none;
+}
+
+footer {
+  background-color: #FFFFFF;
+  width: 100%;
+  padding: 0 3%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  height: 6%;
+  align-items: center;
+}
+
+footer .fbutton {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+footer .fbutton a {
+  display: flex;
+  align-items: center;
+}
+
+footer .fbutton a img {
+  height: 20px;
+  position: relative;
+  top: -2px;
+  left: 4px;
+}
+
+footer .mlogo {
+  width: 40%;
+  display: flex;
+  justify-content: end;
 }
