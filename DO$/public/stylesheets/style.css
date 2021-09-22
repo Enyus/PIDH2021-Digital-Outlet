@@ -1,8 +1,73 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Rajdhani', sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body {
+  margin: 0;
+  background-color: #DCDDE1;
+}
+
+header {
+  background-color: #FFFFFF;
+  width: 100%;
+  padding: 0 5%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+header section {
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+}
+
+header section.header-principal .logo {
+  width: 20%;
+}
+
+header .header-principal .busca {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+header .header-principal .busca p {
+  width: 20%;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+header .header-principal .busca input {
+  width: 70%;
+  height: 10%;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+header .header-principal .hbutton {
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+header .header-principal .hbutton div {
+  width: 25%;
+}
+
+header .header-menu {
+  justify-content: space-around;
+}
+
+header a {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  color: #000;
+  text-decoration: none;
 }
