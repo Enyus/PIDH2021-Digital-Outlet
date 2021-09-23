@@ -116,9 +116,8 @@ footer .fbutton a {
 }
 
 footer .fbutton a img {
-  height: 20px;
+  height: 16px;
   position: relative;
-  top: -2px;
   left: 4px;
 }
 
@@ -240,4 +239,15 @@ main section.containergeral div.missao h2 {
 main section.containergeral div.missao p,
 main section.containergeral div.missao ul {
   width: 100%;
+}
+
+main section.containergeral h1 img {
+  position: relative;
+  top: 5px;
+}
+
+main section.containergeral h2 img {
+  position: relative;
+  top: 3px;
+  height: 20px;
 }
