@@ -10,7 +10,7 @@ body {
   background-color: #DCDDE1;
 }
 
-header {
+header, .header-menu {
   background-color: #FFFFFF;
   width: 100%;
   padding: 0 3%;
@@ -29,6 +29,7 @@ header section.header-principal .logo {
 
 header section.header-principal .logo img {
   max-width: 100%;
+  height: 100px;
 }
 
 header .header-principal .busca {
@@ -74,11 +75,15 @@ header .header-principal .hbutton div {
   width: 25%;
 }
 
-header .header-menu {
+.header-menu {
+  display: flex;
   justify-content: space-around;
+  position: sticky;
+  top: 0;
+  padding: 10px 3%;
 }
 
-header a, footer a {
+header a, footer a, .header-menu a {
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
@@ -121,4 +126,74 @@ footer .mlogo {
   width: 40%;
   display: flex;
   justify-content: end;
+}
+
+body section.banner {
+  margin: 20px 3% 0 3%;
+  width: 94%;
+  border-radius: 10px;
+  background-color: #E84118;
+  display: flex;
+  justify-content: center;
+}
+
+body section.ofertas {
+  margin: 20px 3% 60px 3%;
+  width: 94%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+body section.ofertas div.conteiner {
+  margin: 1%;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 280px;
+  height: 300px;
+  text-align: center;
+}
+
+body section.ofertas a {
+  color: unset;
+  text-decoration: unset;
+  max-width: 25%;
+}
+
+body section.ofertas div.conteiner img {
+  width: auto;
+  margin-top: 10px;
+}
+
+h1 {
+  margin: 10px 0;
+}
+
+body section.ofertas div.conteiner div.precos ul {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style-type:none;
+}
+
+.preco-antes {
+  font-weight: 300;
+  font-size: 16px;
+  text-decoration-line: line-through;
+  width: 30%;
+}
+
+.preco-agora {
+  font-weight: bolder;
+  font-size: 18px;
+  width: 30%;
+}
+
+.off {
+  font-weight: bolder;
+  font-size: 18px;
+  width: 30%;
+  color: #4CD137;
 }
