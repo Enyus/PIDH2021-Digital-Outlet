@@ -11,4 +11,9 @@ router.get('/faq', (req, res, next) => {
   res.render('faq', {title:"Dúvidas Frequentes"})
 })
 
+/*GET Página Sobre*/
+router.get('/sobre', (req, res, next) => {
+  res.render('sobre', {title:"Sobre a DO$"})
+})
+
 module.exports = router;

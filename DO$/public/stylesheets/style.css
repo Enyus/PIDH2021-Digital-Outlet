@@ -219,4 +219,25 @@ main section.containergeral p {
   margin: 0 3% 10px 3%;
   font-size: 18px;
   line-height: 23px;
+  text-align: justify;
+}
+
+main section.containergeral div.missao {
+  display: flex;
+  margin: 0 3% 10px 3%;
+  font-size: 18px;
+  line-height: 23px;
+  align-items: center;
+}
+
+main section.containergeral div.missao h2 {
+  width: 20%;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+}
+
+main section.containergeral div.missao p,
+main section.containergeral div.missao ul {
+  width: 100%;
 }
