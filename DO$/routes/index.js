@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Digital Outlet $' });
 });
 
+/*GET Página FAQ*/
+router.get('/faq', (req, res, next) => {
+  res.render('faq', {title:"Dúvidas Frequentes"})
+})
+
 module.exports = router;
