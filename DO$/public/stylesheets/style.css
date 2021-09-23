@@ -145,7 +145,7 @@ body section.ofertas {
   flex-wrap: wrap;
 }
 
-body section.ofertas div.conteiner {
+body section.ofertas div.container {
   margin: 1%;
   background-color: #FFFFFF;
   border-radius: 10px;
@@ -161,7 +161,7 @@ body section.ofertas a {
   max-width: 25%;
 }
 
-body section.ofertas div.conteiner img {
+body section.ofertas div.container img {
   width: auto;
   margin-top: 10px;
 }
@@ -170,7 +170,7 @@ h1 {
   margin: 10px 0;
 }
 
-body section.ofertas div.conteiner div.precos ul {
+body section.ofertas div.container div.precos ul {
   display: flex;
   justify-content: space-around;
   padding: 0;
