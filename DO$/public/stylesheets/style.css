@@ -17,6 +17,10 @@ header, .header-menu {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+header {
+  height: 15vh;
+}
+
 header section {
   display: flex;
   padding: 10px 0;
@@ -81,6 +85,8 @@ header .header-principal .hbutton div {
   position: sticky;
   top: 0;
   padding: 10px 3%;
+  height: 5vh;
+  align-items: center;
 }
 
 header a, footer a, .header-menu a {
@@ -98,7 +104,7 @@ footer {
   display: flex;
   position: fixed;
   bottom: 0;
-  height: 6%;
+  height: 5vh;
   min-height: 50px;
   align-items: center;
 }
@@ -145,12 +151,12 @@ body section.ofertas {
   width: 94%;
 }
 
-body section.ofertas div.ofertasrow {
+div.ofertasrow {
   display: flex;
   justify-content: space-between;
 }
 
-body section.ofertas div.container {
+div.container {
   margin: 1% 1% 10px 1%;
   background-color: #FFFFFF;
   border-radius: 10px;
@@ -160,13 +166,13 @@ body section.ofertas div.container {
   text-align: center;
 }
 
-body section.ofertas a {
+body main a {
   color: unset;
   text-decoration: unset;
   max-width: 25%;
 }
 
-body section.ofertas div.container img {
+main div.container img {
   width: auto;
   margin-top: 10px;
 }
@@ -175,7 +181,7 @@ h1 {
   margin: 10px 0;
 }
 
-body section.ofertas div.container div.precos ul {
+main div.container div.precos ul {
   display: flex;
   justify-content: space-around;
   padding: 0;
@@ -210,6 +216,7 @@ main section.containergeral {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
+  min-height: 70vh;''
 }
 
 main section.containergeral h1 {
@@ -325,4 +332,60 @@ main section.containergeral form.contato input[type="submit"] {
   cursor: pointer;
   height: 40px;
   font-size: 18px;
+}
+
+main.resultadobusca {
+  display: flex;
+}
+
+aside {
+  background-color: #FFFFFF;
+  width: 20%;
+}
+
+aside div {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
+}
+
+aside h2 {
+  text-align: center;
+  font-size: inherit;
+}
+
+aside form div {
+  display: flex;
+  flex-direction: column;
+}
+
+aside form div ul {
+  list-style-type: none;
+}
+
+main.resultadobusca section.containergeral h1 {
+  font-size: 1.5em;
+  margin: 0 3%;
+  text-align: unset;
+}
+
+main.resultadobusca section.containergeral {
+  width: -webkit-fill-available;
+}
+
+main.resultadobusca section.containergeral div.ofertasrow {
+  justify-content: space-evenly;
+}
+
+main.resultadobusca nav.navpages {
+  margin: 10px 3%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+main.resultadobusca nav.navpages button {
+  border: none;
+  background: none;
+  font-weight: 600;
+  cursor: pointer;
 }
