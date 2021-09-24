@@ -57,7 +57,7 @@ header .header-principal .busca input {
   line-height: 23px;
 }
 
-header .header-principal .busca button {
+header .header-principal .busca a {
   background: none;
   border: none;
   position: relative;
