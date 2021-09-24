@@ -16,4 +16,9 @@ router.get('/sobre', (req, res, next) => {
   res.render('sobre', {title:"Sobre a DO$"})
 })
 
+/*GET Página Contato*/
+router.get('/contato', (req, res, next) => {
+  res.render('contato', {title:"Contato"})
+})
+
 module.exports = router;
