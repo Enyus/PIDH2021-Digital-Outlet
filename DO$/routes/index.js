@@ -26,4 +26,9 @@ router.get('/resultadobusca', (req, res, next) => {
   res.render('resultadobusca', {title:"Resultado da Busca"})
 })
 
+/*GET Página do Produto*/
+router.get('/produto', (req, res, next) => {
+  res.render('produto', {title:"Produto"})
+})
+
 module.exports = router;
