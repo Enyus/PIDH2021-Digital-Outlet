@@ -31,4 +31,9 @@ router.get('/produto', (req, res, next) => {
   res.render('produto', {title:"Produto"})
 })
 
+/*GET Página do Login*/
+router.get('/login', (req, res, next) => {
+  res.render('login', {title:"Bem-Vindo!"})
+})
+
 module.exports = router;
