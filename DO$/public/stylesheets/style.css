@@ -525,16 +525,19 @@ main.paginaproduto div.descgeral div.subcontainer div.compra button {
   font-weight: bold;
 }
 
-main.login section.containergeral p {
+main.login section.containergeral p,
+main.cadastrousuario section.containergeral p {
   text-align: center;
 }
 
-main.login section.containergeral form {
+main.login section.containergeral form,
+main.cadastrousuario section.containergeral form {
   width: 100%;
   text-align: center;
 }
 
-main.login section.containergeral form div.formrow {
+main.login section.containergeral form div.formrow,
+main.cadastrousuario section.containergeral form div.formrow {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -542,11 +545,15 @@ main.login section.containergeral form div.formrow {
   align-items: center;
 }
 
-main.login section.containergeral form div.formrow label {
+main.login section.containergeral form div.formrow label,
+main.cadastrousuario section.containergeral form div.formrow label {
   margin-right: 10px;
+  width: 150px;
+  text-align: end;
 }
 
-main.login section.containergeral form div.formrow input {
+main.login section.containergeral form div.formrow input,
+main.cadastrousuario section.containergeral form div.formrow input {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 350px;
   max-width: 50%;
@@ -554,7 +561,8 @@ main.login section.containergeral form div.formrow input {
   border: 1px solid #C8D6E5;
 }
 
-main.login section.containergeral form button {
+main.login section.containergeral form button,
+main.cadastrousuario section.containergeral form button {
   font-size: 36px;
   width: 20%;
   border-style: none;

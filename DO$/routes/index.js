@@ -36,4 +36,9 @@ router.get('/login', (req, res, next) => {
   res.render('login', {title:"Bem-Vindo!"})
 })
 
+/*GET Página do Cadastro de Usuário*/
+router.get('/cadastrousuario', (req, res, next) => {
+  res.render('cadastrousuario', {title:"Seja nosso Cliente!"})
+})
+
 module.exports = router;
