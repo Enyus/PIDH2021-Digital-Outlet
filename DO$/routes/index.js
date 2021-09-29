@@ -46,4 +46,9 @@ router.get('/trabalheconosco', (req, res, next) => {
   res.render('trabalheconosco', {title:"Trabalhe Conosco!"})
 })
 
+/*GET Página do Cadastro de Lojista*/
+router.get('/cadastroloja', (req, res, next) => {
+  res.render('cadastroloja', {title:"Seja nosso Parceiro!"})
+})
+
 module.exports = router;
