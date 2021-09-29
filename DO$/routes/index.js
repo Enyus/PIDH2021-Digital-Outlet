@@ -56,4 +56,14 @@ router.get('/cadastroproduto', (req, res, next) => {
   res.render('cadastroproduto', {title:"Cadastro de Produto"})
 })
 
+/*GET Página do Cliente*/
+router.get('/paginacliente', (req, res, next) => {
+  res.render('paginacliente', {title:"Bem-Vindo!"})
+})
+
+/*GET Página do Lojista*/
+router.get('/paginaloja', (req, res, next) => {
+  res.render('paginaloja', {title:"Bem-Vindo!"})
+})
+
 module.exports = router;
