@@ -32,14 +32,14 @@ router.get('/produto', (req, res, next) => {
 })
 
 /*GET Página do Login*/
-router.get('/login', (req, res, next) => {
-  res.render('login', {title:"Bem-Vindo!"})
-})
+// router.get('/login', (req, res, next) => {
+//   res.render('login', {title:"Bem-Vindo!"})
+// })
 
 /*GET Página do Cadastro de Usuário*/
-router.get('/cadastrousuario', (req, res, next) => {
-  res.render('cadastrousuario', {title:"Seja nosso Cliente!"})
-})
+// router.get('/cadastrousuario', (req, res, next) => {
+//   res.render('cadastrousuario', {title:"Seja nosso Cliente!"})
+// })
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', (req, res, next) => {
@@ -57,9 +57,9 @@ router.get('/cadastroproduto', (req, res, next) => {
 })
 
 /*GET Página do Cliente*/
-router.get('/paginacliente', (req, res, next) => {
-  res.render('paginacliente', {title:"Bem-Vindo!"})
-})
+// router.get('/paginacliente', (req, res, next) => {
+//   res.render('paginacliente', {title:"Bem-Vindo!"})
+// })
 
 /*GET Página do Lojista*/
 router.get('/paginaloja', (req, res, next) => {
