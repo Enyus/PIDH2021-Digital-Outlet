@@ -654,6 +654,7 @@ main.cadastroproduto section.containergeral button {
   font-weight: bold;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 main.login section.containergeral p:nth-last-child(2),
@@ -881,7 +882,7 @@ main.paginaloja div.resumopedidos div.containerinfo p {
     display: flex;
   }
   
-  div.ofertasrow {
+  main.trabalheconosco div.containersecundario, main section.containergeral div.buttonscontato div, div.ofertasrow, main section.containergeral form.contato {
     display: block;
   }
 
@@ -891,5 +892,13 @@ main.paginaloja div.resumopedidos div.containerinfo p {
 
   footer {
     padding: 0;
+  }
+
+  main section.containergeral div.buttonscontato button {
+    width: 200px;
+  }
+
+  main.trabalheconosco div.containersecundario div.imagem, main.trabalheconosco div.containersecundario div.form, main section.containergeral form.contato div, main section.containergeral form.contato input[type="submit"] {
+    width: 100%;
   }
 }
