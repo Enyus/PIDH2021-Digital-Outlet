@@ -414,6 +414,8 @@ aside div {
 aside h2 {
   text-align: center;
   font-size: inherit;
+  margin: 0;
+  padding: 10px;
 }
 
 aside form div {
@@ -881,12 +883,16 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   header section.buscamobile, footer section.fmobile {
     display: flex;
   }
+
+  main.cadastroproduto section.containergeral form div.formrow div.desctec div.formrow {
+    display: flex !important;
+  }
   
-  main.trabalheconosco div.containersecundario, main section.containergeral div.buttonscontato div, div.ofertasrow, main section.containergeral form.contato {
+  main.trabalheconosco div.containersecundario, main section.containergeral div.buttonscontato div, div.ofertasrow, main section.containergeral form.contato, main.paginaproduto div.produto, main.resultadobusca, main.trabalheconosco div.containersecundario, main.cadastroproduto div.containersecundario, main.paginacliente div.containersecundario, main.paginaloja div.containersecundario, main.cadastroproduto section.containergeral form div.formrow {
     display: block;
   }
 
-  section.fbutton, section.mlogo, div.hbutton p, section.header-menu, header .header-principal .busca {
+  section.fbutton, section.mlogo, div.hbutton p, section.header-menu, header .header-principal .busca, main.paginaproduto div.fotosproduto div.miniimg, aside div, aside form {
     display: none;
   }
 
@@ -898,7 +904,31 @@ main.paginaloja div.resumopedidos div.containerinfo p {
     width: 200px;
   }
 
-  main.trabalheconosco div.containersecundario div.imagem, main.trabalheconosco div.containersecundario div.form, main section.containergeral form.contato div, main section.containergeral form.contato input[type="submit"] {
+  main.trabalheconosco div.containersecundario div.imagem, main.trabalheconosco div.containersecundario div.form, main section.containergeral form.contato div, main section.containergeral form.contato input[type="submit"], main.paginaproduto div.descgeral, main.paginaproduto div.descgeral div.subcontainer div.desc, main.paginaproduto div.descgeral div.subcontainer div.comprar, main.paginaproduto div.descgeral div.subcontainer div.comprar form, aside, main.paginacliente section.containergeral div.menu-cliente, main.paginaloja section.containergeral div.menu-loja, main.paginacliente section.containergeral div.pedidosrecentes, main.paginacliente section.containergeral div.buscasrecentes, main.paginaloja section.containergeral div.faturadorecentemente, main.paginaloja section.containergeral div.resumopedidos, main.paginacliente section.containergeral div.pedidosrecentes, main.paginacliente section.containergeral div.buscasrecentes, main.paginaloja section.containergeral div.faturadorecentemente, main.paginaloja section.containergeral div.resumopedidos, main.trabalheconosco div.containersecundario div.form, main.trabalheconosco div.containersecundario div.imagem, main.cadastroproduto div.containersecundario div {
     width: 100%;
+    margin: 0;
+  }
+
+  main.paginaproduto div.fotosproduto {
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+  }
+
+  main.paginaproduto div.descgeral div.subcontainer {
+    display: block;
+    width: 100%;
+  }
+
+  aside:hover form {
+    display: block;
+  }
+
+  body main a {
+    max-width: 100%;
+  }
+
+  main.cadastroproduto section.containergeral button {
+    margin-left: 5%;
   }
 }

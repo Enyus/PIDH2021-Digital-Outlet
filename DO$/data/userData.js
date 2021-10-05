@@ -8,11 +8,11 @@ let userData = [
         "datanasc": "01/01/1970",
         "cpf": "000.000.000-00",
         "password": "senha123",
-        "endereco": [
+        "endereco": {
                     "rua": "Rua das Rosas",
                     "numero": "123",
                     "cep": "00.000-000"
-                    ]
+                    }
     }
 ]
 
