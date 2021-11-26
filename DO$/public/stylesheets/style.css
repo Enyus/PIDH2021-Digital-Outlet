@@ -873,6 +873,31 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   text-align: end;
 }
 
+.carrinho .processo-da-compra {
+  display: flex;
+  justify-content: center;
+}
+
+
+.carrinho .processo-da-compra div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  margin: 25px;
+  
+  height: 45px;
+  width: 95%;
+
+  background-color: #C4C4C4;
+}
+
+.carrinho .processo-da-compra div a {
+  font-size: 18px;
+  font-weight: 800;
+  width: 50%;
+  text-align: center;
+}
 
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
