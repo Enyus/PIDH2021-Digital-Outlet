@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/carrinho-sacola.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>
+        <section class="header-principal">
+            <div class="logo">
+            <a href="/"><img src="/images/logo.png" alt="Logo DO$"></a>
+            </div>
+            <div class="busca">
+            <p>Pesquise sua marca/produto:</p>
+            <input type="text">
+            <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
+            </div>
+            <div class="hbutton">
+            <div>
+                <a href="/usuario/login">
+                <img src='/images/login.svg' alt="login">
+                <p>LOG IN</p>
+                </a>
+            </div>
+            <div>
+                <a href="../cadastroloja">
+                <img src="/images/lojista.svg" alt="login lojista">
+                <p>VENDA CONOSCO</p>
+                </a>
+            </div>
+            <div>
+                <a href="../carrinho">
+                <img src="/images/carrinho.svg" alt="carrinho">
+                <p>SEU CARRINHO</p>
+                </a>
+            </div>
+            </div>
+        </section>
+    
+        <section class="buscamobile">
+            <p>busca:</p>
+            <input type="text">
+            <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
+        </section>    
+    </header>
+    <section class="header-menu">
+        <a href="">
+            ROUPAS
+        </a>
+        <a href="">
+            LIVROS
+        </a>
+        <a href="">
+            CALÇADOS
+        </a>
+        <a href="">
+            ACESSÓRIOS
+        </a>
+        <a href="">
+            PARA A CASA
+        </a>
+        <a href="">
+            ESPORTE
+        </a>
+    </section>
+    
+    <main class="carrinho-sacola">
+        <section class="processo-da-compra">
+            <div>
+                <a class="sacola" href="/compra/sacola">Sacola</a>
+                <a class="identificacao" href="#">Identificação</a>
+                <a class="entrega"href="/compra/entrega">Entrega</a>
+                <a class="pagamento" href="#">Pagamento</a>
+            </div>
+        </section>
+        <div class="container-carrinho">
+            <section class="container-sacola">
+                <div>
+                    <table>
+                        <tr class="colunas">
+                            <td>Produto(s)</td>
+                            <td>Frete</td>
+                            <td>Valor</td>
+                            <td>Quantidade</td>
+                            <td></td>
+                        </tr>
+                        <tr class="linhas">
+                            <td class="produto">
+                                <img src="images/calca-bege.png" alt="">
+                                <div>
+                                    <h3 class="label">CALÇA BEGE</h3>
+                                    <div class="tamanho">
+                                        <h4 class="label">Tamanho:</h4>
+                                        <h4 class="dados">M</h4>
+                                    </div>
+                                    <div class="cor">
+                                        <h4 class="label">Cor:</h4>
+                                        <h4 class="dados">BEGE</h4>
+                                    </div>
+                                    <div class="cor">
+                                        <h6 class="label">código do produto:</h4>
+                                        <h6 class="dados">205455548</h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>a calcular</td>
+                            <td>R$ 100,00</td>
+                            <td>
+                                <div class="quantidade">
+                                    <button type="">-</button>
+                                    <p class="qtd">2</p>
+                                    <button type="">+</button>
+                                </div>
+                            <td class="acoes-produto">
+                                <div>
+                                    <a href=""><img src="icon/carrinho-editar.png" alt=""></a>
+                                    <a href=""><img src="icon/carrinho-lixeira.png" alt=""></a>
+                                </div>
+                            </td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section class="resumo">
+                <div>
+                    <p class="resumo">Resumo</p>
+                    <div class="forma-de-recebimento">
+                        <a class="entrega" href="">Entrega</a>
+                        <a class="retirada-loja" href="">Retirar na loja</a>
+                    </div>
+                    
+                    
+                    <div class="teste-espacoBranco"></div>
+                    
+                    
+                    <div class="cep">
+                        <input class= "input-cep" type="text" name="cep" placeholder="Insira seu CEP">
+                        <button class="ok-cep" type="submit">OK</button>
+                    </div>
+                    <a class="nao-sei-o-cep" href="">Não sei o CEP</a>
+                    <div class="total">
+                        <div>
+                            <p>Subtotal</p>
+                            <p>R$ 100,00</p>
+                        </div>
+                        <div>
+                            <p>Taxa de entrega</p>
+                            <p>à calcular</p>
+                        </div>
+                        <div class="total">
+                            <p>Total</p>
+                            <p>R$ 100,00</p>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="finalizar" type="submit">Finalizar Compra</button>
+                        <button class="continuar-comprando" type="submit">CONTINUAR COMPRANDO</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <%- include('./partials/footer') %>
+</body>
+</html>
+

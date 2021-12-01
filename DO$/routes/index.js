@@ -1,35 +1,24 @@
 var express = require('express');
 var router = express.Router();
+const IndexController = require("../controllers/IndexController")
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Digital Outlet $' });
-});
+router.get('/', IndexController.index);
 
 /*GET Página FAQ*/
-router.get('/faq', (req, res, next) => {
-  res.render('faq', {title:"Dúvidas Frequentes"})
-})
+router.get('/faq', IndexController.faq)
 
 /*GET Página Sobre*/
-router.get('/sobre', (req, res, next) => {
-  res.render('sobre', {title:"Sobre a DO$"})
-})
+router.get('/sobre', IndexController.sobre)
 
 /*GET Página Contato*/
-router.get('/contato', (req, res, next) => {
-  res.render('contato', {title:"Contato"})
-})
+router.get('/contato', IndexController.contato)
 
 /*GET Página Resultado da Busca*/
-router.get('/resultadobusca', (req, res, next) => {
-  res.render('resultadobusca', {title:"Resultado da Busca"})
-})
+router.get('/resultadobusca', IndexController.resultadobusca)
 
 /*GET Página do Produto*/
-router.get('/produto', (req, res, next) => {
-  res.render('produto', {title:"Produto"})
-})
+router.get('/produto', IndexController.produto)
 
 /*GET Página do Login*/
 // router.get('/login', (req, res, next) => {
@@ -40,35 +29,23 @@ router.get('/produto', (req, res, next) => {
 // router.get('/cadastrousuario', (req, res, next) => {
 //   res.render('cadastrousuario', {title:"Seja nosso Cliente!"})
 // })
+/*GET Página do Carrinho*/
+router.get('/carrinho', IndexController.carrinho)
 
 /*GET Página do Trabalhe Conosco*/
-router.get('/trabalheconosco', (req, res, next) => {
-  res.render('trabalheconosco', {title:"Trabalhe Conosco!"})
-})
+router.get('/trabalheconosco', IndexController.trabalheconosco)
 
 /*GET Página do Cadastro de Lojista*/
-router.get('/cadastroloja', (req, res, next) => {
-  res.render('cadastroloja', {title:"Seja nosso Parceiro!"})
-})
+router.get('/cadastroloja', IndexController.cadastroloja)
 
-/*GET Página do Carrinho*/
-router.get('/carrinho', (req, res, next) => {
-  res.render('carrinho', {title:"Carrinho"})
-})
 
 /*GET Página do Cadastro de Produto*/
-router.get('/cadastroproduto', (req, res, next) => {
-  res.render('cadastroproduto', {title:"Cadastro de Produto"})
-})
+router.get('/cadastroproduto', IndexController.cadastroproduto)
 
 /*GET Página do Cliente*/
-router.get('/paginacliente', (req, res, next) => {
-  res.render('paginacliente', {title:"Bem-Vindo!"})
-})
+router.get('/paginacliente', IndexController.paginacliente)
 
 /*GET Página do Lojista*/
-router.get('/paginaloja', (req, res, next) => {
-  res.render('paginaloja', {title:"Bem-Vindo!"})
-})
+router.get('/paginaloja', IndexController.paginaloja)
 
 module.exports = router;

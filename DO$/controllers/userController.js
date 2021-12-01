@@ -3,5 +3,5 @@ module.exports = {
     login: (req, res) => res.render('login', {title:"Bem-Vindo!"}),
     cadastro: (req, res) => res.render('cadastrousuario', {title:"Seja nosso Cliente!"}),
     cadastroLoja: (req, res) => res.render('cadastroloja', {title:"Seja nosso Parceiro!"}),
-    carrinho: (req, res) => res.render('carrinho', {title:"Carrinho!"})
+    carrinho: (req, res) => res.render('carrinho-sacola', {title:"Carrinho!"})
 }
