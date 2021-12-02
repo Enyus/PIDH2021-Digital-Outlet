@@ -68,25 +68,32 @@
         <div class="container-entrega">
             <section class="dados-destinatario">
                 <div>
-                    <p>Dados do Destinatário</p>
-                    <img src="" alt="edit-destinatario">
+                    <h3>Dados do Destinatário</h3>
+                    <a href=""><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
                 </div>
                 <p>Fulano de Tal</p>
-                <p>fulano@tal.com.br</p>
-                <p>(11) 99999-9999</p>
+                <div class="contato">
+                    <p>fulano@tal.com.br</p>
+                    <p>(11) 99999-9999</p>
+                </div>
             </section>
             <section class="entrega">
-                <p>Entrega</p>
-                <div>
+                <h3>Entrega</h3>
+                <div class="cep">
                     <label for="cep">CEP</label>
-                    <input type="text" id="cep" placeholder="xxxxx-xxx">
+                    <div>
+                        <input type="text" id="cep" placeholder="xxxxx-xxx">
+                        <a class="nao-sei-cep" href="">Não sei o CEP</a>
+                    </div>
                 </div>
                 <div>
                     <label for="">Endereço de entrega</label>
-                    <div>
+                    <div class="endereco-entrega">
                         <p>Rua Pedro Paulo</p>
                         <p>Guaianases - São Paulo - SP</p>
                     </div>
+                </div>    
+                <div class="numero-compl">
                     <div>
                         <div>
                             <label for="numero-endereco">Número</label>
@@ -94,107 +101,108 @@
                         </div>
                         <div>
                             <label for="complemento-endereco">Complemento</label>
-                            <input type="text" name="complemento-endereco" id="complemento-endereco">
+                            <input type="text" name="compl-endereco" id="compl-endereco" placeholder="Apart. nº / Casa A">
                         </div>
                     </div>
-                    <a href="Escolher outro endereço"></a>
-                    <div>
-                        <label for="">Selecione a forma de entrega</label>
+                    <a href="">Escolher outro endereço</a>
+                </div>
+                <div class="modalidade-entrega">
+                    <label for="">Selecione a forma de entrega</label>
+                    <div class="container">
                         <div class="expressa">
                             <div>
-                                <input type="radio" name="expressa" id="expressa">
+                                <input type="radio" name="modalidade-entrega" value="Expressa" id="expressa">
                                 <label for="expressa">Expressa<br>Em até 4 dias úteis</label>
                             </div>
                             <p>R$ 30,00</p>
                         </div>
                         <div class="padrao">
                             <div>
-                                <input type="radio" name="padrao" id="padrao">
+                                <input type="radio" name="modalidade-entrega" value="padrao" id="padrao">
                                 <label for="padrao">Padrão<br>Em até 10 dias úteis</label>
+                            </div>
+                            <p>Grátis</p>
+                        </div>
+                        <div class="retirar">
+                            <div>
+                                <input type="radio" name="modalidade-entrega" value="retirar" id="retirar">
+                                <label for="padrao">Retirar na loja<br>Em até 2 dias úteis</label>
                             </div>
                             <p>Grátis</p>
                         </div>
                     </div>
                 </div>
+                <!-- <button class="ir-pagamento">IR PARA O PAGAMENTO</button> -->
             </section>
             <section class="resumo">
+                <h3 class="resumo">Resumo</h3>
                 <div>
-                    <p class="resumo">Resumo</p>
+                    <table>
+                        <tr>
+                            <td class="img"><img src="/images/calca-bege.png" alt=""></td>
+                            <td class="produto">
+                                <h3 class="label">CALÇA BEGE</h3>
+                                <div class="tamanho">
+                                    <h4 class="label">Tamanho:</h4>
+                                    <h4 class="dados">M</h4>
+                                </div>
+                                <div class="cor">
+                                    <h4 class="label">Cor:</h4>
+                                    <h4 class="dados">BEGE</h4>
+                                </div>
+                                <div class="cor">
+                                    <h4 class="label">cód.: </h4>
+                                    <h4 class="dados">205455548</h4>
+                                </div>
+                            </td>
+                            <td>
+                                <h4>R$ 100,00</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="/images/calca-bege.png" alt=""></td>
+                            <td class="produto">
+                                <h3 class="label">CALÇA BEGE</h3>
+                                <div class="tamanho">
+                                    <h4 class="label">Tamanho:</h4>
+                                    <h4 class="dados">M</h4>
+                                </div>
+                                <div class="cor">
+                                    <h4 class="label">Cor:</h4>
+                                    <h4 class="dados">BEGE</h4>
+                                </div>
+                                <div class="cor">
+                                    <h4 class="label">cód.: </h4>
+                                    <h4 class="dados">205455548</h4>
+                                </div>
+                            </td>
+                            <td>
+                                <h4>R$ 100,00</h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="total">
                     <div>
-                        <div>
-                            <img src="" alt="">
-                            <p>Calça Bege</p>
-                            <table>
-                                <tr>
-                                    <td><img src="" alt=""></td>
-                                    <td>
-                                        <td class="produto">
-                                            <h3 class="label">CALÇA BEGE</h3>
-                                            <div class="tamanho">
-                                                <h4 class="label">Tamanho:</h4>
-                                                <h4 class="dados">M</h4>
-                                            </div>
-                                            <div class="cor">
-                                                <h4 class="label">Cor:</h4>
-                                                <h4 class="dados">BEGE</h4>
-                                            </div>
-                                            <div class="cor">
-                                                <h6 class="label">código do produto:</h4>
-                                                <h6 class="dados">205455548</h4>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p>R$ 100,00</p>
-                                        </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="" alt=""></td>
-                                    <td>
-                                        <td class="produto">
-                                            <h3 class="label">CALÇA BEGE</h3>
-                                            <div class="tamanho">
-                                                <h4 class="label">Tamanho:</h4>
-                                                <h4 class="dados">M</h4>
-                                            </div>
-                                            <div class="cor">
-                                                <h4 class="label">Cor:</h4>
-                                                <h4 class="dados">BEGE</h4>
-                                            </div>
-                                            <div class="cor">
-                                                <h6 class="label">código do produto:</h4>
-                                                <h6 class="dados">205455548</h4>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p>R$ 100,00</p>
-                                        </td>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                        <p>Subtotal</p>
+                        <p>R$ 100,00</p>
+                    </div>
+                    <div>
+                        <p>Taxa de entrega</p>
+                        <p>à calcular</p>
                     </div>
                     <div class="total">
-                        <div>
-                            <p>Subtotal</p>
-                            <p>R$ 100,00</p>
-                        </div>
-                        <div>
-                            <p>Taxa de entrega</p>
-                            <p>à calcular</p>
-                        </div>
-                        <div class="total">
-                            <p>Total</p>
-                            <p>R$ 100,00</p>
-                        </div>
+                        <p>Total</p>
+                        <p>R$ 100,00</p>
                     </div>
-                    <div>
-                        <button class="ir-pagamento" type="submit">Ir para pagamento</button>
-                    </div>
+                </div>
+                <div>
+                    <button class="ir-pagamento" type="submit">Ir para pagamento</button>
                 </div>
             </section>
         </div>
     </main>
+    
     <%- include('./partials/footer') %>
 </body>
 </html>
