@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Enyus/PIDH2021-Digital-Outlet#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-generator": "^4.16.1",
+    "express-generator": "^4.2.0",
     "nodemon": "^2.0.12"
   }
 }

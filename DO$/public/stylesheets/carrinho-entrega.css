@@ -433,4 +433,64 @@ footer {
     footer section.fmobile div.fmenu div.contentfmenu a {
     font-size: 20px;
     }
-      
+
+/* Fazendo as alterações para mobile: */
+@media screen and (max-width: 720px) {
+    header .logo, header .header-principal .hbutton {
+        width: 50vw !important;
+      }
+    
+    header section.buscamobile, footer section.fmobile {
+       display: flex;
+    }
+    
+    footer, .carrinho-entrega .processo-da-compra div {
+        padding: 0;
+      }
+
+    header .header-principal .busca, div.hbutton p, section.header-menu, section.fbutton, section.mlogo, .carrinho-entrega .processo-da-compra div .identificacao, .carrinho-entrega .processo-da-compra div .sacola, .carrinho-entrega .processo-da-compra div .pagamento {
+        display: none;
+    }
+
+    .carrinho-entrega .container-entrega {
+        display: block !important;
+    }
+
+    .carrinho-entrega .resumo, .carrinho-entrega .container-carrinho .container-sacola {
+        width: unset;
+        height: unset;
+        margin-bottom: 10px;
+    }
+
+    .carrinho-entrega .container-carrinho .container-sacola table {
+        display: none;
+    }
+
+    .carrinho-entrega .container-carrinho .container-sacola .table-mobile {
+        display: flex;
+        background-color: white;
+    }
+
+    .carrinho-entrega .container-carrinho .container-sacola img {
+        width: 130px;
+        height: unset;
+    }
+
+    .carrinho-entrega .container-carrinho .container-sacola .quantidade {
+        display: block;
+        text-align: center;
+        margin: auto;
+    }
+
+    .carrinho-entrega .container-carrinho .container-sacola .dados-produto {
+        margin: auto;
+    }
+
+    .carrinho-entrega .container-entrega section {
+        width: 100%;
+    }
+
+    .carrinho-entrega .entrega {
+        margin: 10px 0;
+    }
+}
