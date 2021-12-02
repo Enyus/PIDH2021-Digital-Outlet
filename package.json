@@ -4,7 +4,8 @@
   "description": "Projeto Integrador do curso WebFullStack da Digital House do 2º Semestre de 2021. Digital Outlet é um projeto de marketplace.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./DO$/bin/www"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,7 @@
   "homepage": "https://github.com/Enyus/PIDH2021-Digital-Outlet#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-generator": "^4.16.1",
+    "express-generator": "^4.2.0",
     "nodemon": "^2.0.12"
   }
 }
