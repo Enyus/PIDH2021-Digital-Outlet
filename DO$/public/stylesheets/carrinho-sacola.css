@@ -438,4 +438,60 @@ display: flex;
 footer section.fmobile div.fmenu div.contentfmenu a {
 font-size: 20px;
 }
-  
+
+.carrinho-sacola .container-carrinho .container-sacola .table-mobile {
+    display: none;
+}
+
+/* Fazendo as alterações para mobile: */
+@media screen and (max-width: 720px) {
+    header .logo, header .header-principal .hbutton {
+        width: 50vw !important;
+      }
+    
+    header section.buscamobile, footer section.fmobile {
+       display: flex;
+    }
+    
+    footer, .carrinho-sacola .processo-da-compra div {
+        padding: 0;
+      }
+
+    header .header-principal .busca, div.hbutton p, section.header-menu, section.fbutton, section.mlogo, .carrinho-sacola .processo-da-compra div .identificacao, .carrinho-sacola .processo-da-compra div .entrega, .carrinho-sacola .processo-da-compra div .pagamento {
+        display: none;
+    }
+
+    .container-carrinho {
+        display: block !important;
+    }
+
+    .carrinho-sacola .resumo, .carrinho-sacola .container-carrinho .container-sacola {
+        width: unset;
+        height: unset;
+        margin-bottom: 10px;
+    }
+
+    .carrinho-sacola .container-carrinho .container-sacola table {
+        display: none;
+    }
+
+    .carrinho-sacola .container-carrinho .container-sacola .table-mobile {
+        display: flex;
+        background-color: white;
+    }
+
+    .carrinho-sacola .container-carrinho .container-sacola img {
+        width: 130px;
+        height: unset;
+    }
+
+    .carrinho-sacola .container-carrinho .container-sacola .quantidade {
+        display: block;
+        text-align: center;
+        margin: auto;
+    }
+
+    .carrinho-sacola .container-carrinho .container-sacola .dados-produto {
+        margin: auto;
+    }
+}
