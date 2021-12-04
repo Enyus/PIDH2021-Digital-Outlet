@@ -30,6 +30,10 @@
     transition: background-color 0.1s;
 }
 
+.carrinho-identificacao .processo-da-compra div a.identificacao {
+    border-bottom: 4px solid #e84218;
+}
+
 .container-identificacao .dados-pessoais {
     background-color: #f2f2f2;
     display: flex;
@@ -195,4 +199,41 @@
 
 .carrinho-identificacao section.resumo-compra .ir-pagamento:hover {
     background-color: #fff2ef ;
+}
+
+/* Fazendo as alterações para mobile: */
+@media screen and (max-width: 720px) {
+
+    header .logo, header .header-principal .hbutton {
+        width: 50vw !important;
+      }
+    
+    header section.buscamobile, footer section.fmobile {
+       display: flex;
+    }
+    
+    footer, .carrinho-identificacao .processo-da-compra div {
+        padding: 0;
+      }
+
+    header .header-principal .busca, div.hbutton p, section.header-menu, section.fbutton, section.mlogo, .carrinho-identificacao .processo-da-compra div a.sacola, .carrinho-identificacao .processo-da-compra div a.entrega, .carrinho-identificacao .processo-da-compra div a.pagamento {
+        display: none;
+    }
+
+    .carrinho-identificacao .container-identificacao {
+        display: unset;
+    }
+
+    .container-identificacao .dados-pessoais {
+        width: 100%;
+        margin:0;
+    }
+
+    .container-identificacao section.resumo-compra {
+        margin: 20px 0;
+        min-width: unset;
+        width: 100%;
+        padding: 5px;
+    }
+
 }
