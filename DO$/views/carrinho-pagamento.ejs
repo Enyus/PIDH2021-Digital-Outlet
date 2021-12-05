@@ -103,25 +103,36 @@
                         <form action="">
                             <div class="forma-pagamento">
                                 <p>Formas de pagamento</p>
-                                <button>BOLETO</button>
-                                <button>CARTÃO PRESENTE</button>
-                                <button>CARTÃO DE CRÉDITO</button>
-                                <button>PIX</button>
+                                <div>
+                                    <input type="radio" name="forma-pagamento" id="cartao-presente">
+                                    <label for="cartao-presente">CARTÃO PRESENTE</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="forma-pagamento" id="cartao-credito">
+                                    <label for="cartao-credito">CARTÃO DE CRÉDITO</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="forma-pagamento" id="pix">
+                                    <label for="pix">PIX</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="forma-pagamento" id="boleto">
+                                    <label for="boleto">BOLETO</label>
+                                </div>
                             </div>
                             <div class="dados-pagamento">
                                 <p>Dados do cartão</p>
                                 <div>
                                     <label for="">Número do Cartão</label>
-                                    <select name="" id="">
-                                    <input type="text" name="" id="">    
-                                    </select>
+                                    <input type="text" name="" id="">
                                 </div>
                                 <div>
                                     <label for="">Parcelamento</label>
-                                    <option value="1">À vista</option>
+                                    <select name="" id="">
+                                        <option value="1">À vista</option>
                                         <option value="2">2x s/ juros</option>
                                         <option value="3">3x s/ juros</option>
-                                        <option value="4">4 s/ juros</option>
+                                        <option value="4">4x s/ juros</option>
                                         <option value="5">5x s/ juros</option>
                                         <option value="6">6x s/ juros</option>
                                         <option value="7">7x s/ juros/option>
@@ -130,14 +141,15 @@
                                         <option value="10">10x s/ juros </option>
                                         <option value="11">11x s/ juros</option>
                                         <option value="12">12x s/ juros</option>
+                                    </select>
                                 </div>
                                 <div>
-                                    <label for=""></label>
-                                    <input type="text">
+                                    <label for="">Nome impresso no cartão</label>
+                                    <input type="text" name="" id="">
                                 </div>
                                 <div>
                                     <div>
-                                        <label for=""></label>
+                                        <label for="">Validade</label>
                                         <select name="" id="">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -173,11 +185,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <p>Código de segurança</p>
-                                    <input type="text" name="" id="">
+                                    <label for="dados-pagamento">Código de segurança</label>
+                                    <input type="text" name="dados-pagamento" id="dados-pagamento">
                                 </div>
                                 <div>
-                                    <p>CPF do titular</p>
+                                    <label>CPF do titular</label>
                                     <input type="text" name="" id="" placeholder="999.999.999-99">
                                 </div>
                             </div>
