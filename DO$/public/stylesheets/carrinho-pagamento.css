@@ -405,3 +405,55 @@ footer {
         margin: 10px 0;
     }
 }
+
+
+/* Fazendo as alterações para mobile: */
+@media screen and (max-width: 720px) {
+    header .logo, header .header-principal .hbutton {
+        width: 50vw !important;
+      }
+    
+    header section.buscamobile, footer section.fmobile {
+       display: flex;
+    }
+    
+    footer, .carrinho-pagamento .processo-da-compra div {
+        padding: 0;
+      }
+
+    header .header-principal .busca, div.hbutton p, section.header-menu, section.fbutton, section.mlogo, .carrinho-pagamento .processo-da-compra div .identificacao, .carrinho-pagamento .processo-da-compra div .entrega, .carrinho-pagamento .processo-da-compra div .sacola {
+        display: none;
+    }
+
+    .carrinho-pagamento .container-pagamento {
+        display: block;
+    }
+
+    .carrinho-pagamento .container-pagamento .dest-entr-pag, .container-pagamento .destinatario-entrega .dados-destinatario, .container-pagamento .destinatario-entrega .dados-entrega {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .carrinho-pagamento .destinatario-entrega {
+        display: block;
+        width: 100%;
+    }
+
+    .container-pagamento .pagamento .forma-pagamento, .container-pagamento .pagamento .dados-pagamento {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .container-pagamento .pagamento .forma-pagamento button {
+        margin: 10px;
+    }
+
+    .container-pagamento .pagamento .forma-pagamento{
+        text-align: center;
+    }
+
+    .carrinho-pagamento section.resumo {
+        width: 100%;
+        padding: 5px;
+    }
+}
