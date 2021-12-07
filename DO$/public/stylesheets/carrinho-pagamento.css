@@ -504,7 +504,7 @@ footer {
         margin-bottom: 5px;
     }
 
-    .carrinho-pagamento .destinatario-entrega {
+    .carrinho-pagamento .destinatario-entrega, .container-pagamento .pagamento form {
         display: block;
         width: 100%;
     }
@@ -520,10 +520,24 @@ footer {
 
     .container-pagamento .pagamento .forma-pagamento{
         text-align: center;
+        border: none;
+        height: auto;
     }
 
     .carrinho-pagamento section.resumo {
         width: 100%;
         padding: 5px;
+    }
+
+    .container-pagamento .pagamento {
+        height: auto;
+    }
+
+    .container-pagamento .dados-pagamento div input {
+        width: 250px;
+    }
+
+    .container-pagamento .dados-pagamento {
+        width: 100%;
     }
 }
