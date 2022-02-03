@@ -1,0 +1,9 @@
+- Projeto hospedado no GitHub?
+
+- Projeto está na estrutura MVC?
+
+- Projetaram o banco de dados?
+
+- Configuração do Sequelize. ( Conexão,  Models, Migrations)
+
+- Separar os CRUDs. Identificar os CRUDs principais.
