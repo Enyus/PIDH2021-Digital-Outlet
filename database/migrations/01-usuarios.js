@@ -12,7 +12,7 @@ module.exports = {
       nome: Sequelize.STRING,
       sobrenome: Sequelize.STRING,
       dataNasc: Sequelize.DATE,
-      cpf: Sequelize.INTEGER(11),
+      cpf: Sequelize.STRING(11),
       senha: Sequelize.STRING,
       fotoPerfil: Sequelize.STRING
     });

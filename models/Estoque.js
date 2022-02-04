@@ -1,33 +1,29 @@
 const Sequelize = require('sequelize');
-// const {Usuarios, Lojas, Produtos} = require("./index");
 
 module.exports = (sequelize, DataType) => {
-    const Pedidos = sequelize.define('Pedidos', {
-        idPedido: {
+    const Estoque = sequelize.define('Estoque', {
+        idEstoque: {
             type: DataType.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        idUsuario: DataType.STRING,
-
         idLoja: {
             type: DataType.STRING,
             references: {
-                model: 'Lojas',
+                model:'Lojas',
                 key: 'idLoja'
             }
         },
         idProduto: {
             type: DataType.STRING,
             references: {
-                model: 'Produtos',
+                model:'Produtos',
                 key: 'idProduto'
             }
         },
-        dataPedido: DataType.DATE,
-        valor: DataType.INTEGER,
+        quantidade: DataType.INTEGER,
     }, {
-        tableName: 'Pedidos',
+        tableName: 'Estoque',
     });
-    return Pedidos;
+    return Estoque;
 };

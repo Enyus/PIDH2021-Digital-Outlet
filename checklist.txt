@@ -7,3 +7,9 @@
 - Configuração do Sequelize. ( Conexão,  Models, Migrations)
 
 - Separar os CRUDs. Identificar os CRUDs principais.
+
+
+
+Anotações:
+- Precisa alterar o front para incluir complemento do endereço.
+- Alterar o Figma com Complemento e CEP como VARCHAR. => OK
