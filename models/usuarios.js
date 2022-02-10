@@ -13,7 +13,9 @@ module.exports = (sequelize, DataType) => {
 	    dataNasc: DataType.DATE,
         cpf: DataType.STRING(11),
         senha: DataType.STRING,
-        fotoPerfil: DataType.STRING
+        fotoPerfil: DataType.STRING,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
 	},{
 	   tableName: 'Usuarios',
 	});

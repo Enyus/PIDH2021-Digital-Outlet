@@ -14,7 +14,9 @@ module.exports = {
       dataNasc: Sequelize.DATE,
       cpf: Sequelize.STRING(11),
       senha: Sequelize.STRING,
-      fotoPerfil: Sequelize.STRING
+      fotoPerfil: Sequelize.STRING,
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

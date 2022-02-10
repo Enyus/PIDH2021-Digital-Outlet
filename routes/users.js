@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var userController = require('../controllers/userController')
+var userController = require('../controllers/userController');
 
 /* GET Página de Usuário Padrão: */
 router.get('/', userController.index);
@@ -10,6 +10,7 @@ router.get('/login', userController.login);
 
 /* GET Página de Cadastro Usuário: */
 router.get('/cadastro', userController.cadastro);
+router.post('/cadastro', userController.cadastrarUsuario);
 
 /* GET Página de Cadastro de Lojista: */
 router.get('/cadastroloja', userController.cadastroLoja);

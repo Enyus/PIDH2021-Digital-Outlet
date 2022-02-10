@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize, DataType) => {
-    const Estoque = sequelize.define('Enderecos', {
+    const Enderecos = sequelize.define('Enderecos', {
         idEndereco: {
             type: DataType.INTEGER,
             primaryKey: true,
