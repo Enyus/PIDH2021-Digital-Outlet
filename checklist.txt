@@ -12,4 +12,7 @@
 
 Anotações:
 - Precisa alterar o front para incluir complemento do endereço.
+- Precisa conferir o front para verificar os forms
 - Alterar o Figma com Complemento e CEP como VARCHAR. => OK
+
+npx sequelize db:migrate
