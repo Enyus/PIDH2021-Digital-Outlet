@@ -22,11 +22,13 @@
       </div>
       <div class="hbutton">
         <div>
-          <a href="/usuario/login">
-          <img src='/images/login.svg' alt="login">
           <% if (userData.nome != undefined) { %>
+            <a href="/usuario">
+            <img class="fotoPerfil" src=<%= userData.fotoPerfil %>>
             <p><%= userData.nome %></p>
           <% } else { %>
+            <a href="/usuario/login">
+            <img src='/images/login.svg' alt="login">
             <p>LOG IN</p>
           <% }; %>
           </a>

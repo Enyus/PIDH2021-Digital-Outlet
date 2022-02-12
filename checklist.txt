@@ -15,4 +15,11 @@ Anotações:
 - Precisa conferir o front para verificar os forms
 - Alterar o Figma com Complemento e CEP como VARCHAR. => OK
 
+Para criar as tabelas com o migrate:
 npx sequelize db:migrate
+
+Para criar um seeder com o sequelize-cli:
+npx sequelize-cli seed:generate --name demo-user
+
+Para "subir" o seeder para a DataBase:
+npx sequelize-cli db:seed:all

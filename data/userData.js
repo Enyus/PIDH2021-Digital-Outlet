@@ -1,11 +1,11 @@
 let userData = {
-        "id": "1",
-        "email": "eu@eu.com.br",
-        nome: "Juvenal",
-        "sobrenome": "Juvencio",
-        "datanasc": "01/01/1970",
-        "cpf": "000.000.000-00",
-        "password": "senha123",
+        email: "cassio@email.com",
+        nome: "Cássio",
+        sobrenome: "Sandrigo Santini",
+        dataNasc: new Date(),
+        cpf: "12312312312",
+        senha: "123",
+        fotoPerfil: "/profilepics/cassio.jpg",
 };
 
 module.exports = userData

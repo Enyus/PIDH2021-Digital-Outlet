@@ -1031,6 +1031,11 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   display: block;
 }
 
+img.fotoPerfil {
+  height: 50px !important;
+  border-radius: 50%;
+} 
+
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
   header .logo, header .header-principal .hbutton {
