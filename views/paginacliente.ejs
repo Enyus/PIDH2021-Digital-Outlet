@@ -2,7 +2,7 @@
 
   <main class="paginacliente">
     <section class="containergeral">
-        <h1 class="bemvindo">Seja Bem-Vindo, Juvenal!</h1>
+        <h1 class="bemvindo">Seja Bem-Vindo, <%= userData.nome %>!</h1>
         <div class="containersecundario">
             <div class="menu-cliente">
                 <a href="#inicio">Início</a>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="formrow">
                   <label for="password">Confirma Nova Senha:</label>
-                  <input type="password" id="password" name="senha">
+                  <input type="password" id="confirmpassword" name="senha">
                 </div>
                 <button type="submit">Alterar Dados</button>
               </form>

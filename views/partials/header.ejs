@@ -24,7 +24,11 @@
         <div>
           <a href="/usuario/login">
           <img src='/images/login.svg' alt="login">
-          <p>LOG IN</p>
+          <% if (userData.nome != undefined) { %>
+            <p><%= userData.nome %></p>
+          <% } else { %>
+            <p>LOG IN</p>
+          <% }; %>
           </a>
         </div>
         <div>
