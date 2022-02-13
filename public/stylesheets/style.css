@@ -399,7 +399,7 @@ main.resultadobusca {
   display: flex;
 }
 
-main.paginacliente div.containerterciario {
+div.containerterciario {
   display: flex;
   justify-content: space-around;
   width: 80%;
@@ -604,7 +604,8 @@ main.cadastroloja section.containergeral p {
 main.login section.containergeral form,
 main.cadastrousuario section.containergeral form,
 main.trabalheconosco section.containergeral form,
-main.cadastroloja section.containergeral form, form.cadastrousuario {
+main.cadastroloja section.containergeral form, form.cadastrousuario,
+main.paginaloja form.alteradadosloja {
   width: 100%;
   text-align: center;
 }
@@ -614,7 +615,7 @@ main.cadastrousuario section.containergeral form div.formrow,
 main.trabalheconosco section.containergeral form div.formrow,
 main.cadastroloja section.containergeral form div.formrow,
 main.cadastroproduto section.containergeral form div.formrow,
-form.cadastrousuario div.formrow {
+form.cadastrousuario div.formrow, form.alteradadosloja div.formrow {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -627,7 +628,7 @@ main.cadastrousuario section.containergeral form div.formrow label,
 main.trabalheconosco section.containergeral form div.formrow label,
 main.cadastroloja section.containergeral form div.formrow label,
 main.cadastroproduto section.containergeral div form div.formrow label,
-form.cadastrousuario label {
+form.cadastrousuario label, form.alteradadosloja label {
   margin-right: 10px;
   width: 150px;
   text-align: end;
@@ -641,7 +642,7 @@ main.trabalheconosco section.containergeral form div.formrow textarea,
 main.cadastroloja section.containergeral form div.formrow input,
 main.cadastroproduto section.containergeral div form div.formrow input,
 main.cadastroproduto section.containergeral div form div.formrow textarea, 
-form.cadastrousuario input {
+form.cadastrousuario input, form.alteradadosloja input {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 350px;
   max-width: 50%;
@@ -654,7 +655,7 @@ main.cadastrousuario section.containergeral form button,
 main.trabalheconosco section.containergeral form button,
 main.cadastroloja section.containergeral form button,
 main.cadastroproduto section.containergeral button,
-form.cadastrousuario button {
+form.cadastrousuario button, form.alteradadosloja button {
   font-size: 36px;
   width: 300px;
   border-style: none;
@@ -684,14 +685,13 @@ main.login section.containergeral p:last-child a {
 }
 
 main.trabalheconosco div.containersecundario,
-main.cadastroproduto div.containersecundario,
-main.paginaloja div.containersecundario  {
+main.cadastroproduto div.containersecundario{
   display: flex;
   justify-content: space-around;
   margin: 20px 0;
 }
 
-main.paginacliente div.containersecundario {
+main.paginaloja div.containersecundario, main.paginacliente div.containersecundario {
   display: flex;
   margin: 20px 0;
 }
@@ -809,7 +809,6 @@ main.paginacliente section.containergeral div.pedidosrecentes,
 main.paginacliente section.containergeral div.buscasrecentes,
 main.paginaloja section.containergeral div.faturadorecentemente,
 main.paginaloja section.containergeral div.resumopedidos {
-  width: 40%;
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -1019,22 +1018,27 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   justify-content: center;
 }
 
-#inicio, #pedidos, #desejos, #dados, #enderecos, #vale {
+#inicio, #pedidos, #desejos, #dados, #enderecos, #vale, #resumo, #listaprodutos  {
   display: none;
 }
 
-#inicio:target {
+#inicio:target, #resumo:target {
   display: flex;
 }
 
-#pedidos:target, #desejos:target, #dados:target, #enderecos:target, #vale:target {
+#pedidos:target, #desejos:target, #dados:target, #enderecos:target, #vale:target, #listaprodutos:target {
   display: block;
 }
 
 img.fotoPerfil {
   height: 50px !important;
   border-radius: 50%;
-} 
+}
+
+main.paginaloja table {
+  width: -webkit-fill-available;
+  text-align: center;
+}
 
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
