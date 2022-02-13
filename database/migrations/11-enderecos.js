@@ -4,7 +4,7 @@ const sequelize = require("sequelize");
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('enderecos', {
+        return queryInterface.createTable('Enderecos', {
             idEndereco: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
@@ -26,6 +26,6 @@ module.exports = {
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('enderecos');
+        return queryInterface.dropTable('Enderecos');
     }
 };
