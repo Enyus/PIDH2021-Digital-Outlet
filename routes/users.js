@@ -7,12 +7,14 @@ router.get('/', userController.index);
 
 /* GET Página de Usuário Padrão: */
 router.get('/login', userController.login);
+router.post('/login', userController.logarUsuario);
 
-/* GET Página de Cadastro Usuário: */
+/* GET e POST Página de Cadastro Usuário: */
 router.get('/cadastro', userController.cadastro);
 router.post('/cadastro', userController.cadastrarUsuario);
 
-/* GET Página de Cadastro de Lojista: */
+/* GET e POST Página de Cadastro de Lojista: */
 router.get('/cadastroloja', userController.cadastroLoja);
+router.post('/cadastroloja', userController.cadastrarLoja);
 
 module.exports = router;

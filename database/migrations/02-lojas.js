@@ -19,6 +19,8 @@ module.exports = {
         cidade: Sequelize.STRING,
         estado: Sequelize.STRING,
         cep: Sequelize.INTEGER(8),
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
 	});
   },
   down: (queryInterface, Sequelize) => {

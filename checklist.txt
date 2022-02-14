@@ -8,6 +8,7 @@
 
 - Separar os CRUDs. Identificar os CRUDs principais.
 
+- Projeto com o login com criptografia
 
 
 Anotações:
@@ -16,3 +17,5 @@ Anotações:
 - Alterar o Figma com Complemento e CEP como VARCHAR. => OK
 
 npx sequelize db:migrate
+
+Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions.
