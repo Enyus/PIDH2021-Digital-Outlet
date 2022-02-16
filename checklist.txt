@@ -22,4 +22,4 @@ Para criar um seeder com o sequelize-cli:
 npx sequelize-cli seed:generate --name demo-user
 
 Para "subir" o seeder para a DataBase:
-npx sequelize-cli db:seed:all
+npx sequelize db:seed:all

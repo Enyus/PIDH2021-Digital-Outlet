@@ -13,6 +13,7 @@ router.get('/sobre', IndexController.sobre)
 
 /*GET Página Contato*/
 router.get('/contato', IndexController.contato)
+router.post('/contato', IndexController.enviaContato)
 
 /*GET Página Resultado da Busca*/
 router.get('/resultadobusca', IndexController.resultadobusca)

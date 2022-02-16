@@ -11,6 +11,8 @@ module.exports = (sequelize, DataType) => {
         email: DataType.STRING,
 	    telefone: DataType.STRING,
         mensagem: DataType.STRING,
+		createdAt: DataType.DATE,
+		updateAt: DataType.DATE
 	},{
 	   tableName: 'FaleConosco',
 	});

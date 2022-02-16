@@ -34,10 +34,17 @@
           </a>
         </div>
         <div>
-          <a href="../cadastroloja">
-          <img src="/images/lojista.svg" alt="login lojista">
-          <p>VENDA CONOSCO</p>
-          </a>
+          <% if (userData.nomeLoja != undefined) { %>
+              <a href="/paginaloja">
+              <img class="fotoPerfil" src=<%= userData.fotoLoja %>>
+              <p><%= userData.nomeLoja %></p>
+              </a>
+            <% } else { %>
+              <a href="../cadastroloja">
+              <img src="/images/lojista.svg" alt="login lojista">
+              <p>VENDA CONOSCO</p>
+              </a>
+          <% }; %>
         </div>
         <div>
           <a href="/compra">

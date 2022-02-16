@@ -1,3 +1,6 @@
+const db = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 const userData = require("../data/userData.js");
 
 module.exports = {
@@ -10,8 +13,20 @@ module.exports = {
     sobre: (req, res, next) => {
         res.render('sobre', {title:"Sobre a DO$", userData})
     },
-    contato: (req, res, next) => {
-        res.render('contato', {title:"Contato", userData})
+    contato: (req, res, next) => {res.render('contato', {title:"Contato", userData})},
+    enviaContato: async (req, res) => {
+        const { nome, email, telefone, mensagem } = req.body;
+
+        const mensagemContato = await db.FaleConosco.create ({
+            nome,
+            email,
+            telefone,
+            mensagem
+        })
+
+        // console.log(mensagemContato)
+        
+        return res.redirect('/contato')
     },
     resultadobusca: (req, res, next) => {
         res.render('resultadobusca', {title:"Resultado da Busca", userData})
