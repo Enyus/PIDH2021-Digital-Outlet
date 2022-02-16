@@ -1,5 +1,3 @@
-console.log("Está puxando o script corretamente")
-
 const inputEmail = document.getElementById("email");
 const inputNome = document.getElementById("nome");
 const inputSobrenome = document.getElementById("sobrenome");
@@ -7,7 +5,9 @@ const inputDataNasc = document.getElementById("dataNasc");
 const inputCpf = document.getElementById("cpf");
 const inputPassword = document.getElementById("password");
 const inputConfirmaPassword = document.getElementById("confirmapassword");
+const buttonSubmit = document.getElementById("submit")
 
+const erros = []
 
 inputEmail.onblur = (e) => {
     if (inputEmail.value.length <= 3 ||
@@ -15,24 +15,36 @@ inputEmail.onblur = (e) => {
         inputEmail.value.indexOf(" ") > 0 ||
         inputEmail.value.indexOf(".") < 0) {
         inputEmail.style.borderColor = "red";
+        erros.push("email");
     } else {
         inputEmail.style.borderColor = "green";
+        if (erros.includes("email")) {
+            erros.splice(erros.indexOf("email"), 1);
+        };
     }
 };
 
 inputNome.onblur = (e) => {
     if (inputNome.value.length < 2) {
         inputNome.style.borderColor = "red";
+        erros.push("nome");
     } else {
         inputNome.style.borderColor = "green";
+        if (erros.includes("nome")) {
+            erros.splice(erros.indexOf("nome"), 1);
+        };
     }
 }
 
 inputSobrenome.onblur = (e) => {
     if (inputSobrenome.value.length < 2) {
         inputSobrenome.style.borderColor = "red";
+        erros.push("sobrenome");
     } else {
         inputSobrenome.style.borderColor = "green";
+        if (erros.includes("sobrenome")) {
+            erros.splice(erros.indexOf("sobrenome"), 1);
+        };
     }
 }
 
@@ -41,8 +53,12 @@ inputSobrenome.onblur = (e) => {
 inputDataNasc.onblur = (e) => {
     if (inputDataNasc.value.length != 10) {
         inputDataNasc.style.borderColor = "red";
+        erros.push("dataNasc");
     } else {
         inputDataNasc.style.borderColor = "green";
+        if (erros.includes("dataNasc")) {
+            erros.splice(erros.indexOf("dataNasc"), 1);
+        };
     }
 }
 
@@ -51,23 +67,42 @@ inputCpf.onblur = (e) => {
         isNaN(inputCpf.value)) {
         inputCpf.style.borderColor = "red";
         alert("O CPF deve ser apenas numérico e ter 11 números")
+        erros.push("cpf");
     } else {
         inputCpf.style.borderColor = "green";
+        if (erros.includes("cpf")) {
+            erros.splice(erros.indexOf("cpf"), 1);
+        };
     }
 }
 
 inputPassword.onblur = (e) => {
     if (inputPassword.value.length < 6) {
         inputPassword.style.borderColor = "red";
+        erros.push("senha");
     } else {
         inputPassword.style.borderColor = "green";
+        if (erros.includes("senha")) {
+            erros.splice(erros.indexOf("senha"), 1);
+        };
     }
 }
 
 inputConfirmaPassword.onblur = (e) => {
     if (inputConfirmaPassword.value != inputPassword.value ) {
         inputConfirmaPassword.style.borderColor = "red";
+        erros.push("confirmaSenha");
     } else {
         inputConfirmaPassword.style.borderColor = "green";
+        if (erros.includes("confirmaSenha")) {
+            erros.splice(erros.indexOf("confirmaSenha"), 1);
+        };
+    }
+}
+
+buttonSubmit.onsubmit = (e) => {
+    if (erros.length > 0 || inputNome.value == "") {
+        e.preventDefault();
+        alert("Alguns campos não foram preenchidos corretamente.")
     }
 }
