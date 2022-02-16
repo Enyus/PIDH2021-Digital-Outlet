@@ -9,6 +9,21 @@ const buttonSubmit = document.getElementById("submit")
 
 const erros = []
 
+buttonSubmit.disabled = "true";
+
+function checkValidation () {
+    if (erros.length == 0 &&
+        inputEmail.value != '' &&
+        inputNome.value != '' &&
+        inputSobrenome.value != '' &&
+        inputDataNasc.value != '' &&
+        inputCpf.value != '' &&
+        inputPassword.value != '' &&
+        inputConfirmaPassword.value != '') {
+            buttonSubmit.disabled = false
+    };
+}
+
 inputEmail.onblur = (e) => {
     if (inputEmail.value.length <= 3 ||
         inputEmail.value.indexOf("@") < 0 ||
@@ -21,7 +36,8 @@ inputEmail.onblur = (e) => {
         if (erros.includes("email")) {
             erros.splice(erros.indexOf("email"), 1);
         };
-    }
+    };
+    checkValidation();
 };
 
 inputNome.onblur = (e) => {
@@ -34,6 +50,7 @@ inputNome.onblur = (e) => {
             erros.splice(erros.indexOf("nome"), 1);
         };
     }
+    checkValidation();
 }
 
 inputSobrenome.onblur = (e) => {
@@ -46,6 +63,7 @@ inputSobrenome.onblur = (e) => {
             erros.splice(erros.indexOf("sobrenome"), 1);
         };
     }
+    checkValidation();
 }
 
 // Qual validação usar para data de nascimento?
@@ -60,6 +78,7 @@ inputDataNasc.onblur = (e) => {
             erros.splice(erros.indexOf("dataNasc"), 1);
         };
     }
+    checkValidation();
 }
 
 inputCpf.onblur = (e) => {
@@ -74,6 +93,7 @@ inputCpf.onblur = (e) => {
             erros.splice(erros.indexOf("cpf"), 1);
         };
     }
+    checkValidation();
 }
 
 inputPassword.onblur = (e) => {
@@ -86,6 +106,7 @@ inputPassword.onblur = (e) => {
             erros.splice(erros.indexOf("senha"), 1);
         };
     }
+    checkValidation();
 }
 
 inputConfirmaPassword.onblur = (e) => {
@@ -98,11 +119,5 @@ inputConfirmaPassword.onblur = (e) => {
             erros.splice(erros.indexOf("confirmaSenha"), 1);
         };
     }
-}
-
-buttonSubmit.onsubmit = (e) => {
-    if (erros.length > 0 || inputNome.value == "") {
-        e.preventDefault();
-        alert("Alguns campos não foram preenchidos corretamente.")
-    }
+    checkValidation();
 }

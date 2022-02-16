@@ -669,6 +669,10 @@ form.cadastrousuario button, form.alteradadosloja button {
   margin-bottom: 20px;
 }
 
+button:disabled {
+  opacity: 0.3;
+}
+
 main.login section.containergeral p:nth-last-child(2),
 main.login section.containergeral p:last-child {
   width: 50%;

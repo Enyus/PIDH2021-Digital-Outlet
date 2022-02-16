@@ -20,7 +20,7 @@ module.exports = {
         })
 
         // console.log(usuarioCriado)
-        return res.redirect('/usuario')
+        return res.redirect('/')
     },
     cadastroLoja: (req, res) => res.render('cadastroloja', {title:"Seja nosso Parceiro!", userData}),
     carrinho: (req, res) => res.render('carrinho-sacola', {title:"Carrinho!", userData})
