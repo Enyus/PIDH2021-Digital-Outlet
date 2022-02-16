@@ -21,6 +21,8 @@ function checkValidation () {
         inputPassword.value != '' &&
         inputConfirmaPassword.value != '') {
             buttonSubmit.disabled = false
+    } else {
+        buttonSubmit.disabled = "true";
     };
 }
 
