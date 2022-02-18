@@ -1,5 +1,5 @@
 let userData = {
-        // email: "cassio@email.com",
+        email: "cassio@email.com",
         // nome: "Cássio",
         // sobrenome: "Sandrigo Santini",
         // dataNasc: "1989-06-28",
