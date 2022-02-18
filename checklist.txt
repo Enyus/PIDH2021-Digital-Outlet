@@ -8,6 +8,7 @@
 
 - Separar os CRUDs. Identificar os CRUDs principais.
 
+- Projeto com o login com criptografia
 
 
 Anotações:
@@ -23,3 +24,6 @@ npx sequelize-cli seed:generate --name demo-user
 
 Para "subir" o seeder para a DataBase:
 npx sequelize db:seed:all
+npx sequelize db:migrate
+
+Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions.
