@@ -771,7 +771,7 @@ main.cadastroproduto section.containergeral form div.formrow div.fotoproduto but
   height: 100px;
 }
 
-main.cadastroproduto section.containergeral form div.formrow div.fotoproduto button input[type="image"] {
+main.cadastroproduto section.containergeral form div.formrow div.fotoproduto button input[type="file"] {
   display: none;
 }
 

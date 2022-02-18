@@ -1,5 +1,3 @@
-console.log("Está rodando")
-
 const inputEmail = document.getElementById("email");
 const inputRazaoSocial = document.getElementById("razaosocial");
 const inputNomeFantasia = document.getElementById("nomefantasia");
@@ -69,8 +67,6 @@ inputNomeFantasia.onblur = (e) => {
     }
     checkValidation();
 }
-
-// Qual validação usar para data de nascimento?
 
 inputIe.onblur = (e) => {
     if (inputIe.value.length < 9 || inputIe > 14) {
