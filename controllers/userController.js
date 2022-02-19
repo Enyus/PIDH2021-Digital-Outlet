@@ -3,6 +3,7 @@ const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const bcrypt = require('bcrypt');
 
+
 module.exports = {
     index: (req, res) => res.render('paginacliente', { title: "Bem-Vindo!" }),
 
@@ -22,8 +23,18 @@ module.exports = {
         if (!bcrypt.compareSync(senha, user.senha)) {
             return res.send("Senha invalida");
         } else {
-            res.redirect('/');
+            req.session.usuario = {
+                email: user.email,
+                nome: user.nome,
+                fotoPerfil: user.fotoPerfil
+            }
+            return res.redirect('/cliente');
         }
+    },
+
+    logout: (req, res) => {
+        req.session.usuario = undefined;
+        return res.redirect('/');
     },
 
     cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!" }),
@@ -40,8 +51,8 @@ module.exports = {
             cpf,
             senha: hash,
         })
-        console.log(usuarioCriado)
-        return res.redirect('/')
+        //console.log(usuarioCriado)
+        return res.redirect('/login')
     },
 
     cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),

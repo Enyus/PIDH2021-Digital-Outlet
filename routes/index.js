@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const IndexController = require("../controllers/IndexController")
+const IndexController = require("../controllers/IndexController");
+const userController = require('../controllers/userController');
+const CompraController = require('../controllers/CompraController');
+var auth = require ('../middlewares/auth');
 
 /* GET home page. */
 router.get('/', IndexController.index);
@@ -21,32 +24,34 @@ router.get('/resultadobusca', IndexController.resultadobusca)
 /*GET Página do Produto*/
 router.get('/produto', IndexController.produto)
 
-/*GET Página do Login*/
-// router.get('/login', (req, res, next) => {
-//   res.render('login', {title:"Bem-Vindo!"})
-// })
+/* Página do Login*/
+router.get('/login', userController.login);
+router.post('/login', userController.logarUsuario);
+router.get('/logout', userController.logout);
 
 /*GET Página do Cadastro de Usuário*/
-// router.get('/cadastrousuario', (req, res, next) => {
-//   res.render('cadastrousuario', {title:"Seja nosso Cliente!"})
-// })
+router.get('/cadastro', userController.cadastro);
+router.post('/cadastro', userController.cadastrarUsuario);
+
 /*GET Página do Carrinho*/
-router.get('/carrinho', IndexController.carrinho)
+router.get('/carrinho', CompraController.index);
+router.get('/carrinho/sacola', CompraController.sacola)
+router.get('/carrinho/identificacao', CompraController.identificacao)
+router.get('/carrinho/entrega', CompraController.entrega)
+router.get('/carrinho/pagamento', CompraController.pagamento)
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)
-
-/*GET Página do Cadastro de Lojista*/
-router.get('/cadastroloja', IndexController.cadastroloja)
-
 
 /*GET Página do Cadastro de Produto*/
 router.get('/cadastroproduto', IndexController.cadastroproduto)
 
 /*GET Página do Cliente*/
-router.get('/paginacliente', IndexController.paginacliente)
+router.get('/cliente', auth, IndexController.paginacliente)
 
 /*GET Página do Lojista*/
-router.get('/paginaloja', IndexController.paginaloja)
+router.get('/loja', IndexController.paginaloja)
+router.get('/cadastroloja', userController.cadastroLoja);
+router.post('/cadastroloja', userController.cadastrarLoja);
 
 module.exports = router;

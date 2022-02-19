@@ -2,7 +2,7 @@
 
   <main class="paginacliente">
     <section class="containergeral">
-        <h1 class="bemvindo">Seja Bem-Vindo, <%= userData.nome %>!</h1>
+        <h1 class="bemvindo">Seja Bem-Vindo, <%= usuario.nome %>!</h1>
         <div class="containersecundario">
             <div class="menu-cliente">
                 <a href="#inicio">Início</a>
@@ -11,12 +11,13 @@
                 <a href="#dados">Alterar Dados Cadastrais</a>
                 <a href="#enderecos">Endereços</a>
                 <a href="#vale">Vale Compras</a>
+                <a href="/logout">Sair</a>
             </div>
             
             <div class="containerterciario" id="inicio">
               <div class="pedidosrecentes">
                   <p><b>Seus Pedidos Recentes:</b></p>
-                  <a href="./produto"><div class="container">
+                  <a href="/produto"><div class="container">
                       <img src="/images/calca-bege.png" alt="Calça Bege">
                       <h1>Calça Bege</h1>
                       <div class="precos">
@@ -28,7 +29,7 @@
                       </div>
                       </div>
                   </a>
-                  <a href="./produto"><div class="container">
+                  <a href="/produto"><div class="container">
                       <img src="/images/calca-bege.png" alt="Calça Bege">
                       <h1>Calça Bege</h1>
                       <div class="precos">
@@ -43,7 +44,7 @@
               </div>
               <div class="buscasrecentes">
                   <p><b>Suas Buscas Recentes:</b></p>
-                  <a href="./produto"><div class="container">
+                  <a href="/produto"><div class="container">
                       <img src="/images/calca-bege.png" alt="Calça Bege">
                       <h1>Calça Bege</h1>
                       <div class="precos">
@@ -55,7 +56,7 @@
                       </div>
                       </div>
                   </a>
-                  <a href="./produto"><div class="container">
+                  <a href="/produto"><div class="container">
                       <img src="/images/calca-bege.png" alt="Calça Bege">
                       <h1>Calça Bege</h1>
                       <div class="precos">
@@ -73,7 +74,7 @@
             <div class="containerterciario" id="pedidos">
               <div class="pedidosrecentes">
                 <p><b>Seus Pedidos Recentes:</b></p>
-                <a href="./produto"><div class="container">
+                <a href="/produto"><div class="container">
                     <img src="/images/calca-bege.png" alt="Calça Bege">
                     <h1>Calça Bege</h1>
                     <div class="precos">
@@ -85,7 +86,7 @@
                     </div>
                     </div>
                 </a>
-                <a href="./produto"><div class="container">
+                <a href="/produto"><div class="container">
                     <img src="/images/calca-bege.png" alt="Calça Bege">
                     <h1>Calça Bege</h1>
                     <div class="precos">
@@ -109,23 +110,23 @@
               <form action="" method="" class="cadastrousuario">
                 <div class="formrow">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" value=<%= userData.email %> >
+                    <input type="email" id="email" name="email" >
                 </div>
                 <div class="formrow">
                   <label for="nome">Nome:</label>
-                  <input type="text" id="nome" name="nome" value=<%= userData.nome %> >
+                  <input type="text" id="nome" name="nome" >
                 </div>
                 <div class="formrow">
                   <label for="sobrenome">Sobrenome:</label>
-                  <input type="text" id="sobrenome" name="sobrenome" value=<%= userData.sobrenome %> >
+                  <input type="text" id="sobrenome" name="sobrenome" >
                 </div>
                 <div class="formrow">
                   <label for="dataNasc">Data de Nascimento:</label>
-                  <input type="date" id="dataNasc" name="dataNasc" value=<%= userData.dataNasc %> >
+                  <input type="date" id="dataNasc" name="dataNasc" > >
                 </div>
                 <div class="formrow">
                   <label for="cpf">CPF:</label>
-                  <input type="text" id="cpf" name="cpf" value=<%= userData.cpf %> >
+                  <input type="text" id="cpf" name="cpf" >
                 </div>
                 <div class="formrow">
                   <label for="password">Alterar Senha:</label>
