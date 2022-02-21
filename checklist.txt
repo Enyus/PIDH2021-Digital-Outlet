@@ -1,14 +1,14 @@
-- Projeto hospedado no GitHub?
+- Projeto hospedado no GitHub? => OK
 
-- Projeto está na estrutura MVC?
+- Projeto está na estrutura MVC? => OK
 
-- Projetaram o banco de dados?
+- Projetaram o banco de dados? => OK
 
-- Configuração do Sequelize. ( Conexão,  Models, Migrations)
+- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK
 
 - Separar os CRUDs. Identificar os CRUDs principais.
 
-- Projeto com o login com criptografia
+- Projeto com o login com criptografia => OK
 
 
 Anotações:
