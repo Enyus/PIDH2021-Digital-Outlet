@@ -158,8 +158,8 @@ inputImgUpload1.onchange = (e) => {
         erros.push("Imagem");
     } else {
         buttonImg1.style.borderColor = "green";
-        if (erros.includes("Image")) {
-            erros.splice(erros.indexOf("Image"), 1);
+        if (erros.includes("Imagem")) {
+            erros.splice(erros.indexOf("Imagem"), 1);
         };
     }
     checkValidation();
@@ -170,8 +170,8 @@ inputImgUpload2.onchange = (e) => {
         erros.push("Imagem");
     } else {
         buttonImg2.style.borderColor = "green";
-        if (erros.includes("Image")) {
-            erros.splice(erros.indexOf("Image"), 1);
+        if (erros.includes("Imagem")) {
+            erros.splice(erros.indexOf("Imagem"), 1);
         };
     }
     checkValidation();
@@ -182,8 +182,8 @@ inputImgUpload3.onchange = (e) => {
         erros.push("Imagem");
     } else {
         buttonImg3.style.borderColor = "green";
-        if (erros.includes("Image")) {
-            erros.splice(erros.indexOf("Image"), 1);
+        if (erros.includes("Imagem")) {
+            erros.splice(erros.indexOf("Imagem"), 1);
         };
     }
     checkValidation();
@@ -194,8 +194,8 @@ inputImgUpload4.onchange = (e) => {
         erros.push("Imagem");
     } else {
         buttonImg4.style.borderColor = "green";
-        if (erros.includes("Image")) {
-            erros.splice(erros.indexOf("Image"), 1);
+        if (erros.includes("Imagem")) {
+            erros.splice(erros.indexOf("Imagem"), 1);
         };
     }
     checkValidation();
@@ -206,8 +206,8 @@ inputImgUpload5.onchange = (e) => {
         erros.push("Imagem");
     } else {
         buttonImg5.style.borderColor = "green";
-        if (erros.includes("Image")) {
-            erros.splice(erros.indexOf("Image"), 1);
+        if (erros.includes("Imagem")) {
+            erros.splice(erros.indexOf("Imagem"), 1);
         };
     }
     checkValidation();
@@ -218,8 +218,8 @@ inputImgUpload6.onchange = (e) => {
         erros.push("Imagem");
     } else {
         buttonImg6.style.borderColor = "green";
-        if (erros.includes("Image")) {
-            erros.splice(erros.indexOf("Image"), 1);
+        if (erros.includes("Imagem")) {
+            erros.splice(erros.indexOf("Imagem"), 1);
         };
     }
     checkValidation();

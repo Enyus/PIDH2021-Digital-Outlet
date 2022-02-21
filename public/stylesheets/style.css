@@ -385,7 +385,7 @@ main section.containergeral form.contato textarea {
   border: none;
 }
 
-main section.containergeral form.contato input[type="submit"] {
+main section.containergeral form.contato button {
   margin: auto;
   background: #c1c1c1;
   border: none;
