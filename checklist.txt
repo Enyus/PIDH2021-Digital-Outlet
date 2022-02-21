@@ -4,9 +4,26 @@
 
 - Projetaram o banco de dados? => OK
 
-- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK
+- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK (Mas precisamos trabalhar nos relacionamentos e nos Seeders)
 
 - Separar os CRUDs. Identificar os CRUDs principais.
+    - Criar usuário; => OK
+    - Logar usuário; => OK
+    - Alterar Dados do Usuário;
+    - Adicionar Endereço de Usuário;
+    - Deletar Endereço do Usuário;
+    - Aidicionar Foto de Perfil do Usuário;
+    - Criar Loja; => OK
+    - Alterar Dados da Loja;
+    - Adicionar Endereço da Loja;
+    - Deletar Endereço da Loja;
+    - Adicionar Foto de Perfil da Loja;
+    - Criar Produto;
+    - Alterar Dados do Produto;
+    - Deletar Produto;
+    - Fale Conosco; => OK
+    - Trabalhe Conosco;
+    - Carrinho?
 
 - Projeto com o login com criptografia => OK
 
@@ -26,4 +43,4 @@ Para "subir" o seeder para a DataBase:
 npx sequelize db:seed:all
 npx sequelize db:migrate
 
-Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions.
+Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions. => OK
