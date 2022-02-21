@@ -24,7 +24,11 @@
         <div>
           <% if(typeof(usuario) != 'undefined') { %>
             <a href="/cliente">
-            <img src='/images/login.svg' alt="login">
+              <% if (usuario.fotoPerfil != null) { %>
+                <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" alt="login">
+              <% } else { %>
+                <img src='/images/login.svg' alt="login">
+              <% } %>
             <p><%= usuario.nome %></p>
           <% } else { %>
             <a href="/login">
