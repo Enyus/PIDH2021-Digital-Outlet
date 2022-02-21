@@ -769,6 +769,7 @@ main.cadastroproduto section.containergeral form div.formrow div.desctec {
 main.cadastroproduto section.containergeral form div.formrow div.fotoproduto button img {
   width: 100px;
   height: 100px;
+  margin-top: 3px;
 }
 
 main.cadastroproduto section.containergeral form div.formrow div.fotoproduto button input[type="file"] {

@@ -84,7 +84,16 @@ function checkValidation () {
     } else {
         buttonSubmit.disabled = true;
     };
-}
+};
+
+buttonsImg = [null, buttonImg1, buttonImg2, buttonImg3, buttonImg4, buttonImg5, buttonImg6]
+
+function showPreview (event, i) {
+    if(event.target.files.length > 0){
+        let src = URL.createObjectURL(event.target.files[0]);
+        buttonsImg[i].children[1].src = src;
+    };
+};
 
 inputNomeProduto.onblur = (e) => {
     if (inputNomeProduto.value.length < 2) {
@@ -154,6 +163,7 @@ inputDescProduto.onblur = (e) => {
 //Quais validações usar para imagens?
 
 inputImgUpload1.onchange = (e) => {
+    showPreview(e, 1);
     if (inputImgUpload1.value == '') {
         erros.push("Imagem");
     } else {
@@ -166,6 +176,7 @@ inputImgUpload1.onchange = (e) => {
 }
 
 inputImgUpload2.onchange = (e) => {
+    showPreview(e, 2);
     if (inputImgUpload2.value == '') {
         erros.push("Imagem");
     } else {
@@ -178,6 +189,7 @@ inputImgUpload2.onchange = (e) => {
 }
 
 inputImgUpload3.onchange = (e) => {
+    showPreview(e, 3);
     if (inputImgUpload3.value == '') {
         erros.push("Imagem");
     } else {
@@ -190,6 +202,7 @@ inputImgUpload3.onchange = (e) => {
 }
 
 inputImgUpload4.onchange = (e) => {
+    showPreview(e, 4);
     if (inputImgUpload4.value == '') {
         erros.push("Imagem");
     } else {
@@ -202,6 +215,7 @@ inputImgUpload4.onchange = (e) => {
 }
 
 inputImgUpload5.onchange = (e) => {
+    showPreview(e, 5);
     if (inputImgUpload5.value == '') {
         erros.push("Imagem");
     } else {
@@ -214,6 +228,7 @@ inputImgUpload5.onchange = (e) => {
 }
 
 inputImgUpload6.onchange = (e) => {
+    showPreview(e, 6);
     if (inputImgUpload6.value == '') {
         erros.push("Imagem");
     } else {
