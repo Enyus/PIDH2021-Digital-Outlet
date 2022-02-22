@@ -5,14 +5,14 @@ const bcrypt = require('bcrypt');
 
 
 module.exports = {
-    index: (req, res) => res.render('paginacliente', { title: "Bem-Vindo!" }),
+    index: (req, res) => res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario }),
 
-    login: (req, res) => res.render('login', { title: "Digite seu login para continuar." }),
+    login: (req, res) => res.render('login', { title: "Digite seu login para continuar." , usuario: req.session.usuario}),
 
     logarUsuario: async (req, res) => {
         const { email, senha } = req.body;
 
-        if(!email || !senha) {res.render('login', {title: "Campos Invalidos"})};
+        if(!email || !senha) {res.render('login', {title: "Campos Invalidos", usuario: req.session.usuario})};
 
         const user = await db.Usuarios.findOne({ 
             where: {
@@ -37,7 +37,7 @@ module.exports = {
         return res.redirect('/');
     },
 
-    cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!" }),
+    cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!", usuario: req.session.usuario }),
 
     cadastrarUsuario: async (req, res) => {
         const { email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
@@ -55,7 +55,7 @@ module.exports = {
         return res.redirect('/login')
     },
 
-    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
+    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!", usuario: req.session.usuario }),
 
     cadastrarLoja: async (req, res) => {
         const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
@@ -77,5 +77,5 @@ module.exports = {
         return res.redirect('/');
     },
 
-    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!" })
+    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario })
 }
