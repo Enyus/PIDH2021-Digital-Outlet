@@ -22,7 +22,7 @@
     - Alterar Dados do Produto;
     - Deletar Produto;
     - Fale Conosco; => OK
-    - Trabalhe Conosco;
+    - Trabalhe Conosco; => OK
     - Carrinho? - sessions  depois sobe para pedidos
     - Pesquisa de Produtos
 
