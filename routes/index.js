@@ -3,6 +3,7 @@ var router = express.Router();
 const IndexController = require("../controllers/IndexController");
 const userController = require('../controllers/userController');
 const CompraController = require('../controllers/CompraController');
+const ProdutoController = require('../controllers/ProdutoController')
 var auth = require ('../middlewares/auth');
 
 /* GET home page. */
@@ -45,7 +46,8 @@ router.get('/trabalheconosco', IndexController.trabalheconosco)
 router.post('/trabalheconosco', IndexController.cadastrarCurriculo)
 
 /*GET Página do Cadastro de Produto*/
-router.get('/cadastroproduto', IndexController.cadastroproduto)
+router.get('/cadastroproduto', ProdutoController.cadastroView)
+router.post('/cadastroproduto', ProdutoController.cadastrarproduto)
 
 /*GET Página do Cliente*/
 router.get('/cliente', auth, IndexController.paginacliente)

@@ -46,6 +46,7 @@ module.exports = {
             departamento,
             disp,
             mensagem
+            
         });
 
         // console.log(curriculo);
@@ -55,9 +56,9 @@ module.exports = {
     cadastroloja: (req, res, next) => {
         res.render('cadastroloja', {title:"Seja nosso Parceiro!", usuario: req.session.usuario})
     },
-    cadastroproduto: (req, res, next) => {
-        res.render('cadastroproduto', {title:"Cadastro de Produto", usuario: req.session.usuario})
-    },
+    // cadastroproduto: (req, res, next) => {
+    //     res.render('cadastroproduto', {title:"Cadastro de Produto", usuario: req.session.usuario})
+    // },
     paginacliente: (req, res, next) => {
         res.render('paginacliente', {title:"Bem-Vindo!", usuario: req.session.usuario})
     },

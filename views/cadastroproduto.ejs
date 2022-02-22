@@ -6,7 +6,7 @@
       <div class="containersecundario">
         <div>
           <p class="lembrete">Lembre-se a descrição de seu produto tem importância ìmpar à decisão do consumidor!</p>
-          <form>
+          <form action="/cadastroproduto" method="POST">
             <div class="formrow">
               <label for="nomeproduto">Produto:</label>
               <input type="text" id="nomeproduto" name="nomeproduto">
@@ -27,10 +27,11 @@
               <label for="descproduto">Descrição:</label>
               <textarea id="descproduto" name="descproduto" rows="5"></textarea>
             </div>
-          </form>
+            <button type="submit" id="submit">Enviar</button>
+            </form>
         </div>
         <div>
-          <form action="">
+          
             <div class="formrow">
               <label for="fotoproduto">Fotos:</label>
               <div class="fotoproduto" id="fotoproduto">
@@ -101,12 +102,12 @@
                 </div>
               </div>
             </div>
-          </form>
+            <button disabled>Deletar</button>
+            
+          
         </div>
       </div>
       <div class="containersecundario">
-        <button disabled>Deletar</button>
-        <button type="submit" id="submit">Enviar</button>
       </div>
     </section>
   </main>
