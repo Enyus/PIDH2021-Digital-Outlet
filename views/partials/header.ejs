@@ -22,19 +22,29 @@
       </div>
       <div class="hbutton">
         <div>
-          <a href="/usuario/login">
-          <img src='/images/login.svg' alt="login">
-          <p>LOG IN</p>
+          <% if(typeof(usuario) != 'undefined') { %>
+            <a href="/cliente">
+              <% if (usuario.fotoPerfil != null) { %>
+                <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" alt="login">
+              <% } else { %>
+                <img src='/images/login.svg' alt="login">
+              <% } %>
+            <p><%= usuario.nome %></p>
+          <% } else { %>
+            <a href="/login">
+            <img src='/images/login.svg' alt="login">
+            <p>LOG IN</p>
+          <% } %>
           </a>
         </div>
-        <div>
-          <a href="../cadastroloja">
-          <img src="/images/lojista.svg" alt="login lojista">
-          <p>VENDA CONOSCO</p>
-          </a>
+        <div>          
+            <a href="/cadastroloja">
+            <img src="/images/lojista.svg" alt="login lojista">
+            <p>VENDA CONOSCO</p>
+            </a>
         </div>
         <div>
-          <a href="/compra">
+          <a href="/carrinho">
           <img src="/images/carrinho.svg" alt="carrinho">
           <p>SEU CARRINHO</p>
           </a>

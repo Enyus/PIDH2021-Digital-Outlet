@@ -12,6 +12,8 @@ module.exports = {
       email: Sequelize.STRING,
       telefone: Sequelize.STRING,
       mensagem: Sequelize.STRING,
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

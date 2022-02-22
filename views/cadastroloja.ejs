@@ -4,7 +4,7 @@
     <section class="containergeral">
         <h1>Seja nosso Parceiro de Negócios!</h1>
         <p>Preencha os campos abaixo:</p>
-        <form action="" method="POST">
+        <form action="/cadastroloja" method="POST">
             <div class="formrow">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email">
@@ -19,11 +19,11 @@
             </div>
             <div class="formrow">
               <label for="ie">Inscrição Estadual:</label>
-              <input type="text" id="ie" name="ie" pattern="\d{3}\.\d{3}\.\d{3}.\d{3}/\[A-Z]{2}" value="xxx.xxx.xxx.xxx/UF">
+              <input type="text" id="ie" name="ie" >
             </div>
             <div class="formrow">
               <label for="cnpj">C.N.P.J.:</label>
-              <input type="text" id="cnpj" name="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" value="xx.xxx.xxx/xxxx-xx">
+              <input type="text" id="cnpj" name="cnpj" >
             </div>
             <div class="formrow">
                 <label for="password">Senha:</label>
@@ -33,9 +33,11 @@
               <label for="confirmapassword">Confirmar Senha:</label>
               <input type="password" id="confirmapassword" name="confirmapassword">
             </div>
-            <button type="submit">Enviar</button>
+            <button type="submit" id="submit">Enviar</button>
         </form>
     </section>
   </main>
+
+  <script src="/scripts/validateLoja.js"></script>
 
 <%- include('./partials/footer') %>

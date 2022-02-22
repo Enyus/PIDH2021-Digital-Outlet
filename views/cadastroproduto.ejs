@@ -34,70 +34,70 @@
             <div class="formrow">
               <label for="fotoproduto">Fotos:</label>
               <div class="fotoproduto" id="fotoproduto">
-                <button type="button" class="img" onclick="document.getElementById('imgupload').click()">
-                  <input type="image" id="imgupload">
+                <button type="button" class="img" id="buttonimg1" onclick="document.getElementById('imgupload1').click()">
+                  <input type="file" id="imgupload1">
                   <img src="/images/sample-img.svg">
                 </button>
-                <button type="button" class="img" onclick="document.getElementById('imgupload').click()">
-                  <input type="image" id="imgupload">
+                <button type="button" class="img" id="buttonimg2" onclick="document.getElementById('imgupload2').click()">
+                  <input type="file" id="imgupload2">
                   <img src="/images/sample-img.svg">
                 </button>
-                <button type="button" class="img" onclick="document.getElementById('imgupload').click()">
-                  <input type="image" id="imgupload">
+                <button type="button" class="img" id="buttonimg3" onclick="document.getElementById('imgupload3').click()">
+                  <input type="file" id="imgupload3">
                   <img src="/images/sample-img.svg">
                 </button>
-                <button type="button" class="img" onclick="document.getElementById('imgupload').click()">
-                  <input type="image" id="imgupload">
+                <button type="button" class="img" id="buttonimg4" onclick="document.getElementById('imgupload4').click()">
+                  <input type="file" id="imgupload4">
                   <img src="/images/sample-img.svg">
                 </button>
-                <button type="button" class="img" onclick="document.getElementById('imgupload').click()">
-                  <input type="image" id="imgupload">
+                <button type="button" class="img" id="buttonimg5" onclick="document.getElementById('imgupload5').click()">
+                  <input type="file" id="imgupload5">
                   <img src="/images/sample-img.svg">
                 </button>
-                <button type="button" class="img" onclick="document.getElementById('imgupload').click()">
-                  <input type="image" id="imgupload">
+                <button type="button" class="img" id="buttonimg6" onclick="document.getElementById('imgupload6').click()">
+                  <input type="file" id="imgupload6">
                   <img src="/images/sample-img.svg">
                 </button>
               </div>
             </div>
             <div class="formrow">
               <label for="desctec">Descrição Técnica:</label>
-              <div class="desctec">
+              <div class="desctec" id="desctec">
                 <div class="formrow">
-                  <input type="checkbox">
-                  <input type="text" id="catdesc1" name="catdesc1" value="Cor">
+                  <input type="checkbox" id="checkdesc1">
+                  <input type="text" id="catdesc1" name="catdesc1">
                   <p>:</p>
-                  <input type="text" id="desctec1" name="desctec1" value="Bege">
+                  <input type="text" id="desctec1" name="desctec1">
                 </div>
                 <div class="formrow">
-                  <input type="checkbox">
-                  <input type="text" id="catdesc2" name="catdesc2" value="Tipo de Material">
+                  <input type="checkbox" id="checkdesc2">
+                  <input type="text" id="catdesc2" name="catdesc2">
                   <p>:</p>
-                  <input type="text" id="desctec2" name="desctec2" value="Tecido Premium">
+                  <input type="text" id="desctec2" name="desctec2">
                 </div>
                 <div class="formrow">
-                  <input type="checkbox">
-                  <input type="text" id="catdesc3" name="catdesc3" value="Composição">
+                  <input type="checkbox" id="checkdesc3">
+                  <input type="text" id="catdesc3" name="catdesc3">
                   <p>:</p>
-                  <input type="text" id="desctec3" name="desctec3" value="98% Algodão, 2% Elastano">
+                  <input type="text" id="desctec3" name="desctec3">
                 </div>
                 <div class="formrow">
-                  <input type="checkbox">
-                  <input type="text" id="catdesc4" name="catdesc4" value="Código">
+                  <input type="checkbox" id="checkdesc4">
+                  <input type="text" id="catdesc4" name="catdesc4">
                   <p>:</p>
-                  <input type="text" id="desctec4" name="desctec4" value="0052221017">
+                  <input type="text" id="desctec4" name="desctec4">
                 </div>
                 <div class="formrow">
-                  <input type="checkbox">
-                  <input type="text" id="catdesc5" name="catdesc5" value="Tamanho">
+                  <input type="checkbox" id="checkdesc5">
+                  <input type="text" id="catdesc5" name="catdesc5">
                   <p>:</p>
-                  <input type="text" id="desctec5" name="desctec5" value="G">
+                  <input type="text" id="desctec5" name="desctec5">
                 </div>
                 <div class="formrow">
-                  <input type="checkbox">
-                  <input type="text" id="catdesc6" name="catdesc6" value="">
+                  <input type="checkbox" id="checkdesc6">
+                  <input type="text" id="catdesc6" name="catdesc6">
                   <p>:</p>
-                  <input type="text" id="desctec6" name="desctec6" value="">
+                  <input type="text" id="desctec6" name="desctec6">
                 </div>
               </div>
             </div>
@@ -106,9 +106,11 @@
       </div>
       <div class="containersecundario">
         <button disabled>Deletar</button>
-        <button>Enviar</button>
+        <button type="submit" id="submit">Enviar</button>
       </div>
     </section>
   </main>
+
+<script src="/scripts/validateProduto.js"></script>
 
 <%- include('./partials/footer') %>

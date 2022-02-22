@@ -18,6 +18,8 @@ module.exports = (sequelize, DataType) => {
         cidade: DataType.STRING,
         estado: DataType.STRING,
         cep: DataType.INTEGER(8),
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
 	},{
 	   tableName: 'Lojas',
 	});

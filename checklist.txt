@@ -1,13 +1,42 @@
-- Projeto hospedado no GitHub?
+- Projeto hospedado no GitHub? => OK
 
-- Projeto está na estrutura MVC?
+- Projeto está na estrutura MVC? => OK
 
-- Projetaram o banco de dados?
+- Projetaram o banco de dados? => OK
 
-- Configuração do Sequelize. ( Conexão,  Models, Migrations)
+- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK (Mas precisamos trabalhar nos relacionamentos e nos Seeders)
 
 - Separar os CRUDs. Identificar os CRUDs principais.
+    - Criar usuário; => OK
+    - Logar usuário; => OK
+    - Alterar Dados do Usuário;
+    - Adicionar Endereço de Usuário;
+    - Deletar Endereço do Usuário;
+    - Aidicionar Foto de Perfil do Usuário;
+    - Criar Loja; => OK
+    - Alterar Dados da Loja;
+    - Adicionar Endereço da Loja;
+    - Deletar Endereço da Loja;
+    - Adicionar Foto de Perfil da Loja;
+    - Criar Produto;
+    - Alterar Dados do Produto;
+    - Deletar Produto;
+    - Fale Conosco; => OK
+    - Trabalhe Conosco;
+    - Carrinho? - sessions  depois sobe para pedidos
+    - Pesquisa de Produtos
 
+- No Front: Select com Marcas na Página de cadastro de produtos
+
+- Como fazer o deploy?
+
+- API dos Correios
+
+- Projeto com o login com criptografia => OK
+
+- Na tabela de produtos, está faltando o nome do produto.
+
+- Fazer Validação no Backend.
 
 
 Anotações:
@@ -15,4 +44,13 @@ Anotações:
 - Precisa conferir o front para verificar os forms
 - Alterar o Figma com Complemento e CEP como VARCHAR. => OK
 
+Para criar as tabelas com o migrate:
 npx sequelize db:migrate
+
+Para criar um seeder com o sequelize-cli:
+npx sequelize-cli seed:generate --name demo-user
+
+Para "subir" o seeder para a DataBase:
+npx sequelize db:seed:all
+
+Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions. => OK

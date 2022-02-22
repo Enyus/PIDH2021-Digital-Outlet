@@ -1,6 +1,10 @@
+const db = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
+
 module.exports = {
     index: (req, res, next) => {
-        res.render('index', { title: 'Digital Outlet $' });
+        res.render('index', { title: 'Digital Outlet $', usuario: req.session.usuario});
     },
     faq: (req, res, next) => {
         res.render('faq', {title:"Dúvidas Frequentes"});
@@ -8,8 +12,18 @@ module.exports = {
     sobre: (req, res, next) => {
         res.render('sobre', {title:"Sobre a DO$"})
     },
-    contato: (req, res, next) => {
-        res.render('contato', {title:"Contato"})
+    contato: (req, res, next) => {res.render('contato', {title:"Contato"})},
+    enviaContato: async (req, res) => {
+        const { nome, email, telefone, mensagem } = req.body;
+
+        const mensagemContato = await db.FaleConosco.create ({
+            nome,
+            email,
+            telefone,
+            mensagem
+        })
+
+        return res.redirect('/contato')
     },
     resultadobusca: (req, res, next) => {
         res.render('resultadobusca', {title:"Resultado da Busca"})
@@ -30,7 +44,7 @@ module.exports = {
         res.render('cadastroproduto', {title:"Cadastro de Produto"})
     },
     paginacliente: (req, res, next) => {
-        res.render('paginacliente', {title:"Bem-Vindo!"})
+        res.render('paginacliente', {title:"Bem-Vindo!", usuario: req.session.usuario})
     },
     paginaloja: (req, res, next) => {
         res.render('paginaloja', {title:"Bem-Vindo!"})
