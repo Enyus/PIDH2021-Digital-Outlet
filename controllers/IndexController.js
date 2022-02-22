@@ -37,6 +37,21 @@ module.exports = {
     trabalheconosco: (req, res, next) => {
         res.render('trabalheconosco', {title:"Trabalhe Conosco!"})
     },
+    cadastrarCurriculo: async (req, res, next) => {
+        const { email, nome, departamento, disp, mensagem } = req.body;
+
+        const curriculo = await db.TrabalheConosco.create({
+            email,
+            nome,
+            departamento,
+            disp,
+            mensagem
+        });
+
+        // console.log(curriculo);
+
+        return res.render('trabalheconosco', {title: 'Sucesso', message: "Currículo enviado com Sucesso!"});
+    },
     cadastroloja: (req, res, next) => {
         res.render('cadastroloja', {title:"Seja nosso Parceiro!"})
     },

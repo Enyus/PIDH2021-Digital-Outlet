@@ -3,6 +3,9 @@
   <main class="trabalheconosco">
     <section class="containergeral">
         <h1>Trabalhe na <img src="/images/logo-mini.svg" alt="mini logo"></h1>
+        <% if (typeof(message) != 'undefined') { %>
+            <h2 style='text-align:center'><%=message%></h2>
+        <% } %>
         <div class="containersecundario">
             <div class="form">
                 <p>Cadastre-se a uma de nossas vagas:</p>
@@ -17,7 +20,7 @@
                     </div>
                     <div class="formrow">
                         <label for="departamentos">Departamentos:</label>
-                        <select id="departamentos">
+                        <select id="departamentos" name="departamento">
                             <option selected disabled value="escolha">Escolha</option>
                             <option value="adm">Administração</option>
                             <option value="dev">Developer</option>
@@ -35,7 +38,7 @@
                     </div>
                     <div class="formrow">
                         <label for="mensagem">Mensagem:</label>
-                        <textarea id="mensagem"></textarea>
+                        <textarea id="mensagem" name="mensagem"></textarea>
                     </div>
                     <div class="formrow">
                         <label for="curriculo">Currículo:</label>

@@ -42,6 +42,7 @@ router.get('/carrinho/pagamento', CompraController.pagamento)
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)
+router.post('/trabalheconosco', IndexController.cadastrarCurriculo)
 
 /*GET Página do Cadastro de Produto*/
 router.get('/cadastroproduto', IndexController.cadastroproduto)
