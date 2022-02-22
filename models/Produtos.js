@@ -7,10 +7,11 @@ module.exports = (sequelize, DataType) => {
             primaryKey: true,
             autoIncrement: true
         },
+        nomeProduto: Sequelize.STRING,
         idMarca:Sequelize.INTEGER,
         preco: Sequelize.FLOAT,
         idCategoria:  Sequelize.INTEGER,
-        desc: Sequelize.STRING,
+        desc: Sequelize.TEXT,
         idLoja: Sequelize.INTEGER,
         promocao: Sequelize.DECIMAL,
     });

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataType) => {
 	    nome: DataType.STRING,
         email: DataType.STRING,
 	    telefone: DataType.STRING,
-        mensagem: DataType.STRING,
+        mensagem: DataType.TEXT,
 		createdAt: DataType.DATE,
 		updateAt: DataType.DATE
 	},{

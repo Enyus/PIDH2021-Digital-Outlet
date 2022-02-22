@@ -8,6 +8,7 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true
         },
+        nomeProduto: Sequelize.STRING,
         idMarca: {
             type: Sequelize.INTEGER,
             references: {
@@ -23,7 +24,7 @@ module.exports = {
                 key: 'idCategoria'
             }
         },
-        desc: Sequelize.STRING,
+        desc: Sequelize.TEXT,
         idLoja: {
             type: Sequelize.INTEGER,
             references: {

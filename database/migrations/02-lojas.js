@@ -12,7 +12,7 @@ module.exports = {
 	    razaoSocial: Sequelize.STRING,
 	    nomeFantasia: Sequelize.STRING,
 	    inscEst: Sequelize.INTEGER(9),
-      cnpj: Sequelize.INTEGER(14),
+      cnpj: Sequelize.BIGINT(14),
       senha: Sequelize.STRING,
       logradouro: Sequelize.STRING,
       numero: Sequelize.INTEGER,
