@@ -23,9 +23,20 @@
     - Deletar Produto;
     - Fale Conosco; => OK
     - Trabalhe Conosco;
-    - Carrinho?
+    - Carrinho? - sessions  depois sobe para pedidos
+    - Pesquisa de Produtos
+
+- No Front: Select com Marcas na Página de cadastro de produtos
+
+- Como fazer o deploy?
+
+- API dos Correios
 
 - Projeto com o login com criptografia => OK
+
+- Na tabela de produtos, está faltando o nome do produto.
+
+- Fazer Validação no Backend.
 
 
 Anotações:
@@ -41,6 +52,5 @@ npx sequelize-cli seed:generate --name demo-user
 
 Para "subir" o seeder para a DataBase:
 npx sequelize db:seed:all
-npx sequelize db:migrate
 
 Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions. => OK
