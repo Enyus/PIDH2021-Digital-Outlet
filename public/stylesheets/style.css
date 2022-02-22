@@ -1045,6 +1045,13 @@ main.paginaloja table {
   text-align: center;
 }
 
+div.colaboradores {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+}
+
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
   header .logo, header .header-principal .hbutton {
