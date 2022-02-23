@@ -9,6 +9,8 @@ module.exports = {
             autoIncrement: true
         },
         nomeCategoria: Sequelize.STRING,
+        createdAt: Sequelize.DATE,
+		    updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

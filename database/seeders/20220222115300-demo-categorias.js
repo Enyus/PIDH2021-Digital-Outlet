@@ -3,22 +3,34 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Categorias', [{
-      nomeCategoria: 'Roupas'
+      nomeCategoria: 'Roupas',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
-      nomeCategoria: 'Livros'
+      nomeCategoria: 'Livros',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
-      nomeCategoria: 'Calçados'
+      nomeCategoria: 'Calçados',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
-      nomeCategoria: 'Acessórios'
+      nomeCategoria: 'Acessórios',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
-      nomeCategoria: 'Para a Casa'
+      nomeCategoria: 'Para a Casa',
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
-      nomeCategoria: 'Esporte'
+      nomeCategoria: 'Esporte',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 
