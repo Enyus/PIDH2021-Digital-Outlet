@@ -4,6 +4,21 @@ const IndexController = require("../controllers/IndexController");
 const userController = require('../controllers/userController');
 const CompraController = require('../controllers/CompraController');
 var auth = require ('../middlewares/auth');
+const multer = require('multer');
+const path = require('path')
+
+// configuração do Multer:
+const storageFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.resolve(__dirname, '../public/curriculos'))
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '.pdf'
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+});
+  
+const uploadFile = multer({ storage: storageFile });
 
 /* GET home page. */
 router.get('/', IndexController.index);
@@ -42,7 +57,7 @@ router.get('/carrinho/pagamento', CompraController.pagamento)
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)
-router.post('/trabalheconosco', IndexController.cadastrarCurriculo)
+router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.cadastrarCurriculo)
 
 /*GET Página do Cadastro de Produto*/
 router.get('/cadastroproduto', IndexController.cadastroproduto)

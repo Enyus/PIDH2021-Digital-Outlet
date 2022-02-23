@@ -2,6 +2,20 @@ const db = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
+// const multer = require('multer');
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, '/curriculos')
+//     },
+//     filename: function (req, file, cb) {
+//       const uniqueSuffix = Date.now() + '- curriculo'
+//       cb(null, file.fieldname + '-' + uniqueSuffix)
+//     }
+// });
+  
+// const upload = multer({ storage: storage });
+
 module.exports = {
     index: (req, res, next) => {
         res.render('index', { title: 'Digital Outlet $', usuario: req.session.usuario});
@@ -45,8 +59,13 @@ module.exports = {
             nome,
             departamento,
             disp,
-            mensagem
+            mensagem,
+            curriculo: req.file.path.slice(-39)
         });
+
+        // console.log(req.file.path.slice(-39));
+
+        // upload.single('curriculo');
 
         // console.log(curriculo);
 

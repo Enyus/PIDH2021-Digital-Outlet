@@ -20,12 +20,13 @@ module.exports = {
             }
         });
 
-        console.log(user);
+        // console.log(user);
 
         if (!bcrypt.compareSync(senha, user.senha)) {
             return res.send("Senha invalida");
         } else {
             req.session.usuario = {
+                idUsuario: user.idUsuario,
                 email: user.email,
                 nome: user.nome,
                 sobrenome: user.sobrenome,
