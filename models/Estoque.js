@@ -22,6 +22,8 @@ module.exports = (sequelize, DataType) => {
             }
         },
         quantidade: DataType.INTEGER,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'Estoque',
     });

@@ -2,23 +2,23 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return  queryInterface.createTable('FaleConosco', {
-      idFaleConosco: {
+    return  queryInterface.createTable('TrabalheConosco', {
+      idTrabalheConosco: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      nome: Sequelize.STRING,
       email: Sequelize.STRING,
-      telefone: Sequelize.STRING,
+      nome: Sequelize.STRING,
+      departamento: Sequelize.STRING,
+      disp: Sequelize.STRING,
       mensagem: Sequelize.TEXT,
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE,
+      curriculo: Sequelize.STRING,
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {
-   return  queryInterface.dropTable('FaleConosco');
+   return  queryInterface.dropTable('TrabalheConosco');
   }
 };

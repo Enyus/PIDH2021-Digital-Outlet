@@ -20,6 +20,8 @@ module.exports = (sequelize, DataType) => {
         cidade: DataType.STRING,
         estado: DataType.STRING,
         cep: DataType.STRING,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'Enderecos',
     });

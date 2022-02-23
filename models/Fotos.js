@@ -15,6 +15,8 @@ module.exports = (sequelize, DataType) => {
             }
         },
         urlFoto: DataType.STRING,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'Fotos',
     });

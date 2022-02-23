@@ -31,6 +31,8 @@ module.exports = {
             },
             dataPedido: Sequelize.DATE,
             valor: Sequelize.INTEGER,
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {

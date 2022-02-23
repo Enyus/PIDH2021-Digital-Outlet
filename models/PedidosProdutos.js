@@ -25,6 +25,8 @@ module.exports = (sequelize, DataType) => {
         preco: DataType.FLOAT,
         desconto: DataType.FLOAT,
         frete: DataType.FLOAT,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'PedidosProdutos',
     });
