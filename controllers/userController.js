@@ -20,12 +20,17 @@ module.exports = {
             }
         });
 
+        console.log(user);
+
         if (!bcrypt.compareSync(senha, user.senha)) {
             return res.send("Senha invalida");
         } else {
             req.session.usuario = {
                 email: user.email,
                 nome: user.nome,
+                sobrenome: user.sobrenome,
+                dataNasc: user.dataNasc.toISOString().slice(0,10),
+                cpf: user.cpf,
                 fotoPerfil: user.fotoPerfil
             }
             return res.redirect('/cliente');
@@ -51,7 +56,7 @@ module.exports = {
             cpf,
             senha: hash,
         })
-        //console.log(usuarioCriado)
+        // console.log(usuarioCriado)
         return res.redirect('/login')
     },
 
