@@ -14,6 +14,8 @@ module.exports = (sequelize, DataType) => {
         desc: Sequelize.TEXT,
         idLoja: Sequelize.INTEGER,
         promocao: Sequelize.DECIMAL,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     });
     return Produtos;
 };

@@ -23,6 +23,8 @@ module.exports = {
                 }
             },
             quantidade: Sequelize.INTEGER,
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {

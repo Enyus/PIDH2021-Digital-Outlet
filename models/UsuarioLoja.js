@@ -21,6 +21,8 @@ module.exports = (sequelize, DataType) => {
                 key: 'idLoja'
             }
         },
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'UsuarioLoja',
     });

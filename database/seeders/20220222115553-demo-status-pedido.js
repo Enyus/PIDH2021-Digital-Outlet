@@ -6,7 +6,9 @@ module.exports = {
       idPedido: 1,
       dataProcess: new Date(),
       dataTransp: new Date(),
-      dataEntrega: new Date()
+      dataEntrega: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

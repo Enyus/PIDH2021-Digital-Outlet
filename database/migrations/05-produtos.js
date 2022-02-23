@@ -33,6 +33,8 @@ module.exports = {
             }
         },
         promocao: Sequelize.DECIMAL,
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

@@ -8,7 +8,9 @@ module.exports = {
       quantidade: 1,
       preco: 110,
       desconto: 10,
-      frete: 20
+      frete: 20,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

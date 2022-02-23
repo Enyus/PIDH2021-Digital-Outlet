@@ -18,6 +18,8 @@ module.exports = {
             dataProcess: Sequelize.DATE,
             dataTransp: Sequelize.DATE,
             dataEntrega: Sequelize.DATE,
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {

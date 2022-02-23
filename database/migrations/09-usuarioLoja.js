@@ -22,6 +22,8 @@ module.exports = {
                     key: 'idLoja'
                 }
             },
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {

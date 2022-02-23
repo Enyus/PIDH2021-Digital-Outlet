@@ -7,7 +7,9 @@ module.exports = {
       idLoja: 1,
       idProduto: 1,
       dataPedido: new Date(),
-      valor: 100
+      valor: 100,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

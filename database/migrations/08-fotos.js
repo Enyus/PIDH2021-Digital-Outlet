@@ -16,6 +16,8 @@ module.exports = {
                 }
             },
             urlFoto: Sequelize.STRING,
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {

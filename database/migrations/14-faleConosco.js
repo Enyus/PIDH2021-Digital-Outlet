@@ -13,6 +13,8 @@ module.exports = {
       telefone: Sequelize.STRING,
       mensagem: Sequelize.TEXT,
       createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
+      createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
     });
   },

@@ -26,6 +26,8 @@ module.exports = (sequelize, DataType) => {
         },
         dataPedido: DataType.DATE,
         valor: DataType.INTEGER,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'Pedidos',
     });

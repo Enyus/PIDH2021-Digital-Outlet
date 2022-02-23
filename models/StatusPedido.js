@@ -17,6 +17,8 @@ module.exports = (sequelize, DataType) => {
         dataProcess: DataType.DATE,
         dataTransp: DataType.DATE,
         dataEntrega: DataType.DATE,
+		createdAt: DataType.DATE,
+		updatedAt: DataType.DATE
     }, {
         tableName: 'StatusPedido',
     });

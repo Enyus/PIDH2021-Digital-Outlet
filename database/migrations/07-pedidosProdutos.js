@@ -26,6 +26,8 @@ module.exports = {
             preco: Sequelize.FLOAT,
             desconto: Sequelize.FLOAT,
             frete: Sequelize.FLOAT,
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {
