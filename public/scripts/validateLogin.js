@@ -22,7 +22,9 @@ inputEmail.onblur = (e) => {
         inputEmail.value.indexOf(" ") > 0 ||
         inputEmail.value.indexOf(".") < 0) {
         inputEmail.style.borderColor = "red";
-        erros.push("email");
+        if (!erros.includes("email")) {
+            erros.push("email");
+        };
     } else {
         inputEmail.style.borderColor = "green";
         if (erros.includes("email")) {
@@ -35,7 +37,9 @@ inputEmail.onblur = (e) => {
 inputPassword.onblur = (e) => {
     if (inputPassword.value.length < 6) {
         inputPassword.style.borderColor = "red";
-        erros.push("senha");
+        if (!erros.includes("senha")) {
+            erros.push("senha");
+        };
     } else {
         inputPassword.style.borderColor = "green";
         if (erros.includes("senha")) {

@@ -98,7 +98,9 @@ function showPreview (event, i) {
 inputNomeProduto.onblur = (e) => {
     if (inputNomeProduto.value.length < 2) {
         inputNomeProduto.style.borderColor = "red";
-        erros.push("Nome Produto");
+        if (!erros.includes("Nome Produto")) {
+            erros.push("Nome Produto");
+        };
     } else {
         inputNomeProduto.style.borderColor = "green";
         if (erros.includes("Nome Produto")) {
@@ -111,7 +113,9 @@ inputNomeProduto.onblur = (e) => {
 inputMarca.onblur = (e) => {
     if (inputMarca.value.length < 2) {
         inputMarca.style.borderColor = "red";
-        erros.push("Marca");
+        if (!erros.includes("Marca")) {
+            erros.push("Marca");
+        };
     } else {
         inputMarca.style.borderColor = "green";
         if (erros.includes("Marca")) {
@@ -124,7 +128,9 @@ inputMarca.onblur = (e) => {
 inputPreco.onblur = (e) => {
     if (inputPreco.value.length < 1) {
         inputPreco.style.borderColor = "red";
-        erros.push("Preço");
+        if (!erros.includes("Preço")) {
+            erros.push("Preço");
+        };
     } else {
         inputPreco.style.borderColor = "green";
         if (erros.includes("Preço")) {
@@ -137,7 +143,9 @@ inputPreco.onblur = (e) => {
 inputCategoria.onblur = (e) => {
     if (inputCategoria.value.length < 1) {
         inputCategoria.style.borderColor = "red";
-        erros.push("Categoria");
+        if (!erros.includes("Categoria")) {
+            erros.push("Categoria");
+        };
     } else {
         inputCategoria.style.borderColor = "green";
         if (erros.includes("Categoria")) {
@@ -150,7 +158,9 @@ inputCategoria.onblur = (e) => {
 inputDescProduto.onblur = (e) => {
     if (inputDescProduto.value.length < 10) {
         inputDescProduto.style.borderColor = "red";
-        erros.push("Descrição do Produto");
+        if (!erros.includes("Descrição do Produto")) {
+            erros.push("Descrição do Produto");
+        };
     } else {
         inputDescProduto.style.borderColor = "green";
         if (erros.includes("Descrição do Produto")) {
@@ -165,11 +175,13 @@ inputDescProduto.onblur = (e) => {
 inputImgUpload1.onchange = (e) => {
     showPreview(e, 1);
     if (inputImgUpload1.value == '') {
-        erros.push("Imagem");
+        if (!erros.includes("Imagem1")) {
+            erros.push("Imagem1");
+        };
     } else {
         buttonImg1.style.borderColor = "green";
-        if (erros.includes("Imagem")) {
-            erros.splice(erros.indexOf("Imagem"), 1);
+        if (erros.includes("Imagem1")) {
+            erros.splice(erros.indexOf("Imagem1"), 1);
         };
     }
     checkValidation();
@@ -178,11 +190,13 @@ inputImgUpload1.onchange = (e) => {
 inputImgUpload2.onchange = (e) => {
     showPreview(e, 2);
     if (inputImgUpload2.value == '') {
-        erros.push("Imagem");
+        if (!erros.includes("Imagem2")) {
+            erros.push("Imagem2");
+        };
     } else {
         buttonImg2.style.borderColor = "green";
-        if (erros.includes("Imagem")) {
-            erros.splice(erros.indexOf("Imagem"), 1);
+        if (erros.includes("Imagem2")) {
+            erros.splice(erros.indexOf("Imagem2"), 1);
         };
     }
     checkValidation();
@@ -191,11 +205,13 @@ inputImgUpload2.onchange = (e) => {
 inputImgUpload3.onchange = (e) => {
     showPreview(e, 3);
     if (inputImgUpload3.value == '') {
-        erros.push("Imagem");
+        if (!erros.includes("Imagem3")) {
+            erros.push("Imagem3");
+        };
     } else {
         buttonImg3.style.borderColor = "green";
-        if (erros.includes("Imagem")) {
-            erros.splice(erros.indexOf("Imagem"), 1);
+        if (erros.includes("Imagem3")) {
+            erros.splice(erros.indexOf("Imagem3"), 1);
         };
     }
     checkValidation();
@@ -204,11 +220,13 @@ inputImgUpload3.onchange = (e) => {
 inputImgUpload4.onchange = (e) => {
     showPreview(e, 4);
     if (inputImgUpload4.value == '') {
-        erros.push("Imagem");
+        if (!erros.includes("Imagem4")) {
+            erros.push("Imagem4");
+        };
     } else {
         buttonImg4.style.borderColor = "green";
-        if (erros.includes("Imagem")) {
-            erros.splice(erros.indexOf("Imagem"), 1);
+        if (erros.includes("Imagem4")) {
+            erros.splice(erros.indexOf("Imagem4"), 1);
         };
     }
     checkValidation();
@@ -217,11 +235,13 @@ inputImgUpload4.onchange = (e) => {
 inputImgUpload5.onchange = (e) => {
     showPreview(e, 5);
     if (inputImgUpload5.value == '') {
-        erros.push("Imagem");
+        if (!erros.includes("Imagem5")) {
+            erros.push("Imagem5");
+        };
     } else {
         buttonImg5.style.borderColor = "green";
-        if (erros.includes("Imagem")) {
-            erros.splice(erros.indexOf("Imagem"), 1);
+        if (erros.includes("Imagem5")) {
+            erros.splice(erros.indexOf("Imagem5"), 1);
         };
     }
     checkValidation();
@@ -230,11 +250,13 @@ inputImgUpload5.onchange = (e) => {
 inputImgUpload6.onchange = (e) => {
     showPreview(e, 6);
     if (inputImgUpload6.value == '') {
-        erros.push("Imagem");
+        if (!erros.includes("Imagem6")) {
+            erros.push("Imagem6");
+        };
     } else {
         buttonImg6.style.borderColor = "green";
-        if (erros.includes("Imagem")) {
-            erros.splice(erros.indexOf("Imagem"), 1);
+        if (erros.includes("Imagem6")) {
+            erros.splice(erros.indexOf("Imagem6"), 1);
         };
     }
     checkValidation();
@@ -245,7 +267,9 @@ inputImgUpload6.onchange = (e) => {
 inputCatDesc1.onblur = (e) => {
     if (inputCatDesc1.value.length == '') {
         inputCatDesc1.style.borderColor = "red";
-        erros.push("Cat. Descrição do Produto 1");
+        if (!erros.includes("Cat. Descrição do Produto 1")) {
+            erros.push("Cat. Descrição do Produto 1");
+        };
     } else {
         inputCheckDesc1.checked = true;
         inputCatDesc1.style.borderColor = "green";
@@ -259,7 +283,9 @@ inputCatDesc1.onblur = (e) => {
 inputDescTec1.onblur = (e) => {
     if (inputDescTec1.value.length == '') {
         inputDescTec1.style.borderColor = "red";
-        erros.push("Descrição do Produto 1");
+        if (!erros.includes("Descrição do Produto 1")) {
+            erros.push("Descrição do Produto 1");
+        };
     } else {
         inputCheckDesc1.checked = true;
         inputDescTec1.style.borderColor = "green";
@@ -273,7 +299,9 @@ inputDescTec1.onblur = (e) => {
 inputCatDesc2.onblur = (e) => {
     if (inputCatDesc2.value.length == '') {
         inputCatDesc2.style.borderColor = "red";
-        erros.push("Cat. Descrição do Produto 2");
+        if (!erros.includes("Cat. Descrição do Produto 2")) {
+            erros.push("Cat. Descrição do Produto 2");
+        };
     } else {
         inputCatDesc2.style.borderColor = "green";
         inputCheckDesc2.checked = true;
@@ -287,7 +315,9 @@ inputCatDesc2.onblur = (e) => {
 inputDescTec2.onblur = (e) => {
     if (inputDescTec2.value.length == '') {
         inputDescTec2.style.borderColor = "red";
-        erros.push("Descrição do Produto 2");
+        if (!erros.includes("Descrição do Produto 2")) {
+            erros.push("Descrição do Produto 2");
+        };
     } else {
         inputDescTec2.style.borderColor = "green";
         inputCheckDesc2.checked = true;
@@ -301,7 +331,9 @@ inputDescTec2.onblur = (e) => {
 inputCatDesc3.onblur = (e) => {
     if (inputCatDesc3.value.length == '') {
         inputCatDesc3.style.borderColor = "red";
-        erros.push("Cat. Descrição do Produto 3");
+        if (!erros.includes("Cat. Descrição do Produto 3")) {
+            erros.push("Cat. Descrição do Produto 3");
+        };
     } else {
         inputCatDesc3.style.borderColor = "green";
         inputCheckDesc3.checked = true;
@@ -315,7 +347,9 @@ inputCatDesc3.onblur = (e) => {
 inputDescTec3.onblur = (e) => {
     if (inputDescTec3.value.length == '') {
         inputDescTec3.style.borderColor = "red";
-        erros.push("Descrição do Produto 3");
+        if (!erros.includes("Descrição do Produto 3")) {
+            erros.push("Descrição do Produto 3");
+        };
     } else {
         inputDescTec3.style.borderColor = "green";
         inputCheckDesc3.checked = true;
@@ -329,7 +363,9 @@ inputDescTec3.onblur = (e) => {
 inputCatDesc4.onblur = (e) => {
     if (inputCatDesc4.value.length == '') {
         inputCatDesc4.style.borderColor = "red";
-        erros.push("Cat. Descrição do Produto 4");
+        if (!erros.includes("Cat. Descrição do Produto 4")) {
+            erros.push("Cat. Descrição do Produto 4");
+        };
     } else {
         inputCatDesc4.style.borderColor = "green";
         inputCheckDesc4.checked = true;
@@ -343,7 +379,9 @@ inputCatDesc4.onblur = (e) => {
 inputDescTec4.onblur = (e) => {
     if (inputDescTec4.value.length == '') {
         inputDescTec4.style.borderColor = "red";
-        erros.push("Descrição do Produto 4");
+        if (!erros.includes("Descrição do Produto 4")) {
+            erros.push("Descrição do Produto 4");
+        };
     } else {
         inputDescTec4.style.borderColor = "green";
         inputCheckDesc4.checked = true;
@@ -357,7 +395,9 @@ inputDescTec4.onblur = (e) => {
 inputCatDesc5.onblur = (e) => {
     if (inputCatDesc5.value.length == '') {
         inputCatDesc5.style.borderColor = "red";
-        erros.push("Cat. Descrição do Produto 5");
+        if (!erros.includes("Cat. Descrição do Produto 5")) {
+            erros.push("Cat. Descrição do Produto 5");
+        };
     } else {
         inputCatDesc5.style.borderColor = "green";
         inputCheckDesc5.checked = true;
@@ -371,7 +411,9 @@ inputCatDesc5.onblur = (e) => {
 inputDescTec5.onblur = (e) => {
     if (inputDescTec5.value.length == '') {
         inputDescTec5.style.borderColor = "red";
-        erros.push("Descrição do Produto 5");
+        if (!erros.includes("Descrição do Produto 5")) {
+            erros.push("Descrição do Produto 5");
+        };
     } else {
         inputDescTec5.style.borderColor = "green";
         inputCheckDesc5.checked = true;
@@ -385,7 +427,9 @@ inputDescTec5.onblur = (e) => {
 inputCatDesc6.onblur = (e) => {
     if (inputCatDesc6.value.length == '') {
         inputCatDesc6.style.borderColor = "red";
-        erros.push("Cat. Descrição do Produto 6");
+        if (!erros.includes("Cat. Descrição do Produto 6")) {
+            erros.push("Cat. Descrição do Produto 6");
+        };
     } else {
         inputCatDesc6.style.borderColor = "green";
         inputCheckDesc6.checked = true;
@@ -399,7 +443,9 @@ inputCatDesc6.onblur = (e) => {
 inputDescTec6.onblur = (e) => {
     if (inputDescTec6.value.length == '') {
         inputDescTec6.style.borderColor = "red";
-        erros.push("Descrição do Produto 6");
+        if (!erros.includes("Descrição do Produto 6")) {
+            erros.push("Descrição do Produto 6");
+        };
     } else {
         inputDescTec6.style.borderColor = "green";
         inputCheckDesc6.checked = true;

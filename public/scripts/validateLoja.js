@@ -32,7 +32,9 @@ inputEmail.onblur = (e) => {
         inputEmail.value.indexOf(" ") > 0 ||
         inputEmail.value.indexOf(".") < 0) {
         inputEmail.style.borderColor = "red";
-        erros.push("email");
+        if (!erros.includes("email")) {
+            erros.push("email");
+        };
     } else {
         inputEmail.style.borderColor = "green";
         if (erros.includes("email")) {
@@ -45,7 +47,9 @@ inputEmail.onblur = (e) => {
 inputRazaoSocial.onblur = (e) => {
     if (inputRazaoSocial.value.length < 2) {
         inputRazaoSocial.style.borderColor = "red";
-        erros.push("Razão Social");
+        if (!erros.includes("Razão Social")) {
+            erros.push("Razão Social");
+        };
     } else {
         inputRazaoSocial.style.borderColor = "green";
         if (erros.includes("Razão Social")) {
@@ -58,7 +62,9 @@ inputRazaoSocial.onblur = (e) => {
 inputNomeFantasia.onblur = (e) => {
     if (inputNomeFantasia.value.length < 2) {
         inputNomeFantasia.style.borderColor = "red";
-        erros.push("Nome Fantasia");
+        if (!erros.includes("Nome Fantasia")) {
+            erros.push("Nome Fantasia");
+        };
     } else {
         inputNomeFantasia.style.borderColor = "green";
         if (erros.includes("Nome Fantasia")) {
@@ -71,7 +77,9 @@ inputNomeFantasia.onblur = (e) => {
 inputIe.onblur = (e) => {
     if (inputIe.value.length < 9 || inputIe > 14) {
         inputIe.style.borderColor = "red";
-        erros.push("Inscrição Estadual");
+        if (!erros.includes("Inscrição Estadual")) {
+            erros.push("Inscrição Estadual");
+        };
     } else {
         inputIe.style.borderColor = "green";
         if (erros.includes("Inscrição Estadual")) {
@@ -86,7 +94,9 @@ inputCnpj.onblur = (e) => {
         isNaN(inputCnpj.value)) {
         inputCnpj.style.borderColor = "red";
         alert("O CNPJ deve ser apenas numérico e ter 14 números")
-        erros.push("CNPJ");
+        if (!erros.includes("CNPJ")) {
+            erros.push("CNPJ");
+        };
     } else {
         inputCnpj.style.borderColor = "green";
         if (erros.includes("CNPJ")) {
@@ -99,7 +109,9 @@ inputCnpj.onblur = (e) => {
 inputPassword.onblur = (e) => {
     if (inputPassword.value.length < 6) {
         inputPassword.style.borderColor = "red";
-        erros.push("senha");
+        if (!erros.includes("senha")) {
+            erros.push("senha");
+        };
     } else {
         inputPassword.style.borderColor = "green";
         if (erros.includes("senha")) {
@@ -112,7 +124,9 @@ inputPassword.onblur = (e) => {
 inputConfirmaPassword.onblur = (e) => {
     if (inputConfirmaPassword.value != inputPassword.value ) {
         inputConfirmaPassword.style.borderColor = "red";
-        erros.push("confirmaSenha");
+        if (!erros.includes("confirmaSenha")) {
+            erros.push("confirmaSenha");
+        };
     } else {
         inputConfirmaPassword.style.borderColor = "green";
         if (erros.includes("confirmaSenha")) {
