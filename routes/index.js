@@ -4,6 +4,7 @@ const IndexController = require("../controllers/IndexController");
 const userController = require('../controllers/userController');
 const CompraController = require('../controllers/CompraController');
 var auth = require ('../middlewares/auth');
+const upload = require('../middlewares/upload');
 
 /* GET home page. */
 router.get('/', IndexController.index);
@@ -31,7 +32,7 @@ router.get('/logout', userController.logout);
 
 /*GET Página do Cadastro de Usuário*/
 router.get('/cadastro', userController.cadastro);
-router.post('/cadastro', userController.cadastrarUsuario);
+router.post('/cadastro', upload.single('fotoPerfil'), userController.cadastrarUsuario);
 
 /*GET Página do Carrinho*/
 router.get('/carrinho', CompraController.index);

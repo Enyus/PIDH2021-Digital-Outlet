@@ -41,6 +41,7 @@ module.exports = {
 
     cadastrarUsuario: async (req, res) => {
         const { email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
+        const pasta = req.file.path.slice(req.file.path.lastIndexOf("/profilepics"));
 
         const hash = bcrypt.hashSync(senha, 10);
         const usuarioCriado = await db.Usuarios.create({
@@ -50,8 +51,9 @@ module.exports = {
             dataNasc,
             cpf,
             senha: hash,
+            fotoPerfil: pasta,
         })
-        //console.log(usuarioCriado)
+        console.log(usuarioCriado)
         return res.redirect('/login')
     },
 
