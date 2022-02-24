@@ -21,7 +21,9 @@ function checkRadioInputs () {
             erros.splice(erros.indexOf("disp"), 1);
         };
     } else {
-        erros.push("disp");
+        if (!erros.includes("disp")) {
+            erros.push("disp");
+        };
         divDisp.style.border = 'solid red 1px';
     };
 };
@@ -47,7 +49,9 @@ inputEmail.onblur = (e) => {
         inputEmail.value.indexOf(" ") > 0 ||
         inputEmail.value.indexOf(".") < 0) {
         inputEmail.style.borderColor = "red";
-        erros.push("email");
+        if (!erros.includes("email")) {
+            erros.push("email");
+        };
     } else {
         inputEmail.style.borderColor = "green";
         if (erros.includes("email")) {
@@ -60,7 +64,9 @@ inputEmail.onblur = (e) => {
 inputNome.onblur = (e) => {
     if (inputNome.value.length < 2) {
         inputNome.style.borderColor = "red";
-        erros.push("nome");
+        if (!erros.includes("nome")) {
+            erros.push("nome");
+        };
     } else {
         inputNome.style.borderColor = "green";
         if (erros.includes("nome")) {
@@ -73,7 +79,9 @@ inputNome.onblur = (e) => {
 inputDepartamentos.onblur = (e) => {
     if (inputDepartamentos.value == 'escolha') {
         inputDepartamentos.style.borderColor = "red";
-        erros.push("departamentos");
+        if (!erros.includes("departamentos")) {
+            erros.push("departamentos");
+        };
     } else {
         inputDepartamentos.style.borderColor = "green";
         if (erros.includes("departamentos")) {
@@ -86,7 +94,9 @@ inputDepartamentos.onblur = (e) => {
 inputMensagem.onblur = (e) => {
     if (inputMensagem.value == '') {
         inputMensagem.style.borderColor = "red";
-        erros.push("mensagem");
+        if (!erros.includes("mensagem")) {
+            erros.push("mensagem");
+        };
     } else {
         inputMensagem.style.borderColor = "green";
         if (erros.includes("mensagem")) {
@@ -98,7 +108,9 @@ inputMensagem.onblur = (e) => {
 
 inputCurriculo.onchange = (e) => {
     if (inputCurriculo.value == '') {
-        erros.push("curriculo");
+        if (!erros.includes("curriculo")) {
+            erros.push("curriculo");
+        };
     } else {
         buttonCurriculo.style.border = "solid green 1px";
         if (erros.includes("curriculo")) {

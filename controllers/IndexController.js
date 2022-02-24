@@ -2,19 +2,6 @@ const db = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
-// const multer = require('multer');
-
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, '/curriculos')
-//     },
-//     filename: function (req, file, cb) {
-//       const uniqueSuffix = Date.now() + '- curriculo'
-//       cb(null, file.fieldname + '-' + uniqueSuffix)
-//     }
-// });
-  
-// const upload = multer({ storage: storage });
 
 module.exports = {
     index: (req, res, next) => {
