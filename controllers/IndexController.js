@@ -2,10 +2,6 @@ const db = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 47bfbd4f7efbfcef7ed60d352d7ccc70ac9f94c8
 module.exports = {
     index: (req, res, next) => {
         res.render('index', { title: 'Digital Outlet $', usuario: req.session.usuario});
@@ -54,8 +50,6 @@ module.exports = {
         });
 
         // console.log(req.file.path.slice(-39));
-
-        // upload.single('curriculo');
 
         // console.log(curriculo);
 

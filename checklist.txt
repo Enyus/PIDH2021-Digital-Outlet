@@ -69,6 +69,9 @@
                                 Prazo = document.body.children[0].children[0].children[0].children[2].innerHTML
                                 Erro = document.body.children[0].children[0].children[0].children[10].innerHTML
 
+- API de validação de CEP: https://viacep.com.br/
+    - Exemplo de autocomplete de dados de endereço com JS e a API: https://viacep.com.br/exemplo/javascript/
+
 - Projeto com o login com criptografia => OK
 
 - Na tabela de produtos, está faltando o nome do produto. => OK
@@ -78,6 +81,8 @@
     - CNPJ duplicado;
     - E-mail duplicado;
     - Inscrição Estadual duplicada;
+    - fazer validações nos Models: https://www.youtube.com/watch?v=3RzW3IqtGR0
+        - Validação do Sequelize: https://sequelize.org/v7/manual/validations-and-constraints.html
 
 
 Anotações:
