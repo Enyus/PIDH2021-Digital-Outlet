@@ -7,7 +7,14 @@ module.exports = (sequelize, DataType) => {
 	      primaryKey: true,
 	      autoIncrement: true
 	    },
-    	nomeCategoria: DataType.STRING,
+    	nomeCategoria: {
+			type: DataType.STRING,
+			allowNull: false,
+			unique: true,
+			validate: {
+				notEmpty: {msg: "Esse campo não pode ser vazio"},
+			}
+		},
 		createdAt: DataType.DATE,
 		updatedAt: DataType.DATE
 	},{

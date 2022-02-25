@@ -8,12 +8,34 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-      email: Sequelize.STRING,
-      nome: Sequelize.STRING,
-      departamento: Sequelize.STRING,
-      disp: Sequelize.STRING,
-      mensagem: Sequelize.TEXT,
-      curriculo: Sequelize.STRING,
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: {msg: "Este campo deve ter um e-mail válido."},
+        }
+      },
+        nome: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+          departamento: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      disp: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+        mensagem: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      curriculo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
     });

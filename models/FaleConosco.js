@@ -12,7 +12,7 @@ module.exports = (sequelize, DataType) => {
 	    telefone: DataType.STRING,
         mensagem: DataType.TEXT,
 		createdAt: DataType.DATE,
-		updateAt: DataType.DATE
+		updatedAt: DataType.DATE
 	},{
 	   tableName: 'FaleConosco',
 	});
