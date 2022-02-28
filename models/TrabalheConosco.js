@@ -12,7 +12,7 @@ module.exports = (sequelize, DataType) => {
 			allowNull: false,
 			unique: true,
 			validate: {
-				isEmail: {msg: "Este campo deve ter um e-mail válido."},
+				isEmail: {msg: "O campo de e-mail deve ser preenchido com um e-mail válido."},
 			}
 		},
 	    nome: {

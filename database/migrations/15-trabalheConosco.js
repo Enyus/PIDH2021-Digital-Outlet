@@ -16,11 +16,11 @@ module.exports = {
           isEmail: {msg: "Este campo deve ter um e-mail válido."},
         }
       },
-        nome: {
+      nome: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-          departamento: {
+      departamento: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-        mensagem: {
+      mensagem: {
         type: Sequelize.TEXT,
         allowNull: false,
       },

@@ -14,7 +14,10 @@ module.exports = (sequelize, DataType) => {
                 key: 'idProduto'
             }
         },
-        urlFoto: DataType.STRING,
+        urlFoto: {
+            type: DataType.STRING,
+            allowNull: false,
+          },
 		createdAt: DataType.DATE,
 		updatedAt: DataType.DATE
     }, {

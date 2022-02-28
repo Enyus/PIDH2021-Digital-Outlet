@@ -15,8 +15,14 @@ module.exports = {
               key: 'idProduto'
           }
         },
-        nomeDescTec: Sequelize.STRING,
-        valor: Sequelize.STRING,
+        nomeDescTec: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        valor: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
     });

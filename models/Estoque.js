@@ -21,7 +21,13 @@ module.exports = (sequelize, DataType) => {
                 key: 'idProduto'
             }
         },
-        quantidade: DataType.INTEGER,
+        quantidade: {
+            type: DataType.INTEGER,
+            allowNull: false,
+            validate: {
+              isInt: {msg: "O campo de quantidade de itens em estoque deve ser composto caracteres numéricos"}
+            }
+          },
 		createdAt: DataType.DATE,
 		updatedAt: DataType.DATE
     }, {
