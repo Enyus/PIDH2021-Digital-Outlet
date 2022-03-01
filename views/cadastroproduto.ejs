@@ -1,117 +1,125 @@
+<%- include('./partials/head') %>
+  <link rel='stylesheet' href='/stylesheets/cadastroproduto.css' />
+</head>
+
 <%- include('./partials/header') %>
 
   <main class="cadastroproduto">
     <section class="containergeral">
       <h1>Cadastre seu Produto</h1>
       <div class="containersecundario">
-        <div>
-          <p class="lembrete">Lembre-se a descrição de seu produto tem importância ìmpar à decisão do consumidor!</p>
-          <form action="/cadastroproduto" method="POST">
-            <div class="formrow">
-              <label for="nomeproduto">Produto:</label>
-              <input type="text" id="nomeproduto" name="nomeproduto">
-            </div>
-            <div class="formrow">
-              <label for="marca">Marca:</label>
-              <input type="text" id="marca" name="marca">
-            </div>
-            <div class="formrow">
-              <label for="preco">Preço:</label>
-              <input type="text" id="preco" name="preco">
-            </div>
-            <div class="formrow">
-              <label for="categoria">Categoria:</label>
-              <input type="text" id="categoria" name="categoria">
-            </div>
-            <div class="formrow">
-              <label for="descproduto">Descrição:</label>
-              <textarea id="descproduto" name="descproduto" rows="5"></textarea>
-            </div>
-            <button type="submit" id="submit">Enviar</button>
-            </form>
-        </div>
-        <div>
-          
-            <div class="formrow">
-              <label for="fotoproduto">Fotos:</label>
-              <div class="fotoproduto" id="fotoproduto">
-                <button type="button" class="img" id="buttonimg1" onclick="document.getElementById('imgupload1').click()">
-                  <input type="file" id="imgupload1">
-                  <img src="/images/sample-img.svg">
-                </button>
-                <button type="button" class="img" id="buttonimg2" onclick="document.getElementById('imgupload2').click()">
-                  <input type="file" id="imgupload2">
-                  <img src="/images/sample-img.svg">
-                </button>
-                <button type="button" class="img" id="buttonimg3" onclick="document.getElementById('imgupload3').click()">
-                  <input type="file" id="imgupload3">
-                  <img src="/images/sample-img.svg">
-                </button>
-                <button type="button" class="img" id="buttonimg4" onclick="document.getElementById('imgupload4').click()">
-                  <input type="file" id="imgupload4">
-                  <img src="/images/sample-img.svg">
-                </button>
-                <button type="button" class="img" id="buttonimg5" onclick="document.getElementById('imgupload5').click()">
-                  <input type="file" id="imgupload5">
-                  <img src="/images/sample-img.svg">
-                </button>
-                <button type="button" class="img" id="buttonimg6" onclick="document.getElementById('imgupload6').click()">
-                  <input type="file" id="imgupload6">
-                  <img src="/images/sample-img.svg">
-                </button>
+        <form action="/cadastroproduto" method="post">
+          <div class="sections">
+            <section class="descProduto">
+              <p class="lembrete">Lembre-se a descrição de seu produto tem importância ìmpar à decisão do consumidor!</p>
+              
+              <div class="formrow">
+                <label for="nomeproduto">Produto:</label>
+                <input type="text" id="nomeproduto" name="nomeproduto">
               </div>
-            </div>
-            <div class="formrow">
-              <label for="desctec">Descrição Técnica:</label>
-              <div class="desctec" id="desctec">
-                <div class="formrow">
-                  <input type="checkbox" id="checkdesc1">
-                  <input type="text" id="catdesc1" name="catdesc1">
-                  <p>:</p>
-                  <input type="text" id="desctec1" name="desctec1">
+              <div class="formrow">
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca">
+              </div>
+              <div class="formrow">
+                <label for="preco">Preço:</label>
+                <input type="text" id="preco" name="preco">
+              </div>
+              <div class="formrow">
+                <label for="categoria">Categoria:</label>
+                <input type="text" id="categoria" name="categoria">
+              </div>
+              <div class="formrow">
+                <label for="descproduto">Descrição:</label>
+                <textarea id="descproduto" name="descproduto" rows="5"></textarea>
+              </div>
+            </section>          
+            <section class="fotosInfoTec">
+              <div class="formrow subContainers">
+                <div class="titleContainer">
+                  <label for="fotoproduto">Fotos:</label>
                 </div>
-                <div class="formrow">
-                  <input type="checkbox" id="checkdesc2">
-                  <input type="text" id="catdesc2" name="catdesc2">
-                  <p>:</p>
-                  <input type="text" id="desctec2" name="desctec2">
-                </div>
-                <div class="formrow">
-                  <input type="checkbox" id="checkdesc3">
-                  <input type="text" id="catdesc3" name="catdesc3">
-                  <p>:</p>
-                  <input type="text" id="desctec3" name="desctec3">
-                </div>
-                <div class="formrow">
-                  <input type="checkbox" id="checkdesc4">
-                  <input type="text" id="catdesc4" name="catdesc4">
-                  <p>:</p>
-                  <input type="text" id="desctec4" name="desctec4">
-                </div>
-                <div class="formrow">
-                  <input type="checkbox" id="checkdesc5">
-                  <input type="text" id="catdesc5" name="catdesc5">
-                  <p>:</p>
-                  <input type="text" id="desctec5" name="desctec5">
-                </div>
-                <div class="formrow">
-                  <input type="checkbox" id="checkdesc6">
-                  <input type="text" id="catdesc6" name="catdesc6">
-                  <p>:</p>
-                  <input type="text" id="desctec6" name="desctec6">
+                <div class="fotoproduto container" id="fotoproduto">
+                  <button type="button" class="img" id="buttonimg1" onclick="document.getElementById('imgupload1').click()">
+                    <input type="file" id="imgupload1">
+                    <img src="/images/sample-img.svg">
+                  </button>
+                  <button type="button" class="img" id="buttonimg2" onclick="document.getElementById('imgupload2').click()">
+                    <input type="file" id="imgupload2">
+                    <img src="/images/sample-img.svg">
+                  </button>
+                  <button type="button" class="img" id="buttonimg3" onclick="document.getElementById('imgupload3').click()">
+                    <input type="file" id="imgupload3">
+                    <img src="/images/sample-img.svg">
+                  </button>
+                  <button type="button" class="img" id="buttonimg4" onclick="document.getElementById('imgupload4').click()">
+                    <input type="file" id="imgupload4">
+                    <img src="/images/sample-img.svg">
+                  </button>
+                  <button type="button" class="img" id="buttonimg5" onclick="document.getElementById('imgupload5').click()">
+                    <input type="file" id="imgupload5">
+                    <img src="/images/sample-img.svg">
+                  </button>
+                  <button type="button" class="img" id="buttonimg6" onclick="document.getElementById('imgupload6').click()">
+                    <input type="file" id="imgupload6">
+                    <img src="/images/sample-img.svg">
+                  </button>
                 </div>
               </div>
-            </div>
-            <button disabled>Deletar</button>
-            
-          
-        </div>
-      </div>
-      <div class="containersecundario">
+              <div class="formrow subContainers">
+                <div class="titleContainer">
+                  <label for="desctec" class="col0">Descrição Técnica:</label>
+                </div>
+                <div class="desctec container" id="desctec">
+                  <div class="formrow">
+                    <input type="checkbox" id="checkdesc1">
+                    <input type="text" class="col1" id="catdesc1" name="catdesc1">
+                    <p>:</p>
+                    <input type="text" class="col2" id="desctec1" name="desctec1">
+                  </div>
+                  <div class="formrow">
+                    <input type="checkbox" id="checkdesc2">
+                    <input type="text" class="col1" id="catdesc2" name="catdesc2">
+                    <p>:</p>
+                    <input type="text" class="col2" id="desctec2" name="desctec2">
+                  </div>
+                  <div class="formrow">
+                    <input type="checkbox" id="checkdesc3">
+                    <input type="text"class="col1"  id="catdesc3" name="catdesc3">
+                    <p>:</p>
+                    <input type="text" class="col2" id="desctec3" name="desctec3">
+                  </div>
+                  <div class="formrow">
+                    <input type="checkbox" id="checkdesc4">
+                    <input type="text" class="col1" id="catdesc4" name="catdesc4">
+                    <p>:</p>
+                    <input type="text" class="col2" id="desctec4" name="desctec4">
+                  </div>
+                  <div class="formrow">
+                    <input type="checkbox" id="checkdesc5">
+                    <input type="text" class="col1" id="catdesc5" name="catdesc5">
+                    <p>:</p>
+                    <input type="text" class="col2" id="desctec5" name="desctec5">
+                  </div>
+                  <div class="formrow">
+                    <input type="checkbox" id="checkdesc6">
+                    <input type="text" class="col1" id="catdesc6" name="catdesc6">
+                    <p>:</p>
+                    <input type="text" class="col2" id="desctec6" name="desctec6">
+                  </div>
+                </div>
+              </div>            
+            </section>
+          </div>
+          <section class="buttonsSendDelete">
+            <button class="button" disabled>Deletar</button>
+            <button class="button" type="submit" id="submit">Enviar</button>
+          </section>
+        </form>
       </div>
     </section>
   </main>
 
-<script src="/scripts/validateProduto.js"></script>
+  <script src="/scripts/validateProduto.js"></script>
 
-<%- include('./partials/footer') %>
+  <%- include('./partials/footer') %>
