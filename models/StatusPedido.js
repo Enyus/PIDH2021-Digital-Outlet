@@ -14,9 +14,27 @@ module.exports = (sequelize, DataType) => {
                 key: 'idPedido'
             }
         },
-        dataProcess: DataType.DATE,
-        dataTransp: DataType.DATE,
-        dataEntrega: DataType.DATE,
+        dataProcess: {
+            type: DataType.DATE,
+            allowNull: false,
+            validate: {
+              isDate: {msg: "O campo data de processamento deve ser preenchido com uma data válida."},
+            }
+        },
+        dataTransp: {
+            type: DataType.DATE,
+            allowNull: false,
+            validate: {
+              isDate: {msg: "O campo data de transporte deve ser preenchido com uma data válida."},
+            }
+        },
+        dataEntrega: {
+            type: DataType.DATE,
+            allowNull: false,
+            validate: {
+              isDate: {msg: "O campo data de entrega deve ser preenchido com uma data válida."},
+            }
+        },
 		createdAt: DataType.DATE,
 		updatedAt: DataType.DATE
     }, {

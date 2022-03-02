@@ -31,7 +31,7 @@ module.exports = {
       nomeCategoria: 'Esporte',
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    },], {});
   },
 
   async down (queryInterface, Sequelize) {

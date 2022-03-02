@@ -14,8 +14,14 @@ module.exports = (sequelize, DataType) => {
                 key: 'idProduto'
             }
         },
-    	nomeDescTec: DataType.STRING,
-        valor: DataType.STRING,
+    	nomeDescTec: {
+			type: DataType.STRING,
+			allowNull: false,
+		},
+		valor: {
+			type: DataType.STRING,
+			allowNull: false,
+		},
 		createdAt: DataType.DATE,
 		updatedAt: DataType.DATE
 	},{

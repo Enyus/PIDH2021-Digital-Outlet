@@ -40,20 +40,25 @@ module.exports = {
     cadastrarCurriculo: async (req, res, next) => {
         const { email, nome, departamento, disp, mensagem } = req.body;
 
-        const curriculo = await db.TrabalheConosco.create({
-            email,
-            nome,
-            departamento,
-            disp,
-            mensagem,
-            curriculo: req.file.path.slice(-39)
-        });
+        try {
+            const curriculo = await db.TrabalheConosco.create({
+                email,
+                nome,
+                departamento,
+                disp,
+                mensagem,
+                curriculo: req.file.path.slice(-39)
+            });
 
-        // console.log(req.file.path.slice(-39));
+            // console.log(req.file.path.slice(-39));
 
-        // console.log(curriculo);
+            // console.log(curriculo);
 
-        return res.render('trabalheconosco', {title: 'Sucesso', message: "Currículo enviado com Sucesso!", usuario: req.session.usuario});
+            return res.render('trabalheconosco', {title: 'Sucesso', message: "Currículo enviado com Sucesso!", usuario: req.session.usuario});
+        } catch (err) {
+            console.log(err)
+            return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
+        };
     },
     cadastroloja: (req, res, next) => {
         res.render('cadastroloja', {title:"Seja nosso Parceiro!", usuario: req.session.usuario})

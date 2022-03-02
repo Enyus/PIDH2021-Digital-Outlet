@@ -7,7 +7,11 @@ module.exports = (sequelize, DataType) => {
 	      primaryKey: true,
 	      autoIncrement: true
 	    },
-    	nomeMarca: DataType.STRING,
+    	nomeMarca: {
+			type: DataType.STRING,
+			allowNull: false,
+			unique: true
+		  },
 		createdAt: DataType.DATE,
 		updatedAt: DataType.DATE
 	},{
