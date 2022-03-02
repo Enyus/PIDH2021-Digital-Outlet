@@ -28,8 +28,43 @@ module.exports = {
     resultadobusca: (req, res, next) => {
         res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario})
     },
-    produto: (req, res, next) => {
-        res.render('produto', {title:"Produto", usuario: req.session.usuario})
+    produto: async (req, res, next) => {
+        let idProduto = req.params.idProduto
+
+        try {
+            const produtoDB = await db.Produtos.findOne({ where: { idProduto: idProduto } });
+
+            const marcaDB = await db.Marcas.findOne({ where: { idMarca: produtoDB.idMarca } })
+
+            const categoriaDB = await db.Categorias.findOne({where: {idCategoria: produtoDB.idCategoria } })
+
+            const lojaDB = await db.Lojas.findOne({ where: { idLoja: produtoDB.idLoja } })
+
+            const fotosProdutoDB = await db.Fotos.findAll({ where: { idProduto: produtoDB.idProduto } });
+
+            const descTecProdutoDB = await db.DescTec.findAll({ where: { idProduto: produtoDB.idProduto } });
+
+            const produtoLoad = {
+                nome: produtoDB.nomeProduto,
+                marca: marcaDB.nomeMarca,
+                preco: produtoDB.preco,
+                categoria: categoriaDB.nomeCategoria,
+                desc: produtoDB.desc,
+                loja: lojaDB.nomeFantasia,
+                promocao: produtoDB.promocao,
+                fotos: fotosProdutoDB.map( element => element.dataValues.urlFoto),
+                nomeDescTec: descTecProdutoDB.map( element => element.dataValues.nomeDescTec ),
+                valorDescTec: descTecProdutoDB.map( element => element.dataValues.valor)
+            };
+
+            // console.log(produtoLoad);
+
+            return res.render('produto', {title:"Produto", usuario: req.session.usuario, produto: produtoLoad});
+        
+        } catch(err) {
+            return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
+        }
+
     },
     carrinho: (req, res, next) => {
         res.render('carrinho-sacola', {title:"Carrinho", usuario: req.session.usuario})

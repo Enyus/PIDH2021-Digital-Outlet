@@ -23,7 +23,7 @@ router.post('/contato', IndexController.enviaContato)
 router.get('/resultadobusca', IndexController.resultadobusca)
 
 /*GET Página do Produto*/
-router.get('/produto', IndexController.produto)
+router.get('/produto/:idProduto', IndexController.produto)
 
 /* Página do Login*/
 router.get('/login', userController.login);
