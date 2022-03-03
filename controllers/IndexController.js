@@ -23,25 +23,9 @@ module.exports = {
             }
             list = list.splice(0,8);
             // console.log(list);
-
+            
             // Puxando os dados do banco de dados dos 8 produtos de id aleatório:
-
-            let produtos = await db.Produtos.findAll({where: {idProduto: list}});
-            // console.log(produtos[0].idProduto);
-            // console.log(produtos[1].idProduto);
-            // console.log(produtos[2].idProduto);
-
-            let foto1 = await db.Fotos.findOne({where:{idProduto: produtos[0].idProduto}});
-            let foto2 = await db.Fotos.findOne({where:{idProduto: produtos[1].idProduto}});
-            let foto3 = await db.Fotos.findOne({where:{idProduto: produtos[2].idProduto}});
-            let foto4 = await db.Fotos.findOne({where:{idProduto: produtos[3].idProduto}});
-            let foto5 = await db.Fotos.findOne({where:{idProduto: produtos[4].idProduto}});
-            let foto6 = await db.Fotos.findOne({where:{idProduto: produtos[5].idProduto}});
-            let foto7 = await db.Fotos.findOne({where:{idProduto: produtos[6].idProduto}});
-            let foto8 = await db.Fotos.findOne({where:{idProduto: produtos[7].idProduto}});
-            let fotos=[foto1.urlFoto,foto2.urlFoto, foto3.urlFoto, foto4.urlFoto, foto5.urlFoto, foto6.urlFoto, foto7.urlFoto, foto8.urlFoto]
-
-            // console.log(fotos);
+            let produtos = await db.Produtos.findAll({where: {idProduto: list}, include: {model: db.Fotos}});
 
             let listaProdutos = []
 
@@ -52,7 +36,7 @@ module.exports = {
                         nomeProduto: produtos[i].nomeProduto,
                         preco: produtos[i].preco,
                         promocao: produtos[i].promocao,
-                        foto: fotos[i]
+                        foto: produtos[i].Fotos[0].urlFoto
                     }
                 );
             };
@@ -61,7 +45,7 @@ module.exports = {
             return res.render('index', { title: 'Digital Outlet $', usuario: req.session.usuario, produtos: listaProdutos});
 
         } catch(err) {
-            return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" })
         }
     },
     faq: (req, res, next) => {

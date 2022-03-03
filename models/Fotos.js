@@ -23,5 +23,12 @@ module.exports = (sequelize, DataType) => {
     }, {
         tableName: 'Fotos',
     });
+
+    Fotos.associate = (models) => {
+        Fotos.belongsTo(models.Produtos, {
+            foreignKey: 'idProduto'
+        })
+    };
+
     return Fotos;
 };
