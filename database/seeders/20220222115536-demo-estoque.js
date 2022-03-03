@@ -50,6 +50,94 @@ module.exports = {
       quantidade: 18,
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idEstoque=7
+    {
+      idLoja: 1,
+      idProduto: 7,
+      quantidade: 15,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=8
+    {
+      idLoja: 1,
+      idProduto: 8,
+      quantidade: 7,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=9
+    {
+      idLoja: 1,
+      idProduto: 9,
+      quantidade: 30,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=10
+    {
+      idLoja: 1,
+      idProduto: 10,
+      quantidade: 150,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=11
+    {
+      idLoja: 1,
+      idProduto: 11,
+      quantidade: 100,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=12
+    {
+      idLoja: 1,
+      idProduto: 12,
+      quantidade: 70,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=13
+    {
+      idLoja: 1,
+      idProduto: 13,
+      quantidade: 180,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=14
+    {
+      idLoja: 1,
+      idProduto: 14,
+      quantidade: 20,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=15
+    {
+      idLoja: 1,
+      idProduto: 15,
+      quantidade: 50,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=16
+    {
+      idLoja: 1,
+      idProduto: 16,
+      quantidade: 95,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idEstoque=17
+    {
+      idLoja: 1,
+      idProduto: 17,
+      quantidade: 62,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

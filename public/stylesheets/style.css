@@ -215,7 +215,8 @@ body section.ofertas {
 
 div.ofertasrow {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 div.container {
@@ -224,7 +225,7 @@ div.container {
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 280px;
-  height: fit-content;
+  height: 350px;
   text-align: center;
 }
 
@@ -234,12 +235,13 @@ body main a {
 }
 
 main div.container img {
-  width: auto;
   margin-top: 10px;
+  max-width: 270px;
+  max-height: 200px;
 }
 
 h1 {
-  margin: 10px 0;
+  margin: 10px;
 }
 
 main div.container div.precos ul {
@@ -482,15 +484,21 @@ main.paginaproduto div.fotosproduto div.miniimg {
   height: 100%;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg img {
-  max-height: 150px;
+main.paginaproduto div.fotosproduto div.miniimg button {
+  border: unset;
+  cursor: pointer;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg img:first-child{
+main.paginaproduto div.fotosproduto div.miniimg img {
+  max-height: 150px;
+  max-width: 100px;
+}
+
+main.paginaproduto div.fotosproduto div.miniimg button:first-child{
   border-top-left-radius: 10px;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg img:last-child {
+main.paginaproduto div.fotosproduto div.miniimg button:last-child {
   border-bottom-left-radius: 10px;
 }
 
@@ -502,7 +510,9 @@ main.paginaproduto div.fotosproduto div.focoimg {
 }
 
 main.paginaproduto div.fotosproduto div.focoimg img {
-  height: 100%;
+  max-height: 560px;
+  max-width: 375px;
+  object-fit: cover;
   position: relative;
   right: -3px;
   border-radius: 0 10px 10px 0;
