@@ -25,7 +25,6 @@ module.exports = {
             // console.log(list);
 
             // Puxando os dados do banco de dados dos 8 produtos de id aleatório:
-            let listaProdutos = []
 
             let produtos = await db.Produtos.findAll({where: {idProduto: list}});
             // console.log(produtos[0].idProduto);
@@ -41,7 +40,10 @@ module.exports = {
             let foto7 = await db.Fotos.findOne({where:{idProduto: produtos[6].idProduto}});
             let foto8 = await db.Fotos.findOne({where:{idProduto: produtos[7].idProduto}});
             let fotos=[foto1.urlFoto,foto2.urlFoto, foto3.urlFoto, foto4.urlFoto, foto5.urlFoto, foto6.urlFoto, foto7.urlFoto, foto8.urlFoto]
+
             // console.log(fotos);
+
+            let listaProdutos = []
 
             for (i=0; i<list.length; i++) {
                 listaProdutos.push(
