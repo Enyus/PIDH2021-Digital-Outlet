@@ -162,6 +162,486 @@ module.exports = {
       valor: 'Off White',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idDescTec=21
+    {
+      idProduto: 7,
+      nomeDescTec: 'Modelo',
+      valor: 'Aviador',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=22
+    {
+      idProduto: 7,
+      nomeDescTec: 'Armação',
+      valor: 'Policarbonato',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=23
+    {
+      idProduto: 7,
+      nomeDescTec: 'Lentes',
+      valor: 'Laranja',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=24
+    {
+      idProduto: 7,
+      nomeDescTec: 'Proteção',
+      valor: 'Contra UVA e UVB',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=26
+    {
+      idProduto: 8,
+      nomeDescTec: 'Dimensões',
+      valor: 'L 31,5cm x A 31cm x P 7cm',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=25
+    {
+      idProduto: 8,
+      nomeDescTec: 'Peso',
+      valor: '248g',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=26
+    {
+      idProduto: 9,
+      nomeDescTec: 'Largura',
+      valor: '2,3 mm (Milímetros)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=27
+    {
+      idProduto: 9,
+      nomeDescTec: 'Espessura',
+      valor: '1,0 mm (Milímetros)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=28
+    {
+      idProduto: 9,
+      nomeDescTec: 'Peso',
+      valor: '1.7 (gramas)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=29
+    {
+      idProduto: 9,
+      nomeDescTec: 'Pureza',
+      valor: 'Prata 950',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=30
+    {
+      idProduto: 9,
+      nomeDescTec: 'Cor',
+      valor: 'Prata',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=31
+    {
+      idProduto: 9,
+      nomeDescTec: 'Conforto',
+      valor: 'Reto',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=32
+    {
+      idProduto: 9,
+      nomeDescTec: 'Acabamento',
+      valor: 'Polido',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=33
+    {
+      idProduto: 9,
+      nomeDescTec: 'Gema',
+      valor: 'Zircônia Cravejada',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=34
+    {
+      idProduto: 10,
+      nomeDescTec: 'Decote',
+      valor: 'em U',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=35
+    {
+      idProduto: 10,
+      nomeDescTec: 'Alça',
+      valor: 'Fina',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=36
+    {
+      idProduto: 10,
+      nomeDescTec: 'Bojo',
+      valor: 'Removível',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=37
+    {
+      idProduto: 10,
+      nomeDescTec: 'Recortes',
+      valor: 'em Color Block',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=38
+    {
+      idProduto: 10,
+      nomeDescTec: 'Detalhe',
+      valor: 'torcido nas costas',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=39
+    {
+      idProduto: 10,
+      nomeDescTec: 'Abertura',
+      valor: 'nas costas',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=40
+    {
+      idProduto: 10,
+      nomeDescTec: 'Sustentação',
+      valor: 'Baixa',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=41
+    {
+      idProduto: 11,
+      nomeDescTec: 'Modelo',
+      valor: 'Capri',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=42
+    {
+      idProduto: 11,
+      nomeDescTec: 'Cós',
+      valor: 'Alto (08cm)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=43
+    {
+      idProduto: 11,
+      nomeDescTec: 'Recortes',
+      valor: 'Assimétricos contrastantes',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=44
+    {
+      idProduto: 11,
+      nomeDescTec: 'Estampa',
+      valor: 'Nenhuma',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=45
+    {
+      idProduto: 11,
+      nomeDescTec: 'Compressão',
+      valor: 'Baixa',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=46
+    {
+      idProduto: 11,
+      nomeDescTec: 'Tecido',
+      valor: 'Poliamida (Malha)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=47
+    {
+      idProduto: 11,
+      nomeDescTec: 'Composição',
+      valor: '85% Poliamida 15% Elastano',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=48
+    {
+      idProduto: 11,
+      nomeDescTec: 'Composição Detalhe',
+      valor: '85% Poliamida 15% Elastano',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=49
+    {
+      idProduto: 12,
+      nomeDescTec: 'Modelo',
+      valor: 'machão',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=50
+    {
+      idProduto: 12,
+      nomeDescTec: 'Estampa',
+      valor: 'Nenhuma',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=51
+    {
+      idProduto: 12,
+      nomeDescTec: 'Fundo',
+      valor: 'mescla',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=52
+    {
+      idProduto: 12,
+      nomeDescTec: 'Marca',
+      valor: 'Get Over',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=53
+    {
+      idProduto: 12,
+      nomeDescTec: 'Tecido',
+      valor: 'Poliéster (Malha)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=54
+    {
+      idProduto: 12,
+      nomeDescTec: 'Composição',
+      valor: '97% Poliéster 03% Elastano',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=55
+    {
+      idProduto: 13,
+      nomeDescTec: 'Modelo',
+      valor: 'Esortivo',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=56
+    {
+      idProduto: 13,
+      nomeDescTec: 'Cós',
+      valor: 'Elástico',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=57
+    {
+      idProduto: 13,
+      nomeDescTec: 'Ajuste',
+      valor: 'por amarração',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=58
+    {
+      idProduto: 13,
+      nomeDescTec: 'Bolsos',
+      valor: 'Nenhum',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=59
+    {
+      idProduto: 13,
+      nomeDescTec: 'Estampa',
+      valor: 'em lettering nas barras',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=60
+    {
+      idProduto: 13,
+      nomeDescTec: 'Marca',
+      valor: 'Get Over',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=61
+    {
+      idProduto: 13,
+      nomeDescTec: 'Tecido',
+      valor: 'Poliéster (Malha)',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=62
+    {
+      idProduto: 13,
+      nomeDescTec: 'Composição',
+      valor: '100% Poliéster',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=63
+    {
+      idProduto: 14,
+      nomeDescTec: 'Autor(a)',
+      valor: 'George S Clason',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=64
+    {
+      idProduto: 14,
+      nomeDescTec: 'Capa',
+      valor: 'Comum',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=65
+    {
+      idProduto: 14,
+      nomeDescTec: 'Edição',
+      valor: 'padrão, 4 agosto 2017',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=66
+    {
+      idProduto: 14,
+      nomeDescTec: 'Idioma',
+      valor: 'Portugês',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=67
+    {
+      idProduto: 15,
+      nomeDescTec: 'Autor(a)',
+      valor: 'Colleen Hoover',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=68
+    {
+      idProduto: 15,
+      nomeDescTec: 'Tradutor(a)',
+      valor: 'Priscila Catão',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=69
+    {
+      idProduto: 15,
+      nomeDescTec: 'Edição',
+      valor: 'padrão, 18 janeiro 2018',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=70
+    {
+      idProduto: 15,
+      nomeDescTec: 'Capa',
+      valor: 'comum',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=71
+    {
+      idProduto: 15,
+      nomeDescTec: 'Idioma',
+      valor: 'Portugês',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=72
+    {
+      idProduto: 16,
+      nomeDescTec: 'Autora',
+      valor: 'Clarissa Pinkola Estés',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=73
+    {
+      idProduto: 16,
+      nomeDescTec: 'Edição',
+      valor: 'padrão, 17 setembro 2018',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=74
+    {
+      idProduto: 16,
+      nomeDescTec: 'Capa',
+      valor: 'Dura',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=75
+    {
+      idProduto: 16,
+      nomeDescTec: 'Idioma',
+      valor: 'Português',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=76
+    {
+      idProduto: 17,
+      nomeDescTec: 'Autor',
+      valor: 'Jordan B. Peterson',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=77
+    {
+      idProduto: 17,
+      nomeDescTec: 'Capa',
+      valor: 'Comum',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=78
+    {
+      idProduto: 17,
+      nomeDescTec: 'Edição',
+      valor: 'padrão, 30 abril 2018',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=79
+    {
+      idProduto: 17,
+      nomeDescTec: 'Idioma',
+      valor: 'Português',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

@@ -149,6 +149,153 @@ module.exports = {
       urlFoto: '/images/202203021259-terno-off-white-masculino-4.jpeg',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idFoto=22
+    {
+      idProduto: 7,
+      urlFoto: '/images/202203030938-oculosdhumal1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=23
+    {
+      idProduto: 7,
+      urlFoto: '/images/202203030938-oculosdhumal2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=24
+    {
+      idProduto: 8,
+      urlFoto: '/images/202203030939-bolsapalha1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=25
+    {
+      idProduto: 8,
+      urlFoto: '/images/202203030939-bolsapalha2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=26
+    {
+      idProduto: 9,
+      urlFoto: '/images/202203030940-anelprata1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=27
+    {
+      idProduto: 9,
+      urlFoto: '/images/202203030940-anelprata2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=28
+    {
+      idProduto: 10,
+      urlFoto: '/images/202203031005-topesportivo1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=29
+    {
+      idProduto: 10,
+      urlFoto: '/images/202203031005-topesportivo2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=30
+    {
+      idProduto: 11,
+      urlFoto: '/images/202203031006-calçalegging1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=31
+    {
+      idProduto: 11,
+      urlFoto: '/images/202203031006-calçalegging2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=32
+    {
+      idProduto: 12,
+      urlFoto: '/images/202203031007-regata1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=33
+    {
+      idProduto: 12,
+      urlFoto: '/images/202203031007-regata1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=34
+    {
+      idProduto: 13,
+      urlFoto: '/images/202203031008-bermuda1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=35
+    {
+      idProduto: 13,
+      urlFoto: '/images/202203031008-bermuda2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=36
+    {
+      idProduto: 14,
+      urlFoto: '/images/202203031044-homemmaisrico1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=37
+    {
+      idProduto: 15,
+      urlFoto: '/images/202203031045-assimacaba1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=38
+    {
+      idProduto: 15,
+      urlFoto: '/images/202203031045-assimacaba2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=39
+    {
+      idProduto: 16,
+      urlFoto: '/images/202203031046-mulherescorremlobos1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=40
+    {
+      idProduto: 16,
+      urlFoto: '/images/202203031046-mulherescorremlobos2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=41
+    {
+      idProduto: 17,
+      urlFoto: '/images/202203031047-dozeregrasvida1.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=42
+    {
+      idProduto: 17,
+      urlFoto: '/images/202203031047-dozeregrasvida2.jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 
