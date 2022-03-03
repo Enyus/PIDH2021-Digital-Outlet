@@ -465,6 +465,7 @@ main.paginaproduto div.produto {
   display: flex;
   justify-content: space-evenly;
   align-items: top;
+  margin-bottom: 10px;
 }
 
 main.paginaproduto div.fotosproduto {
@@ -487,18 +488,19 @@ main.paginaproduto div.fotosproduto div.miniimg {
 main.paginaproduto div.fotosproduto div.miniimg button {
   border: unset;
   cursor: pointer;
+  padding: 0;
 }
 
 main.paginaproduto div.fotosproduto div.miniimg img {
-  max-height: 150px;
-  max-width: 100px;
+  max-height: 180px;
+  max-width: 150px;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg button:first-child{
+main.paginaproduto div.fotosproduto div.miniimg button:first-child img{
   border-top-left-radius: 10px;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg button:last-child {
+main.paginaproduto div.fotosproduto div.miniimg button:last-child img {
   border-bottom-left-radius: 10px;
 }
 
@@ -513,8 +515,6 @@ main.paginaproduto div.fotosproduto div.focoimg img {
   max-height: 560px;
   max-width: 375px;
   object-fit: cover;
-  position: relative;
-  right: -3px;
   border-radius: 0 10px 10px 0;
 }
 
