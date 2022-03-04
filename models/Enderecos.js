@@ -53,5 +53,12 @@ module.exports = (sequelize, DataType) => {
     }, {
         tableName: 'Enderecos',
     });
+
+    Enderecos.associate = (models) => {
+        Enderecos.belongsTo(models.Usuarios, {
+            foreignKey: 'idUsuario'
+        });
+    };
+
     return Enderecos;
 };

@@ -55,9 +55,28 @@ module.exports = (sequelize, DataType) => {
     });
 
     Produtos.associate = (models) => {
+        Produtos.belongsTo(models.Marcas, {
+            foreignKey: 'idMarca'
+        });
+        Produtos.belongsTo(models.Categorias, {
+            foreignKey: 'idCategoria'
+        });
+        Produtos.belongsTo(models.Lojas, {
+            foreignKey:'idLoja'
+        });
+        Produtos.hasOne(models.Estoque, {
+            foreignKey: 'idProduto'
+        });
         Produtos.hasMany(models.Fotos, {
             foreignKey: 'idProduto'
-        })
+        });
+        Produtos.hasMany(models.DescTec, {
+            foreignKey: 'idProduto'
+        });
+        Produtos.belongsToMany(models.Pedidos, {
+            through: models.PedidosProdutos,
+            foreignKey: 'idProduto'
+        });
     };
 
     return Produtos;
