@@ -37,10 +37,11 @@ module.exports = (sequelize, DataType) => {
     Estoque.associate = (models) => {
         Estoque.belongsTo(models.Lojas, {
             foreignKey: 'idLoja'
-        });
-        Estoque.belongsTo(models.Produto, {
+        })
+
+        Estoque.belongsTo(models.Produtos, {
             foreignKey: 'idProduto'
-        });
+        })
     };
 
     return Estoque;
