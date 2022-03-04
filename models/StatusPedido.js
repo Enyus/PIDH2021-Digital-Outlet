@@ -40,5 +40,12 @@ module.exports = (sequelize, DataType) => {
     }, {
         tableName: 'StatusPedido',
     });
+
+    StatusPedido.associate = (models) => {
+        StatusPedido.belongsTo(models.Pedidos, {
+            foreignKey: 'idPedido'
+        });
+    };
+
     return StatusPedido;
 };

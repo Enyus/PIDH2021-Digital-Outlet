@@ -27,5 +27,12 @@ module.exports = (sequelize, DataType) => {
 	},{
 	   tableName: 'DescTec',
 	});
+
+	DescTec.associate = (models) => {
+		DescTec.belongsTo(models.Produtos, {
+			foreignKey: 'idProduto'
+		});
+	};
+
 	return DescTec;
 };

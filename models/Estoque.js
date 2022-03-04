@@ -33,5 +33,15 @@ module.exports = (sequelize, DataType) => {
     }, {
         tableName: 'Estoque',
     });
+
+    Estoque.associate = (models) => {
+        Estoque.belongsTo(models.Lojas, {
+            foreignKey: 'idLoja'
+        });
+        Estoque.belongsTo(models.Produto, {
+            foreignKey: 'idProduto'
+        });
+    };
+
     return Estoque;
 };

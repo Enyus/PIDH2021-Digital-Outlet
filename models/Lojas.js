@@ -86,5 +86,22 @@ module.exports = (sequelize, DataType) => {
 	},{
 	   tableName: 'Lojas',
 	});
+
+	Lojas.associate = (models) => {
+		Lojas.hasMany(models.Produtos, {
+			foreignKey: 'idLoja'
+		});
+		Lojas.hasMany(models.Estoque, {
+			foreignKey: 'idLoja'
+		})
+		Lojas.hasMany(models.Pedidos, {
+			foreignKey: 'idLoja'
+		})
+		Lojas.belongsToMany(models.Usuarios, {
+			through: models.UsuarioLoja,
+			foreignKey: 'idLoja'
+		});
+	};
+
 	return Lojas;
 };

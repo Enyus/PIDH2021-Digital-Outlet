@@ -8,8 +8,13 @@ module.exports = (sequelize, DataType) => {
             primaryKey: true,
             autoIncrement: true
         },
-        idUsuario: DataType.STRING,
-
+        idUsuario: {
+            type: DataType.STRING,
+            references: {
+                model: 'Usuarios',
+                key: 'idUsuario'
+            }
+        },
         idLoja: {
             type: DataType.STRING,
             references: {
@@ -43,5 +48,22 @@ module.exports = (sequelize, DataType) => {
     }, {
         tableName: 'Pedidos',
     });
+
+    Pedidos.associate = (models) => {
+        Pedidos.belongsTo(models.Usuarios, {
+            foreignKey: 'idUsuario'
+        });
+        Pedidos.belongsTo(models.Lojas, {
+            foreignKey: 'idLoja'
+        });
+        Pedidos.hasOne(models.StatusPedido, {
+            foreignKey: 'idPedido'
+        });
+        Pedidos.belongsToMany(models.Produtos, {
+            through: models.PedidosProdutos,
+            foreignKey: 'idPedido'
+        });
+    };
+
     return Pedidos;
 };
