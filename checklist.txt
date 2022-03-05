@@ -4,7 +4,7 @@
 
 - Projetaram o banco de dados? => OK
 
-- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK (Mas precisamos trabalhar nos relacionamentos e nos Seeders)
+- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK
 
 - Separar os CRUDs. Identificar os CRUDs principais.
     - Criar usuário; => OK
@@ -76,11 +76,11 @@
 
 - Na tabela de produtos, está faltando o nome do produto. => OK
 
-- Fazer Validação no Backend.
-    - CPF duplicado;
-    - CNPJ duplicado;
-    - E-mail duplicado;
-    - Inscrição Estadual duplicada;
+- Fazer Validação no Backend. => OK
+    - CPF duplicado; => OK
+    - CNPJ duplicado; => OK
+    - E-mail duplicado; => OK
+    - Inscrição Estadual duplicada; => OK
     - fazer validações nos Models: https://www.youtube.com/watch?v=3RzW3IqtGR0
         - Validação do Sequelize: https://sequelize.org/v7/manual/validations-and-constraints.html
 
