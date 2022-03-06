@@ -18,8 +18,8 @@
       </div>
       <div class="busca">
         <p>Pesquise sua marca/produto:</p>
-        <input type="text">
-        <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
+        <input type="text" id="campobusca">
+        <a href="/resultadobusca" id="botaobuscar"><img src="/images/search-icon.png" alt="search"></a>
       </div>
       <div class="hbutton">
         <div>
@@ -55,29 +55,31 @@
 
     <section class="buscamobile">
       <p>busca:</p>
-      <input type="text">
-      <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
+      <input type="text" id="campobuscamobile">
+      <a href="/resultadobusca" id="botaobuscarmobile"><img src="/images/search-icon.png" alt="search"></a>
     </section>
     
+    <script src="scripts/busca.js"></script>
+
     </header>
     
     <section class="header-menu">
-        <a href="">
+        <a href="/resultadobusca?categoria=roupas">
           ROUPAS
         </a>
-        <a href="">
+        <a href="/resultadobusca?categoria=livros">
           LIVROS
         </a>
-        <a href="">
+        <a href="/resultadobusca?categoria=calçados">
           CALÇADOS
         </a>
-        <a href="">
+        <a href="/resultadobusca?categoria=acessórios">
           ACESSÓRIOS
         </a>
-        <a href="">
+        <a href="/resultadobusca?categoria=casa">
           PARA A CASA
         </a>
-        <a href="">
+        <a href="/resultadobusca?categoria=esporte">
           ESPORTE
         </a>
       </section>

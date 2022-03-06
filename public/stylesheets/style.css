@@ -112,6 +112,7 @@ header section.buscamobile p {
 header section.buscamobile input {
   width: 80vw;
   margin-left: 10px;
+  height: 30px;
 }
 
 header section.buscamobile a {
@@ -1064,6 +1065,7 @@ div.colaboradores {
   width: 100%;
 }
 
+
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
   header .logo, header .header-principal .hbutton {
@@ -1126,4 +1128,8 @@ div.colaboradores {
   main.cadastroproduto section.containergeral button {
     margin-left: 5%;
   }
+
+  div.missao:last-child {
+    display: block !important;
+  }  
 }
