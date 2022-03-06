@@ -7,7 +7,7 @@
             <div class="fotosproduto">
                 <div class="miniimg">
                     <% produto.fotos.forEach( element => { %>
-                        <button><img src=<%= element %> alt=<%= produto.nome %> ></button>
+                        <button onclick="expand()"><img src=<%= element %> alt=<%= produto.nome %> ></button>
                     <% }) %>
                 </div>
                 <div class="focoimg"></div>

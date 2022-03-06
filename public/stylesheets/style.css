@@ -225,7 +225,7 @@ div.container {
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 280px;
-  height: 350px;
+  height: 360px;
   text-align: center;
 }
 
@@ -261,8 +261,8 @@ main div.container div.precos ul {
 
 .preco-agora {
   font-weight: bolder;
-  font-size: 18px;
-  width: 30%;
+  font-size: 25px;
+  width: 50%;
 }
 
 .off {
@@ -483,6 +483,7 @@ main.paginaproduto div.fotosproduto div.miniimg {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  margin-right: 2px;
 }
 
 main.paginaproduto div.fotosproduto div.miniimg button {
@@ -492,8 +493,9 @@ main.paginaproduto div.fotosproduto div.miniimg button {
 }
 
 main.paginaproduto div.fotosproduto div.miniimg img {
-  max-height: 180px;
-  max-width: 150px;
+  height: 180px;
+  width: 150px;
+  object-fit: cover;
 }
 
 main.paginaproduto div.fotosproduto div.miniimg button:first-child img{
@@ -513,7 +515,7 @@ main.paginaproduto div.fotosproduto div.focoimg {
 
 main.paginaproduto div.fotosproduto div.focoimg img {
   max-height: 560px;
-  max-width: 375px;
+  max-width: 100%;
   object-fit: cover;
   border-radius: 0 10px 10px 0;
 }
@@ -1080,8 +1082,13 @@ div.colaboradores {
     display: block;
   }
 
-  section.fbutton, section.mlogo, div.hbutton p, section.header-menu, header .header-principal .busca, main.paginaproduto div.fotosproduto div.miniimg, aside div, aside form {
+  section.fbutton, section.mlogo, div.hbutton p, section.header-menu, header .header-principal .busca, aside div, aside form {
     display: none;
+  }
+
+  main.paginaproduto div.fotosproduto div.miniimg img {
+    height: 90px;
+    width: 75px;
   }
 
   footer {

@@ -2,11 +2,13 @@ const Sequelize = require('sequelize');
 
 module.exports = (sequelize, DataType) => {
 	const Usuarios = sequelize.define('Usuarios', {
+
 	    idUsuario: {
 	      type: DataType.INTEGER,
 	      primaryKey: true,
 	      autoIncrement: true
 	    },
+
     	email: {
 			type: DataType.STRING,
 			allowNull: false,
@@ -15,14 +17,17 @@ module.exports = (sequelize, DataType) => {
 			  isEmail: {msg: "O campo de e-mail deve ser preenchido com um e-mail válido."},
 			}
 		},
+
 		nome: {
 			type: DataType.STRING,
 			allowNull: false,
 		},
+
 		sobrenome: {
 			type: DataType.STRING,
 			allowNull: false,
 		},
+
 		dataNasc: {
 			type: DataType.DATE,
 			allowNull: false,
@@ -30,6 +35,7 @@ module.exports = (sequelize, DataType) => {
 				isDate: {msg: "O campo da data de nascimento deve ser preenchido com uma data válida."},
 			}
 		},
+
 		cpf: {
 			type: DataType.STRING(11),
 			allowNull: false,
@@ -42,16 +48,21 @@ module.exports = (sequelize, DataType) => {
 				}
 			}
 		},
+
 		senha: {
 			type: DataType.STRING,
 			allowNull: false,
 		},
+
 		fotoPerfil: {
 			type: DataType.STRING,
 			allowNull: false,
 		},
+
 		createdAt: DataType.DATE,
+
 		updatedAt: DataType.DATE
+
 	},{
 	   tableName: 'Usuarios',
 	});
@@ -60,9 +71,11 @@ module.exports = (sequelize, DataType) => {
 		Usuarios.hasMany(models.Enderecos, {
 			foreignKey: 'idUsuario'
 		});
+
 		Usuarios.hasMany(models.Pedidos, {
 			foreignKey: 'idUsuario'
 		});
+		
 		Usuarios.belongsToMany(models.Lojas, {
 			through: models.UsuarioLoja,
 			foreignKey: 'idUsuario'
