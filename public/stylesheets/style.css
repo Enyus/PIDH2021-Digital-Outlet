@@ -290,6 +290,11 @@ main section.containergeral h1 {
   line-height: 46px;
 }
 
+main section.containergeral div.container h1 {
+  line-height: 22px;
+  margin: 10px;
+}
+
 main section.containergeral strong, 
 main section.containergeral p {
   margin: 0 3% 10px 3%;

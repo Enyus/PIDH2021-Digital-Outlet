@@ -48,13 +48,17 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" })
         }
     },
+
     faq: (req, res, next) => {
         res.render('faq', {title:"Dúvidas Frequentes", usuario: req.session.usuario});
     },
+
     sobre: (req, res, next) => {
         res.render('sobre', {title:"Sobre a DO$", usuario: req.session.usuario})
     },
+
     contato: (req, res, next) => {res.render('contato', {title:"Contato", usuario: req.session.usuario})},
+
     enviaContato: async (req, res) => {
         const { nome, email, telefone, mensagem } = req.body;
 
@@ -67,9 +71,67 @@ module.exports = {
 
         return res.redirect('/contato')
     },
-    resultadobusca: (req, res, next) => {
-        res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario})
+
+    resultadobusca: async (req, res, next) => {
+        const {busca, categoria} = req.query;
+
+        // console.log("A busca é " + busca)
+        // console.log("A categoria é: " + categoria)
+
+        if ( busca != 'undefined') {
+            try {
+                const resultadoBuscaId = await db.Produtos.findAll({
+                    where: {
+                        nomeProduto: {
+                            [Op.like]: `%${busca}%`
+                            }
+                    }, 
+                    attributes: ['idProduto']
+                });
+    
+                let listaIdsBuscados = []
+                
+                for (i=0; i<resultadoBuscaId.length; i++) {
+                    listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
+                };
+    
+                // console.log(listaIdsBuscados);
+    
+                const buscaFinal = await db.Produtos.findAll({
+                    where: {idProduto: {
+                        [Op.in]: listaIdsBuscados
+                    }},
+                    include: {model: db.Fotos}
+                });
+    
+                let listaFinal = [];
+    
+                for (i=0; i<resultadoBuscaId.length; i++) {
+                    listaFinal.push({
+                        idProduto: buscaFinal[i].idProduto,
+                        nomeProduto: buscaFinal[i].nomeProduto,
+                        preco: buscaFinal[i].preco,
+                        promocao: buscaFinal[i].promocao,
+                        foto: buscaFinal[i].Fotos[0].urlFoto
+                    });
+                };
+    
+                // console.log(listaFinal);
+    
+                return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal});
+
+            } catch(err) {
+
+                return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
+
+            }
+
+
+        }
+
+        
     },
+
     produto: async (req, res, next) => {
         let idProduto = req.params.idProduto
 
@@ -108,12 +170,15 @@ module.exports = {
         }
 
     },
+
     carrinho: (req, res, next) => {
         res.render('carrinho-sacola', {title:"Carrinho", usuario: req.session.usuario})
     },
+
     trabalheconosco: (req, res, next) => {
         res.render('trabalheconosco', {title:"Trabalhe Conosco!", usuario: req.session.usuario})
     },
+
     cadastrarCurriculo: async (req, res, next) => {
         const { email, nome, departamento, disp, mensagem } = req.body;
 
@@ -137,15 +202,19 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
         };
     },
+
     cadastroloja: (req, res, next) => {
         res.render('cadastroloja', {title:"Seja nosso Parceiro!", usuario: req.session.usuario})
     },
+
     cadastroproduto: (req, res, next) => {
         res.render('cadastroproduto', {title:"Cadastro de Produto", usuario: req.session.usuario})
     },
+
     paginacliente: (req, res, next) => {
         res.render('paginacliente', {title:"Bem-Vindo!", usuario: req.session.usuario})
     },
+
     paginaloja: (req, res, next) => {
         res.render('paginaloja', {title:"Bem-Vindo!", usuario: req.session.usuario})
     }
