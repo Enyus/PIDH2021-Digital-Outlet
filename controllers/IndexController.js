@@ -74,11 +74,10 @@ module.exports = {
 
     resultadobusca: async (req, res, next) => {
         const {busca, categoria} = req.query;
+        let listaFinal = [];
 
-        // console.log("A busca é " + busca)
-        // console.log("A categoria é: " + categoria)
+        if ( busca != undefined) {
 
-        if ( busca != 'undefined') {
             try {
                 const resultadoBuscaId = await db.Produtos.findAll({
                     where: {
@@ -95,8 +94,6 @@ module.exports = {
                     listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
                 };
     
-                // console.log(listaIdsBuscados);
-    
                 const buscaFinal = await db.Produtos.findAll({
                     where: {idProduto: {
                         [Op.in]: listaIdsBuscados
@@ -104,7 +101,6 @@ module.exports = {
                     include: {model: db.Fotos}
                 });
     
-                let listaFinal = [];
     
                 for (i=0; i<resultadoBuscaId.length; i++) {
                     listaFinal.push({
@@ -116,20 +112,48 @@ module.exports = {
                     });
                 };
     
-                // console.log(listaFinal);
+            } catch(err) {
+               
+                return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
+
+            };
+        };
+
+        if ( categoria != undefined) {
+            try {
+                const resultadoBuscaId = await db.Produtos.findAll({where: {idCategoria: categoria}, attributes: ['idProduto']});
     
-                return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal});
+                let listaIdsBuscados = []
+                
+                for (i=0; i<resultadoBuscaId.length; i++) {
+                    listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
+                };
+    
+                const buscaFinal = await db.Produtos.findAll({
+                    where: {idProduto: {
+                        [Op.in]: listaIdsBuscados
+                    }},
+                    include: {model: db.Fotos}
+                });
+    
+                for (i=0; i<resultadoBuscaId.length; i++) {
+                    listaFinal.push({
+                        idProduto: buscaFinal[i].idProduto,
+                        nomeProduto: buscaFinal[i].nomeProduto,
+                        preco: buscaFinal[i].preco,
+                        promocao: buscaFinal[i].promocao,
+                        foto: buscaFinal[i].Fotos[0].urlFoto
+                    });
+                };
 
             } catch(err) {
 
                 return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
 
-            }
+            };
+        };
 
-
-        }
-
-        
+        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca});
     },
 
     produto: async (req, res, next) => {
@@ -219,4 +243,4 @@ module.exports = {
         res.render('paginaloja', {title:"Bem-Vindo!", usuario: req.session.usuario})
     }
 
-}
+};

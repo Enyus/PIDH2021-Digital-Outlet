@@ -5,7 +5,11 @@
     <aside>
         <div>
             <label for="buscaside">Busca</label>
-            <input type="text" id="buscaside" value="o que você pesquisou">
+            <% if(busca != undefined) { %>
+              <input type="text" id="buscaside" value=<%=busca%>>
+            <% } else { %>
+              <input type="text" id="buscaside">
+            <% } %>
         </div>
         <h2>Filtre sua pesquisa:</h2>
         <form class="filtros">
@@ -65,5 +69,7 @@
     </section>
 
   </main>
+
+  <script src="/scripts/paginaBusca.js"></script>
 
 <%- include('./partials/footer') %>
