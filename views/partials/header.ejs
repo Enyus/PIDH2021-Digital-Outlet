@@ -18,7 +18,11 @@
       </div>
       <div class="busca">
         <p>Pesquise sua marca/produto:</p>
-        <input type="text" id="campobusca">
+        <% if (typeof(busca) != 'undefined') { %>
+          <input type="text" id="campobusca" value=<%= busca %>>
+        <% } else { %>
+          <input type="text" id="campobusca">
+        <% } %>
         <a href="/resultadobusca" id="botaobuscar"><img src="/images/search-icon.png" alt="search"></a>
       </div>
       <div class="hbutton">
@@ -55,7 +59,11 @@
 
     <section class="buscamobile">
       <p>busca:</p>
-      <input type="text" id="campobuscamobile">
+      <% if (typeof(busca) != 'undefined') { %>
+        <input type="text" id="campobuscamobile" value=<%= busca %>>
+      <% } else { %>
+        <input type="text" id="campobuscamobile">
+      <% } %>
       <a href="/resultadobusca" id="botaobuscarmobile"><img src="/images/search-icon.png" alt="search"></a>
     </section>
     

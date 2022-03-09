@@ -1,9 +1,5 @@
 const inputBuscaASide = document.getElementById('buscaside');
-
-
-inputBuscaASide.onclick = (e) => {
-    inputBuscaASide.value = '';
-};
+const botaoFiltro = document.getElementById('filtrar');
 
 inputBuscaASide.onkeydown = (e) => {
     if (e.key == 'Enter') {
