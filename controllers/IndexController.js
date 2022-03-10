@@ -76,7 +76,7 @@ module.exports = {
         const {busca, categoria, filtropreco} = req.query;
         let listaFinal = [];
 
-        if ( categoria != undefined && categoria !='') {
+        if ( categoria != undefined && (busca =='' || busca == undefined) ) {
             try {
                 const resultadoBuscaId = await db.Produtos.findAll({where: {idCategoria: categoria}, attributes: ['idProduto']});
     
@@ -90,7 +90,8 @@ module.exports = {
                     where: {idProduto: {
                         [Op.in]: listaIdsBuscados
                     }},
-                    include: {model: db.Fotos}
+                    include: {model: db.Fotos},
+                    order: []
                 });
     
                 for (i=0; i<resultadoBuscaId.length; i++) {
