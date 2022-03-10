@@ -75,86 +75,65 @@ module.exports = {
     resultadobusca: async (req, res, next) => {
         const {busca, categoria, filtropreco} = req.query;
         let listaFinal = [];
+        let objetoBusca = {};
 
-        if ( categoria != undefined && (busca =='' || busca == undefined) ) {
-            try {
-                const resultadoBuscaId = await db.Produtos.findAll({where: {idCategoria: categoria}, attributes: ['idProduto']});
-    
-                let listaIdsBuscados = []
-                
-                for (i=0; i<resultadoBuscaId.length; i++) {
-                    listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
-                };
-    
-                const buscaFinal = await db.Produtos.findAll({
-                    where: {idProduto: {
-                        [Op.in]: listaIdsBuscados
-                    }},
-                    include: {model: db.Fotos},
-                    order: []
-                });
-    
-                for (i=0; i<resultadoBuscaId.length; i++) {
-                    listaFinal.push({
-                        idProduto: buscaFinal[i].idProduto,
-                        nomeProduto: buscaFinal[i].nomeProduto,
-                        preco: buscaFinal[i].preco,
-                        promocao: buscaFinal[i].promocao,
-                        foto: buscaFinal[i].Fotos[0].urlFoto
-                    });
-                };
+        if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
-            } catch(err) {
+        if ( busca != undefined && busca != "") {objetoBusca.nomeProduto = {[Op.like]: `%${busca}%`}};
 
-                return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
+        switch (filtropreco) {
+            case 'menorpreco':
+                filtro = Sequelize.literal('preco');
+                break;
+            case 'maiorpreco':
+                filtro = Sequelize.literal('preco DESC');
+                break;
+            case 'promocao':
+                filtro = Sequelize.literal('promocao DESC');
+                break;
+            default:
+                filtro = [];
+        }
 
+        
+        try {
+            const resultadoBuscaId = await db.Produtos.findAll({
+                where: objetoBusca,
+                attributes: ['idProduto']
+            });
+
+            let listaIdsBuscados = []
+            
+            for (i=0; i<resultadoBuscaId.length; i++) {
+                listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
             };
+
+            const buscaFinal = await db.Produtos.findAll({
+                where: {idProduto: {
+                    [Op.in]: listaIdsBuscados
+                }},
+                include: {model: db.Fotos},
+                order: filtro
+            });
+
+
+            for (i=0; i<resultadoBuscaId.length; i++) {
+                listaFinal.push({
+                    idProduto: buscaFinal[i].idProduto,
+                    nomeProduto: buscaFinal[i].nomeProduto,
+                    preco: buscaFinal[i].preco,
+                    promocao: buscaFinal[i].promocao,
+                    foto: buscaFinal[i].Fotos[0].urlFoto
+                });
+            };
+
+        } catch(err) {
+           
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
+
         };
 
-        if ( busca != undefined && busca != '') {
-
-            try {
-                const resultadoBuscaId = await db.Produtos.findAll({
-                    where: {
-                        nomeProduto: {
-                            [Op.like]: `%${busca}%`
-                            }
-                    }, 
-                    attributes: ['idProduto']
-                });
-    
-                let listaIdsBuscados = []
-                
-                for (i=0; i<resultadoBuscaId.length; i++) {
-                    listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
-                };
-    
-                const buscaFinal = await db.Produtos.findAll({
-                    where: {idProduto: {
-                        [Op.in]: listaIdsBuscados
-                    }},
-                    include: {model: db.Fotos}
-                });
-    
-    
-                for (i=0; i<resultadoBuscaId.length; i++) {
-                    listaFinal.push({
-                        idProduto: buscaFinal[i].idProduto,
-                        nomeProduto: buscaFinal[i].nomeProduto,
-                        preco: buscaFinal[i].preco,
-                        promocao: buscaFinal[i].promocao,
-                        foto: buscaFinal[i].Fotos[0].urlFoto
-                    });
-                };
-    
-            } catch(err) {
-               
-                return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
-
-            };
-        };
-
-        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria});
+        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco});
     },
 
     produto: async (req, res, next) => {

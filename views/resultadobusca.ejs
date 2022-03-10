@@ -19,9 +19,23 @@
         <div>
           <label>Por Preço:</label>
           <ul>
+            <% if (filtropreco=='menorpreco') { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco" checked><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
+            <% } else if (filtropreco=='maiorpreco') { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco" checked><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
+            <% } else if (filtropreco=='promocao') { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao" checked><label for="filtropromocao">Em Promoção</label></li>
+            <% } else { %>
               <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
               <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
               <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
+            <% } %>
           </ul>
         </div>
         <button id="filtrar">Filtrar</button>
