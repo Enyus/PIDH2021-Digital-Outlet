@@ -290,6 +290,11 @@ main section.containergeral h1 {
   line-height: 46px;
 }
 
+main section.containergeral div.container h1 {
+  line-height: 22px;
+  margin: 10px;
+}
+
 main section.containergeral strong, 
 main section.containergeral p {
   margin: 0 3% 10px 3%;
@@ -1065,6 +1070,25 @@ div.colaboradores {
   width: 100%;
 }
 
+.filtros button {
+  border-radius: 20px;
+  border-style: none;
+  background-color: #E84118;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  color: #fff;
+  font-size: 18px;
+  width: 70%;
+  height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0 15% 25px 15%;
+}
+
+.filtros input[type=text] {
+  width: 90%;
+  margin-left: 5%;
+}
+
 
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
@@ -1131,5 +1155,9 @@ div.colaboradores {
 
   div.missao:last-child {
     display: block !important;
-  }  
+  }
+
+  div.buscainput {
+    display: none;
+  }
 }

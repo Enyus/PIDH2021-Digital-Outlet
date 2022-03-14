@@ -100,3 +100,6 @@ Para "subir" o seeder para a DataBase:
 npx sequelize db:seed:all
 
 Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions. => OK
+
+
+- Mandar E-mail: Nodemailer
