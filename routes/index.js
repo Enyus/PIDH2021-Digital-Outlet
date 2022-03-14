@@ -50,6 +50,7 @@ router.get('/cadastroproduto', IndexController.cadastroproduto)
 
 /*GET Página do Cliente*/
 router.get('/cliente', auth, IndexController.paginacliente)
+router.put('/alterarcliente', auth, userController.alterarCliente)
 
 /*GET Página do Lojista*/
 router.get('/loja', IndexController.paginaloja)

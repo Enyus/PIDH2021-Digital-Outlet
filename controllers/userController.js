@@ -34,7 +34,7 @@ module.exports = {
                 cpf: user.cpf,
                 fotoPerfil: user.fotoPerfil
             }
-            return res.redirect('/cliente#inicio');
+            return res.redirect('/cliente');
         }
     },
 
@@ -83,5 +83,28 @@ module.exports = {
         return res.redirect('/');
     },
 
-    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario })
+    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario }),
+
+    alterarCliente: async (req,res) => {
+        const { idUsuario, email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
+
+        const hash = bcrypt.hashSync(senha, 10);
+
+        try {
+            const usuarioAlterado = await db.Usuarios.update(
+                {email, nome, sobrenome, dataNasc, cpf, senha:hash},
+                {where:{idUsuario}}
+            )
+
+            console.log(usuarioAlterado);
+
+            req.session.usuario = undefined;
+            return res.redirect('/login');
+
+        } catch (err) {
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    }
 }
