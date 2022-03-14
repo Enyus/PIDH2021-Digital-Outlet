@@ -233,6 +233,7 @@ div.container {
 body main a {
   color: unset;
   text-decoration: unset;
+  cursor: pointer;
 }
 
 main div.container img {
@@ -1041,16 +1042,8 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   justify-content: center;
 }
 
-#inicio, #pedidos, #desejos, #dados, #enderecos, #vale, #resumo, #listaprodutos  {
+#pedidos, #desejos, #dados, #enderecos, #vale, #resumo, #listaprodutos  {
   display: none;
-}
-
-#inicio:target, #resumo:target {
-  display: flex;
-}
-
-#pedidos:target, #desejos:target, #dados:target, #enderecos:target, #vale:target, #listaprodutos:target {
-  display: block;
 }
 
 img.fotoPerfil {

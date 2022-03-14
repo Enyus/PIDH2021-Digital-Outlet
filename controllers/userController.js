@@ -34,7 +34,7 @@ module.exports = {
                 cpf: user.cpf,
                 fotoPerfil: user.fotoPerfil
             }
-            return res.redirect('/cliente#inicio');
+            return res.redirect('/cliente');
         }
     },
 

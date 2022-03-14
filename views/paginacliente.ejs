@@ -5,12 +5,12 @@
         <h1 class="bemvindo">Seja Bem-Vindo, <%= usuario.nome %>!</h1>
         <div class="containersecundario">
             <div class="menu-cliente">
-                <a href="#inicio">Início</a>
-                <a href="#pedidos">Meus Pedidos</a>
-                <a href="#desejos">Lista de Desejos</a>
-                <a href="#dados">Alterar Dados Cadastrais</a>
-                <a href="#enderecos">Endereços</a>
-                <a href="#vale">Vale Compras</a>
+                <a id="irparainicio">Início</a>
+                <a id="irparapedidos">Meus Pedidos</a>
+                <a id="irparadesejos">Lista de Desejos</a>
+                <a id="irparadados">Alterar Dados Cadastrais</a>
+                <a id="irparaenderecos">Endereços</a>
+                <a id="irparavale">Vale Compras</a>
                 <a href="/logout">Sair</a>
             </div>
             
@@ -183,5 +183,7 @@
         </div>
     </section>
   </main>
+
+  <script src="/scripts/cliente.js"></script>
 
 <%- include('./partials/footer') %>
