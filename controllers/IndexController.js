@@ -132,7 +132,7 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
 
         };
-
+        
         return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco});
     },
 
