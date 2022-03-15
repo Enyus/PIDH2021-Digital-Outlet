@@ -8,7 +8,14 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true
         },
-        nomeCategoria: Sequelize.STRING,
+        nomeCategoria: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          unique: true,
+          validate: {
+            notEmpty: {msg: "Esse campo não pode ser vazio"},
+          }
+        },
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
     });

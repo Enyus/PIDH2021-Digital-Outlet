@@ -23,7 +23,9 @@ function checkValidation () {
 inputNome.onblur = (e) => {
     if (inputNome.value.length < 2 || inputNome.value == 'Nome Completo') {
         inputNome.style.border = "solid red 1px";
-        erros.push("nome");
+        if (!erros.includes("nome")) {
+            erros.push("nome");
+        };
     } else {
         inputNome.style.border = "solid green 1px";
         if (erros.includes("nome")) {
@@ -39,7 +41,9 @@ inputEmail.onblur = (e) => {
         inputEmail.value.indexOf(" ") > 0 ||
         inputEmail.value.indexOf(".") < 0) {
         inputEmail.style.border = "solid red 1px";
-        erros.push("email");
+        if (!erros.includes("email")) {
+            erros.push("email");
+        };
     } else {
         inputEmail.style.border = "solid green 1px";
         if (erros.includes("email")) {
@@ -52,7 +56,9 @@ inputEmail.onblur = (e) => {
 inputTelefone.onblur = (e) => {
     if (inputTelefone.value.length < 10 || inputTelefone.value == 'Telefone para contato (xx) xxxxx-xxxx') {
         inputTelefone.style.border = "solid red 1px";
-        erros.push("telefone");
+        if (!erros.includes("telefone")) {
+            erros.push("telefone");
+        };
     } else {
         inputTelefone.style.border = "solid green 1px";
         if (erros.includes("telefone")) {
@@ -65,12 +71,14 @@ inputTelefone.onblur = (e) => {
 inputMensagem.onblur = (e) => {
     if (inputMensagem.value.length < 4 || inputMensagem.value == 'Digite aqui sua dúvida') {
         inputMensagem.style.border = "solid red 1px";
-        erros.push("mensagem");
+        if (!erros.includes("mensagem")) {
+            erros.push("mensagem");
+        };
     } else {
         inputMensagem.style.border = "solid green 1px";
         if (erros.includes("mensagem")) {
             erros.splice(erros.indexOf("mensagem"), 1);
         };
-    }
+    };
     checkValidation();
 };

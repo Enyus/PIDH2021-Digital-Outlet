@@ -7,6 +7,8 @@ const inputPassword = document.getElementById("password");
 const inputConfirmaPassword = document.getElementById("confirmapassword");
 const buttonSubmit = document.getElementById("submit")
 
+console.log("rodando")
+
 const erros = []
 
 buttonSubmit.disabled = "true";
@@ -32,7 +34,9 @@ inputEmail.onblur = (e) => {
         inputEmail.value.indexOf(" ") > 0 ||
         inputEmail.value.indexOf(".") < 0) {
         inputEmail.style.borderColor = "red";
-        erros.push("email");
+        if (!erros.includes("email")) {
+            erros.push("email");
+        };
     } else {
         inputEmail.style.borderColor = "green";
         if (erros.includes("email")) {
@@ -45,7 +49,9 @@ inputEmail.onblur = (e) => {
 inputNome.onblur = (e) => {
     if (inputNome.value.length < 2) {
         inputNome.style.borderColor = "red";
-        erros.push("nome");
+        if (!erros.includes("nome")) {
+            erros.push("nome");
+        };
     } else {
         inputNome.style.borderColor = "green";
         if (erros.includes("nome")) {
@@ -58,7 +64,9 @@ inputNome.onblur = (e) => {
 inputSobrenome.onblur = (e) => {
     if (inputSobrenome.value.length < 2) {
         inputSobrenome.style.borderColor = "red";
-        erros.push("sobrenome");
+        if (!erros.includes("sobrenome")) {
+            erros.push("sobrenome");
+        };
     } else {
         inputSobrenome.style.borderColor = "green";
         if (erros.includes("sobrenome")) {
@@ -73,7 +81,9 @@ inputSobrenome.onblur = (e) => {
 inputDataNasc.onblur = (e) => {
     if (inputDataNasc.value.length != 10) {
         inputDataNasc.style.borderColor = "red";
-        erros.push("dataNasc");
+        if (!erros.includes("dataNasc")) {
+            erros.push("dataNasc");
+        };
     } else {
         inputDataNasc.style.borderColor = "green";
         if (erros.includes("dataNasc")) {
@@ -87,8 +97,10 @@ inputCpf.onblur = (e) => {
     if (inputCpf.value.length != 11 ||
         isNaN(inputCpf.value)) {
         inputCpf.style.borderColor = "red";
-        alert("O CPF deve ser apenas numérico e ter 11 números")
-        erros.push("cpf");
+        alert("O CPF deve ser apenas numérico e ter 11 números");
+        if (!erros.includes("cpf")) {
+            erros.push("cpf");
+        };
     } else {
         inputCpf.style.borderColor = "green";
         if (erros.includes("cpf")) {
@@ -101,7 +113,9 @@ inputCpf.onblur = (e) => {
 inputPassword.onblur = (e) => {
     if (inputPassword.value.length < 6) {
         inputPassword.style.borderColor = "red";
-        erros.push("senha");
+        if (!erros.includes("senha")) {
+            erros.push("senha");
+        };
     } else {
         inputPassword.style.borderColor = "green";
         if (erros.includes("senha")) {
@@ -114,7 +128,9 @@ inputPassword.onblur = (e) => {
 inputConfirmaPassword.onblur = (e) => {
     if (inputConfirmaPassword.value != inputPassword.value ) {
         inputConfirmaPassword.style.borderColor = "red";
-        erros.push("confirmaSenha");
+        if(!erros.includes("confirmaSenha")) {
+            erros.push("confirmaSenha");
+        };
     } else {
         inputConfirmaPassword.style.borderColor = "green";
         if (erros.includes("confirmaSenha")) {
