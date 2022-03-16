@@ -1,6 +1,6 @@
 const db = require('../models')
 const Sequelize = require('sequelize');
-const { where } = require('sequelize');
+const sequelize = require('sequelize');
 const Op = Sequelize.Op
 
 module.exports = {
@@ -73,9 +73,10 @@ module.exports = {
     },
 
     resultadobusca: async (req, res, next) => {
-        const {busca, categoria, filtropreco} = req.query;
+        const {busca, categoria, filtropreco, page} = req.query;
         let listaFinal = [];
         let objetoBusca = {};
+        let totalItens = null;
 
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
@@ -97,9 +98,13 @@ module.exports = {
 
         
         try {
+            totalItens = await db.Produtos.count({where: objetoBusca})
+            
             const resultadoBuscaId = await db.Produtos.findAll({
                 where: objetoBusca,
-                attributes: ['idProduto']
+                attributes: ['idProduto'],
+                limit: 6,
+                offset: page*6-6
             });
 
             let listaIdsBuscados = []
@@ -128,12 +133,13 @@ module.exports = {
             };
 
         } catch(err) {
-           
+            
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
 
         };
         
-        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco});
+        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco, page});
+
     },
 
     produto: async (req, res, next) => {
