@@ -76,7 +76,6 @@ module.exports = {
         const {busca, categoria, filtropreco, page} = req.query;
         let listaFinal = [];
         let objetoBusca = {};
-        let totalItens = null;
 
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
@@ -98,31 +97,16 @@ module.exports = {
 
         
         try {
-            totalItens = await db.Produtos.count({where: objetoBusca})
-            
-            const resultadoBuscaId = await db.Produtos.findAll({
+
+            const buscaFinal = await db.Produtos.findAll({
                 where: objetoBusca,
-                attributes: ['idProduto'],
+                include: {model: db.Fotos, as: 'Fotos'},
+                order: filtro,
                 limit: 6,
                 offset: page*6-6
             });
 
-            let listaIdsBuscados = []
-            
-            for (i=0; i<resultadoBuscaId.length; i++) {
-                listaIdsBuscados.push(resultadoBuscaId[i].idProduto);
-            };
-
-            const buscaFinal = await db.Produtos.findAll({
-                where: {idProduto: {
-                    [Op.in]: listaIdsBuscados
-                }},
-                include: {model: db.Fotos},
-                order: filtro
-            });
-
-
-            for (i=0; i<resultadoBuscaId.length; i++) {
+            for (i=0; i<buscaFinal.length; i++) {
                 listaFinal.push({
                     idProduto: buscaFinal[i].idProduto,
                     nomeProduto: buscaFinal[i].nomeProduto,
