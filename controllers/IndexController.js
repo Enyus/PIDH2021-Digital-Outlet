@@ -79,9 +79,18 @@ module.exports = {
         let totalItens = null;
         let totalPaginas = null;
 
+        console.log(busca)
+        console.log(busca[busca.lastIndexOf('')-1])
+
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
-        if ( busca != undefined && busca != "") {objetoBusca.nomeProduto = {[Op.like]: `%${busca}%`}};
+        if ( busca != undefined && busca != "") {
+            if (busca[busca.lastIndexOf('')-1] == 's') {
+                objetoBusca.nomeProduto = {[Op.like]: `%${busca.slice(0,busca.length-1)}%`}
+            } else {
+                objetoBusca.nomeProduto = {[Op.like]: `%${busca}%`}
+            };
+        };
 
         switch (filtropreco) {
             case 'menorpreco':
