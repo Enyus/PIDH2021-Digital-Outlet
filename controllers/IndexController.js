@@ -77,6 +77,7 @@ module.exports = {
         let listaFinal = [];
         let objetoBusca = {};
         let totalItens = null;
+        let totalPaginas = null;
 
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
@@ -104,7 +105,8 @@ module.exports = {
                 where: objetoBusca,
                 attributes: ['idProduto'],
                 limit: 6,
-                offset: page*6-6
+                offset: page*6-6,
+                order: filtro
             });
 
             let listaIdsBuscados = []
@@ -137,8 +139,15 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
 
         };
+
+        if (totalItens%6 == 0) {
+            totalPaginas = totalItens/6;
+        } else {
+            totalPaginas = Math.ceil(totalItens/6);
+        };
+        // console.log(totalPaginas);
         
-        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco, page});
+        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco, page: req.query.page, totalPaginas});
 
     },
 

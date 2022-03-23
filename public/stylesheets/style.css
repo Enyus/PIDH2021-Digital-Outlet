@@ -468,6 +468,12 @@ main.resultadobusca nav.navpages button {
   cursor: pointer;
 }
 
+main.resultadobusca nav.navpages button:disabled {
+  color: gray;
+  opacity: unset;
+  cursor: default;
+}
+
 main.paginaproduto div.produto {
   display: flex;
   justify-content: space-evenly;

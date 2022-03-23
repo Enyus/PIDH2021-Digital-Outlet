@@ -67,16 +67,28 @@
           </div>
        </div>
         <form method="GET">
-          <nav class="navpages"> 
-            <button type="submit" name="page" value="1">|< Primeira</button>
-            <button type="submit" name="page" value="<%=(page-1)%>">< Anterior</button>
-            <button type="submit" name="page" value="1">1</button>
-            <button type="submit" name="page" value="2">2</button>
-            <button type="submit" name="page" value="3">3</button>
-            <button type="submit" name="page" value="4">4</button>
-            <button type="submit" name="page" value="5">5</button>
-            <button type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
-            <button type="submit" name="page" value="5">Última >|</button>
+          <nav class="navpages">
+            <% if (page == 1) { %>
+              <button type="submit" name="page" value="1" disabled>|< Primeira</button>
+              <button type="submit" name="page" disabled value="<%=(page-1)%>">< Anterior</button>
+            <% } else { %>
+              <button type="submit" name="page" value="1">|< Primeira</button>
+              <button type="submit" name="page" value="<%=(page-1)%>">< Anterior</button>
+            <% } %>
+            <% for (i=1;i<=totalPaginas;i++) { %>
+              <% if (i == page) { %>
+                <button disabled type="submit" name="page" value="<%=i%>"><u><%=i%></u></button>
+              <% } else { %>
+                <button type="submit" name="page" value="<%=i%>"><%=i%></button>
+              <% } %>
+            <% } %>
+            <% if (page == totalPaginas) { %>
+              <button disabled type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
+              <button disabled type="submit" name="page" value="5">Última >|</button>
+            <% } else { %>
+              <button type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
+              <button type="submit" name="page" value="5">Última >|</button>
+            <% } %>
           </nav>
           <% if (categoria != undefined) { %>
             <input type="text" name="categoria" style='display: none;' value=<%=categoria%> >
