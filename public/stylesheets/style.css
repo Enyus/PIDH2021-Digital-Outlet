@@ -468,6 +468,12 @@ main.resultadobusca nav.navpages button {
   cursor: pointer;
 }
 
+main.resultadobusca nav.navpages button:disabled {
+  color: gray;
+  opacity: unset;
+  cursor: default;
+}
+
 main.paginaproduto div.produto {
   display: flex;
   justify-content: space-evenly;
@@ -1082,6 +1088,17 @@ div.colaboradores {
   margin-left: 5%;
 }
 
+div.categoriasmobile {
+  position: fixed;
+  width: 50vw;
+  height: 50vh;
+  bottom: 50px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  left: 50vw;
+}
 
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {

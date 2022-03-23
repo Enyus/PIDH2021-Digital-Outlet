@@ -6,6 +6,7 @@
       <h2>Filtre sua pesquisa:</h2>
       <form class="filtros" method="GET" action="/resultadobusca">
         <div class="buscainput">
+          <input type="text" name="page" style='display: none;' value=<%=page%> >
             <% if (categoria != undefined) { %>
               <input type="text" name="categoria" style='display: none;' value=<%=categoria%> >
             <% } %>
@@ -65,17 +66,40 @@
             <% }) %>
           </div>
        </div>
-       <nav class="navpages">
-           <button>|< Primeira</button>
-           <button>< Anterior</button>
-           <button>1</button>
-           <button>2</button>
-           <button>3</button>
-           <button>4</button>
-           <button>5</button>
-           <button>Próxima ></button>
-           <button>Última >|</button>
-       </nav>
+        <form method="GET">
+          <nav class="navpages">
+            <% if (page == 1) { %>
+              <button type="submit" name="page" value="1" disabled>|< Primeira</button>
+              <button type="submit" name="page" disabled value="<%=(page-1)%>">< Anterior</button>
+            <% } else { %>
+              <button type="submit" name="page" value="1">|< Primeira</button>
+              <button type="submit" name="page" value="<%=(page-1)%>">< Anterior</button>
+            <% } %>
+            <% for (i=1;i<=totalPaginas;i++) { %>
+              <% if (i == page) { %>
+                <button disabled type="submit" name="page" value="<%=i%>"><u><%=i%></u></button>
+              <% } else { %>
+                <button type="submit" name="page" value="<%=i%>"><%=i%></button>
+              <% } %>
+            <% } %>
+            <% if (page == totalPaginas) { %>
+              <button disabled type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
+              <button disabled type="submit" name="page" value="5">Última >|</button>
+            <% } else { %>
+              <button type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
+              <button type="submit" name="page" value="5">Última >|</button>
+            <% } %>
+          </nav>
+          <% if (categoria != undefined) { %>
+            <input type="text" name="categoria" style='display: none;' value=<%=categoria%> >
+          <% } %>
+          <% if(busca != undefined) { %>
+            <input type="text" id="buscaside" name="busca" style='display: none;' value="<%=busca%>" >
+          <% } else { %>
+            <input type="text" id="buscaside" name="busca" style='display: none;'>
+          <% } %>
+          <input type="text" name="filtropreco" style='display: none;' value="<%=filtropreco%>">
+        </form>
     </section>
 
   </main>
