@@ -98,6 +98,7 @@
             </div>
             
             <div class="containerterciario" id="dados">
+
               <p><b>Altere seus dados Cadastrais:</b></p>
               <form action="/alterarcliente?_method=PUT" method="POST" class="cadastrousuario">
                 <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
@@ -131,6 +132,21 @@
                 </div>
                 <button type="submit" id="submit">Alterar Dados</button>
               </form>
+
+              <p><b>Adicione/Altere sua Foto de Perfil:</b></p>
+              <form action="/adicionaPerfilCliente?_method=PUT" method="POST" class="fotoPerfil" enctype="multipart/form-data">
+                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
+                <button type="button" onclick="document.getElementById('fotoPerfil').click()">
+                  <% if (usuario.fotoPerfil != null) { %>
+                    <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" id="perfilUsuario">
+                  <% } else { %>
+                    <img src="/images/login.svg" class="fotoPerfil" id="perfilUsuario">
+                  <% } %>
+                </button>
+                <input type="file" id="fotoPerfil" accept=".png, .jpg" name="perfil" style="display: none;">
+                <button type="submit" id="submitPerfil">Alterar Dados</button>
+              </form>
+
             </div>
             
             <div class="containerterciario" id="enderecos">

@@ -146,5 +146,27 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
 
         }
+    },
+
+    adicionarProfilePic: async (req,res) => {
+        const { idUsuario } = req.body;
+        const fotoPerfil = req.file.path.slice(-37);
+        console.log(fotoPerfil);
+
+        try {
+            const perfilCliente = await db.Usuarios.update(
+                {fotoPerfil},
+                {where:{idUsuario}}
+            )
+
+            req.session.usuario.fotoPerfil = fotoPerfil;
+            
+            return res.redirect('/cliente');
+
+        } catch (err) {
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
     }
 }
