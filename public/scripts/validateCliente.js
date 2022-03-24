@@ -7,7 +7,7 @@ const inputPassword = document.getElementById("password");
 const inputConfirmaPassword = document.getElementById("confirmapassword");
 const buttonSubmit = document.getElementById("submit")
 
-console.log("rodando")
+// console.log("rodando")
 
 const erros = []
 

@@ -1,6 +1,6 @@
 const db = require('../models')
 const Sequelize = require('sequelize');
-const { where } = require('sequelize');
+const sequelize = require('sequelize');
 const Op = Sequelize.Op
 
 module.exports = {
@@ -73,13 +73,24 @@ module.exports = {
     },
 
     resultadobusca: async (req, res, next) => {
-        const {busca, categoria, filtropreco} = req.query;
+        const {busca, categoria, filtropreco, page} = req.query;
         let listaFinal = [];
         let objetoBusca = {};
+        let totalItens = null;
+        let totalPaginas = null;
+
+        console.log(busca)
+        console.log(busca[busca.lastIndexOf('')-1])
 
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
-        if ( busca != undefined && busca != "") {objetoBusca.nomeProduto = {[Op.like]: `%${busca}%`}};
+        if ( busca != undefined && busca != "") {
+            if (busca[busca.lastIndexOf('')-1] == 's') {
+                objetoBusca.nomeProduto = {[Op.like]: `%${busca.slice(0,busca.length-1)}%`}
+            } else {
+                objetoBusca.nomeProduto = {[Op.like]: `%${busca}%`}
+            };
+        };
 
         switch (filtropreco) {
             case 'menorpreco':
@@ -97,9 +108,14 @@ module.exports = {
 
         
         try {
+            totalItens = await db.Produtos.count({where: objetoBusca})
+            
             const resultadoBuscaId = await db.Produtos.findAll({
                 where: objetoBusca,
-                attributes: ['idProduto']
+                attributes: ['idProduto'],
+                limit: 6,
+                offset: page*6-6,
+                order: filtro
             });
 
             let listaIdsBuscados = []
@@ -128,12 +144,20 @@ module.exports = {
             };
 
         } catch(err) {
-           
+            
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" });
 
         };
 
-        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco});
+        if (totalItens%6 == 0) {
+            totalPaginas = totalItens/6;
+        } else {
+            totalPaginas = Math.ceil(totalItens/6);
+        };
+        // console.log(totalPaginas);
+        
+        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco, page: req.query.page, totalPaginas});
+
     },
 
     produto: async (req, res, next) => {
@@ -213,10 +237,6 @@ module.exports = {
 
     cadastroproduto: (req, res, next) => {
         res.render('cadastroproduto', {title:"Cadastro de Produto", usuario: req.session.usuario})
-    },
-
-    paginacliente: (req, res, next) => {
-        res.render('paginacliente', {title:"Bem-Vindo!", usuario: req.session.usuario})
     },
 
     paginaloja: (req, res, next) => {

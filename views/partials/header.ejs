@@ -19,7 +19,7 @@
       <div class="busca">
         <p>Pesquise sua marca/produto:</p>
         <% if (typeof(busca) != 'undefined') { %>
-          <input type="text" id="campobusca" value=<%= busca %>>
+          <input type="text" id="campobusca" value="<%=busca%>">
         <% } else { %>
           <input type="text" id="campobusca">
         <% } %>
@@ -66,28 +66,26 @@
       <% } %>
       <a href="/resultadobusca" id="botaobuscarmobile"><img src="/images/search-icon.png" alt="search"></a>
     </section>
-    
-    <script src="/scripts/busca.js"></script>
 
     </header>
     
     <section class="header-menu">
-        <a href="/resultadobusca?categoria=1">
+        <a href="/resultadobusca?page=1&categoria=1">
           ROUPAS
         </a>
-        <a href="/resultadobusca?categoria=2">
+        <a href="/resultadobusca?page=1&categoria=2">
           LIVROS
         </a>
-        <a href="/resultadobusca?categoria=3">
+        <a href="/resultadobusca?page=1&categoria=3">
           CALÇADOS
         </a>
-        <a href="/resultadobusca?categoria=4">
+        <a href="/resultadobusca?page=1&categoria=4">
           ACESSÓRIOS
         </a>
-        <a href="/resultadobusca?categoria=5">
+        <a href="/resultadobusca?page=1&categoria=5">
           PARA A CASA
         </a>
-        <a href="/resultadobusca?categoria=6">
+        <a href="/resultadobusca?page=1&categoria=6">
           ESPORTE
         </a>
       </section>

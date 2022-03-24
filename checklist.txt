@@ -9,7 +9,7 @@
 - Separar os CRUDs. Identificar os CRUDs principais.
     - Criar usuário; => OK
     - Logar usuário; => OK
-    - Alterar Dados do Usuário;
+    - Alterar Dados do Usuário; => OK
     - Adicionar Endereço de Usuário;
     - Deletar Endereço do Usuário;
     - Aidicionar Foto de Perfil do Usuário; => OK
@@ -23,8 +23,8 @@
     - Deletar Produto;
     - Fale Conosco; => OK
     - Trabalhe Conosco; => OK
-    - Carrinho? - sessions  depois sobe para pedidos
-    - Pesquisa de Produtos
+    - Carrinho? - sessions/cookies  depois sobe para pedidos
+    - Pesquisa de Produtos => básico pronto, falta melhorar mecanismo e implementar navegação entre páginas
 
 - No Front: Select com Marcas na Página de cadastro de produtos
 

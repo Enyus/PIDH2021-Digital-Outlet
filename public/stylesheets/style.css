@@ -468,6 +468,12 @@ main.resultadobusca nav.navpages button {
   cursor: pointer;
 }
 
+main.resultadobusca nav.navpages button:disabled {
+  color: gray;
+  opacity: unset;
+  cursor: default;
+}
+
 main.paginaproduto div.produto {
   display: flex;
   justify-content: space-evenly;
@@ -674,7 +680,8 @@ main.cadastrousuario section.containergeral form button,
 main.trabalheconosco section.containergeral form button,
 main.cadastroloja section.containergeral form button,
 main.cadastroproduto section.containergeral button,
-form.cadastrousuario button, form.alteradadosloja button {
+form.cadastrousuario button, form.alteradadosloja button,
+form.fotoPerfil button[type='submit'] {
   font-size: 36px;
   width: 300px;
   border-style: none;
@@ -1082,6 +1089,38 @@ div.colaboradores {
   margin-left: 5%;
 }
 
+div.categoriasmobile {
+  position: fixed;
+  width: 50vw;
+  height: 50vh;
+  bottom: 50px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  left: 50vw;
+}
+
+form.fotoPerfil {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+form.fotoPerfil button {
+  align-self: center;
+}
+
+form.fotoPerfil button[type='button'] {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+form.fotoPerfil img {
+  width: 200px;
+  height: 200px !important;
+}
 
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
