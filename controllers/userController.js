@@ -2,10 +2,50 @@ const db = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const bcrypt = require('bcrypt');
+const {format} = require('date-fns');
 
 
 module.exports = {
-    index: (req, res) => res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario }),
+    paginacliente: async (req, res) => {
+        const {idUsuario} = req.session.usuario;
+        let pedidos =[]
+        
+        try {
+            const pedidosDB = await db.Pedidos.findAll({
+                where: {idUsuario},
+                include: {
+                    model: db.Produtos,
+                    include: {model: db.Fotos}
+                },
+            });
+            // console.log(pedidosDB);
+            // console.log(pedidosDB[0].Produtos);
+
+            for (i=0; i<pedidosDB.length; i++) {
+                pedidos.push(
+                    {
+                        idPedido: pedidosDB[i].idPedido,
+                        idProduto: pedidosDB[i].idProduto,
+                        idLoja: pedidosDB[i].idLoja,
+                        nomeProduto: pedidosDB[i].Produtos[0].nomeProduto,
+                        valor: pedidosDB[i].valor,
+                        dataPedido: format(pedidosDB[i].dataPedido, 'dd/MM/yyyy'),
+                        fotoProduto: pedidosDB[i].Produtos[0].Fotos[0].urlFoto,
+                        preco: pedidosDB[i].Produtos[0].preco,
+                        promocao: pedidosDB[i].Produtos[0].promocao
+                    }
+                );
+            };
+            console.log(pedidos);
+
+            return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos })
+
+        } catch(err) {
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    },
 
     login: (req, res) => res.render('login', { title: "Digite seu login para continuar." , usuario: req.session.usuario}),
 
@@ -20,12 +60,18 @@ module.exports = {
             }
         });
 
+        // console.log(user);
+
         if (!bcrypt.compareSync(senha, user.senha)) {
             return res.send("Senha invalida");
         } else {
             req.session.usuario = {
+                idUsuario: user.idUsuario,
                 email: user.email,
                 nome: user.nome,
+                sobrenome: user.sobrenome,
+                dataNasc: user.dataNasc.toISOString().slice(0,10),
+                cpf: user.cpf,
                 fotoPerfil: user.fotoPerfil
             }
             return res.redirect('/cliente');
@@ -53,7 +99,9 @@ module.exports = {
             senha: hash,
             fotoPerfil: pasta,
         })
-        console.log(usuarioCriado)
+
+        // console.log(usuarioCriado)
+
         return res.redirect('/login')
     },
 
@@ -79,5 +127,28 @@ module.exports = {
         return res.redirect('/');
     },
 
-    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario })
+    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario }),
+
+    alterarCliente: async (req,res) => {
+        const { idUsuario, email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
+
+        const hash = bcrypt.hashSync(senha, 10);
+
+        try {
+            const usuarioAlterado = await db.Usuarios.update(
+                {email, nome, sobrenome, dataNasc, cpf, senha:hash},
+                {where:{idUsuario}}
+            )
+
+            console.log(usuarioAlterado);
+
+            req.session.usuario = undefined;
+            return res.redirect('/login');
+
+        } catch (err) {
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    }
 }

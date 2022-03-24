@@ -112,6 +112,7 @@ header section.buscamobile p {
 header section.buscamobile input {
   width: 80vw;
   margin-left: 10px;
+  height: 30px;
 }
 
 header section.buscamobile a {
@@ -215,7 +216,8 @@ body section.ofertas {
 
 div.ofertasrow {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 div.container {
@@ -224,22 +226,24 @@ div.container {
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 280px;
-  height: fit-content;
+  height: 360px;
   text-align: center;
 }
 
 body main a {
   color: unset;
   text-decoration: unset;
+  cursor: pointer;
 }
 
 main div.container img {
-  width: auto;
   margin-top: 10px;
+  max-width: 270px;
+  max-height: 200px;
 }
 
 h1 {
-  margin: 10px 0;
+  margin: 10px;
 }
 
 main div.container div.precos ul {
@@ -259,8 +263,8 @@ main div.container div.precos ul {
 
 .preco-agora {
   font-weight: bolder;
-  font-size: 18px;
-  width: 30%;
+  font-size: 25px;
+  width: 50%;
 }
 
 .off {
@@ -285,6 +289,11 @@ main section.containergeral h1 {
   margin-top: 20px;
   font-size: 36px;
   line-height: 46px;
+}
+
+main section.containergeral div.container h1 {
+  line-height: 22px;
+  margin: 10px;
 }
 
 main section.containergeral strong, 
@@ -459,10 +468,17 @@ main.resultadobusca nav.navpages button {
   cursor: pointer;
 }
 
+main.resultadobusca nav.navpages button:disabled {
+  color: gray;
+  opacity: unset;
+  cursor: default;
+}
+
 main.paginaproduto div.produto {
   display: flex;
   justify-content: space-evenly;
   align-items: top;
+  margin-bottom: 10px;
 }
 
 main.paginaproduto div.fotosproduto {
@@ -480,17 +496,26 @@ main.paginaproduto div.fotosproduto div.miniimg {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  margin-right: 2px;
+}
+
+main.paginaproduto div.fotosproduto div.miniimg button {
+  border: unset;
+  cursor: pointer;
+  padding: 0;
 }
 
 main.paginaproduto div.fotosproduto div.miniimg img {
-  max-height: 150px;
+  height: 180px;
+  width: 150px;
+  object-fit: cover;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg img:first-child{
+main.paginaproduto div.fotosproduto div.miniimg button:first-child img{
   border-top-left-radius: 10px;
 }
 
-main.paginaproduto div.fotosproduto div.miniimg img:last-child {
+main.paginaproduto div.fotosproduto div.miniimg button:last-child img {
   border-bottom-left-radius: 10px;
 }
 
@@ -502,9 +527,9 @@ main.paginaproduto div.fotosproduto div.focoimg {
 }
 
 main.paginaproduto div.fotosproduto div.focoimg img {
-  height: 100%;
-  position: relative;
-  right: -3px;
+  max-height: 560px;
+  max-width: 100%;
+  object-fit: cover;
   border-radius: 0 10px 10px 0;
 }
 
@@ -1023,16 +1048,8 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   justify-content: center;
 }
 
-#inicio, #pedidos, #desejos, #dados, #enderecos, #vale, #resumo, #listaprodutos  {
+#pedidos, #desejos, #dados, #enderecos, #vale, #resumo, #listaprodutos  {
   display: none;
-}
-
-#inicio:target, #resumo:target {
-  display: flex;
-}
-
-#pedidos:target, #desejos:target, #dados:target, #enderecos:target, #vale:target, #listaprodutos:target {
-  display: block;
 }
 
 img.fotoPerfil {
@@ -1050,6 +1067,37 @@ div.colaboradores {
   justify-content: space-evenly;
   text-align: center;
   width: 100%;
+}
+
+.filtros button {
+  border-radius: 20px;
+  border-style: none;
+  background-color: #E84118;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+  color: #fff;
+  font-size: 18px;
+  width: 70%;
+  height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0 15% 25px 15%;
+}
+
+.filtros input[type=text] {
+  width: 90%;
+  margin-left: 5%;
+}
+
+div.categoriasmobile {
+  position: fixed;
+  width: 50vw;
+  height: 50vh;
+  bottom: 50px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  left: 50vw;
 }
 
 /* Fazendo as alterações para mobile: */
@@ -1070,8 +1118,13 @@ div.colaboradores {
     display: block;
   }
 
-  section.fbutton, section.mlogo, div.hbutton p, section.header-menu, header .header-principal .busca, main.paginaproduto div.fotosproduto div.miniimg, aside div, aside form {
+  section.fbutton, section.mlogo, div.hbutton p, section.header-menu, header .header-principal .busca, aside div, aside form {
     display: none;
+  }
+
+  main.paginaproduto div.fotosproduto div.miniimg img {
+    height: 90px;
+    width: 75px;
   }
 
   footer {
@@ -1108,5 +1161,13 @@ div.colaboradores {
 
   main.cadastroproduto section.containergeral button {
     margin-left: 5%;
+  }
+
+  div.missao:last-child {
+    display: block !important;
+  }
+
+  div.buscainput {
+    display: none;
   }
 }

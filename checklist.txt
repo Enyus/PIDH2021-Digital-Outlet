@@ -4,15 +4,15 @@
 
 - Projetaram o banco de dados? => OK
 
-- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK (Mas precisamos trabalhar nos relacionamentos e nos Seeders)
+- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK
 
 - Separar os CRUDs. Identificar os CRUDs principais.
     - Criar usuário; => OK
     - Logar usuário; => OK
-    - Alterar Dados do Usuário;
+    - Alterar Dados do Usuário; => OK
     - Adicionar Endereço de Usuário;
     - Deletar Endereço do Usuário;
-    - Aidicionar Foto de Perfil do Usuário;
+    - Aidicionar Foto de Perfil do Usuário; => OK
     - Criar Loja; => OK
     - Alterar Dados da Loja;
     - Adicionar Endereço da Loja;
@@ -23,20 +23,66 @@
     - Deletar Produto;
     - Fale Conosco; => OK
     - Trabalhe Conosco; => OK
-    - Carrinho? - sessions  depois sobe para pedidos
-    - Pesquisa de Produtos
+    - Carrinho? - sessions/cookies  depois sobe para pedidos
+    - Pesquisa de Produtos => básico pronto, falta melhorar mecanismo e implementar navegação entre páginas
 
 - No Front: Select com Marcas na Página de cadastro de produtos
 
 - Como fazer o deploy?
 
 - API dos Correios
+    - XML?
+    - http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=08082650&sDsSenha=564321&sCepOrigem=70002900&sCepDestino=04547000&nVlPeso=1&nCdFormato=1&nVlComprimento=20&nVlAltura=20&nVlLargura=20&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=04510&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3
+        - nCdEmpresa - String - Para clientes sem contrato, informar vazio.
+        - sDsSenha - String - Para clientes sem contrato, informar vazio.
+        - sCepOrigem - String - CEP da origem sem hífen
+        - sCepDestino - String - CEP de Destino sem hífen
+        - nVlPeso - String - Peso da Encomenda, em kg, máximo 1 Kg
+        - nCdFormato - Int - Formato da encomenda; 1 para caixa, 2 para rolo, 3 para envelope
+        - nVlComprimento - Decimal - Comprimento em centímetros
+        - nVlAltura - Decimal - Altura da Encomenda em centímetros
+        - nVlLargura - Decimal - Largura da encomenda em centímetros
+        - sCdMaoPropria - String - Indica se a encomenda será entregue com o serviço adicional mão própria; S ou N
+        - nVlValorDeclarado - Decimal - Indica se a encomenda será entregue com serviço adicional valor declarado. O valor informado deve ser em reais.
+        - sCdAvisoRecebimento - Indica se a encomenda será entregue com o serviço adicional aviso de recebimento; S ou N
+        - nCdServico - String - 04014 para SEDEX, 04510 para PAC a vista, 04782 para SEDEX 12, 04790 para SEDEX 10, 04804 para SEDEX Hoje
+        - nVlDiametro - Decimal - Diâmetro da encomenda (incluindo embalagem), em centímetros.
+        - StrRetorno - Não encontrei nada no manual. no exemplo estava =xml
+        - nIndicaCalculo - Não encontrei nada no manual, no exemplo estava =3
+    - Response: <Servicos>
+                    <cServico>
+                        <Codigo>04510</Codigo>
+                        <Valor>27,80</Valor>
+                        <PrazoEntrega>5</PrazoEntrega>
+                        <ValorSemAdicionais>27,80</ValorSemAdicionais>
+                        <ValorMaoPropria>0,00</ValorMaoPropria>
+                        <ValorAvisoRecebimento>0,00</ValorAvisoRecebimento>
+                        <ValorValorDeclarado>0,00</ValorValorDeclarado>
+                        <EntregaDomiciliar>S</EntregaDomiciliar>
+                        <EntregaSabado>N</EntregaSabado>
+                        <obsFim/>
+                        <Erro>0</Erro>
+                        <MsgErro/>
+                    </cServico>
+                </Servicos>
+    - testando puxar com DOM:   Valor = document.body.children[0].children[0].children[0].children[1].innerHTML
+                                Prazo = document.body.children[0].children[0].children[0].children[2].innerHTML
+                                Erro = document.body.children[0].children[0].children[0].children[10].innerHTML
+
+- API de validação de CEP: https://viacep.com.br/
+    - Exemplo de autocomplete de dados de endereço com JS e a API: https://viacep.com.br/exemplo/javascript/
 
 - Projeto com o login com criptografia => OK
 
-- Na tabela de produtos, está faltando o nome do produto.
+- Na tabela de produtos, está faltando o nome do produto. => OK
 
-- Fazer Validação no Backend.
+- Fazer Validação no Backend. => OK
+    - CPF duplicado; => OK
+    - CNPJ duplicado; => OK
+    - E-mail duplicado; => OK
+    - Inscrição Estadual duplicada; => OK
+    - fazer validações nos Models: https://www.youtube.com/watch?v=3RzW3IqtGR0
+        - Validação do Sequelize: https://sequelize.org/v7/manual/validations-and-constraints.html
 
 
 Anotações:
@@ -54,3 +100,6 @@ Para "subir" o seeder para a DataBase:
 npx sequelize db:seed:all
 
 Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions. => OK
+
+
+- Mandar E-mail: Nodemailer

@@ -3,116 +3,103 @@
   <main class="resultadobusca">
 
     <aside>
-        <div>
-            <label for="buscaside">Busca</label>
-            <input type="text" id="buscaside" value="o que você pesquisou">
+      <h2>Filtre sua pesquisa:</h2>
+      <form class="filtros" method="GET" action="/resultadobusca">
+        <div class="buscainput">
+          <input type="text" name="page" style='display: none;' value=<%=page%> >
+            <% if (categoria != undefined) { %>
+              <input type="text" name="categoria" style='display: none;' value=<%=categoria%> >
+            <% } %>
+            <label for="buscaside">Busca:</label>
+            <% if(busca != undefined) { %>
+              <input type="text" id="buscaside" name="busca" value="<%=busca%>" >
+            <% } else { %>
+              <input type="text" id="buscaside" name="busca">
+            <% } %>
         </div>
-        <h2>Filtre sua pesquisa:</h2>
-        <form class="filtros">
-            <div>
-                <label>Por Preço:</label>
-                <ul>
-                    <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
-                    <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
-                    <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
-                </ul>
-            </div>
-            <div>
-                <label>Por Marca:</label>
-                <ul>
-                    <li><input type="radio" name="filtromarca" id="filtromarcalouis" value="louisvitton"><label for="filtromarcalouis">Louis Vitton</label></li>
-                    <li><input type="radio" name="filtromarca" id="filtromarcagucci" value="gucci"><label for="filtromarcagucci">Gucci</label></li>
-                    <li><input type="radio" name="filtromarca" id="filtromarcaae" value="calcasae"><label for="filtromarcaae">Calças AÊ</label></li>
-                </ul>
-            </div>
-        </form>
+        <div>
+          <label>Por Preço:</label>
+          <ul>
+            <% if (filtropreco=='menorpreco') { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco" checked><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
+            <% } else if (filtropreco=='maiorpreco') { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco" checked><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
+            <% } else if (filtropreco=='promocao') { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao" checked><label for="filtropromocao">Em Promoção</label></li>
+            <% } else { %>
+              <li><input type="radio" name="filtropreco" id="filtromenorpreco" value="menorpreco"><label for="filtromenorpreco">Menor Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtromaiorpreco" value="maiorpreco"><label for="filtromaiorpreco">Maior Preço</label></li>
+              <li><input type="radio" name="filtropreco" id="filtropromocao" value="promocao"><label for="filtropromocao">Em Promoção</label></li>
+            <% } %>
+          </ul>
+        </div>
+        <button id="filtrar">Filtrar</button>
+      </form>
     </aside>
 
     <section class="containergeral">
        <h1>Resultado da Pesquisa:</h1>
        <div class="resultados">
-        <div class="ofertasrow">
-            <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-            </div></a>
-            <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-            </div></a>
-            <a href="/produto"><div class="container">
-              <img src="/images/calca-bege.png" alt="Calça Bege">
-              <h1>Calça Bege</h1>
-              <div class="precos">
-                <ul>
-                  <li class="preco-antes">R$ 111,00</li>
-                  <li class="preco-agora">R$ 100,00</li>
-                  <li class="off">10% OFF</li>
-                </ul>
-              </div>
-            </div></a>
-          </div>
           <div class="ofertasrow">
-            <a href="/produto"><div class="container">
-              <img src="/images/calca-bege.png" alt="Calça Bege">
-              <h1>Calça Bege</h1>
+            <% produtos.forEach( produto => { %>
+              <a href="/produto/<%= produto.idProduto %>" ><div class="container">
+              <img src=<%= produto.foto %> alt=<%= produto.nomeProduto %> >
+              <h1><%= produto.nomeProduto %></h1>
               <div class="precos">
                 <ul>
-                  <li class="preco-antes">R$ 111,00</li>
-                  <li class="preco-agora">R$ 100,00</li>
-                  <li class="off">10% OFF</li>
+                  <% if (produto.promocao > 0) { %>
+                    <li class="preco-antes"><%= produto.preco.toFixed(2) %></li>
+                    <li class="preco-agora">R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </li>
+                    <li class="off"><%= produto.promocao %>% OFF</li>
+                  <% } else { %>
+                    <li class="preco-agora">R$ <%= produto.preco.toFixed(2) %> </li>
+                  <% } %>
                 </ul>
               </div>
-            </div></a>
-            <a href="/produto"><div class="container">
-              <img src="/images/calca-bege.png" alt="Calça Bege">
-              <h1>Calça Bege</h1>
-              <div class="precos">
-                <ul>
-                  <li class="preco-antes">R$ 111,00</li>
-                  <li class="preco-agora">R$ 100,00</li>
-                  <li class="off">10% OFF</li>
-                </ul>
-              </div>
-            </div></a>
-            <a href="/produto"><div class="container">
-              <img src="/images/calca-bege.png" alt="Calça Bege">
-              <h1>Calça Bege</h1>
-              <div class="precos">
-                <ul>
-                  <li class="preco-antes">R$ 111,00</li>
-                  <li class="preco-agora">R$ 100,00</li>
-                  <li class="off">10% OFF</li>
-                </ul>
-              </div>
-            </div></a>
+              </div></a>
+            <% }) %>
           </div>
        </div>
-       <nav class="navpages">
-           <button>|< Primeira</button>
-           <button>< Anterior</button>
-           <button>1</button>
-           <button>2</button>
-           <button>3</button>
-           <button>4</button>
-           <button>5</button>
-           <button>Próxima ></button>
-           <button>Última >|</button>
-       </nav>
+        <form method="GET">
+          <nav class="navpages">
+            <% if (page == 1) { %>
+              <button type="submit" name="page" value="1" disabled>|< Primeira</button>
+              <button type="submit" name="page" disabled value="<%=(page-1)%>">< Anterior</button>
+            <% } else { %>
+              <button type="submit" name="page" value="1">|< Primeira</button>
+              <button type="submit" name="page" value="<%=(page-1)%>">< Anterior</button>
+            <% } %>
+            <% for (i=1;i<=totalPaginas;i++) { %>
+              <% if (i == page) { %>
+                <button disabled type="submit" name="page" value="<%=i%>"><u><%=i%></u></button>
+              <% } else { %>
+                <button type="submit" name="page" value="<%=i%>"><%=i%></button>
+              <% } %>
+            <% } %>
+            <% if (page == totalPaginas) { %>
+              <button disabled type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
+              <button disabled type="submit" name="page" value="5">Última >|</button>
+            <% } else { %>
+              <button type="submit" name="page" value="<%=(parseInt(page)+1)%>">Próxima ></button>
+              <button type="submit" name="page" value="5">Última >|</button>
+            <% } %>
+          </nav>
+          <% if (categoria != undefined) { %>
+            <input type="text" name="categoria" style='display: none;' value=<%=categoria%> >
+          <% } %>
+          <% if(busca != undefined) { %>
+            <input type="text" id="buscaside" name="busca" style='display: none;' value="<%=busca%>" >
+          <% } else { %>
+            <input type="text" id="buscaside" name="busca" style='display: none;'>
+          <% } %>
+          <input type="text" name="filtropreco" style='display: none;' value="<%=filtropreco%>">
+        </form>
     </section>
 
   </main>

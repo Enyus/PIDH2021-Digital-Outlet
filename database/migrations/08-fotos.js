@@ -15,7 +15,10 @@ module.exports = {
                     key: 'idProduto'
                 }
             },
-            urlFoto: Sequelize.STRING,
+            urlFoto: {
+                type: Sequelize.STRING,
+                allowNull: false,
+              },
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE
         });

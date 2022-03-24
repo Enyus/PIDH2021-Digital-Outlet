@@ -17,12 +17,40 @@ module.exports = {
                     key: 'idUsuario'
                 }
             },
-            logradouro: Sequelize.STRING,
-            numero: Sequelize.INTEGER,
-            complemento: Sequelize.STRING,
-            cidade: Sequelize.STRING,
-            estado: Sequelize.STRING,
-            cep: sequelize.STRING,
+            logradouro: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            numero: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                validate: {
+                    isInt: {msg: "O campo de número da residência deve ser composto caracteres numéricos"}
+                }
+            },
+            complemento: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            cidade: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            estado: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            cep: {
+                type: Sequelize.INTEGER(8),
+                allowNull: false,
+                validate: {
+                  isInt: {msg: "O campo de CEP deve ser composto de oito caracteres numéricos"},
+                  len: {
+                    args: [8,8],
+                    msg: "O campo de CEP deve ser composto de oito caracteres numéricos"
+                  }
+                }
+            },
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE
         });

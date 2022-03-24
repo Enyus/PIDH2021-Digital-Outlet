@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="shortcut icon" href="/icon/favicon.png">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
@@ -17,8 +18,12 @@
       </div>
       <div class="busca">
         <p>Pesquise sua marca/produto:</p>
-        <input type="text">
-        <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
+        <% if (typeof(busca) != 'undefined') { %>
+          <input type="text" id="campobusca" value="<%=busca%>">
+        <% } else { %>
+          <input type="text" id="campobusca">
+        <% } %>
+        <a href="/resultadobusca" id="botaobuscar"><img src="/images/search-icon.png" alt="search"></a>
       </div>
       <div class="hbutton">
         <div>
@@ -54,29 +59,33 @@
 
     <section class="buscamobile">
       <p>busca:</p>
-      <input type="text">
-      <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
+      <% if (typeof(busca) != 'undefined') { %>
+        <input type="text" id="campobuscamobile" value=<%= busca %>>
+      <% } else { %>
+        <input type="text" id="campobuscamobile">
+      <% } %>
+      <a href="/resultadobusca" id="botaobuscarmobile"><img src="/images/search-icon.png" alt="search"></a>
     </section>
-    
+
     </header>
     
     <section class="header-menu">
-        <a href="">
+        <a href="/resultadobusca?page=1&categoria=1">
           ROUPAS
         </a>
-        <a href="">
+        <a href="/resultadobusca?page=1&categoria=2">
           LIVROS
         </a>
-        <a href="">
+        <a href="/resultadobusca?page=1&categoria=3">
           CALÇADOS
         </a>
-        <a href="">
+        <a href="/resultadobusca?page=1&categoria=4">
           ACESSÓRIOS
         </a>
-        <a href="">
+        <a href="/resultadobusca?page=1&categoria=5">
           PARA A CASA
         </a>
-        <a href="">
+        <a href="/resultadobusca?page=1&categoria=6">
           ESPORTE
         </a>
       </section>

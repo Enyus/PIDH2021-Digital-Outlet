@@ -5,43 +5,40 @@
         <h1 class="bemvindo">Seja Bem-Vindo, <%= usuario.nome %>!</h1>
         <div class="containersecundario">
             <div class="menu-cliente">
-                <a href="#inicio">Início</a>
-                <a href="#pedidos">Meus Pedidos</a>
-                <a href="#desejos">Lista de Desejos</a>
-                <a href="#dados">Alterar Dados Cadastrais</a>
-                <a href="#enderecos">Endereços</a>
-                <a href="#vale">Vale Compras</a>
+                <a id="irparainicio">Início</a>
+                <a id="irparapedidos">Meus Pedidos</a>
+                <a id="irparadesejos">Lista de Desejos</a>
+                <a id="irparadados">Alterar Dados Cadastrais</a>
+                <a id="irparaenderecos">Endereços</a>
+                <a id="irparavale">Vale Compras</a>
                 <a href="/logout">Sair</a>
             </div>
             
             <div class="containerterciario" id="inicio">
+
               <div class="pedidosrecentes">
                   <p><b>Seus Pedidos Recentes:</b></p>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
-                      </div>
-                      </div>
-                  </a>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
-                      </div>
-                      </div>
-                  </a>
+                  
+                  <% pedidos.forEach( pedido => { %>
+                    <a href="/produto/<%= pedido.idProduto %>" ><div class="container">
+                    <img src=<%= pedido.fotoProduto %> alt=<%= pedido.nomeProduto %> >
+                    <h1><%= pedido.nomeProduto %></h1>
+                    <div class="precos">
+                      <ul>
+                        <% if (pedido.promocao > 0) { %>
+                          <li class="preco-antes"><%= pedido.preco.toFixed(2) %></li>
+                          <li class="preco-agora">R$ <%= (pedido.preco * (100-pedido.promocao)/100).toFixed(2) %> </li>
+                          <li class="off"><%= pedido.promocao %>% OFF</li>
+                        <% } else { %>
+                          <li class="preco-agora">R$ <%= pedido.preco.toFixed(2) %> </li>
+                        <% } %>
+                      </ul>
+                    </div>
+                    </div></a>
+                  <% }) %>
+
               </div>
+
               <div class="buscasrecentes">
                   <p><b>Suas Buscas Recentes:</b></p>
                   <a href="/produto"><div class="container">
@@ -69,35 +66,30 @@
                       </div>
                   </a>
               </div>
+
             </div>
             
             <div class="containerterciario" id="pedidos">
               <div class="pedidosrecentes">
                 <p><b>Seus Pedidos Recentes:</b></p>
-                <a href="/produto"><div class="container">
-                    <img src="/images/calca-bege.png" alt="Calça Bege">
-                    <h1>Calça Bege</h1>
-                    <div class="precos">
-                      <ul>
-                        <li class="preco-antes">R$ 111,00</li>
-                        <li class="preco-agora">R$ 100,00</li>
-                        <li class="off">10% OFF</li>
-                      </ul>
-                    </div>
-                    </div>
-                </a>
-                <a href="/produto"><div class="container">
-                    <img src="/images/calca-bege.png" alt="Calça Bege">
-                    <h1>Calça Bege</h1>
-                    <div class="precos">
-                      <ul>
-                        <li class="preco-antes">R$ 111,00</li>
-                        <li class="preco-agora">R$ 100,00</li>
-                        <li class="off">10% OFF</li>
-                      </ul>
-                    </div>
-                    </div>
-                </a>
+                <table>
+                  <tr>
+                    <th>Número</th>
+                    <th>Loja</th>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                  </tr>
+                  <% pedidos.forEach (pedido => { %>
+                    <tr>
+                      <td><%=pedido.idPedido%></td>
+                      <td><%=pedido.idLoja%></td>
+                      <td><%=pedido.nomeProduto%></td>
+                      <td><%=pedido.valor%></td>
+                      <td><%=pedido.dataPedido%></td>
+                    </tr>
+                  <% }) %>
+                </table>
               </div>
             </div>
 
@@ -107,7 +99,8 @@
             
             <div class="containerterciario" id="dados">
               <p><b>Altere seus dados Cadastrais:</b></p>
-              <form action="" method="" class="cadastrousuario">
+              <form action="/alterarcliente?_method=PUT" method="POST" class="cadastrousuario">
+                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
                 <div class="formrow">
                     <label for="email">E-mail:</label>
                     <input type="email" id="email" name="email" value=<%= usuario.email %>>
@@ -118,15 +111,15 @@
                 </div>
                 <div class="formrow">
                   <label for="sobrenome">Sobrenome:</label>
-                  <input type="text" id="sobrenome" name="sobrenome" >
+                  <input type="text" id="sobrenome" name="sobrenome" value=<%= usuario.sobrenome %> >
                 </div>
                 <div class="formrow">
                   <label for="dataNasc">Data de Nascimento:</label>
-                  <input type="date" id="dataNasc" name="dataNasc" > >
+                  <input type="date" id="dataNasc" name="dataNasc" value=<%= usuario.dataNasc %> >
                 </div>
                 <div class="formrow">
                   <label for="cpf">CPF:</label>
-                  <input type="text" id="cpf" name="cpf" >
+                  <input type="text" id="cpf" name="cpf" disabled value=<%= usuario.cpf %> >
                 </div>
                 <div class="formrow">
                   <label for="password">Alterar Senha:</label>
@@ -134,9 +127,9 @@
                 </div>
                 <div class="formrow">
                   <label for="password">Confirma Nova Senha:</label>
-                  <input type="password" id="confirmpassword" name="senha">
+                  <input type="password" id="confirmapassword" name="confirmasenha">
                 </div>
-                <button type="submit">Alterar Dados</button>
+                <button type="submit" id="submit">Alterar Dados</button>
               </form>
             </div>
             
@@ -183,5 +176,8 @@
         </div>
     </section>
   </main>
+
+  <script src="/scripts/cliente.js"></script>
+  <script src="/scripts/validateCliente.js"></script>
 
 <%- include('./partials/footer') %>
