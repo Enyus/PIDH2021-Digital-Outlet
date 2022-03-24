@@ -12,6 +12,20 @@ const divDados = document.getElementById("dados");
 const divEnderecos = document.getElementById("enderecos");
 const divVale = document.getElementById("vale");
 
+const buttonImg = document.getElementById("perfilUsuario");
+const inputImgUpload = document.getElementById("fotoPerfil");
+
+const buttonImgSubmit = document.getElementById("submitPerfil");
+
+buttonImgSubmit.disabled = true;
+
+function showPreview (event) {
+    if(event.target.files.length > 0){
+        let src = URL.createObjectURL(event.target.files[0]);
+        buttonImg.src = src;
+    };
+};
+
 botaoInicio.onclick = (e) => {
     divInicio.style.display= 'flex';
     divPedidos.style.display='none';
@@ -65,3 +79,8 @@ botaoVale.onclick = (e) => {
     divEnderecos.style.display='none';
     divVale.style.display='block';
 };
+
+inputImgUpload.onchange = (e) => {
+    showPreview(e);
+    buttonImgSubmit.disabled = false;
+}

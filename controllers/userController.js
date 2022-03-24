@@ -2,10 +2,50 @@ const db = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 const bcrypt = require('bcrypt');
+const {format} = require('date-fns');
 
 
 module.exports = {
-    index: (req, res) => res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario }),
+    paginacliente: async (req, res) => {
+        const {idUsuario} = req.session.usuario;
+        let pedidos =[]
+        
+        try {
+            const pedidosDB = await db.Pedidos.findAll({
+                where: {idUsuario},
+                include: {
+                    model: db.Produtos,
+                    include: {model: db.Fotos}
+                },
+            });
+            // console.log(pedidosDB);
+            // console.log(pedidosDB[0].Produtos);
+
+            for (i=0; i<pedidosDB.length; i++) {
+                pedidos.push(
+                    {
+                        idPedido: pedidosDB[i].idPedido,
+                        idProduto: pedidosDB[i].idProduto,
+                        idLoja: pedidosDB[i].idLoja,
+                        nomeProduto: pedidosDB[i].Produtos[0].nomeProduto,
+                        valor: pedidosDB[i].valor,
+                        dataPedido: format(pedidosDB[i].dataPedido, 'dd/MM/yyyy'),
+                        fotoProduto: pedidosDB[i].Produtos[0].Fotos[0].urlFoto,
+                        preco: pedidosDB[i].Produtos[0].preco,
+                        promocao: pedidosDB[i].Produtos[0].promocao
+                    }
+                );
+            };
+            console.log(pedidos);
+
+            return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos })
+
+        } catch(err) {
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    },
 
     login: (req, res) => res.render('login', { title: "Digite seu login para continuar." , usuario: req.session.usuario}),
 
@@ -100,6 +140,28 @@ module.exports = {
 
             req.session.usuario = undefined;
             return res.redirect('/login');
+
+        } catch (err) {
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    },
+
+    adicionarProfilePic: async (req,res) => {
+        const { idUsuario } = req.body;
+        const fotoPerfil = req.file.path.slice(-37);
+        console.log(fotoPerfil);
+
+        try {
+            const perfilCliente = await db.Usuarios.update(
+                {fotoPerfil},
+                {where:{idUsuario}}
+            )
+
+            req.session.usuario.fotoPerfil = fotoPerfil;
+            
+            return res.redirect('/cliente');
 
         } catch (err) {
 
