@@ -15,33 +15,30 @@
             </div>
             
             <div class="containerterciario" id="inicio">
+
               <div class="pedidosrecentes">
                   <p><b>Seus Pedidos Recentes:</b></p>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
-                      </div>
-                      </div>
-                  </a>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
-                      </div>
-                      </div>
-                  </a>
+                  
+                  <% pedidos.forEach( pedido => { %>
+                    <a href="/produto/<%= pedido.idProduto %>" ><div class="container">
+                    <img src=<%= pedido.fotoProduto %> alt=<%= pedido.nomeProduto %> >
+                    <h1><%= pedido.nomeProduto %></h1>
+                    <div class="precos">
+                      <ul>
+                        <% if (pedido.promocao > 0) { %>
+                          <li class="preco-antes"><%= pedido.preco.toFixed(2) %></li>
+                          <li class="preco-agora">R$ <%= (pedido.preco * (100-pedido.promocao)/100).toFixed(2) %> </li>
+                          <li class="off"><%= pedido.promocao %>% OFF</li>
+                        <% } else { %>
+                          <li class="preco-agora">R$ <%= pedido.preco.toFixed(2) %> </li>
+                        <% } %>
+                      </ul>
+                    </div>
+                    </div></a>
+                  <% }) %>
+
               </div>
+
               <div class="buscasrecentes">
                   <p><b>Suas Buscas Recentes:</b></p>
                   <a href="/produto"><div class="container">
@@ -69,35 +66,30 @@
                       </div>
                   </a>
               </div>
+
             </div>
             
             <div class="containerterciario" id="pedidos">
               <div class="pedidosrecentes">
                 <p><b>Seus Pedidos Recentes:</b></p>
-                <a href="/produto"><div class="container">
-                    <img src="/images/calca-bege.png" alt="Calça Bege">
-                    <h1>Calça Bege</h1>
-                    <div class="precos">
-                      <ul>
-                        <li class="preco-antes">R$ 111,00</li>
-                        <li class="preco-agora">R$ 100,00</li>
-                        <li class="off">10% OFF</li>
-                      </ul>
-                    </div>
-                    </div>
-                </a>
-                <a href="/produto"><div class="container">
-                    <img src="/images/calca-bege.png" alt="Calça Bege">
-                    <h1>Calça Bege</h1>
-                    <div class="precos">
-                      <ul>
-                        <li class="preco-antes">R$ 111,00</li>
-                        <li class="preco-agora">R$ 100,00</li>
-                        <li class="off">10% OFF</li>
-                      </ul>
-                    </div>
-                    </div>
-                </a>
+                <table>
+                  <tr>
+                    <th>Número</th>
+                    <th>Loja</th>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                  </tr>
+                  <% pedidos.forEach (pedido => { %>
+                    <tr>
+                      <td><%=pedido.idPedido%></td>
+                      <td><%=pedido.idLoja%></td>
+                      <td><%=pedido.nomeProduto%></td>
+                      <td><%=pedido.valor%></td>
+                      <td><%=pedido.dataPedido%></td>
+                    </tr>
+                  <% }) %>
+                </table>
               </div>
             </div>
 

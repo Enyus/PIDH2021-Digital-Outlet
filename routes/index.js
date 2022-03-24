@@ -49,7 +49,7 @@ router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.
 router.get('/cadastroproduto', IndexController.cadastroproduto)
 
 /*GET Página do Cliente*/
-router.get('/cliente', auth, IndexController.paginacliente)
+router.get('/cliente', auth, userController.paginacliente)
 router.put('/alterarcliente', auth, userController.alterarCliente)
 
 /*GET Página do Lojista*/
