@@ -174,10 +174,17 @@
             <div class="containerterciario" id="enderecos">
               <p><b>Seus Endereços:</b></p>
               <ul>
-                <li>Rua José da Silva, 320, São Paulo/SP <button>excluir</button></li>
+                <% enderecos.forEach( endereco => { %>
+                  <li><%=endereco.logradouro%>, <%=endereco.numero%>, <%=endereco.complemento%>, <%=endereco.cidade%>/<%=endereco.estado%> - CEP: <%=endereco.cep%>
+                    <form action="/deleteEndereco/<%=endereco.idEndereco%>?_method=DELETE" method="POST">
+                      <button type="submit"><img src="/icon/carrinho-lixeira.png" alt="excluir"></button>
+                    </form>
+                  </li>
+                <% }) %>
               </ul>
               <p><b>Adicione Aqui um Endereço:</b></p>
-              <form action="" class="cadastrousuario">
+              <form action="/adicionarEnderecoCliente" method="POST" class="cadastrousuario">
+                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
                 <div class="formrow">
                   <label for="logradouro">Logradouro:</label>
                   <input type="text" id="logradouro" name="logradouro">

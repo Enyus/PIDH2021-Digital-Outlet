@@ -50,12 +50,14 @@ router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.
 router.get('/cadastroproduto', IndexController.cadastroproduto)
 
 /*GET Página do Cliente*/
-router.get('/cliente', auth, userController.paginacliente)
-router.put('/alterarcliente', auth, userController.alterarCliente)
-router.put('/adicionaPerfilCliente', auth, uploadFotoPerfil.single('perfil'), userController.adicionarProfilePic)
+router.get('/cliente', auth, userController.paginacliente);
+router.put('/alterarcliente', auth, userController.alterarCliente);
+router.put('/adicionaPerfilCliente', auth, uploadFotoPerfil.single('perfil'), userController.adicionarProfilePic);
+router.post('/adicionarEnderecoCliente', auth, userController.cadastrarEnderecoCliente);
+router.delete('/deleteEndereco/:idEndereco', auth, userController.excluirEndereco);
 
 /*GET Página do Lojista*/
-router.get('/loja', IndexController.paginaloja)
+router.get('/loja', IndexController.paginaloja);
 router.get('/cadastroloja', userController.cadastroLoja);
 router.post('/cadastroloja', userController.cadastrarLoja);
 

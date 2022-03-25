@@ -8,7 +8,8 @@ const {format} = require('date-fns');
 module.exports = {
     paginacliente: async (req, res) => {
         const {idUsuario} = req.session.usuario;
-        let pedidos =[]
+        let pedidos = [];
+        let enderecos = [];
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
@@ -48,7 +49,10 @@ module.exports = {
             };
             // console.log(pedidos);
 
-            return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos })
+            const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
+            console.log(enderecos);
+
+            return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos, enderecos })
 
         } catch(err) {
 
@@ -177,6 +181,50 @@ module.exports = {
         } catch (err) {
 
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    },
+
+    cadastrarEnderecoCliente: async (req, res) => {
+        const { idUsuario, logradouro, numero, complemento, cidade, estado, cep } = req.body
+
+        try {
+            const enderecoAdd = await db.Enderecos.create({
+                idUsuario,
+                logradouro,
+                numero,
+                complemento,
+                cidade,
+                estado,
+                cep
+            });
+
+            console.log(enderecoAdd);
+
+            return res.redirect('/cliente')
+
+        } catch (err) {
+            
+            console.log(err);
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
+
+        }
+    },
+
+    excluirEndereco: async (req, res) => {
+        const {idEndereco} = req.params;
+
+        try {
+
+            await db.Enderecos.destroy({where: {idEndereco}});
+
+            return res.redirect('/cliente')
+
+        } catch(err) {
+
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
 
         }
     }
