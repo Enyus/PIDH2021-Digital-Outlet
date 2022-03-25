@@ -239,6 +239,13 @@ module.exports = {
         res.render('cadastroproduto', {title:"Cadastro de Produto", usuario: req.session.usuario})
     },
 
+<<<<<<< HEAD
+=======
+    paginacliente: (req, res, next) => {
+        res.render('paginacliente', {title:"Bem-Vindo!", usuario: req.session.usuario})
+    },
+
+>>>>>>> cassio
     paginaloja: (req, res, next) => {
         res.render('paginaloja', {title:"Bem-Vindo!", usuario: req.session.usuario})
     }

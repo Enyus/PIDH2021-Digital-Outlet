@@ -12,6 +12,7 @@ const divDados = document.getElementById("dados");
 const divEnderecos = document.getElementById("enderecos");
 const divVale = document.getElementById("vale");
 
+<<<<<<< HEAD
 const buttonImg = document.getElementById("perfilUsuario");
 const inputImgUpload = document.getElementById("fotoPerfil");
 
@@ -26,6 +27,8 @@ function showPreview (event) {
     };
 };
 
+=======
+>>>>>>> cassio
 botaoInicio.onclick = (e) => {
     divInicio.style.display= 'flex';
     divPedidos.style.display='none';
@@ -78,9 +81,13 @@ botaoVale.onclick = (e) => {
     divDados.style.display='none';
     divEnderecos.style.display='none';
     divVale.style.display='block';
+<<<<<<< HEAD
 };
 
 inputImgUpload.onchange = (e) => {
     showPreview(e);
     buttonImgSubmit.disabled = false;
 }
+=======
+};
+>>>>>>> cassio

@@ -157,6 +157,7 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
 
         }
+<<<<<<< HEAD
     },
 
     adicionarProfilePic: async (req,res) => {
@@ -179,5 +180,7 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
 
         }
+=======
+>>>>>>> cassio
     }
 }

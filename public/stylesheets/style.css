@@ -1100,6 +1100,7 @@ div.categoriasmobile {
   left: 50vw;
 }
 
+<<<<<<< HEAD
 form.fotoPerfil {
   width: 100%;
   display: flex;
@@ -1121,6 +1122,8 @@ form.fotoPerfil img {
   height: 200px !important;
 }
 
+=======
+>>>>>>> cassio
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
   header .logo, header .header-principal .hbutton {
