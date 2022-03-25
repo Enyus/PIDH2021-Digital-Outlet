@@ -83,4 +83,4 @@ botaoVale.onclick = (e) => {
 inputImgUpload.onchange = (e) => {
     showPreview(e);
     buttonImgSubmit.disabled = false;
-}
+};

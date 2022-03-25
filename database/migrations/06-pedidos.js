@@ -22,13 +22,6 @@ module.exports = {
                     key: 'idLoja'
                 }
             },
-            idProduto: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: "Produtos",
-                    key: 'idProduto'
-                }
-            },
             dataPedido: {
                 type: Sequelize.DATE,
                 allowNull: false,

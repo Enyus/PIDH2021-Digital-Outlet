@@ -15,33 +15,44 @@ module.exports = {
                 where: {idUsuario},
                 include: {
                     model: db.Produtos,
-                    include: {model: db.Fotos}
-                },
+                    include: {
+                        model: db.Fotos
+                    },
+                }
             });
             // console.log(pedidosDB);
-            // console.log(pedidosDB[0].Produtos);
+            // console.log(pedidosDB[0].Produtos[0].Fotos);
 
             for (i=0; i<pedidosDB.length; i++) {
                 pedidos.push(
                     {
                         idPedido: pedidosDB[i].idPedido,
-                        idProduto: pedidosDB[i].idProduto,
                         idLoja: pedidosDB[i].idLoja,
-                        nomeProduto: pedidosDB[i].Produtos[0].nomeProduto,
-                        valor: pedidosDB[i].valor,
                         dataPedido: format(pedidosDB[i].dataPedido, 'dd/MM/yyyy'),
-                        fotoProduto: pedidosDB[i].Produtos[0].Fotos[0].urlFoto,
-                        preco: pedidosDB[i].Produtos[0].preco,
-                        promocao: pedidosDB[i].Produtos[0].promocao
+                        valor: pedidosDB[i].valor,
+                        produtos: []
                     }
                 );
+
+                for(j=0;j<pedidosDB[i].Produtos.length; j++) {
+                    pedidos[i].produtos.push(
+                        {
+                            nomeProduto: pedidosDB[i].Produtos[j].nomeProduto,
+                            preco: pedidosDB[i].Produtos[j].preco,
+                            promocao: pedidosDB[i].Produtos[j].promocao,
+                            idProduto: pedidosDB[i].Produtos[j].idProduto,
+                            fotoProduto: pedidosDB[i].Produtos[j].Fotos[0].urlFoto
+                        }
+                    )
+                };
             };
-            console.log(pedidos);
+            // console.log(pedidos);
 
             return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos })
 
         } catch(err) {
 
+            console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
 
         }

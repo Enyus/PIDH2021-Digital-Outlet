@@ -13,7 +13,7 @@ module.exports = (sequelize, DataType) => {
 
         dataProcess: {
             type: DataType.DATE,
-            allowNull: false,
+            allowNull: true,
             validate: {
               isDate: {msg: "O campo data de processamento deve ser preenchido com uma data válida."},
             }
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataType) => {
 
         dataTransp: {
             type: DataType.DATE,
-            allowNull: false,
+            allowNull: true,
             validate: {
               isDate: {msg: "O campo data de transporte deve ser preenchido com uma data válida."},
             }
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataType) => {
 
         dataEntrega: {
             type: DataType.DATE,
-            allowNull: false,
+            allowNull: true,
             validate: {
               isDate: {msg: "O campo data de entrega deve ser preenchido com uma data válida."},
             }
