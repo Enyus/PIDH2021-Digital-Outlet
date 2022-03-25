@@ -16,7 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(session({secret: "Daniel BBK", resave: true, saveUninitialized:true}))
+app.use(session({secret: "asdfa1ds86fa1sd65fv4a1ds411$!$!R$!#$EFD$DEF$va58fd4ge45a1df5", resave: true, saveUninitialized:true}))
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,6 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+app.use( function(req, res, next) {
+  console.log("passou pelo middleware")
+  usuario = req.session.usuario;
+  console.log(usuario);
+  next();
+});
 
 app.use('/', indexRouter);
 // app.use('/usuario', usersRouter);

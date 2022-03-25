@@ -8,7 +8,7 @@ const {format} = require('date-fns');
 module.exports = {
     paginacliente: async (req, res) => {
         const {idUsuario} = req.session.usuario;
-        let pedidos =[]
+        let pedidos = [];
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
@@ -48,7 +48,10 @@ module.exports = {
             };
             // console.log(pedidos);
 
-            return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos })
+            const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
+            // console.log(enderecos);
+
+            return res.render('paginacliente', { title: "Bem-Vindo!", pedidos, enderecos })
 
         } catch(err) {
 
@@ -58,12 +61,12 @@ module.exports = {
         }
     },
 
-    login: (req, res) => res.render('login', { title: "Digite seu login para continuar." , usuario: req.session.usuario}),
+    login: (req, res) => res.render('login', { title: "Digite seu login para continuar." }),
 
     logarUsuario: async (req, res) => {
         const { email, senha } = req.body;
 
-        if(!email || !senha) {res.render('login', {title: "Campos Invalidos", usuario: req.session.usuario})};
+        if(!email || !senha) {res.render('login', {title: "Campos Invalidos"})};
 
         const user = await db.Usuarios.findOne({ 
             where: {
@@ -74,7 +77,7 @@ module.exports = {
         // console.log(user);
 
         if (!bcrypt.compareSync(senha, user.senha)) {
-            return res.send("Senha invalida");
+            return res.status(401).render('login', {title: "Erro", message: "Usuário ou senha Inválidos"});
         } else {
             req.session.usuario = {
                 idUsuario: user.idUsuario,
@@ -94,7 +97,7 @@ module.exports = {
         return res.redirect('/');
     },
 
-    cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!", usuario: req.session.usuario }),
+    cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!" }),
 
     cadastrarUsuario: async (req, res) => {
         const { email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
@@ -112,7 +115,7 @@ module.exports = {
         return res.redirect('/login')
     },
 
-    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!", usuario: req.session.usuario }),
+    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
 
     cadastrarLoja: async (req, res) => {
         const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
@@ -134,7 +137,7 @@ module.exports = {
         return res.redirect('/');
     },
 
-    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario }),
+    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!" }),
 
     alterarCliente: async (req,res) => {
         const { idUsuario, email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
@@ -177,6 +180,74 @@ module.exports = {
         } catch (err) {
 
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    },
+
+    cadastrarEnderecoCliente: async (req, res) => {
+        const { idUsuario, logradouro, numero, complemento, cidade, estado, cep } = req.body
+
+        try {
+            const enderecoAdd = await db.Enderecos.create({
+                idUsuario,
+                logradouro,
+                numero,
+                complemento,
+                cidade,
+                estado,
+                cep
+            });
+
+            console.log(enderecoAdd);
+
+            return res.redirect('/cliente')
+
+        } catch (err) {
+            
+            console.log(err);
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
+
+        }
+    },
+
+    excluirEndereco: async (req, res) => {
+        const {idEndereco} = req.params;
+
+        try {
+
+            await db.Enderecos.destroy({where: {idEndereco}});
+
+            return res.redirect('/cliente')
+
+        } catch(err) {
+
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
+
+        }
+    },
+
+    excluirCliente: async (req, res) => {
+        const {idUsuario} = req.params;
+        const {confirmadeletausuario} = req.body;
+        // console.log(confirmadeletausuario);
+
+        if (confirmadeletausuario != "confirma") {
+            return res.status(412).render('error', {title: 'Falha', error: {erro: "O usuário não confirmou a deleção de sua conta corretamente"}, message: "O usuário não confirmou a deleção de sua conta corretamente" })
+        }
+        
+        
+        try {
+
+            await db.Usuarios.destroy({where: {idUsuario}});
+
+            return res.redirect('/');
+
+        } catch(err) {
+
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
 
         }
     }
