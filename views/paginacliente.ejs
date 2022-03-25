@@ -63,30 +63,47 @@
 
               <div class="buscasrecentes">
                   <p><b>Suas Buscas Recentes:</b></p>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
+                  <% if (buscasRecentes.length > 0 ) { %>
+                    <a href="/produto/<%= buscasRecentes[0].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= buscasRecentes[0].Fotos[0].urlFoto %> alt=<%= buscasRecentes[0].nomeProduto %> >
+                        <h1><%= buscasRecentes[0].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscasRecentes[0].promocao > 0) { %>
+                              <li class="preco-antes"><%= buscasRecentes[0].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (buscasRecentes[0].preco * (100-buscasRecentes[0].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= buscasRecentes[0].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscasRecentes[0].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
                       </div>
+                    </a>
+
+                    <a href="/produto/<%= buscasRecentes[1].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= buscasRecentes[1].Fotos[0].urlFoto %> alt=<%= buscasRecentes[1].nomeProduto %> >
+                        <h1><%= buscasRecentes[1].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscasRecentes[1].promocao > 0) { %>
+                              <li class="preco-antes"><%= buscasRecentes[1].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (buscasRecentes[1].preco * (100-buscasRecentes[1].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= buscasRecentes[1].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscasRecentes[1].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
                       </div>
-                  </a>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
-                      </div>
-                      </div>
-                  </a>
+                    </a>
+                  <% } else { %>
+                    <p>Você ainda não visitou nenhum produto enquanto logado.</p>
+                  <% } %>
+                  
+
               </div>
 
             </div>
@@ -117,6 +134,29 @@
 
             <div class="containerterciario" id="desejos">
               <p><b>Lista de Desejos Aqui</b></p>
+              <% if (buscasRecentes.length > 0 ) { %>
+                <div class="ofertasrow">
+                  <% buscasRecentes.forEach( buscaRecente => { %>
+                    <a href="/produto/<%= buscaRecente.idProduto %>" >
+                      <div class="container">
+                        <img src=<%= buscaRecente.Fotos[0].urlFoto %> alt=<%= buscaRecente.nomeProduto %> >
+                        <h1><%= buscaRecente.nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscaRecente.promocao > 0) { %>
+                              <li class="preco-antes"><%= buscaRecente.preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (buscaRecente.preco * (100-buscaRecente.promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= buscaRecente.promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscaRecente.preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
+                      </div>
+                    </a>
+                  <% }) %>
+                </div>
+              <% } %>
             </div>
             
             <div class="containerterciario" id="dados">
