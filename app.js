@@ -25,9 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use( function(req, res, next) {
-  console.log("passou pelo middleware")
   usuario = req.session.usuario;
-  console.log(usuario);
   next();
 });
 

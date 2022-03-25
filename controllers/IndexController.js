@@ -155,7 +155,7 @@ module.exports = {
             totalPaginas = Math.ceil(totalItens/6);
         };
         // console.log(totalPaginas);
-        
+
         return res.render('resultadobusca', {title:"Resultado da Busca", produtos: listaFinal, busca, categoria, filtropreco, page: req.query.page, totalPaginas});
 
     },
@@ -191,10 +191,19 @@ module.exports = {
 
             // console.log(produtoLoad);
 
+            if( usuario != undefined) {
+                if (!usuario.buscasRecentes.includes(idProduto)) {
+                    usuario.buscasRecentes.unshift(idProduto)
+                };
+                if(usuario.buscasRecentes.length > 6) {
+                    usuario.buscasRecentes.splice(6)
+                };
+            }
+
             return res.render('produto', {title:"Produto", produto: produtoLoad});
         
         } catch(err) {
-            return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" })
         }
 
     },

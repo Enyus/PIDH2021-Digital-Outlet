@@ -9,6 +9,7 @@ module.exports = {
     paginacliente: async (req, res) => {
         const {idUsuario} = req.session.usuario;
         let pedidos = [];
+        let buscasRecentes = [];
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
@@ -51,7 +52,17 @@ module.exports = {
             const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
             // console.log(enderecos);
 
-            return res.render('paginacliente', { title: "Bem-Vindo!", pedidos, enderecos })
+            if( usuario.buscasRecentes.length > 0) {
+                buscasRecentes = await db.Produtos.findAll({
+                    where: {idProduto: {
+                        [Op.in]: usuario.buscasRecentes
+                    }},
+                    attributes: ['idProduto', 'nomeProduto', 'preco', 'promocao'],
+                    include: {model: db.Fotos}
+                });
+            }
+            
+            return res.render('paginacliente', { title: "Bem-Vindo!", pedidos, enderecos, buscasRecentes })
 
         } catch(err) {
 
@@ -66,7 +77,7 @@ module.exports = {
     logarUsuario: async (req, res) => {
         const { email, senha } = req.body;
 
-        if(!email || !senha) {res.render('login', {title: "Campos Invalidos"})};
+        if(!email || !senha) {res.status(401).render('login', {title: "Campos Invalidos", message: "Usuário ou senha Inválidos"})};
 
         const user = await db.Usuarios.findOne({ 
             where: {
@@ -86,7 +97,8 @@ module.exports = {
                 sobrenome: user.sobrenome,
                 dataNasc: user.dataNasc.toISOString().slice(0,10),
                 cpf: user.cpf,
-                fotoPerfil: user.fotoPerfil
+                fotoPerfil: user.fotoPerfil,
+                buscasRecentes: []
             }
             return res.redirect('/cliente');
         }
