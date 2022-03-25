@@ -13,8 +13,6 @@ module.exports = (sequelize, DataType) => {
 
         idLoja: DataType.INTEGER,
 
-        idProduto: DataType.INTEGER,
-
         dataPedido: {
             type: DataType.DATE,
             allowNull: false,
