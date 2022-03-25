@@ -49,7 +49,8 @@ module.exports = {
       },
       fotoPerfil: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: null
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE

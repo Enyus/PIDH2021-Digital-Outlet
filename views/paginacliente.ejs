@@ -19,42 +19,45 @@
               <div class="pedidosrecentes">
                   <p><b>Seus Pedidos Recentes:</b></p>
                   
-                  <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>" >
-                    <div class="container">
-                      <img src=<%= pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
-                      <h1><%= pedidos[0].produtos[0].nomeProduto %></h1>
-                      <div class="precos">
-                        <ul>
-                          <% if (pedidos[0].produtos[0].promocao > 0) { %>
-                            <li class="preco-antes"><%= pedidos[0].produtos[0].preco.toFixed(2) %></li>
-                            <li class="preco-agora">R$ <%= (pedidos[0].produtos[0].preco * (100-pedidos[0].produtos[0].promocao)/100).toFixed(2) %> </li>
-                            <li class="off"><%= pedidos[0].produtos[0].promocao %>% OFF</li>
-                          <% } else { %>
-                            <li class="preco-agora">R$ <%= pedidos[0].produtos[0].preco.toFixed(2) %> </li>
-                          <% } %>
-                        </ul>
+                  <% if (pedidos.length>0) { %>
+                    <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
+                        <h1><%= pedidos[0].produtos[0].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (pedidos[0].produtos[0].promocao > 0) { %>
+                              <li class="preco-antes"><%= pedidos[0].produtos[0].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (pedidos[0].produtos[0].preco * (100-pedidos[0].produtos[0].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= pedidos[0].produtos[0].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= pedidos[0].produtos[0].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-
-                  <a href="/produto/<%= pedidos[0].produtos[1].idProduto %>" >
-                    <div class="container">
-                      <img src=<%= pedidos[0].produtos[1].fotoProduto %> alt=<%= pedidos[0].produtos[1].nomeProduto %> >
-                      <h1><%= pedidos[0].produtos[1].nomeProduto %></h1>
-                      <div class="precos">
-                        <ul>
-                          <% if (pedidos[0].produtos[1].promocao > 0) { %>
-                            <li class="preco-antes"><%= pedidos[0].produtos[1].preco.toFixed(2) %></li>
-                            <li class="preco-agora">R$ <%= (pedidos[0].produtos[1].preco * (100-pedidos[0].produtos[1].promocao)/100).toFixed(2) %> </li>
-                            <li class="off"><%= pedidos[0].produtos[1].promocao %>% OFF</li>
-                          <% } else { %>
-                            <li class="preco-agora">R$ <%= pedidos[0].produtos[1].preco.toFixed(2) %> </li>
-                          <% } %>
-                        </ul>
+                    </a>
+  
+                    <a href="/produto/<%= pedidos[0].produtos[1].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= pedidos[0].produtos[1].fotoProduto %> alt=<%= pedidos[0].produtos[1].nomeProduto %> >
+                        <h1><%= pedidos[0].produtos[1].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (pedidos[0].produtos[1].promocao > 0) { %>
+                              <li class="preco-antes"><%= pedidos[0].produtos[1].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (pedidos[0].produtos[1].preco * (100-pedidos[0].produtos[1].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= pedidos[0].produtos[1].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= pedidos[0].produtos[1].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-
+                    </a>
+                  <% } else { %>
+                    <p>Você ainda não realizou nenhum pedido.</p>
+                  <% } %>
 
               </div>
 
