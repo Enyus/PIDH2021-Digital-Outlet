@@ -4,12 +4,12 @@
 
 - Projetaram o banco de dados? => OK
 
-- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK (Mas precisamos trabalhar nos relacionamentos e nos Seeders)
+- Configuração do Sequelize. ( Conexão,  Models, Migrations) => OK
 
 - Separar os CRUDs. Identificar os CRUDs principais.
     - Criar usuário; => OK
     - Logar usuário; => OK
-    - Alterar Dados do Usuário;
+    - Alterar Dados do Usuário; => OK
     - Adicionar Endereço de Usuário;
     - Deletar Endereço do Usuário;
     - Aidicionar Foto de Perfil do Usuário; => OK
@@ -23,8 +23,8 @@
     - Deletar Produto;
     - Fale Conosco; => OK
     - Trabalhe Conosco; => OK
-    - Carrinho? - sessions  depois sobe para pedidos
-    - Pesquisa de Produtos
+    - Carrinho? - sessions/cookies  depois sobe para pedidos
+    - Pesquisa de Produtos => básico pronto, falta melhorar mecanismo e implementar navegação entre páginas
 
 - No Front: Select com Marcas na Página de cadastro de produtos
 
@@ -76,11 +76,11 @@
 
 - Na tabela de produtos, está faltando o nome do produto. => OK
 
-- Fazer Validação no Backend.
-    - CPF duplicado;
-    - CNPJ duplicado;
-    - E-mail duplicado;
-    - Inscrição Estadual duplicada;
+- Fazer Validação no Backend. => OK
+    - CPF duplicado; => OK
+    - CNPJ duplicado; => OK
+    - E-mail duplicado; => OK
+    - Inscrição Estadual duplicada; => OK
     - fazer validações nos Models: https://www.youtube.com/watch?v=3RzW3IqtGR0
         - Validação do Sequelize: https://sequelize.org/v7/manual/validations-and-constraints.html
 
@@ -100,3 +100,6 @@ Para "subir" o seeder para a DataBase:
 npx sequelize db:seed:all
 
 Criptografia - Tem que colocar criptografia pra a criação de usuario loja e sessions. => OK
+
+
+- Mandar E-mail: Nodemailer

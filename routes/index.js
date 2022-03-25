@@ -4,7 +4,8 @@ const IndexController = require("../controllers/IndexController");
 const userController = require('../controllers/userController');
 const CompraController = require('../controllers/CompraController');
 var auth = require ('../middlewares/auth');
-const uploadFile = require('../middlewares/multerConfig')
+const uploadFile = require('../middlewares/multerConfig');
+const uploadFotoPerfil = require('../middlewares/uploadFotoPerfil')
 
 /* GET home page. */
 router.get('/', IndexController.index);
@@ -23,7 +24,7 @@ router.post('/contato', IndexController.enviaContato)
 router.get('/resultadobusca', IndexController.resultadobusca)
 
 /*GET Página do Produto*/
-router.get('/produto', IndexController.produto)
+router.get('/produto/:idProduto', IndexController.produto)
 
 /* Página do Login*/
 router.get('/login', userController.login);
@@ -49,7 +50,9 @@ router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.
 router.get('/cadastroproduto', IndexController.cadastroproduto)
 
 /*GET Página do Cliente*/
-router.get('/cliente', auth, IndexController.paginacliente)
+router.get('/cliente', auth, userController.paginacliente)
+router.put('/alterarcliente', auth, userController.alterarCliente)
+router.put('/adicionaPerfilCliente', auth, uploadFotoPerfil.single('perfil'), userController.adicionarProfilePic)
 
 /*GET Página do Lojista*/
 router.get('/loja', IndexController.paginaloja)
