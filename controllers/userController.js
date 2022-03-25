@@ -77,7 +77,7 @@ module.exports = {
         // console.log(user);
 
         if (!bcrypt.compareSync(senha, user.senha)) {
-            return res.send("Senha invalida");
+            return res.status(401).render('login', {title: "Erro", message: "Usuário ou senha Inválidos"});
         } else {
             req.session.usuario = {
                 idUsuario: user.idUsuario,

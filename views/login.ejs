@@ -3,6 +3,9 @@
   <main class="login">
     <section class="containergeral">
         <h1>Seja Bem Vindo</h1>
+        <% if ( typeof(message) != 'undefined') { %>
+          <p><%=message%></p>
+        <% } %>
         <p>Preencha os campos abaixo:</p>
         <form action="/login" method="POST">
             <div class="formrow">
