@@ -55,6 +55,7 @@ router.put('/alterarcliente', auth, userController.alterarCliente);
 router.put('/adicionaPerfilCliente', auth, uploadFotoPerfil.single('perfil'), userController.adicionarProfilePic);
 router.post('/adicionarEnderecoCliente', auth, userController.cadastrarEnderecoCliente);
 router.delete('/deleteEndereco/:idEndereco', auth, userController.excluirEndereco);
+router.delete('/deletarCliente/:idUsuario', auth, userController.excluirCliente);
 
 /*GET Página do Lojista*/
 router.get('/loja', IndexController.paginaloja);

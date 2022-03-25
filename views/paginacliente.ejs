@@ -169,6 +169,13 @@
                 <button type="submit" id="submitPerfil">Alterar Dados</button>
               </form>
 
+              <p><b>Deletar conta</b></p>
+              <form action="/deletarCliente/<%=usuario.idUsuario%>?_method=DELETE" method="POST">
+                <input type="checkbox" name="confirmadeletausuario" value="confirma" id="confirmadeletausuario">
+                <label for="confirmadeletausuario">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
+                <button type="submit" id="botaoDeletaUsuario">Deletar Conta</button>
+              </form>
+
             </div>
             
             <div class="containerterciario" id="enderecos">

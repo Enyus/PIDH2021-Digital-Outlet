@@ -27,7 +27,7 @@
       </div>
       <div class="hbutton">
         <div>
-          <% if(typeof(usuario) != 'undefined') { %>
+          <% if(usuario != undefined) { %>
             <a href="/cliente">
               <% if (usuario.fotoPerfil != null) { %>
                 <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" alt="login">
