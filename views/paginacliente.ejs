@@ -19,6 +19,7 @@
               <div class="pedidosrecentes">
                   <p><b>Seus Pedidos Recentes:</b></p>
                   
+<<<<<<< HEAD
                   <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>" >
                     <div class="container">
                       <img src=<%= pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
@@ -55,6 +56,25 @@
                     </div>
                   </a>
 
+=======
+                  <% pedidos.forEach( pedido => { %>
+                    <a href="/produto/<%= pedido.idProduto %>" ><div class="container">
+                    <img src=<%= pedido.fotoProduto %> alt=<%= pedido.nomeProduto %> >
+                    <h1><%= pedido.nomeProduto %></h1>
+                    <div class="precos">
+                      <ul>
+                        <% if (pedido.promocao > 0) { %>
+                          <li class="preco-antes"><%= pedido.preco.toFixed(2) %></li>
+                          <li class="preco-agora">R$ <%= (pedido.preco * (100-pedido.promocao)/100).toFixed(2) %> </li>
+                          <li class="off"><%= pedido.promocao %>% OFF</li>
+                        <% } else { %>
+                          <li class="preco-agora">R$ <%= pedido.preco.toFixed(2) %> </li>
+                        <% } %>
+                      </ul>
+                    </div>
+                    </div></a>
+                  <% }) %>
+>>>>>>> 99abf3c6580bcb7ef6197e8481ba7db8e2cd293b
 
               </div>
 
@@ -103,7 +123,11 @@
                     <tr>
                       <td><%=pedido.idPedido%></td>
                       <td><%=pedido.idLoja%></td>
+<<<<<<< HEAD
                       <td><%=pedido.produtos[0].nomeProduto%></td>
+=======
+                      <td><%=pedido.nomeProduto%></td>
+>>>>>>> 99abf3c6580bcb7ef6197e8481ba7db8e2cd293b
                       <td><%=pedido.valor%></td>
                       <td><%=pedido.dataPedido%></td>
                     </tr>

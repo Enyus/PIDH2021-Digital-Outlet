@@ -79,8 +79,13 @@ module.exports = {
         let totalItens = null;
         let totalPaginas = null;
 
+<<<<<<< HEAD
         // console.log(busca)
         // console.log(busca[busca.lastIndexOf('')-1])
+=======
+        console.log(busca)
+        console.log(busca[busca.lastIndexOf('')-1])
+>>>>>>> 99abf3c6580bcb7ef6197e8481ba7db8e2cd293b
 
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 

@@ -13,6 +13,11 @@ module.exports = (sequelize, DataType) => {
 
         idLoja: DataType.INTEGER,
 
+<<<<<<< HEAD
+=======
+        idProduto: DataType.INTEGER,
+
+>>>>>>> 99abf3c6580bcb7ef6197e8481ba7db8e2cd293b
         dataPedido: {
             type: DataType.DATE,
             allowNull: false,
