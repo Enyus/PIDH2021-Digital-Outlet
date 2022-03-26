@@ -18,7 +18,7 @@ module.exports = {
                 attributes:{
                     exclude: ['createdAt', 'updatedAt']
                 },
-                include: {
+                include: [{
                     model: db.Produtos,
                     attributes:{
                         exclude: ['createdAt', 'updatedAt']
@@ -29,35 +29,26 @@ module.exports = {
                             exclude: ['Produtos.Fotos.idFoto', 'createdAt', 'updatedAt']
                         },
                     },
-                }
+                }, {
+                    model: db.Lojas,
+                    attributes: ['idLoja', 'nomeFantasia']
+                }, {
+                    model: db.StatusPedido,
+                    attributes: ['idStatusPedido', 'idPedido', 'dataProcess', 'dataTransp', 'dataEntrega']
+                }]
             });
             // console.log(pedidosDB);
-            // console.log(pedidosDB[0].Produtos[0].Fotos);
-
-            for (i=0; i<pedidosDB.length; i++) {
-                lojaPedido.push(pedidosDB[i].idLoja)
-            };
-
-            const lojaPedidoDB = await db.Lojas.findAll({
-                attributes: ['idLoja', 'nomeFantasia']
-                // Pode ser que haja problema no ordenamento aqui
-            });
-
-            lojaPedido = lojaPedido.map( element => {
-                for (i=0;i<lojaPedidoDB.length;i++) {
-                    if (element == lojaPedidoDB[i].idLoja) {
-                        return element = lojaPedidoDB[i].nomeFantasia;
-                    }
-                }
-            })
-            console.log(lojaPedido)
+            // console.log(pedidosDB[0].Loja);
 
             for (i=0; i<pedidosDB.length; i++) {
                 pedidos.push(
                     {
                         idPedido: pedidosDB[i].idPedido,
-                        loja: lojaPedido[i],
+                        loja: pedidosDB[i].Loja.nomeFantasia,
                         dataPedido: format(pedidosDB[i].dataPedido, 'dd/MM/yyyy'),
+                        dataProcess: pedidosDB[i].StatusPedido.dataProcess,
+                        dataTransp: pedidosDB[i].StatusPedido.dataTransp,
+                        dataEntrega: pedidosDB[i].StatusPedido.dataEntrega,
                         valor: pedidosDB[i].valor,
                         produtos: []
                     }
@@ -70,7 +61,11 @@ module.exports = {
                             preco: pedidosDB[i].Produtos[j].preco,
                             promocao: pedidosDB[i].Produtos[j].promocao,
                             idProduto: pedidosDB[i].Produtos[j].idProduto,
-                            fotoProduto: pedidosDB[i].Produtos[j].Fotos[0].urlFoto
+                            fotoProduto: pedidosDB[i].Produtos[j].Fotos[0].urlFoto,
+                            quantidade: pedidosDB[i].Produtos[j].PedidosProdutos.quantidade,
+                            preco: pedidosDB[i].Produtos[j].PedidosProdutos.preco,
+                            desconto: pedidosDB[i].Produtos[j].PedidosProdutos.desconto,
+                            frete: pedidosDB[i].Produtos[j].PedidosProdutos.frete
                         }
                     )
                 };
@@ -86,7 +81,8 @@ module.exports = {
                         [Op.in]: usuario.buscasRecentes
                     }},
                     attributes: ['idProduto', 'nomeProduto', 'preco', 'promocao'],
-                    include: {model: db.Fotos}
+                    include: {model: db.Fotos},
+                    order: Sequelize.literal( `FIELD(Produtos.idProduto, ${usuario.buscasRecentes})`),
                 });
             }
             

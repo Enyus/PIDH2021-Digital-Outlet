@@ -53,7 +53,8 @@ module.exports = {
         defaultValue: null
       },
       createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE
+      updatedAt: Sequelize.DATE,
+      deletedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {
