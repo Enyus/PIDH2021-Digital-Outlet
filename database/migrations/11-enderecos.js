@@ -30,7 +30,7 @@ module.exports = {
             },
             complemento: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             cidade: {
                 type: Sequelize.STRING,

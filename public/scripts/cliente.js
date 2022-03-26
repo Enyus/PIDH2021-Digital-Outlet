@@ -19,6 +19,11 @@ const buttonImgSubmit = document.getElementById("submitPerfil");
 
 buttonImgSubmit.disabled = true;
 
+const botaoDeletaUsuario = document.getElementById("botaoDeletaUsuario");
+const confirmaDeletaUsuario = document.getElementById("confirmadeletausuario");
+
+botaoDeletaUsuario.disabled = true;
+
 function showPreview (event) {
     if(event.target.files.length > 0){
         let src = URL.createObjectURL(event.target.files[0]);
@@ -83,4 +88,12 @@ botaoVale.onclick = (e) => {
 inputImgUpload.onchange = (e) => {
     showPreview(e);
     buttonImgSubmit.disabled = false;
+};
+
+confirmaDeletaUsuario.onchange = (e) => {
+    if (confirmaDeletaUsuario.checked) {
+        botaoDeletaUsuario.disabled = false;
+    } else {
+        botaoDeletaUsuario.disabled = true;
+    }
 };

@@ -116,15 +116,15 @@
                     <th>Número</th>
                     <th>Loja</th>
                     <th>Produto</th>
-                    <th>Valor</th>
+                    <th>Valor (R$)</th>
                     <th>Data</th>
                   </tr>
                   <% pedidos.forEach (pedido => { %>
                     <tr>
                       <td><%=pedido.idPedido%></td>
-                      <td><%=pedido.idLoja%></td>
+                      <td><%=pedido.loja%></td>
                       <td><%=pedido.produtos[0].nomeProduto%></td>
-                      <td><%=pedido.valor%></td>
+                      <td><%=pedido.valor.toFixed(2)%></td>
                       <td><%=pedido.dataPedido%></td>
                     </tr>
                   <% }) %>
@@ -210,9 +210,11 @@
               </form>
 
               <p><b>Deletar conta</b></p>
-              <form action="/deletarCliente/<%=usuario.idUsuario%>?_method=DELETE" method="POST">
-                <input type="checkbox" name="confirmadeletausuario" value="confirma" id="confirmadeletausuario">
-                <label for="confirmadeletausuario">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
+              <form action="/deletarCliente/<%=usuario.idUsuario%>?_method=DELETE" method="POST" class="fotoPerfil">
+                <div>
+                  <input type="checkbox" name="confirmadeletausuario" value="confirma" id="confirmadeletausuario">
+                  <label for="confirmadeletausuario">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
+                </div>
                 <button type="submit" id="botaoDeletaUsuario">Deletar Conta</button>
               </form>
 
