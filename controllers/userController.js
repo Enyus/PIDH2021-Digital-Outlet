@@ -10,14 +10,24 @@ module.exports = {
         const {idUsuario} = req.session.usuario;
         let pedidos = [];
         let buscasRecentes = [];
+        let lojaPedido = []
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
                 where: {idUsuario},
+                attributes:{
+                    exclude: ['createdAt', 'updatedAt']
+                },
                 include: {
                     model: db.Produtos,
+                    attributes:{
+                        exclude: ['createdAt', 'updatedAt']
+                    },
                     include: {
-                        model: db.Fotos
+                        model: db.Fotos,
+                        attributes:{
+                            exclude: ['Produtos.Fotos.idFoto', 'createdAt', 'updatedAt']
+                        },
                     },
                 }
             });
@@ -25,10 +35,28 @@ module.exports = {
             // console.log(pedidosDB[0].Produtos[0].Fotos);
 
             for (i=0; i<pedidosDB.length; i++) {
+                lojaPedido.push(pedidosDB[i].idLoja)
+            };
+
+            const lojaPedidoDB = await db.Lojas.findAll({
+                attributes: ['idLoja', 'nomeFantasia']
+                // Pode ser que haja problema no ordenamento aqui
+            });
+
+            lojaPedido = lojaPedido.map( element => {
+                for (i=0;i<lojaPedidoDB.length;i++) {
+                    if (element == lojaPedidoDB[i].idLoja) {
+                        return element = lojaPedidoDB[i].nomeFantasia;
+                    }
+                }
+            })
+            console.log(lojaPedido)
+
+            for (i=0; i<pedidosDB.length; i++) {
                 pedidos.push(
                     {
                         idPedido: pedidosDB[i].idPedido,
-                        idLoja: pedidosDB[i].idLoja,
+                        loja: lojaPedido[i],
                         dataPedido: format(pedidosDB[i].dataPedido, 'dd/MM/yyyy'),
                         valor: pedidosDB[i].valor,
                         produtos: []

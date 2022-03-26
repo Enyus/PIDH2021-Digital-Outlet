@@ -1121,6 +1121,11 @@ form.fotoPerfil img {
   height: 200px !important;
 }
 
+form.fotoPerfil div {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 div#enderecos li {
   display: flex;
   margin-bottom: 10px;
@@ -1140,6 +1145,12 @@ div#enderecos li form button {
 div#enderecos li form button img {
   width: 15px;
   height: 15px;
+}
+
+main.paginacliente section.containergeral div.pedidosrecentes, 
+main.paginacliente section.containergeral div.pedidosrecentes table {
+  width: 100%;
+  text-align: center;
 }
 
 /* Fazendo as alterações para mobile: */
