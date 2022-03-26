@@ -66,6 +66,7 @@ module.exports = (sequelize, DataType) => {
 
 	},{
 	   tableName: 'Usuarios',
+	   paranoid: true,
 	});
 
 	Usuarios.associate = (models) => {

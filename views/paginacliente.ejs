@@ -63,6 +63,11 @@
 
               <div class="buscasrecentes">
                   <p><b>Suas Buscas Recentes:</b></p>
+
+                  <% if (buscasRecentes.length < 1 ) { %>
+                  <p>Você ainda não visitou nenhum produto enquanto logado.</p>
+                  <% } %>
+
                   <% if (buscasRecentes.length > 0 ) { %>
                     <a href="/produto/<%= buscasRecentes[0].idProduto %>" >
                       <div class="container">
@@ -81,7 +86,9 @@
                         </div>
                       </div>
                     </a>
+                  <% } %>
 
+                  <% if (buscasRecentes.length > 1 ) { %>
                     <a href="/produto/<%= buscasRecentes[1].idProduto %>" >
                       <div class="container">
                         <img src=<%= buscasRecentes[1].Fotos[0].urlFoto %> alt=<%= buscasRecentes[1].nomeProduto %> >
@@ -99,9 +106,7 @@
                         </div>
                       </div>
                     </a>
-                  <% } else { %>
-                    <p>Você ainda não visitou nenhum produto enquanto logado.</p>
-                  <% } %>
+                  <% }  %>
                   
 
               </div>
@@ -115,18 +120,97 @@
                   <tr>
                     <th>Número</th>
                     <th>Loja</th>
+                    <th>Quantidade</th>
                     <th>Produto</th>
-                    <th>Valor (R$)</th>
-                    <th>Data</th>
+                    <th>Valor Unitário</th>
+                    <th>Frete</th>
+                    <th>Total Produto (R$)</th>
+                    <th>Total Pedido (R$)</th>
+                    <th>Data Pedido</th>
+                    <th>Data Processamento</th>
+                    <th>Data Transporte</th>
+                    <th>Data Entrega</th>
                   </tr>
                   <% pedidos.forEach (pedido => { %>
-                    <tr>
-                      <td><%=pedido.idPedido%></td>
-                      <td><%=pedido.loja%></td>
-                      <td><%=pedido.produtos[0].nomeProduto%></td>
-                      <td><%=pedido.valor.toFixed(2)%></td>
-                      <td><%=pedido.dataPedido%></td>
-                    </tr>
+                    <% pedido.produtos.forEach(produto => { %>
+                      <tr>
+                        <% if (pedido.produtos.length == 1) { %>
+                          <td><%=pedido.idPedido%></td>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.idPedido%></td>
+                          <% } %>
+                        <% } %>
+                        <% if (pedido.produtos.length == 1) { %>
+                          <td><%=pedido.loja%></td>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.loja%></td>
+                          <% } %>
+                        <% } %>
+                        <td><%=produto.quantidade%></td>
+                        <td><%=produto.nomeProduto%></td>
+                        <td><%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
+                        <td><%=produto.frete%></td>
+                        <td><%= (produto.quantidade * (produto.preco * (100-produto.desconto)/100)).toFixed(2) %></td>
+                        <td><%=pedido.valor.toFixed(2)%></td>
+                        <% if (pedido.produtos.length == 1) { %>
+                          <td><%=pedido.dataPedido%></td>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.dataPedido%></td>
+                          <% } %>
+                        <% } %>
+
+                        <% if (pedido.produtos.length == 1) { %>
+                          <% if (pedido.dataProcess != null) { %>
+                            <td><%= ((pedido.dataProcess.getDate() )) + "/" + ((pedido.dataProcess.getMonth() + 1)) + "/" + pedido.dataProcess.getFullYear() %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <% if (pedido.dataProcess != null) { %>
+                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataProcess.getDate() )) + "/" + ((pedido.dataProcess.getMonth() + 1)) + "/" + pedido.dataProcess.getFullYear() %></td>
+                            <% } else { %>
+                              <td rowspan="<%=pedido.produtos.length%>">-</td>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+
+                        <% if (pedido.produtos.length == 1) { %>
+                          <% if (pedido.dataTransp != null) { %>
+                            <td><%= ((pedido.dataTransp.getDate() )) + "/" + ((pedido.dataTransp.getMonth() + 1)) + "/" + pedido.dataTransp.getFullYear() %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <% if (pedido.dataTransp != null) { %>
+                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataTransp.getDate() )) + "/" + ((pedido.dataTransp.getMonth() + 1)) + "/" + pedido.dataTransp.getFullYear() %></td>
+                            <% } else { %>
+                              <td rowspan="<%=pedido.produtos.length%>">-</td>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+
+                        <% if (pedido.produtos.length == 1) { %>
+                          <% if (pedido.dataEntrega != null) { %>
+                            <td><%= ((pedido.dataEntrega.getDate() )) + "/" + ((pedido.dataEntrega.getMonth() + 1)) + "/" + pedido.dataEntrega.getFullYear() %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <% if (pedido.dataEntrega != null) { %>
+                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataEntrega.getDate() )) + "/" + ((pedido.dataEntrega.getMonth() + 1)) + "/" + pedido.dataEntrega.getFullYear() %></td>
+                            <% } else { %>
+                              <td rowspan="<%=pedido.produtos.length%>">-</td>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+                      </tr>
+                    <% }) %>
                   <% }) %>
                 </table>
               </div>
