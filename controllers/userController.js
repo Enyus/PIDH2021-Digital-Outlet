@@ -124,12 +124,14 @@ module.exports = {
                 fotoPerfil: user.fotoPerfil,
                 buscasRecentes: []
             }
+            res.cookie('idUsuario', user.idUsuario, {maxAge: 86400000})
             return res.redirect('/cliente');
         }
     },
 
     logout: (req, res) => {
         req.session.usuario = undefined;
+        res.cookie('idUsuario', undefined);
         return res.redirect('/');
     },
 
