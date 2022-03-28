@@ -1,14 +1,49 @@
 const db = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
+const bcrypt = require('bcrypt');
 
 module.exports = {
     cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
 
-    paginaloja: (req, res, next) => {res.render('paginaloja', {title:"Bem-Vindo!"})},
+    paginaloja: async (req, res, next) => {
+        const {idLoja} = req.session.loja;
+        let listaProdutos = [];
+
+        try {
+            const produtos = await db.Produtos.findAll({
+                where: {idLoja},
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt']
+                }
+            });
+            // console.log(produtos);
+
+            for (i=0;i<produtos.length;i++) {
+                listaProdutos.push(
+                    {
+                        idProduto: produtos[i].idProduto,
+                        nomeProduto: produtos[i].nomeProduto,
+                        marca: produtos[i].idMarca,
+                        Categoria: produtos[i].idCategoria,
+                        preco: produtos[i].preco,
+                        desconto: produtos[i].promocao,
+                        estoque: 123,
+                    }
+                );
+            };
+            console.log(listaProdutos);
+
+            return res.render('paginaloja', {title:"Bem-Vindo!", listaProdutos});
+
+        } catch (err) {
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+        }
+    },
 
     cadastrarLoja: async (req, res) => {
-        const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
+        const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, complemento, cidade, estado, cep } = req.body;
         try {
             const hash = bcrypt.hashSync(senha, 10);
             const lojaCriada = await db.Lojas.create({
@@ -20,6 +55,7 @@ module.exports = {
                 senha: hash,
                 logradouro,
                 numero,
+                complemento,
                 cidade,
                 estado,
                 cep,

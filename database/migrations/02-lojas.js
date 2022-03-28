@@ -63,6 +63,10 @@ module.exports = {
           isInt: {msg: "O campo de número da residência deve ser composto caracteres numéricos"}
         }
       },
+      complemento: {
+          type: Sequelize.STRING,
+          allowNull: true,
+      },
       cidade: {
         type: Sequelize.STRING,
         allowNull: false,

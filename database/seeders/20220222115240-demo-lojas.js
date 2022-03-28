@@ -12,6 +12,7 @@ module.exports = {
       senha: bcrypt.hashSync("do$123", 10),
       logradouro: 'Rua Juvenal das Neves',
       numero: '1234',
+      complemento: 'sala 15',
       cidade: 'São Paulo',
       estado: 'São Paulo',
       cep: parseInt("01030010"),

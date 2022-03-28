@@ -28,6 +28,7 @@ const logarCookie = async (req, res, next) => {
             cnpj: loja.cnpj,
             logradouro: loja.logradouro,
             numero: loja.numero,
+            complemento: loja.complemento,
             cidade: loja.cidade,
             estado: loja.estado,
             cep: loja.cep,
