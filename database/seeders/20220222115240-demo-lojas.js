@@ -15,6 +15,7 @@ module.exports = {
       cidade: 'São Paulo',
       estado: 'São Paulo',
       cep: parseInt("01030010"),
+      fotoPerfil: "/profilepics/do$.png",
       createdAt: new Date(),
       updatedAt: new Date(),
       deletedAt: null,

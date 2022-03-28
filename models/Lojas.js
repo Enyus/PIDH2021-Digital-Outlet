@@ -94,12 +94,19 @@ module.exports = (sequelize, DataType) => {
 			}
 		},
 
+		fotoPerfil: {
+			type: DataType.STRING,
+			allowNull: true,
+			defaultValue: null
+		},
+
 		createdAt: DataType.DATE,
 
 		updatedAt: DataType.DATE
 
 	},{
 	   tableName: 'Lojas',
+	   paranoid: true,
 	});
 
 	Lojas.associate = (models) => {
