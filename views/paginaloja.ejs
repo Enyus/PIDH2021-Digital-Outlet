@@ -93,22 +93,33 @@
                                 <th scope="col">Categoria</th>
                                 <th scope="col">Preço</th>
                                 <th scope="col">Desconto</th>
+                                <th scope="col">Valor Atual</th>
                                 <th scope="col">Em Estoque</th>
                                 <th scope="col">Editar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Calça Bege</td>
-                                <td>Calças AÊ</td>
-                                <td>Roupas</td>
-                                <td>R$ 110,00</td>
-                                <td>10%</td>
-                                <td>100</td>
-                                <td><a href="/produto"><img src="icon/carrinho-editar.png" alt=""></a></td>
-                            </tr>
-                            <!-- incluir o listaProdutos.foreach aqui!!! -->
+                            <% if(listaProdutos.length > 0) { %>
+                                <% listaProdutos.forEach( produto => { %>
+                                    <tr>
+                                        <td><%= produto.idProduto %></td>
+                                        <td><a href="/produto/<%= produto.idProduto %>"><%= produto.nomeProduto %></a></td>
+                                        <td><%= produto.marca %></td>
+                                        <td><%= produto.categoria %></td>
+                                        <td>R$ <%= produto.preco.toFixed(2) %></td>
+                                        <% if(produto.desconto>0) { %>
+                                            <td><%= produto.desconto %>%</td>
+                                        <% } else { %>
+                                            <td>-</td>
+                                        <% } %>
+                                        <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
+                                        <td><%= produto.estoque %></td>
+                                        <td><a href="/"><img src="icon/carrinho-editar.png" alt=""></a></td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <p>Você ainda não tem produtos cadastrados. <a href="/cadastroproduto"><b>Cadastre um produto aqui!</b></a></p>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>

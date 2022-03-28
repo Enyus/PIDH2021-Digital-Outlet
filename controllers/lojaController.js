@@ -14,25 +14,39 @@ module.exports = {
             const produtos = await db.Produtos.findAll({
                 where: {idLoja},
                 attributes: {
-                    exclude: ['createdAt', 'updatedAt']
-                }
+                    exclude: ['createdAt', 'updatedAt', 'desc']
+                },
+                include: [
+                    {
+                        model: db.Marcas,
+                        attributes: ['idMarca', 'nomeMarca']
+                    }, {
+                        model: db.Categorias,
+                        attributes: ['idCategoria', 'nomeCategoria']
+                    },
+                    {
+                        model: db.Estoque,
+                        attributes: ['idProduto', 'quantidade']
+                    }
+                ]
             });
-            // console.log(produtos);
+            // console.log(produtos[0].Estoque);
+
 
             for (i=0;i<produtos.length;i++) {
                 listaProdutos.push(
                     {
                         idProduto: produtos[i].idProduto,
                         nomeProduto: produtos[i].nomeProduto,
-                        marca: produtos[i].idMarca,
-                        Categoria: produtos[i].idCategoria,
+                        marca: produtos[i].Marca.nomeMarca,
+                        categoria: produtos[i].Categoria.nomeCategoria,
                         preco: produtos[i].preco,
                         desconto: produtos[i].promocao,
-                        estoque: 123,
+                        estoque: produtos[i].Estoque.quantidade,
                     }
                 );
             };
-            console.log(listaProdutos);
+            // console.log(listaProdutos);
 
             return res.render('paginaloja', {title:"Bem-Vindo!", listaProdutos});
 
