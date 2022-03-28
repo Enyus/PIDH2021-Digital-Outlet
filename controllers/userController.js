@@ -103,7 +103,7 @@ module.exports = {
 
         if(!email || !senha) {res.status(401).render('login', {title: "Campos Invalidos", message: "Usuário ou senha Inválidos"})};
 
-        const user = await db.Usuarios.findOne({ 
+        const user = await db.Usuarios.findOne({
             where: {
                 email: email,
             }
@@ -139,39 +139,49 @@ module.exports = {
 
     cadastrarUsuario: async (req, res) => {
         const { email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
-
         const hash = bcrypt.hashSync(senha, 10);
-        const usuarioCriado = await db.Usuarios.create({
-            email,
-            nome,
-            sobrenome,
-            dataNasc,
-            cpf,
-            senha: hash,
-        })
-        // console.log(usuarioCriado)
-        return res.redirect('/login')
+
+        try {
+            const usuarioCriado = await db.Usuarios.create({
+                email,
+                nome,
+                sobrenome,
+                dataNasc,
+                cpf,
+                senha: hash,
+            })
+            console.log(usuarioCriado)
+        } catch (error) {
+            console.log(error)
+        }
+        return res.redirect('/')
+
     },
 
+    //TODO: Testar login de usuario loja
     cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
 
     cadastrarLoja: async (req, res) => {
         const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
-        const lojaCriada = await db.Lojas.create({
-            email,
-            razaoSocial,
-            nomeFantasia,
-            inscEst,
-            cnpj,
-            senha,
-            logradouro,
-            numero,
-            cidade,
-            estado,
-            cep,
-        })
-
-        console.log(lojaCriada);
+        try {
+            const hash = bcrypt.hashSync(senha, 10);
+            const lojaCriada = await db.Lojas.create({
+                email,
+                razaoSocial,
+                nomeFantasia,
+                inscEst,
+                cnpj,
+                senha: hash,
+                logradouro,
+                numero,
+                cidade,
+                estado,
+                cep,
+            })
+            console.log(lojaCriada);
+        } catch (error) {
+            console.log(error)
+        }
         return res.redirect('/');
     },
 
