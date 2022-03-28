@@ -22,7 +22,15 @@ module.exports = {
                     key: 'idProduto'
                 }
             },
-            quantidade: Sequelize.INTEGER,
+            quantidade: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                validate: {
+                  isInt: {msg: "O campo de quantidade de itens em estoque deve ser composto caracteres numéricos"}
+                }
+              },
+            createdAt: Sequelize.DATE,
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {
