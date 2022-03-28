@@ -16,7 +16,8 @@ module.exports = {
       estado: 'São Paulo',
       cep: parseInt("01030010"),
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      deletedAt: null,
     }], {});
 },
 

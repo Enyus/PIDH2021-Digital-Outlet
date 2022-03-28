@@ -10,8 +10,8 @@
     - Criar usuário; => OK
     - Logar usuário; => OK
     - Alterar Dados do Usuário; => OK
-    - Adicionar Endereço de Usuário;
-    - Deletar Endereço do Usuário;
+    - Adicionar Endereço de Usuário; => OK
+    - Deletar Endereço do Usuário; => OK
     - Aidicionar Foto de Perfil do Usuário; => OK
     - Criar Loja; => OK
     - Alterar Dados da Loja;
@@ -24,7 +24,7 @@
     - Fale Conosco; => OK
     - Trabalhe Conosco; => OK
     - Carrinho? - sessions/cookies  depois sobe para pedidos
-    - Pesquisa de Produtos => básico pronto, falta melhorar mecanismo e implementar navegação entre páginas
+    - Pesquisa de Produtos => básico pronto (busca plurais simples, navegação OK), falta melhorar mecanismo
 
 - No Front: Select com Marcas na Página de cadastro de produtos
 
@@ -86,7 +86,7 @@
 
 
 Anotações:
-- Precisa alterar o front para incluir complemento do endereço.
+- Precisa alterar o front para incluir complemento do endereço. => OK
 - Precisa conferir o front para verificar os forms
 - Alterar o Figma com Complemento e CEP como VARCHAR. => OK
 

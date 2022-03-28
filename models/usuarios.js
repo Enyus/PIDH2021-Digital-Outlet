@@ -56,7 +56,8 @@ module.exports = (sequelize, DataType) => {
 
 		fotoPerfil: {
 			type: DataType.STRING,
-			allowNull: false,
+			allowNull: true,
+			defaultValue: null
 		},
 
 		createdAt: DataType.DATE,
@@ -65,6 +66,7 @@ module.exports = (sequelize, DataType) => {
 
 	},{
 	   tableName: 'Usuarios',
+	   paranoid: true,
 	});
 
 	Usuarios.associate = (models) => {

@@ -8,51 +8,100 @@ const {format} = require('date-fns');
 module.exports = {
     paginacliente: async (req, res) => {
         const {idUsuario} = req.session.usuario;
-        let pedidos =[]
+        let pedidos = [];
+        let buscasRecentes = [];
+        let lojaPedido = []
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
                 where: {idUsuario},
-                include: {
-                    model: db.Produtos,
-                    include: {model: db.Fotos}
+                attributes:{
+                    exclude: ['createdAt', 'updatedAt']
                 },
+                include: [{
+                    model: db.Produtos,
+                    attributes:{
+                        exclude: ['createdAt', 'updatedAt']
+                    },
+                    include: {
+                        model: db.Fotos,
+                        attributes:{
+                            exclude: ['Produtos.Fotos.idFoto', 'createdAt', 'updatedAt']
+                        },
+                    },
+                }, {
+                    model: db.Lojas,
+                    attributes: ['idLoja', 'nomeFantasia']
+                }, {
+                    model: db.StatusPedido,
+                    attributes: ['idStatusPedido', 'idPedido', 'dataProcess', 'dataTransp', 'dataEntrega']
+                }]
             });
             // console.log(pedidosDB);
-            // console.log(pedidosDB[0].Produtos);
+            // console.log(pedidosDB[0].Loja);
 
             for (i=0; i<pedidosDB.length; i++) {
                 pedidos.push(
                     {
                         idPedido: pedidosDB[i].idPedido,
-                        idProduto: pedidosDB[i].idProduto,
-                        idLoja: pedidosDB[i].idLoja,
-                        nomeProduto: pedidosDB[i].Produtos[0].nomeProduto,
-                        valor: pedidosDB[i].valor,
+                        loja: pedidosDB[i].Loja.nomeFantasia,
                         dataPedido: format(pedidosDB[i].dataPedido, 'dd/MM/yyyy'),
-                        fotoProduto: pedidosDB[i].Produtos[0].Fotos[0].urlFoto,
-                        preco: pedidosDB[i].Produtos[0].preco,
-                        promocao: pedidosDB[i].Produtos[0].promocao
+                        dataProcess: pedidosDB[i].StatusPedido.dataProcess,
+                        dataTransp: pedidosDB[i].StatusPedido.dataTransp,
+                        dataEntrega: pedidosDB[i].StatusPedido.dataEntrega,
+                        valor: pedidosDB[i].valor,
+                        produtos: []
                     }
                 );
-            };
-            console.log(pedidos);
 
-            return res.render('paginacliente', { title: "Bem-Vindo!", usuario: req.session.usuario, pedidos })
+                for(j=0;j<pedidosDB[i].Produtos.length; j++) {
+                    pedidos[i].produtos.push(
+                        {
+                            nomeProduto: pedidosDB[i].Produtos[j].nomeProduto,
+                            preco: pedidosDB[i].Produtos[j].preco,
+                            promocao: pedidosDB[i].Produtos[j].promocao,
+                            idProduto: pedidosDB[i].Produtos[j].idProduto,
+                            fotoProduto: pedidosDB[i].Produtos[j].Fotos[0].urlFoto,
+                            quantidade: pedidosDB[i].Produtos[j].PedidosProdutos.quantidade,
+                            preco: pedidosDB[i].Produtos[j].PedidosProdutos.preco,
+                            desconto: pedidosDB[i].Produtos[j].PedidosProdutos.desconto,
+                            frete: pedidosDB[i].Produtos[j].PedidosProdutos.frete
+                        }
+                    )
+                };
+            };
+            // console.log(pedidos);
+
+            const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
+            // console.log(enderecos);
+
+            if( usuario.buscasRecentes.length > 0) {
+                buscasRecentes = await db.Produtos.findAll({
+                    where: {idProduto: {
+                        [Op.in]: usuario.buscasRecentes
+                    }},
+                    attributes: ['idProduto', 'nomeProduto', 'preco', 'promocao'],
+                    include: {model: db.Fotos},
+                    order: Sequelize.literal( `FIELD(Produtos.idProduto, ${usuario.buscasRecentes})`),
+                });
+            }
+            
+            return res.render('paginacliente', { title: "Bem-Vindo!", pedidos, enderecos, buscasRecentes })
 
         } catch(err) {
 
+            console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
 
         }
     },
 
-    login: (req, res) => res.render('login', { title: "Digite seu login para continuar." , usuario: req.session.usuario}),
+    login: (req, res) => res.render('login', { title: "Digite seu login para continuar." }),
 
     logarUsuario: async (req, res) => {
         const { email, senha } = req.body;
 
-        if(!email || !senha) {res.render('login', {title: "Campos Invalidos", usuario: req.session.usuario})};
+        if(!email || !senha) {res.status(401).render('login', {title: "Campos Invalidos", message: "Usuário ou senha Inválidos"})};
 
         const user = await db.Usuarios.findOne({ 
             where: {
@@ -63,7 +112,7 @@ module.exports = {
         // console.log(user);
 
         if (!bcrypt.compareSync(senha, user.senha)) {
-            return res.send("Senha invalida");
+            return res.status(401).render('login', {title: "Erro", message: "Usuário ou senha Inválidos"});
         } else {
             req.session.usuario = {
                 idUsuario: user.idUsuario,
@@ -72,7 +121,8 @@ module.exports = {
                 sobrenome: user.sobrenome,
                 dataNasc: user.dataNasc.toISOString().slice(0,10),
                 cpf: user.cpf,
-                fotoPerfil: user.fotoPerfil
+                fotoPerfil: user.fotoPerfil,
+                buscasRecentes: []
             }
             return res.redirect('/cliente');
         }
@@ -83,7 +133,7 @@ module.exports = {
         return res.redirect('/');
     },
 
-    cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!", usuario: req.session.usuario }),
+    cadastro: (req, res) => res.render('cadastrousuario', { title: "Seja nosso Cliente!" }),
 
     cadastrarUsuario: async (req, res) => {
         const { email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
@@ -101,7 +151,7 @@ module.exports = {
         return res.redirect('/login')
     },
 
-    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!", usuario: req.session.usuario }),
+    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
 
     cadastrarLoja: async (req, res) => {
         const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
@@ -123,7 +173,7 @@ module.exports = {
         return res.redirect('/');
     },
 
-    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!", usuario: req.session.usuario }),
+    carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!" }),
 
     alterarCliente: async (req,res) => {
         const { idUsuario, email, nome, sobrenome, dataNasc, cpf, senha } = req.body;
@@ -166,6 +216,74 @@ module.exports = {
         } catch (err) {
 
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
+        }
+    },
+
+    cadastrarEnderecoCliente: async (req, res) => {
+        const { idUsuario, logradouro, numero, complemento, cidade, estado, cep } = req.body
+
+        try {
+            const enderecoAdd = await db.Enderecos.create({
+                idUsuario,
+                logradouro,
+                numero,
+                complemento,
+                cidade,
+                estado,
+                cep
+            });
+
+            console.log(enderecoAdd);
+
+            return res.redirect('/cliente')
+
+        } catch (err) {
+            
+            console.log(err);
+
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
+
+        }
+    },
+
+    excluirEndereco: async (req, res) => {
+        const {idEndereco} = req.params;
+
+        try {
+
+            await db.Enderecos.destroy({where: {idEndereco}});
+
+            return res.redirect('/cliente')
+
+        } catch(err) {
+
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
+
+        }
+    },
+
+    excluirCliente: async (req, res) => {
+        const {idUsuario} = req.params;
+        const {confirmadeletausuario} = req.body;
+        // console.log(confirmadeletausuario);
+
+        if (confirmadeletausuario != "confirma") {
+            return res.status(412).render('error', {title: 'Falha', error: {erro: "O usuário não confirmou a deleção de sua conta corretamente"}, message: "O usuário não confirmou a deleção de sua conta corretamente" })
+        }
+        
+        
+        try {
+
+            await db.Usuarios.destroy({where: {idUsuario}});
+
+            return res.redirect('/');
+
+        } catch(err) {
+
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
 
         }
     }

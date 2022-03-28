@@ -12,7 +12,8 @@ module.exports = {
       senha: bcrypt.hashSync("cassio123", 10),
       fotoPerfil: "/profilepics/cassio.jpg",
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      deletedAt: null,
       },
       {
         email: "flavio@email.com",
@@ -23,7 +24,8 @@ module.exports = {
         senha: bcrypt.hashSync("flavio123", 10),
         fotoPerfil: "/profilepics/flavio.jpg",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null,
         },
       {
         email: "gabrielle@email.com",
@@ -34,7 +36,8 @@ module.exports = {
         senha: bcrypt.hashSync("gabrielle123", 10),
         fotoPerfil: "/profilepics/gabrielle.png",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null,
         },
         {
           email: "stephanie@email.com",
@@ -45,7 +48,8 @@ module.exports = {
           senha: bcrypt.hashSync("stephanie123", 10),
           fotoPerfil: "/profilepics/stephanie.jpg",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          deletedAt: null,
           }], {});
   },
 

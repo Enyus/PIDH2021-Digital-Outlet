@@ -42,7 +42,7 @@ module.exports = {
             };
             // console.log(listaProdutos);
 
-            return res.render('index', { title: 'Digital Outlet $', usuario: req.session.usuario, produtos: listaProdutos});
+            return res.render('index', { title: 'Digital Outlet $', produtos: listaProdutos});
 
         } catch(err) {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" })
@@ -50,14 +50,14 @@ module.exports = {
     },
 
     faq: (req, res, next) => {
-        res.render('faq', {title:"Dúvidas Frequentes", usuario: req.session.usuario});
+        res.render('faq', {title:"Dúvidas Frequentes"});
     },
 
     sobre: (req, res, next) => {
-        res.render('sobre', {title:"Sobre a DO$", usuario: req.session.usuario})
+        res.render('sobre', {title:"Sobre a DO$"})
     },
 
-    contato: (req, res, next) => {res.render('contato', {title:"Contato", usuario: req.session.usuario})},
+    contato: (req, res, next) => {res.render('contato', {title:"Contato"})},
 
     enviaContato: async (req, res) => {
         const { nome, email, telefone, mensagem } = req.body;
@@ -79,8 +79,8 @@ module.exports = {
         let totalItens = null;
         let totalPaginas = null;
 
-        console.log(busca)
-        console.log(busca[busca.lastIndexOf('')-1])
+        // console.log(busca)
+        // console.log(busca[busca.lastIndexOf('')-1])
 
         if ( categoria != undefined ) {objetoBusca.idCategoria = {[Op.like]: `%${categoria}%`}};
 
@@ -155,8 +155,8 @@ module.exports = {
             totalPaginas = Math.ceil(totalItens/6);
         };
         // console.log(totalPaginas);
-        
-        return res.render('resultadobusca', {title:"Resultado da Busca", usuario: req.session.usuario, produtos: listaFinal, busca, categoria, filtropreco, page: req.query.page, totalPaginas});
+
+        return res.render('resultadobusca', {title:"Resultado da Busca", produtos: listaFinal, busca, categoria, filtropreco, page: req.query.page, totalPaginas});
 
     },
 
@@ -191,20 +191,29 @@ module.exports = {
 
             // console.log(produtoLoad);
 
-            return res.render('produto', {title:"Produto", usuario: req.session.usuario, produto: produtoLoad});
+            if( usuario != undefined) {
+                if (!usuario.buscasRecentes.includes(idProduto)) {
+                    usuario.buscasRecentes.unshift(idProduto)
+                };
+                if(usuario.buscasRecentes.length > 6) {
+                    usuario.buscasRecentes.splice(6)
+                };
+            }
+
+            return res.render('produto', {title:"Produto", produto: produtoLoad});
         
         } catch(err) {
-            return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" })
         }
 
     },
 
     carrinho: (req, res, next) => {
-        res.render('carrinho-sacola', {title:"Carrinho", usuario: req.session.usuario})
+        res.render('carrinho-sacola', {title:"Carrinho"})
     },
 
     trabalheconosco: (req, res, next) => {
-        res.render('trabalheconosco', {title:"Trabalhe Conosco!", usuario: req.session.usuario})
+        res.render('trabalheconosco', {title:"Trabalhe Conosco!"})
     },
 
     cadastrarCurriculo: async (req, res, next) => {
@@ -224,7 +233,7 @@ module.exports = {
 
             // console.log(curriculo);
 
-            return res.render('trabalheconosco', {title: 'Sucesso', message: "Currículo enviado com Sucesso!", usuario: req.session.usuario});
+            return res.render('trabalheconosco', {title: 'Sucesso', message: "Currículo enviado com Sucesso!"});
         } catch (err) {
             console.log(err)
             return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
@@ -232,15 +241,19 @@ module.exports = {
     },
 
     cadastroloja: (req, res, next) => {
-        res.render('cadastroloja', {title:"Seja nosso Parceiro!", usuario: req.session.usuario})
+        res.render('cadastroloja', {title:"Seja nosso Parceiro!"})
     },
 
     cadastroproduto: (req, res, next) => {
-        res.render('cadastroproduto', {title:"Cadastro de Produto", usuario: req.session.usuario})
+        res.render('cadastroproduto', {title:"Cadastro de Produto"})
+    },
+
+    paginacliente: (req, res, next) => {
+        res.render('paginacliente', {title:"Bem-Vindo!"})
     },
 
     paginaloja: (req, res, next) => {
-        res.render('paginaloja', {title:"Bem-Vindo!", usuario: req.session.usuario})
+        res.render('paginaloja', {title:"Bem-Vindo!"})
     }
 
 };

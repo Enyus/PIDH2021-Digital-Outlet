@@ -19,52 +19,96 @@
               <div class="pedidosrecentes">
                   <p><b>Seus Pedidos Recentes:</b></p>
                   
-                  <% pedidos.forEach( pedido => { %>
-                    <a href="/produto/<%= pedido.idProduto %>" ><div class="container">
-                    <img src=<%= pedido.fotoProduto %> alt=<%= pedido.nomeProduto %> >
-                    <h1><%= pedido.nomeProduto %></h1>
-                    <div class="precos">
-                      <ul>
-                        <% if (pedido.promocao > 0) { %>
-                          <li class="preco-antes"><%= pedido.preco.toFixed(2) %></li>
-                          <li class="preco-agora">R$ <%= (pedido.preco * (100-pedido.promocao)/100).toFixed(2) %> </li>
-                          <li class="off"><%= pedido.promocao %>% OFF</li>
-                        <% } else { %>
-                          <li class="preco-agora">R$ <%= pedido.preco.toFixed(2) %> </li>
-                        <% } %>
-                      </ul>
-                    </div>
-                    </div></a>
-                  <% }) %>
+                  <% if (pedidos.length>0) { %>
+                    <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
+                        <h1><%= pedidos[0].produtos[0].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (pedidos[0].produtos[0].promocao > 0) { %>
+                              <li class="preco-antes"><%= pedidos[0].produtos[0].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (pedidos[0].produtos[0].preco * (100-pedidos[0].produtos[0].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= pedidos[0].produtos[0].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= pedidos[0].produtos[0].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
+                      </div>
+                    </a>
+  
+                    <a href="/produto/<%= pedidos[0].produtos[1].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= pedidos[0].produtos[1].fotoProduto %> alt=<%= pedidos[0].produtos[1].nomeProduto %> >
+                        <h1><%= pedidos[0].produtos[1].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (pedidos[0].produtos[1].promocao > 0) { %>
+                              <li class="preco-antes"><%= pedidos[0].produtos[1].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (pedidos[0].produtos[1].preco * (100-pedidos[0].produtos[1].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= pedidos[0].produtos[1].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= pedidos[0].produtos[1].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
+                      </div>
+                    </a>
+                  <% } else { %>
+                    <p>Você ainda não realizou nenhum pedido.</p>
+                  <% } %>
 
               </div>
 
               <div class="buscasrecentes">
                   <p><b>Suas Buscas Recentes:</b></p>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
+
+                  <% if (buscasRecentes.length < 1 ) { %>
+                  <p>Você ainda não visitou nenhum produto enquanto logado.</p>
+                  <% } %>
+
+                  <% if (buscasRecentes.length > 0 ) { %>
+                    <a href="/produto/<%= buscasRecentes[0].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= buscasRecentes[0].Fotos[0].urlFoto %> alt=<%= buscasRecentes[0].nomeProduto %> >
+                        <h1><%= buscasRecentes[0].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscasRecentes[0].promocao > 0) { %>
+                              <li class="preco-antes"><%= buscasRecentes[0].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (buscasRecentes[0].preco * (100-buscasRecentes[0].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= buscasRecentes[0].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscasRecentes[0].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
                       </div>
+                    </a>
+                  <% } %>
+
+                  <% if (buscasRecentes.length > 1 ) { %>
+                    <a href="/produto/<%= buscasRecentes[1].idProduto %>" >
+                      <div class="container">
+                        <img src=<%= buscasRecentes[1].Fotos[0].urlFoto %> alt=<%= buscasRecentes[1].nomeProduto %> >
+                        <h1><%= buscasRecentes[1].nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscasRecentes[1].promocao > 0) { %>
+                              <li class="preco-antes"><%= buscasRecentes[1].preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (buscasRecentes[1].preco * (100-buscasRecentes[1].promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= buscasRecentes[1].promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscasRecentes[1].preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
                       </div>
-                  </a>
-                  <a href="/produto"><div class="container">
-                      <img src="/images/calca-bege.png" alt="Calça Bege">
-                      <h1>Calça Bege</h1>
-                      <div class="precos">
-                        <ul>
-                          <li class="preco-antes">R$ 111,00</li>
-                          <li class="preco-agora">R$ 100,00</li>
-                          <li class="off">10% OFF</li>
-                        </ul>
-                      </div>
-                      </div>
-                  </a>
+                    </a>
+                  <% }  %>
+                  
+
               </div>
 
             </div>
@@ -76,18 +120,97 @@
                   <tr>
                     <th>Número</th>
                     <th>Loja</th>
+                    <th>Quantidade</th>
                     <th>Produto</th>
-                    <th>Valor</th>
-                    <th>Data</th>
+                    <th>Valor Unitário</th>
+                    <th>Frete</th>
+                    <th>Total Produto (R$)</th>
+                    <th>Total Pedido (R$)</th>
+                    <th>Data Pedido</th>
+                    <th>Data Processamento</th>
+                    <th>Data Transporte</th>
+                    <th>Data Entrega</th>
                   </tr>
                   <% pedidos.forEach (pedido => { %>
-                    <tr>
-                      <td><%=pedido.idPedido%></td>
-                      <td><%=pedido.idLoja%></td>
-                      <td><%=pedido.nomeProduto%></td>
-                      <td><%=pedido.valor%></td>
-                      <td><%=pedido.dataPedido%></td>
-                    </tr>
+                    <% pedido.produtos.forEach(produto => { %>
+                      <tr>
+                        <% if (pedido.produtos.length == 1) { %>
+                          <td><%=pedido.idPedido%></td>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.idPedido%></td>
+                          <% } %>
+                        <% } %>
+                        <% if (pedido.produtos.length == 1) { %>
+                          <td><%=pedido.loja%></td>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.loja%></td>
+                          <% } %>
+                        <% } %>
+                        <td><%=produto.quantidade%></td>
+                        <td><%=produto.nomeProduto%></td>
+                        <td><%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
+                        <td><%=produto.frete%></td>
+                        <td><%= (produto.quantidade * (produto.preco * (100-produto.desconto)/100)).toFixed(2) %></td>
+                        <td><%=pedido.valor.toFixed(2)%></td>
+                        <% if (pedido.produtos.length == 1) { %>
+                          <td><%=pedido.dataPedido%></td>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.dataPedido%></td>
+                          <% } %>
+                        <% } %>
+
+                        <% if (pedido.produtos.length == 1) { %>
+                          <% if (pedido.dataProcess != null) { %>
+                            <td><%= ((pedido.dataProcess.getDate() )) + "/" + ((pedido.dataProcess.getMonth() + 1)) + "/" + pedido.dataProcess.getFullYear() %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <% if (pedido.dataProcess != null) { %>
+                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataProcess.getDate() )) + "/" + ((pedido.dataProcess.getMonth() + 1)) + "/" + pedido.dataProcess.getFullYear() %></td>
+                            <% } else { %>
+                              <td rowspan="<%=pedido.produtos.length%>">-</td>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+
+                        <% if (pedido.produtos.length == 1) { %>
+                          <% if (pedido.dataTransp != null) { %>
+                            <td><%= ((pedido.dataTransp.getDate() )) + "/" + ((pedido.dataTransp.getMonth() + 1)) + "/" + pedido.dataTransp.getFullYear() %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <% if (pedido.dataTransp != null) { %>
+                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataTransp.getDate() )) + "/" + ((pedido.dataTransp.getMonth() + 1)) + "/" + pedido.dataTransp.getFullYear() %></td>
+                            <% } else { %>
+                              <td rowspan="<%=pedido.produtos.length%>">-</td>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+
+                        <% if (pedido.produtos.length == 1) { %>
+                          <% if (pedido.dataEntrega != null) { %>
+                            <td><%= ((pedido.dataEntrega.getDate() )) + "/" + ((pedido.dataEntrega.getMonth() + 1)) + "/" + pedido.dataEntrega.getFullYear() %></td>
+                          <% } else { %>
+                            <td>-</td>
+                          <% } %>
+                        <% } else { %>
+                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
+                            <% if (pedido.dataEntrega != null) { %>
+                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataEntrega.getDate() )) + "/" + ((pedido.dataEntrega.getMonth() + 1)) + "/" + pedido.dataEntrega.getFullYear() %></td>
+                            <% } else { %>
+                              <td rowspan="<%=pedido.produtos.length%>">-</td>
+                            <% } %>
+                          <% } %>
+                        <% } %>
+                      </tr>
+                    <% }) %>
                   <% }) %>
                 </table>
               </div>
@@ -95,6 +218,29 @@
 
             <div class="containerterciario" id="desejos">
               <p><b>Lista de Desejos Aqui</b></p>
+              <% if (buscasRecentes.length > 0 ) { %>
+                <div class="ofertasrow">
+                  <% buscasRecentes.forEach( buscaRecente => { %>
+                    <a href="/produto/<%= buscaRecente.idProduto %>" >
+                      <div class="container">
+                        <img src=<%= buscaRecente.Fotos[0].urlFoto %> alt=<%= buscaRecente.nomeProduto %> >
+                        <h1><%= buscaRecente.nomeProduto %></h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscaRecente.promocao > 0) { %>
+                              <li class="preco-antes"><%= buscaRecente.preco.toFixed(2) %></li>
+                              <li class="preco-agora">R$ <%= (buscaRecente.preco * (100-buscaRecente.promocao)/100).toFixed(2) %> </li>
+                              <li class="off"><%= buscaRecente.promocao %>% OFF</li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscaRecente.preco.toFixed(2) %> </li>
+                            <% } %>
+                          </ul>
+                        </div>
+                      </div>
+                    </a>
+                  <% }) %>
+                </div>
+              <% } %>
             </div>
             
             <div class="containerterciario" id="dados">
@@ -147,15 +293,31 @@
                 <button type="submit" id="submitPerfil">Alterar Dados</button>
               </form>
 
+              <p><b>Deletar conta</b></p>
+              <form action="/deletarCliente/<%=usuario.idUsuario%>?_method=DELETE" method="POST" class="fotoPerfil">
+                <div>
+                  <input type="checkbox" name="confirmadeletausuario" value="confirma" id="confirmadeletausuario">
+                  <label for="confirmadeletausuario">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
+                </div>
+                <button type="submit" id="botaoDeletaUsuario">Deletar Conta</button>
+              </form>
+
             </div>
             
             <div class="containerterciario" id="enderecos">
               <p><b>Seus Endereços:</b></p>
               <ul>
-                <li>Rua José da Silva, 320, São Paulo/SP <button>excluir</button></li>
+                <% enderecos.forEach( endereco => { %>
+                  <li><%=endereco.logradouro%>, <%=endereco.numero%>, <%=endereco.complemento%>, <%=endereco.cidade%>/<%=endereco.estado%> - CEP: <%=endereco.cep%>
+                    <form action="/deleteEndereco/<%=endereco.idEndereco%>?_method=DELETE" method="POST">
+                      <button type="submit"><img src="/icon/carrinho-lixeira.png" alt="excluir"></button>
+                    </form>
+                  </li>
+                <% }) %>
               </ul>
               <p><b>Adicione Aqui um Endereço:</b></p>
-              <form action="" class="cadastrousuario">
+              <form action="/adicionarEnderecoCliente" method="POST" class="cadastrousuario">
+                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
                 <div class="formrow">
                   <label for="logradouro">Logradouro:</label>
                   <input type="text" id="logradouro" name="logradouro">
@@ -180,7 +342,7 @@
                   <label for="cep">CEP:</label>
                   <input type="number" id="cep" name="cep">
                 </div>
-                <button type="submit">Cadastrar Novo Endereço</button>
+                <button type="submit" id="botaoCadastraEndereco">Cadastrar Novo Endereço</button>
               </form>
             </div>
             

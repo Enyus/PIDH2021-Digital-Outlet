@@ -3,7 +3,7 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.createTable('StatusPedido', {
-            idStatus: {
+            idStatusPedido: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
@@ -17,21 +17,21 @@ module.exports = {
             },
             dataProcess: {
                 type: Sequelize.DATE,
-                allowNull: false,
+                allowNull: true,
                 validate: {
                   isDate: {msg: "O campo data de processamento deve ser preenchido com uma data válida."},
                 }
             },
             dataTransp: {
                 type: Sequelize.DATE,
-                allowNull: false,
+                allowNull: true,
                 validate: {
                   isDate: {msg: "O campo data de transporte deve ser preenchido com uma data válida."},
                 }
             },
             dataEntrega: {
                 type: Sequelize.DATE,
-                allowNull: false,
+                allowNull: true,
                 validate: {
                   isDate: {msg: "O campo data de entrega deve ser preenchido com uma data válida."},
                 }

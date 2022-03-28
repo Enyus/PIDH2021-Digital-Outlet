@@ -26,7 +26,7 @@ module.exports = (sequelize, DataType) => {
        
         complemento: {
             type: DataType.STRING,
-            allowNull: false,
+            allowNull: true,
         },
       
         cidade: {
