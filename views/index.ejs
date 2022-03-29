@@ -11,96 +11,23 @@
 
       <section class="ofertas">
         <div class="ofertasrow">
-          <a href="/produto"><div class="container">
-          <img src="/images/calca-bege.png" alt="Calça Bege">
-          <h1>Calça Bege</h1>
-          <div class="precos">
-            <ul>
-              <li class="preco-antes">R$ 111,00</li>
-              <li class="preco-agora">R$ 100,00</li>
-              <li class="off">10% OFF</li>
-            </ul>
-          </div>
-          </div></a>
-          <a href="/produto"><div class="container">
-          <img src="/images/calca-bege.png" alt="Calça Bege">
-          <h1>Calça Bege</h1>
-          <div class="precos">
-            <ul>
-              <li class="preco-antes">R$ 111,00</li>
-              <li class="preco-agora">R$ 100,00</li>
-              <li class="off">10% OFF</li>
-            </ul>
-          </div>
-          </div></a>
-          <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
+          <% produtos.forEach( produto => { %>
+            <a href="/produto/<%= produto.idProduto %>" ><div class="container">
+            <img src=<%= produto.foto %> alt=<%= produto.nomeProduto %> >
+            <h1><%= produto.nomeProduto %></h1>
             <div class="precos">
               <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
+                <% if (produto.promocao > 0) { %>
+                  <li class="preco-antes"><%= produto.preco.toFixed(2) %></li>
+                  <li class="preco-agora">R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </li>
+                  <li class="off"><%= produto.promocao %>% OFF</li>
+                <% } else { %>
+                  <li class="preco-agora">R$ <%= produto.preco.toFixed(2) %> </li>
+                <% } %>
               </ul>
             </div>
-          </div></a>
-          <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-          </div></a>
-        </div>
-        <div class="ofertasrow">
-          <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-          </div></a>
-          <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-          </div></a>
-          <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-          </div></a>
-          <a href="/produto"><div class="container">
-            <img src="/images/calca-bege.png" alt="Calça Bege">
-            <h1>Calça Bege</h1>
-            <div class="precos">
-              <ul>
-                <li class="preco-antes">R$ 111,00</li>
-                <li class="preco-agora">R$ 100,00</li>
-                <li class="off">10% OFF</li>
-              </ul>
-            </div>
-          </div></a>
+            </div></a>
+          <% }) %>
         </div>
       
       </section>

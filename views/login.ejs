@@ -1,5 +1,5 @@
 <%- include('./partials/head') %>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <%- include('./partials/header') %>
@@ -7,6 +7,9 @@
   <main class="login">
     <section class="containergeral">
         <h1>Seja Bem Vindo</h1>
+        <% if ( typeof(message) != 'undefined') { %>
+          <p style="color: red;"><b><%=message%></b></p>
+        <% } %>
         <p>Preencha os campos abaixo:</p>
         <form action="/login" method="POST">
             <div class="formrow">

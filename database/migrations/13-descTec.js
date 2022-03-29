@@ -8,8 +8,23 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true
         },
-        nomeDescTec: Sequelize.STRING,
-        valor: Sequelize.STRING,
+        idProduto: {
+          type: Sequelize.INTEGER,
+          references: {
+              model: "Produtos",
+              key: 'idProduto'
+          }
+        },
+        nomeDescTec: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        valor: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

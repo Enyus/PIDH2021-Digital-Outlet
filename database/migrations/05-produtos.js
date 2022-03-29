@@ -8,7 +8,10 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true
         },
-        nomeProduto: Sequelize.STRING,
+        nomeProduto: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
         idMarca: {
             type: Sequelize.INTEGER,
             references: {
@@ -16,7 +19,13 @@ module.exports = {
                 key: 'idMarca'
             }
         },
-        preco: Sequelize.FLOAT,
+        preco: {
+            type: Sequelize.FLOAT,
+            allowNull: false,
+            validate: {
+                isFloat: {msg: "O preço deve ser um número do tipo FLOAT"}
+            }
+        },
         idCategoria: {
             type: Sequelize.INTEGER,
             references: {
@@ -24,7 +33,10 @@ module.exports = {
                 key: 'idCategoria'
             }
         },
-        desc: Sequelize.TEXT,
+        desc: {
+            type: Sequelize.TEXT,
+            allowNull: false
+          },
         idLoja: {
             type: Sequelize.INTEGER,
             references: {
@@ -32,9 +44,15 @@ module.exports = {
                 key: 'idLoja'
             }
         },
-        promocao: Sequelize.DECIMAL,
+        promocao: {
+            type: Sequelize.DECIMAL,
+            allowNull: false,
+            validate: {
+                isDecimal: {msg: "O desconto deve ser um número do tipo DECIMAL"}
+            }
+        },
         createdAt: Sequelize.DATE,
-		updatedAt: Sequelize.DATE
+        updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

@@ -3,6 +3,8 @@
 * {
   box-sizing: border-box;
   font-family: 'Rajdhani', sans-serif;
+  text-decoration: none;
+  /* color: black; */
 }
 
 body {
@@ -80,27 +82,6 @@ header .header-principal .hbutton div {
   margin: auto;
 }
 
-header section.buscamobile {
-  justify-content: space-around;
-  padding: 0;
-  width: 100%;
-  display: none;
-}
-
-header section.buscamobile p {
-  margin: 0;
-}
-
-header section.buscamobile input {
-  width: 80vw;
-  margin-left: 10px;
-}
-
-header section.buscamobile a {
-  position: relative;
-  left: -29px;
-}
-
 .header-menu {
   display: flex;
   justify-content: space-around;
@@ -117,4 +98,26 @@ header a, footer a, .header-menu a {
   line-height: 16px;
   color: #000;
   text-decoration: none;
+}
+
+header section.buscamobile {
+  justify-content: space-around;
+  padding: 0;
+  width: 100%;
+  display: none;
+}
+
+header section.buscamobile p {
+  margin: 0;
+}
+
+header section.buscamobile input {
+  width: 80vw;
+  margin-left: 10px;
+  height: 30px;
+}
+
+header section.buscamobile a {
+  position: relative;
+  left: -29px;
 }

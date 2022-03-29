@@ -8,9 +8,13 @@ module.exports = {
             primaryKey: true,
             autoIncrement: true
         },
-        nomeMarca: Sequelize.STRING,
+        nomeMarca: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          unique: true
+        },
         createdAt: Sequelize.DATE,
-		    updatedAt: Sequelize.DATE
+        updatedAt: Sequelize.DATE
     });
   },
   down: (queryInterface, Sequelize) => {

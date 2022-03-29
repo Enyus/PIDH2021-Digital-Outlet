@@ -1,16 +1,13 @@
-<%- include('./partials/head') %>
-  <link rel='stylesheet' href='/stylesheets/carrinho-identificacao.css' />
+    <%- include('./partials/head') %>
+    <link rel='stylesheet' href='/stylesheets/carrinho-identificacao.css' />
+    <title>Carrinho - Identificação</title>
 </head>
 <%- include('./partials/header') %>
-
+<body>
     <main class="carrinho-identificacao">
-        <section class="processo-da-compra">
-            <div>
-                <a class="sacola" href="/carrinho/sacola">Sacola</a>
-                <a class="identificacao" href="/carrinho/identificacao">Identificação</a>
-                <a class="entrega" href="/carrinho/entrega">Entrega</a>
-                <a class="pagamento" href="#">Pagamento</a>
-            </div>
+
+        <%- include('./partials/processos-carrinho') %>
+
         </section>
 
         <div class="container-identificacao">
