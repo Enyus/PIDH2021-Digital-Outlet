@@ -9,6 +9,7 @@ module.exports = {
     paginaloja: async (req, res, next) => {
         const {idLoja} = req.session.loja;
         let listaProdutos = [];
+        let listaPedidos = [];
 
         try {
             const produtos = await db.Produtos.findAll({
@@ -48,7 +49,29 @@ module.exports = {
             };
             // console.log(listaProdutos);
 
-            return res.render('paginaloja', {title:"Bem-Vindo!", listaProdutos});
+            const pedidos = await db.Pedidos.findAll({
+                where: {idLoja},
+                attributes:{
+                    exclude: ['createdAt', 'updatedAt']
+                },
+                include: [
+                    {
+                        model: db.Produtos,
+                        attributes: ['idProduto', 'nomeProduto', 'preco', 'promocao']
+                    } , {
+                        model: db.Usuarios,
+                        attributes: ['idUsuario', 'cpf']
+                    } , {
+                        model: db.StatusPedido,
+                        attributes: ['idStatusPedido', 'idPedido', 'dataProcess', 'dataTransp', 'dataEntrega']
+                    }
+                ]
+            });
+
+            // console.log(pedidos[0].Produtos[0].PedidosProdutos);
+
+
+            return res.render('paginaloja', {title:"Bem-Vindo!", listaProdutos, pedidos});
 
         } catch (err) {
             console.log(err);
@@ -87,4 +110,38 @@ module.exports = {
         res.cookie('idLoja', undefined);
         return res.redirect('/');
     },
+
+    alterarLoja: async (req, res) => {
+        const { idLoja, email, razaoSocial, nomeFantasia, senha, logradouro, numero, complemento, cidade, estado, cep } = req.body;
+        const hash = bcrypt.hashSync(senha, 10);
+
+        try {
+            const lojaAlterada = await db.Lojas.update(
+                { 
+                    email:email,
+                    razaoSocial: razaoSocial,
+                    nomeFantasia: nomeFantasia,
+                    senha:hash,
+                    logradouro: logradouro,
+                    numero: numero,
+                    complemento: complemento,
+                    cidade: cidade,
+                    estado:estado,
+                    cep: cep
+                },
+                {where:{idLoja}}
+            );
+
+            console.log(lojaAlterada);
+            
+            req.session.loja = undefined;
+            res.cookie('idLoja', undefined);
+            return res.redirect('/login');
+
+        } catch(error) {
+            console.log(error)
+            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" })
+        }
+
+    }
 };

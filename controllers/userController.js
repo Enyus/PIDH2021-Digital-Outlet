@@ -209,6 +209,7 @@ module.exports = {
             console.log(usuarioAlterado);
 
             req.session.usuario = undefined;
+            res.cookie('idUsuario', undefined);
             return res.redirect('/login');
 
         } catch (err) {

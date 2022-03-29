@@ -70,7 +70,7 @@ botaoInicio.onclick = (e) => {
 
 botaoPedidos.onclick = (e) => {
     divInicio.style.display= 'none';
-    divPedidos.style.display='flex';
+    divPedidos.style.display='block';
     divProdutos.style.display='none';
     divDados.style.display='none';
     divEnderecos.style.display='none';

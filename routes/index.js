@@ -64,5 +64,6 @@ router.delete('/deletarCliente/:idUsuario', auth, userController.excluirCliente)
 router.get('/loja', authLoja, lojaController.paginaloja);
 router.get('/cadastroloja', lojaController.cadastroLoja);
 router.post('/cadastrarloja', lojaController.cadastrarLoja);
+router.put('/alterarloja', authLoja, lojaController.alterarLoja);
 
 module.exports = router;
