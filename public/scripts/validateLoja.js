@@ -7,6 +7,12 @@ const inputPassword = document.getElementById("password");
 const inputConfirmaPassword = document.getElementById("confirmapassword");
 const buttonSubmit = document.getElementById("submit")
 
+const inputLogradouro = document.getElementById("logradouro");
+const inputNumero = document.getElementById("numero");
+const inputCidade = document.getElementById("cidade");
+const inputEstado = document.getElementById("estado");
+const inputCEP = document.getElementById("cep");
+
 const erros = []
 
 buttonSubmit.disabled = "true";
@@ -19,7 +25,12 @@ function checkValidation () {
         inputIe.value != '' &&
         inputCnpj.value != '' &&
         inputPassword.value != '' &&
-        inputConfirmaPassword.value != '') {
+        inputConfirmaPassword.value != '' &&
+        inputLogradouro.value != '' &&
+        inputNumero.value != '' &&
+        inputCidade.value != '' &&
+        inputEstado.value != '' &&
+        inputCEP.value != '') {
             buttonSubmit.disabled = false
     } else {
         buttonSubmit.disabled = "true";
@@ -135,3 +146,78 @@ inputConfirmaPassword.onblur = (e) => {
     }
     checkValidation();
 }
+
+inputLogradouro.onblur = (e) => {
+    if (inputLogradouro.value.length < 2) {
+        inputLogradouro.style.borderColor = "red";
+        if (!erros.includes("logradouro")) {
+            erros.push("logradouro");
+        };
+    } else {
+        inputLogradouro.style.borderColor = "green";
+        if (erros.includes("logradouro")) {
+            erros.splice(erros.indexOf("logradouro"), 1);
+        };
+    }
+    checkValidation();
+};
+
+inputNumero.onblur = (e) => {
+    if (inputNumero.value.length < 0) {
+        inputNumero.style.borderColor = "red";
+        if (!erros.includes("numero")) {
+            erros.push("numero");
+        };
+    } else {
+        inputNumero.style.borderColor = "green";
+        if (erros.includes("numero")) {
+            erros.splice(erros.indexOf("numero"), 1);
+        };
+    }
+    checkValidation();
+};
+
+inputCidade.onblur = (e) => {
+    if (inputCidade.value.length < 2) {
+        inputCidade.style.borderColor = "red";
+        if (!erros.includes("cidade")) {
+            erros.push("cidade");
+        };
+    } else {
+        inputCidade.style.borderColor = "green";
+        if (erros.includes("cidade")) {
+            erros.splice(erros.indexOf("cidade"), 1);
+        };
+    }
+    checkValidation();
+};
+
+inputEstado.onblur = (e) => {
+    if (inputEstado.value.length < 2) {
+        inputEstado.style.borderColor = "red";
+        if (!erros.includes("estado")) {
+            erros.push("estado");
+        };
+    } else {
+        inputEstado.style.borderColor = "green";
+        if (erros.includes("estado")) {
+            erros.splice(erros.indexOf("estado"), 1);
+        };
+    }
+    checkValidation();
+};
+
+inputCEP.onblur = (e) => {
+    if ( inputCEP.value.length != 8 ) {
+        inputCEP.style.borderColor = "red";
+        if (!erros.includes("cep")) {
+            erros.push("cep");
+        };
+    } else {
+        inputCEP.style.borderColor = "green";
+        if (erros.includes("cep")) {
+            erros.splice(erros.indexOf("cep"), 1);
+        };
+    }
+    checkValidation();
+};

@@ -103,30 +103,65 @@ module.exports = {
 
         if(!email || !senha) {res.status(401).render('login', {title: "Campos Invalidos", message: "Usuário ou senha Inválidos"})};
 
-        const user = await db.Usuarios.findOne({
-            where: {
-                email: email,
-            }
-        });
+        try {
 
-        // console.log(user);
+            const user = await db.Usuarios.findOne({where: {email: email,}});
+            console.log(user);
 
-        if (!bcrypt.compareSync(senha, user.senha)) {
-            return res.status(401).render('login', {title: "Erro", message: "Usuário ou senha Inválidos"});
-        } else {
-            req.session.usuario = {
-                idUsuario: user.idUsuario,
-                email: user.email,
-                nome: user.nome,
-                sobrenome: user.sobrenome,
-                dataNasc: user.dataNasc.toISOString().slice(0,10),
-                cpf: user.cpf,
-                fotoPerfil: user.fotoPerfil,
-                buscasRecentes: []
+            const loja = await db.Lojas.findOne({where:{email:email}});
+            console.log(loja);
+
+            if (user != null) {
+                if (!bcrypt.compareSync(senha, user.senha)) {
+                    return res.status(401).render('login', {title: "Erro", message: "Usuário ou senha Inválidos"});
+                } else {
+                    req.session.usuario = {
+                        idUsuario: user.idUsuario,
+                        email: user.email,
+                        nome: user.nome,
+                        sobrenome: user.sobrenome,
+                        dataNasc: user.dataNasc.toISOString().slice(0,10),
+                        cpf: user.cpf,
+                        fotoPerfil: user.fotoPerfil,
+                        buscasRecentes: []
+                    }
+                    res.cookie('idUsuario', user.idUsuario, {maxAge: 86400000})
+                    return res.redirect('/cliente');
+                }
             }
-            res.cookie('idUsuario', user.idUsuario, {maxAge: 86400000})
-            return res.redirect('/cliente');
+
+            if (loja != null) {
+                if (!bcrypt.compareSync(senha, loja.senha)) {
+                    return res.status(401).render('login', {title: "Erro", message: "Usuário ou senha Inválidos"});
+                } else {
+                    req.session.loja = {
+                        idLoja: loja.idLoja,
+                        email: loja.email,
+                        razaoSocial: loja.razaoSocial,
+                        nomeFantasia: loja.nomeFantasia,
+                        inscEst: loja.inscEst,
+                        cnpj: loja.cnpj,
+                        logradouro: loja.logradouro,
+                        numero: loja.numero,
+                        complemento: loja.complemento,
+                        cidade: loja.cidade,
+                        estado: loja.estado,
+                        cep: loja.cep,
+                        fotoPerfil: loja.fotoPerfil,
+                        buscasRecentes: []
+                    }
+                    res.cookie('idLoja', loja.idLoja, {maxAge: 86400000})
+                    return res.redirect('/loja');
+                }
+            }
+            
+        } catch(err) {
+
+            console.log(err);
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+
         }
+        
     },
 
     logout: (req, res) => {
@@ -153,36 +188,10 @@ module.exports = {
             console.log(usuarioCriado)
         } catch (error) {
             console.log(error)
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
         }
         return res.redirect('/')
 
-    },
-
-    //TODO: Testar login de usuario loja
-    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
-
-    cadastrarLoja: async (req, res) => {
-        const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
-        try {
-            const hash = bcrypt.hashSync(senha, 10);
-            const lojaCriada = await db.Lojas.create({
-                email,
-                razaoSocial,
-                nomeFantasia,
-                inscEst,
-                cnpj,
-                senha: hash,
-                logradouro,
-                numero,
-                cidade,
-                estado,
-                cep,
-            })
-            console.log(lojaCriada);
-        } catch (error) {
-            console.log(error)
-        }
-        return res.redirect('/');
     },
 
     carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!" }),
@@ -201,6 +210,7 @@ module.exports = {
             console.log(usuarioAlterado);
 
             req.session.usuario = undefined;
+            res.cookie('idUsuario', undefined);
             return res.redirect('/login');
 
         } catch (err) {
@@ -289,7 +299,8 @@ module.exports = {
         try {
 
             await db.Usuarios.destroy({where: {idUsuario}});
-
+            req.session.usuario = undefined;
+            res.cookie('idUsuario', undefined);
             return res.redirect('/');
 
         } catch(err) {

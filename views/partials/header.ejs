@@ -42,11 +42,21 @@
           <% } %>
           </a>
         </div>
-        <div>          
+        <div>
+          <% if(loja != undefined) { %>
+          <a href="/loja">
+            <% if (loja.fotoPerfil != null) { %>
+              <img src=<%=loja.fotoPerfil %> class="fotoPerfil" alt="login">
+            <% } else { %>
+              <img src='/images/login.svg' alt="login">
+            <% } %>
+            <p><%= loja.nomeFantasia %></p>
+          <% } else { %>
             <a href="/cadastroloja">
             <img src="/images/lojista.svg" alt="login lojista">
             <p>VENDA CONOSCO</p>
             </a>
+          <% } %>          
         </div>
         <div>
           <a href="/carrinho">

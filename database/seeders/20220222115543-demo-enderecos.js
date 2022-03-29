@@ -9,7 +9,7 @@ module.exports = {
       complemento: 'apt 01',
       cidade: 'Birigui',
       estado: 'São Paulo',
-      cep: 16200000,
+      cep: '16200000',
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -20,7 +20,7 @@ module.exports = {
       complemento: 'apt 02',
       cidade: 'São Paulo',
       estado: 'São Paulo',
-      cep: parseInt('0103000'),
+      cep: '0103000',
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -31,7 +31,7 @@ module.exports = {
       complemento: 'apt 03',
       cidade: 'São Paulo',
       estado: 'São Paulo',
-      cep: parseInt('0103000'),
+      cep: '0103000',
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -42,7 +42,7 @@ module.exports = {
       complemento: 'apt 04',
       cidade: 'Porto Alegre',
       estado: 'Rio Grande do Sul',
-      cep: 90010210,
+      cep: '90010210',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

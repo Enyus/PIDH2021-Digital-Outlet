@@ -12,7 +12,7 @@ module.exports = {
       createdAt: new Date("2021-12-01T03:24:00"),
       updatedAt: new Date("2021-12-23T18:02:00")
       },
-      // idStatusPedido=1
+      // idStatusPedido=2
       {
         idPedido: 2,
         dataProcess: new Date("2022-01-28T18:15:00"),
@@ -20,7 +20,25 @@ module.exports = {
         dataEntrega: null,
         createdAt: new Date("2022-01-28T18:14:00"),
         updatedAt: new Date("2022-01-31T07:28:00")
-        }
+      },
+      // idStatusPedido=3
+      {
+        idPedido: 3,
+        dataProcess: null,
+        dataTransp: null,
+        dataEntrega: null,
+        createdAt: new Date("2022-02-28T18:14:00"),
+        updatedAt: new Date("2022-02-28T18:14:00")
+      },
+      // idStatusPedido=4
+      {
+        idPedido: 4,
+        dataProcess: new Date("2022-03-06T19:14:00"),
+        dataTransp: null,
+        dataEntrega: null,
+        createdAt: new Date("2022-03-05T18:14:00"),
+        updatedAt: new Date("2022-03-05T18:14:00")
+      }
     ], {});
   },
 

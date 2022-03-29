@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false
       },
 	    inscEst: {
-        type: Sequelize.INTEGER(9),
+        type: Sequelize.STRING(9),
         allowNull: false,
         unique: true,
         validate: {
@@ -37,7 +37,7 @@ module.exports = {
         }
       },
       cnpj: {
-        type: Sequelize.BIGINT(14),
+        type: Sequelize.STRING(14),
         allowNull: false,
         unique: true,
         validate: {
@@ -63,6 +63,10 @@ module.exports = {
           isInt: {msg: "O campo de número da residência deve ser composto caracteres numéricos"}
         }
       },
+      complemento: {
+          type: Sequelize.STRING,
+          allowNull: true,
+      },
       cidade: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -72,7 +76,7 @@ module.exports = {
         allowNull: false,
       },
       cep: {
-        type: Sequelize.INTEGER(8),
+        type: Sequelize.STRING(8),
         allowNull: false,
         validate: {
           isInt: {msg: "O campo de CEP deve ser composto de oito caracteres numéricos"},
@@ -81,6 +85,11 @@ module.exports = {
             msg: "O campo de CEP deve ser composto de oito caracteres numéricos"
           }
         }
+      },
+      fotoPerfil: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: null
       },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,

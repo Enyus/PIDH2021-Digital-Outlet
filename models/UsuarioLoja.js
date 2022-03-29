@@ -18,8 +18,7 @@ module.exports = (sequelize, DataType) => {
 		updatedAt: DataType.DATE
         
     }, {
-        tableName: 'UsuarioLoja',
-        paranoid: true,
+        tableName: 'UsuarioLoja'
     });
     return UsuarioLoja;
 };
