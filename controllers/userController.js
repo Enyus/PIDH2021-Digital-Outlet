@@ -143,6 +143,7 @@ module.exports = {
                         cnpj: loja.cnpj,
                         logradouro: loja.logradouro,
                         numero: loja.numero,
+                        complemento: loja.complemento,
                         cidade: loja.cidade,
                         estado: loja.estado,
                         cep: loja.cep,
@@ -298,7 +299,8 @@ module.exports = {
         try {
 
             await db.Usuarios.destroy({where: {idUsuario}});
-
+            req.session.usuario = undefined;
+            res.cookie('idUsuario', undefined);
             return res.redirect('/');
 
         } catch(err) {

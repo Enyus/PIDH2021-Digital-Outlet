@@ -4,6 +4,8 @@ const botaoProdutos = document.getElementById("irparaprodutos");
 const botaoDados = document.getElementById("irparadados");
 const botaoEnderecos = document.getElementById("irparaenderecos");
 const botaoAdministradores = document.getElementById("irparaadministradores");
+const botaoMensagens = document.getElementById("irparamensagens");
+const botaoCurriculos = document.getElementById("irparacurriculos");
 
 const divInicio = document.getElementById("resumo");
 const divPedidos = document.getElementById("pedidos");
@@ -11,6 +13,8 @@ const divProdutos = document.getElementById("listaprodutos");
 const divDados = document.getElementById("dados");
 const divEnderecos = document.getElementById("enderecos");
 const divAdministradores = document.getElementById("administradores");
+const divMensagens = document.getElementById("mensagens");
+const divCurriculos = document.getElementById("curriculos");
 
 const buttonImg = document.getElementById("perfilLoja");
 const inputImgUpload = document.getElementById("fotoPerfil");
@@ -45,6 +49,8 @@ botaoInicio.onclick = (e) => {
     divProdutos.style.display='none';
     divDados.style.display='none';
     divAdministradores.style.display='none';
+    divMensagens.style.display='none';
+    divCurriculos.style.display='none';
 };
 
 botaoPedidos.onclick = (e) => {
@@ -53,6 +59,8 @@ botaoPedidos.onclick = (e) => {
     divProdutos.style.display='none';
     divDados.style.display='none';
     divAdministradores.style.display='none';
+    divMensagens.style.display='none';
+    divCurriculos.style.display='none';
 };
 
 botaoProdutos.onclick = (e) => {
@@ -61,6 +69,8 @@ botaoProdutos.onclick = (e) => {
     divProdutos.style.display='block';
     divDados.style.display='none';
     divAdministradores.style.display='none';
+    divMensagens.style.display='none';
+    divCurriculos.style.display='none';
 };
 
 botaoDados.onclick = (e) => {
@@ -69,6 +79,8 @@ botaoDados.onclick = (e) => {
     divProdutos.style.display='none';
     divDados.style.display='block';
     divAdministradores.style.display='none';
+    divMensagens.style.display='none';
+    divCurriculos.style.display='none';
 };
 
 botaoAdministradores.onclick = (e) => {
@@ -77,6 +89,28 @@ botaoAdministradores.onclick = (e) => {
     divProdutos.style.display='none';
     divDados.style.display='none';
     divAdministradores.style.display='block';
+    divMensagens.style.display='none';
+    divCurriculos.style.display='none';
+};
+
+botaoMensagens.onclick = (e) => {
+    divInicio.style.display= 'none';
+    divPedidos.style.display='none';
+    divProdutos.style.display='none';
+    divDados.style.display='none';
+    divAdministradores.style.display='none';
+    divMensagens.style.display='block';
+    divCurriculos.style.display='none';
+};
+
+botaoCurriculos.onclick = (e) => {
+    divInicio.style.display= 'none';
+    divPedidos.style.display='none';
+    divProdutos.style.display='none';
+    divDados.style.display='none';
+    divAdministradores.style.display='none';
+    divMensagens.style.display='none';
+    divCurriculos.style.display='block';
 };
 
 

@@ -29,6 +29,7 @@ app.use(logarCookie);
 app.use( function(req, res, next) {
   usuario = req.session.usuario;
   loja = req.session.loja;
+  console.log(loja);
   next();
 });
 

@@ -23,8 +23,7 @@ module.exports = {
                 }
             },
             createdAt: Sequelize.DATE,
-            updatedAt: Sequelize.DATE,
-            deletedAt: Sequelize.DATE
+            updatedAt: Sequelize.DATE
         });
     },
     down: (queryInterface, Sequelize) => {

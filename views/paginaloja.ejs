@@ -10,300 +10,472 @@
                     <a href="/cadastroproduto">Adicione um Produto</a>
                     <a id="irparaprodutos">Meus Produtos</a>
                     <a id="irparadados">Alterar Dados Cadastrais</a>
+                    <a id="irparaadministradores">Administradores</a>
+                    <% if (idLoja == 1) { %>
+                      <a id="irparamensagens">Mensagens Recebidas</a>
+                      <a id="irparacurriculos">Headhunting</a>
+                    <% } %>
                     <a href="/logoutLoja">Sair</a>
                 </div>
 
-                <div class="containerterciario" id="resumo">
-                    <div class="faturadorecentemente">
-                        <p><b>Faturado Recentemente:</b></p>
-                        <div class="containerinfo">   
-                            <div class="hoje">
-                                <p>Hoje:</p>
-                                <div class="infocard">                              
+              <div class="containerterciario" id="resumo">
+                  <div class="faturadorecentemente">
+                      <p><b>Faturado Recentemente:</b></p>
+                      <div class="containerinfo">   
+                          <div class="hoje">
+                              <p>Este Mês:</p>
+                              <div class="infocard">   
+
+                                  <% resumoPedidos.idsPedidosMes.forEach( element => { %>
                                     <div class="info">
-                                        <p>Calça Bege ---- São Paulo/SP ---- R$ 100,00</p>
-                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">$ 10,00</ins></p>
-                                        <p>Total Lojista --- <ins style="color: greenyellow;">$ 90,00</ins></p>
+                                        <% if( pedidos[element].Produtos.length > 1 ) { %>
+                                          <p> <%= pedidos[element].Produtos[0].nomeProduto %> + ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
+                                        <% } else { %>
+                                          <p> <%= pedidos[element].Produtos[0].nomeProduto %> ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
+                                        <% } %>
+                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">R$ <%= (pedidos[element].valor * 0.1).toFixed(2) %></ins></p>
+                                        <p>Total Lojista --- <ins style="color: greenyellow;">R$ <%= (pedidos[element].valor - (pedidos[element].valor * 0.1)).toFixed(2) %></ins></p>
                                     </div>
-                                    <div class="info">
-                                        <p>Calça Bege ---- São Paulo/SP ---- R$ 100,00</p>
-                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">$ 10,00</ins></p>
-                                        <p>Total Lojista --- <ins style="color: greenyellow;">$ 90,00</ins></p>
-                                    </div>
-                                    <div class="info">
-                                        <p>Calça Bege ---- São Paulo/SP ---- R$ 100,00</p>
-                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">$ 10,00</ins></p>
-                                        <p>Total Lojista --- <ins style="color: greenyellow;">$ 90,00</ins></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="estasemana">
-                                <p>Esta Semana:</p>
-                                <div class="infocard">                              
-                                    <div class="info">
-                                        <p>Calça Bege ---- São Paulo/SP ---- R$ 100,00</p>
-                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">$ 10,00</ins></p>
-                                        <p>Total Lojista --- <ins style="color: greenyellow;">$ 90,00</ins></p>
-                                    </div>
-                                    <div class="info">
-                                        <p>Calça Bege ---- São Paulo/SP ---- R$ 100,00</p>
-                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">$ 10,00</ins></p>
-                                        <p>Total Lojista --- <ins style="color: greenyellow;">$ 90,00</ins></p>
-                                    </div>
-                                    <div class="info">
-                                        <p>Calça Bege ---- São Paulo/SP ---- R$ 100,00</p>
-                                        <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">$ 10,00</ins></p>
-                                        <p>Total Lojista --- <ins style="color: greenyellow;">$ 90,00</ins></p>
-                                    </div>
-                                </div>
-                            </div>
+                                  <% }) %>                          
+                                  
+                              </div>
+                          </div>
+                          <div class="estasemana">
+                              <p>Esta Ano:</p>
+                              <div class="infocard">                              
+                                  
+                                <% resumoPedidos.idsPedidosAno.forEach( element => { %>
+                                  <div class="info">
+                                      <% if( pedidos[element].Produtos.length > 1 ) { %>
+                                        <p> <%= pedidos[element].Produtos[0].nomeProduto %> + ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
+                                      <% } else { %>
+                                        <p> <%= pedidos[element].Produtos[0].nomeProduto %> ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
+                                      <% } %>
+                                      <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">R$ <%= (pedidos[element].valor * 0.1).toFixed(2) %></ins></p>
+                                      <p>Total Lojista --- <ins style="color: greenyellow;">R$ <%= (pedidos[element].valor - (pedidos[element].valor * 0.1)).toFixed(2) %></ins></p>
+                                  </div>
+                                <% }) %>   
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="resumopedidos">
+                    <p><b>Resumo dos Pedidos:</b></p>
+                    <div class="containerinfo">
+                        <div class="info">
+                            <p>Total de Pedidos Hoje:</p>
+                            <p>Total Faturado Hoje:</p>
+                            <p>Total de Pedidos no mês:</p>
+                            <p>Total Faturado no Mês:</p>
+                            <p>Total de Pedidos no ano:</p>
+                            <p>Total Faturado no ano:</p>
+                        </div>
+                        <div class="info">
+                            <p><%= resumoPedidos.pedidosHoje %></p>
+                            <p>R$ <%= resumoPedidos.faturadoHoje.toFixed(2) %></p>
+                            <p><%= resumoPedidos.pedidosMes %></p>
+                            <p>R$ <%= resumoPedidos.faturadoMes.toFixed(2) %></p>
+                            <p><%= resumoPedidos.pedidosAno %></p>
+                            <p>R$ <%= resumoPedidos.faturadoAno.toFixed(2) %></p>
                         </div>
                     </div>
-                    <div class="resumopedidos">
-                        <p><b>Resumo dos Pedidos:</b></p>
-                        <div class="containerinfo">
-                            <div class="info">
-                                <p>Total de Pedidos Hoje:</p>
-                                <p>Total Faturado Hoje:</p>
-                                <p>Total de Pedidos no mês:</p>
-                                <p>Total Faturado no Mês:</p>
-                            </div>
-                            <div class="info">
-                                <p>47</p>
-                                <p>R$ 4.700,00</p>
-                                <p>578</p>
-                                <p>R$ 57.800,00</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="containerterciario" id="pedidos">
-                    <p><b>Pedidos da Loja:</b></p>
-                    <table>
-                        <tr>
-                          <th>Número</th>
-                          <th>Usuario</th>
-                          <th>Quantidade</th>
-                          <th>Produto</th>
-                          <th>Valor Unitário</th>
-                          <th>Frete</th>
-                          <th>Total Produto (R$)</th>
-                          <th>Total Pedido (R$)</th>
-                          <th>Data Pedido</th>
-                          <th>Data Processamento</th>
-                          <th>Data Transporte</th>
-                          <th>Data Entrega</th>
-                        </tr>
-                        <% pedidos.forEach (pedido => { %>
-                          <% pedido.Produtos.forEach(produto => { %>
-                            <tr>
+                  </div>
+              </div>
 
-                              <% if (pedido.Produtos.length == 1) { %>
-                                <td><%=pedido.idPedido%></td>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <td rowspan="<%=pedido.Produtos.length%>"><%=pedido.idPedido%></td>
-                                <% } %>
+              <div class="containerterciario" id="pedidos">
+                  <p><b>Pedidos da Loja:</b></p>
+                  <table>
+                      <tr>
+                        <th>Número</th>
+                        <th>Usuario</th>
+                        <th>Quantidade</th>
+                        <th>Produto</th>
+                        <th>Valor Unitário</th>
+                        <th>Frete</th>
+                        <th>Total Produto (R$)</th>
+                        <th>Total Pedido (R$)</th>
+                        <th>Data Pedido</th>
+                        <th>Data Processamento</th>
+                        <th>Data Transporte</th>
+                        <th>Data Entrega</th>
+                      </tr>
+                      <% pedidos.forEach (pedido => { %>
+                        <% pedido.Produtos.forEach(produto => { %>
+                          <tr>
+
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <td><%=pedido.idPedido%></td>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
+                                <td rowspan="<%=pedido.Produtos.length%>"><%=pedido.idPedido%></td>
                               <% } %>
+                            <% } %>
 
-                              <% if (pedido.Produtos.length == 1) { %>
-                                <td><%=pedido.Usuario.cpf%></td>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <td rowspan="<%=pedido.Produtos.length%>"><%=pedido.Usuario.cpf%></td>
-                                <% } %>
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <td><%=pedido.Usuario.cpf%></td>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
+                                <td rowspan="<%=pedido.Produtos.length%>"><%=pedido.Usuario.cpf%></td>
                               <% } %>
+                            <% } %>
 
-                              <td><%=produto.PedidosProdutos.quantidade%></td>
+                            <td><%=produto.PedidosProdutos.quantidade%></td>
 
-                              <td><%=produto.nomeProduto%></td>
+                            <td><%=produto.nomeProduto%></td>
 
-                              <td><%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %></td>
+                            <td><%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %></td>
 
-                              <td><%=produto.PedidosProdutos.frete%></td>
+                            <td><%=produto.PedidosProdutos.frete%></td>
 
-                              <td><%= (produto.PedidosProdutos.quantidade * (produto.preco * (100-produto.promocao)/100)).toFixed(2) %></td>
+                            <td><%= (produto.PedidosProdutos.quantidade * (produto.preco * (100-produto.promocao)/100)).toFixed(2) %></td>
 
-                              <% if (pedido.Produtos.length == 1) { %>
-                                <td><%=pedido.valor.toFixed(2)%></td>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <td rowspan="<%=pedido.Produtos.length%>"><%=pedido.valor.toFixed(2)%></td>
-                                <% } %>
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <td><%=pedido.valor.toFixed(2)%></td>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
+                                <td rowspan="<%=pedido.Produtos.length%>"><%=pedido.valor.toFixed(2)%></td>
                               <% } %>
+                            <% } %>
 
-                              
+                            
 
-                              <% if (pedido.Produtos.length == 1) { %>
-                                <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.dataPedido) %></td>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.dataPedido) %></td>
-                                <% } %>
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.dataPedido) %></td>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
+                                <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.dataPedido) %></td>
                               <% } %>
-      
-                              <% if (pedido.Produtos.length == 1) { %>
+                            <% } %>
+    
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <% if (pedido.StatusPedido.dataProcess != null) { %>
+                                <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataProcess) %></td>
+                              <% } else { %>
+                                <td><
+                                  <form action="/processarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
+                                    <button type="submit" style="color:blue; text-decoration:underline">Processar</button>
+                                  </form>
+                                </td>
+                              <% } %>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
                                 <% if (pedido.StatusPedido.dataProcess != null) { %>
-                                  <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataProcess) %></td>
+                                  <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataProcess) %></td>
                                 <% } else { %>
-                                  <td><a href="/">Processar</a></td>
-                                <% } %>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <% if (pedido.StatusPedido.dataProcess != null) { %>
-                                    <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataProcess) %></td>
-                                  <% } else { %>
-                                    <td rowspan="<%=pedido.Produtos.length%>"><a href="/">Processar</a></td>
-                                  <% } %>
+                                  <td rowspan="<%=pedido.Produtos.length%>">
+                                    <form action="/processarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
+                                      <button type="submit" style="color:blue; text-decoration:underline">Processar</button>
+                                    </form>
+                                  </td>
                                 <% } %>
                               <% } %>
-      
-                              <% if (pedido.Produtos.length == 1) { %>
+                            <% } %>
+    
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <% if (pedido.StatusPedido.dataTransp != null) { %>
+                                <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataTransp) %></td>
+                              <% } else { %>
+                                <td>
+                                  <form action="/transportarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
+                                    <button type="submit" style="color:blue; text-decoration:underline">Transportar</button>
+                                  </form>
+                                </td>
+                              <% } %>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
                                 <% if (pedido.StatusPedido.dataTransp != null) { %>
-                                  <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataTransp) %></td>
+                                  <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataTransp) %></td>
                                 <% } else { %>
-                                  <td><a href="/">Encaminhar Transportadora</a></td>
-                                <% } %>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <% if (pedido.StatusPedido.dataTransp != null) { %>
-                                    <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataTransp) %></td>
-                                  <% } else { %>
-                                    <td rowspan="<%=pedido.Produtos.length%>"><a href="/">Encaminhar Transportadora</a></td>
-                                  <% } %>
+                                  <td rowspan="<%=pedido.Produtos.length%>">
+                                    <form action="/transportarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
+                                      <button type="submit" style="color:blue; text-decoration:underline">Transportar</button>
+                                    </form>
+                                  </td>
                                 <% } %>
                               <% } %>
+                            <% } %>
 
-                              <% if (pedido.Produtos.length == 1) { %>
+                            <% if (pedido.Produtos.length == 1) { %>
+                              <% if (pedido.StatusPedido.dataEntrega != null) { %>
+                                <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataEntrega) %></td>
+                              <% } else { %>
+                                <td>
+                                  <form action="/confirmarentrega/<%=pedido.idPedido%>?_method=PUT" method="POST">
+                                    <button type="submit" style="color:blue; text-decoration:underline">Confirmar Entrega</button>
+                                  </form>
+                                </td>
+                              <% } %>
+                            <% } else { %>
+                              <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
                                 <% if (pedido.StatusPedido.dataEntrega != null) { %>
-                                  <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataEntrega) %></td>
+                                  <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataEntrega) %></td>
                                 <% } else { %>
-                                  <td><a href="/">Confirmar Entrega</a></td>
-                                <% } %>
-                              <% } else { %>
-                                <% if (produto.idProduto == pedido.Produtos[0].idProduto) { %>
-                                  <% if (pedido.StatusPedido.dataEntrega != null) { %>
-                                    <td rowspan="<%=pedido.Produtos.length%>"><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataEntrega) %></td>
-                                  <% } else { %>
-                                    <td rowspan="<%=pedido.Produtos.length%>"><a href="/">Confirmar Entrega</a></td>
-                                  <% } %>
+                                  <td rowspan="<%=pedido.Produtos.length%>">
+                                    <form action="/confirmarentrega/<%=pedido.idPedido%>?_method=PUT" method="POST">
+                                      <button type="submit" style="color:blue; text-decoration:underline">Confirmar Entrega</button>
+                                    </form>
+                                  </td>
                                 <% } %>
                               <% } %>
+                            <% } %>
 
-                            </tr>
-                          <% }) %>
+                          </tr>
                         <% }) %>
-                      </table>
-                </div>
+                      <% }) %>
+                    </table>
+              </div>
 
-                <div class="containerterciario" id="listaprodutos">
-                    <p><b>Seus produtos:</b></p>
+              <div class="containerterciario" id="listaprodutos">
+                  <p><b>Seus produtos:</b></p>
+                  <table>
+                      <thead>
+                          <tr>
+                              <th scope="col">Id do Produto</th>
+                              <th scope="col">Produto</th>
+                              <th scope="col">Marca</th>
+                              <th scope="col">Categoria</th>
+                              <th scope="col">Preço</th>
+                              <th scope="col">Desconto</th>
+                              <th scope="col">Valor Atual</th>
+                              <th scope="col">Em Estoque</th>
+                              <th scope="col">Editar</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <% if(listaProdutos.length > 0) { %>
+                              <% listaProdutos.forEach( produto => { %>
+                                  <tr>
+                                      <td><%= produto.idProduto %></td>
+                                      <td><a href="/produto/<%= produto.idProduto %>"><%= produto.nomeProduto %></a></td>
+                                      <td><%= produto.marca %></td>
+                                      <td><%= produto.categoria %></td>
+                                      <td>R$ <%= produto.preco.toFixed(2) %></td>
+                                      <% if(produto.desconto>0) { %>
+                                          <td><%= produto.desconto %>%</td>
+                                      <% } else { %>
+                                          <td>-</td>
+                                      <% } %>
+                                      <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
+                                      <td><%= produto.estoque %></td>
+                                      <td><a href="/"><img src="icon/carrinho-editar.png" alt=""></a></td>
+                                  </tr>
+                              <% }) %>
+                          <% } else { %>
+                              <p>Você ainda não tem produtos cadastrados. <a href="/cadastroproduto"><b>Cadastre um produto aqui!</b></a></p>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
+
+              <div class="containerterciario" id="dados">
+                  <p><b>Altere seus dados aqui:</b></p>
+                  <form action="/alterarloja?_method=PUT" method="POST" class="alteradadosloja">
+                      <input type="number" name="idLoja" hidden value="<%=loja.idLoja%>">
+                      <div class="formrow">
+                          <label for="email">E-mail:</label>
+                          <input type="email" id="email" name="email" value="<%=loja.email%>">
+                      </div>
+                      <div class="formrow">
+                        <label for="razaosocial">Razão Social:</label>
+                        <input type="text" id="razaosocial" name="razaoSocial" value="<%=loja.razaoSocial%>">
+                      </div>
+                      <div class="formrow">
+                        <label for="nomefantasia">Nome Fantasia:</label>
+                        <input type="text" id="nomefantasia" name="nomeFantasia" value="<%=loja.nomeFantasia%>">
+                      </div>
+                      <div class="formrow">
+                        <label for="ie">Inscrição Estadual:</label>
+                        <input type="number" id="ie" name="inscEst" disabled value="<%=loja.inscEst%>">
+                      </div>
+                      <div class="formrow">
+                        <label for="cnpj">C.N.P.J.:</label>
+                        <input type="number" id="cnpj" name="cnpj" disabled value="<%=loja.cnpj%>">
+                      </div>
+                      <div class="formrow">
+                          <label for="password">Alterar Senha:</label>
+                          <input type="password" id="password" name="senha">
+                      </div>
+                      <div class="formrow">
+                        <label for="confirmapassword">Confirmar Nova Senha:</label>
+                        <input type="password" id="confirmapassword" name="confirmapassword">
+                      </div>
+                      <div class="formrow">
+                          <label for="logradouro">Logradouro:</label>
+                          <input type="text" id="logradouro" name="logradouro" value="<%=loja.logradouro%>">
+                      </div>
+                      <div class="formrow">
+                          <label for="numero">Número:</label>
+                          <input type="number" id="numero" name="numero" value="<%=loja.numero%>">
+                      </div>
+                      <div class="formrow">
+                          <label for="complemento">Complemento:</label>
+                          <input type="text" id="complemento" name="complemento" value="<%=loja.complemento%>">
+                      </div>
+                      <div class="formrow">
+                          <label for="cidade">Cidade:</label>
+                          <input type="text" id="cidade" name="cidade" value="<%=loja.cidade%>">
+                      </div>
+                      <div class="formrow">
+                          <label for="estado">Estado:</label>
+                          <input type="text" id="estado" name="estado" value="<%=loja.estado%>">
+                      </div>
+                      <div class="formrow">
+                          <label for="cep">CEP:</label>
+                          <input type="number" id="cep" name="cep" value="<%=loja.cep%>">
+                      </div>
+                      <button type="submit" id="submit">Alterar</button>
+                  </form>
+
+                  <p><b>Adicione/Altere sua Foto de Perfil:</b></p>
+                  <form action="/adicionaPerfilLoja?_method=PUT" method="POST" class="fotoPerfil" enctype="multipart/form-data">
+                    <input type="number" name="idLoja" hidden value=<%= loja.idLoja %>>
+                    <button type="button" onclick="document.getElementById('fotoPerfil').click()">
+                      <% if (loja.fotoPerfil != null) { %>
+                        <img src=<%=loja.fotoPerfil %> class="fotoPerfil" id="perfilLoja">
+                      <% } else { %>
+                        <img src="/images/login.svg" class="fotoPerfil" id="perfilLoja">
+                      <% } %>
+                    </button>
+                    <input type="file" id="fotoPerfil" accept=".png, .jpg" name="perfil" style="display: none;">
+                    <button type="submit" id="submitPerfil">Alterar Foto Perfil</button>
+                  </form>
+
+                  <p><b>Deletar conta</b></p>
+                  <form action="/deletarLoja/<%=loja.idLoja%>?_method=DELETE" method="POST" class="fotoPerfil">
+                    <div>
+                      <input type="checkbox" name="confirmadeletaloja" value="confirma" id="confirmadeletaloja">
+                      <label for="confirmadeletaloja">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
+                    </div>
+                    <button type="submit" id="botaoDeletaLoja">Deletar Conta</button>
+                  </form>
+
+              </div>
+
+              <div class="containerterciario" id="administradores" style="display: none;">
+                <p><b>Seus Administradores:</b></p>
+                <table style="margin-bottom: 50px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id Usuário</th>
+                            <th scope="col">Administrador</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Deletar Administrador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(admins.length > 0) { %>
+                            <% admins.forEach( admin => { %>
+                                <tr>
+                                    <td><%= admin.idUsuario %></td>
+                                    <td><%= admin.nome %> <%= admin.sobrenome %></td>
+                                    <td><%= admin.cpf %></td>
+                                    <td>
+                                      <form action="/deletaAdministrador/<%=admin.idUsuario%>?_method=DELETE" method="POST">
+                                        <button type="submit">
+                                          <img src="/icon/carrinho-lixeira.png" alt="Excluir Administrador">
+                                        </button>
+                                      </form>
+                                    </td>
+
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <p>Você ainda não tem administradores cadastrados.</p>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <p><b>Adicione um Administrador:</b></p>
+                <form action="/adicionaradministrador" method="POST" class="alteradadosloja">
+                  <div class="formrow">
+                    <label for="addaddmin">Pesquise um Usuário pelo CPF:</label>
+                    <input id="addadmin" name="cpfAdmin" type="text">
+                  </div>
+                  <button type="submit">Adicionar Admin</button>
+                </form>
+              </div>
+
+              <% if (idLoja == 1) { %>
+                <div class="containerterciario" id="mensagens" style="display: none;">
+                  <p><b>Suas Mensagens:</b></p>
+                  <% if( faleConosco.length > 0 ) { %>
                     <table>
                         <thead>
                             <tr>
-                                <th scope="col">Id do Produto</th>
-                                <th scope="col">Produto</th>
-                                <th scope="col">Marca</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Preço</th>
-                                <th scope="col">Desconto</th>
-                                <th scope="col">Valor Atual</th>
-                                <th scope="col">Em Estoque</th>
-                                <th scope="col">Editar</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Mensagem</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% if(listaProdutos.length > 0) { %>
-                                <% listaProdutos.forEach( produto => { %>
-                                    <tr>
-                                        <td><%= produto.idProduto %></td>
-                                        <td><a href="/produto/<%= produto.idProduto %>"><%= produto.nomeProduto %></a></td>
-                                        <td><%= produto.marca %></td>
-                                        <td><%= produto.categoria %></td>
-                                        <td>R$ <%= produto.preco.toFixed(2) %></td>
-                                        <% if(produto.desconto>0) { %>
-                                            <td><%= produto.desconto %>%</td>
-                                        <% } else { %>
-                                            <td>-</td>
-                                        <% } %>
-                                        <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
-                                        <td><%= produto.estoque %></td>
-                                        <td><a href="/"><img src="icon/carrinho-editar.png" alt=""></a></td>
-                                    </tr>
-                                <% }) %>
-                            <% } else { %>
-                                <p>Você ainda não tem produtos cadastrados. <a href="/cadastroproduto"><b>Cadastre um produto aqui!</b></a></p>
-                            <% } %>
+                            <% faleConosco.forEach( mensagem => { %>
+                              <tr>
+                                <td><%= new Intl.DateTimeFormat('pt-BR').format(mensagem.createdAt) %></td>
+                                <td><%= mensagem.nome %></td>
+                                <td><%= mensagem.email %></td>
+                                <td><%= mensagem.telefone %></td>
+                                <td><%= mensagem.mensagem %></td>
+                              </tr>
+                            <% }) %>
                         </tbody>
                     </table>
+                  <% } else { %>
+                    <p>Você não possuir mensagens.</p>
+                  <% } %>
+
                 </div>
 
-                <div class="containerterciario" id="dados">
-                    <p><b>Altere seus dados aqui:</b></p>
-                    <form action="/alterarloja?_method=PUT" method="POST" class="alteradadosloja">
-                        <input type="number" name="idLoja" hidden value="<%=loja.idLoja%>">
-                        <div class="formrow">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" value="<%=loja.email%>">
-                        </div>
-                        <div class="formrow">
-                          <label for="razaosocial">Razão Social:</label>
-                          <input type="text" id="razaosocial" name="razaoSocial" value="<%=loja.razaoSocial%>">
-                        </div>
-                        <div class="formrow">
-                          <label for="nomefantasia">Nome Fantasia:</label>
-                          <input type="text" id="nomefantasia" name="nomeFantasia" value="<%=loja.nomeFantasia%>">
-                        </div>
-                        <div class="formrow">
-                          <label for="ie">Inscrição Estadual:</label>
-                          <input type="number" id="ie" name="inscEst" disabled value="<%=loja.inscEst%>">
-                        </div>
-                        <div class="formrow">
-                          <label for="cnpj">C.N.P.J.:</label>
-                          <input type="number" id="cnpj" name="cnpj" disabled value="<%=loja.cnpj%>">
-                        </div>
-                        <div class="formrow">
-                            <label for="password">Alterar Senha:</label>
-                            <input type="password" id="password" name="senha">
-                        </div>
-                        <div class="formrow">
-                          <label for="confirmapassword">Confirmar Nova Senha:</label>
-                          <input type="password" id="confirmapassword" name="confirmapassword">
-                        </div>
-                        <div class="formrow">
-                            <label for="logradouro">Logradouro:</label>
-                            <input type="text" id="logradouro" name="logradouro" value="<%=loja.logradouro%>">
-                        </div>
-                        <div class="formrow">
-                            <label for="numero">Número:</label>
-                            <input type="number" id="numero" name="numero" value="<%=loja.numero%>">
-                        </div>
-                        <div class="formrow">
-                            <label for="complemento">Complemento:</label>
-                            <input type="text" id="complemento" name="complemento" value="<%=loja.complemento%>">
-                        </div>
-                        <div class="formrow">
-                            <label for="cidade">Cidade:</label>
-                            <input type="text" id="cidade" name="cidade" value="<%=loja.cidade%>">
-                        </div>
-                        <div class="formrow">
-                            <label for="estado">Estado:</label>
-                            <input type="text" id="estado" name="estado" value="<%=loja.estado%>">
-                        </div>
-                        <div class="formrow">
-                            <label for="cep">CEP:</label>
-                            <input type="number" id="cep" name="cep" value="<%=loja.cep%>">
-                        </div>
-                        <button type="submit" id="submit">Alterar</button>
-                    </form>
+                <div class="containerterciario" id="curriculos" style="display: none;">
+                  <p><b>Pessoas interessadas em trabalhar conosco:</b></p>
+                  <% if( curriculos.length > 0 ) { %>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Data</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Departamento</th>
+                                <th scope="col">Disponibilidade</th>
+                                <th scope="col">Currículo</th>
+                                <th scope="col">Mensagem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% curriculos.forEach( curriculo => { %>
+                              <tr>
+                                <td><%= new Intl.DateTimeFormat('pt-BR').format(curriculo.createdAt) %></td>
+                                <td><%= curriculo.nome %></td>
+                                <td><%= curriculo.email %></td>
+                                <td><%= curriculo.departamento %></td>
+                                <td><%= curriculo.disp %></td>
+                                <td><a href="/public<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img src="/icon/paper.svg"></a></td>
+                                <td><%= curriculo.mensagem %></td>
+                              </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                  <% } else { %>
+                    <p>Você não possuir mensagens.</p>
+                  <% } %>
+
                 </div>
+              <% } %>
 
             </div>
     </section>
   </main>
 
-  <script src="/scripts/loja.js"></script>
+  <% if (idLoja == 1) { %>
+    <script src="/scripts/DO$.js"></script>
+  <% } else { %>
+    <script src="/scripts/loja.js"></script>
+  <% } %>
+
   <script src="/scripts/validateLoja.js"></script>
 
 <%- include('./partials/footer') %>

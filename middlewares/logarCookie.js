@@ -1,5 +1,4 @@
 const db = require('../models');
-const Sequelize = require('sequelize');
 
 const logarCookie = async (req, res, next) => {
     idCookie = req.cookies.idUsuario;
@@ -17,8 +16,9 @@ const logarCookie = async (req, res, next) => {
         };
     };
     idCookieLoja = req.cookies.idLoja;
-    if (idCookieLoja != null && idCookieLoja != 'undefined' && req.session.loja == undefined) {
+    if (idCookieLoja != null && idCookieLoja != 'null' && idCookieLoja != 'undefined' && req.session.loja == undefined) {
         const loja = await db.Lojas.findByPk(idCookieLoja);
+        // console.log(idCookieLoja);
         req.session.loja = {
             idLoja: loja.idLoja,
             email: loja.email,
