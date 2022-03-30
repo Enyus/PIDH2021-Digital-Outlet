@@ -234,10 +234,5 @@ module.exports = {
             console.log(err)
             return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
         };
-    },
-
-    paginacliente: (req, res, next) => {
-        res.render('paginacliente', {title:"Bem-Vindo!"})
-    },
-
+    }
 };

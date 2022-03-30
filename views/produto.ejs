@@ -40,6 +40,7 @@
                         <div class="compra">
                             <form action="/addcart" method="POST">
                                 <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <input type="text" hidden name="source" value="/produto/<%=idProduto%>">
                                 <button type="submit">Adicionar ao Carrinho</button>
                             </form>
                             <form action="/comprar" method="POST">

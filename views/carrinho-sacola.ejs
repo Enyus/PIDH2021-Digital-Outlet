@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/carrinho-sacola.css">
 
     <main class="carrinho-sacola">
-        <% if(carrinho.length > 0) { %>
+        <% if(carrinhoDB.length > 0) { %>
 
             <section class="processo-da-compra">
                 <div>
@@ -12,6 +12,7 @@
                     <a class="pagamento" href="/carrinho/pagamento">Pagamento</a>
                 </div>
             </section>
+
             <div class="container-carrinho">
                 <section class="container-sacola">
                     <div>
@@ -23,56 +24,89 @@
                                 <td>Quantidade</td>
                                 <td></td>
                             </tr>
-                            <tr class="linhas">
-                                <td class="produto">
-                                    <img src="/images/calca-bege.png" alt="">
-                                    <div>
-                                        <h3 class="label">CALÇA BEGE</h3>
-                                        <div class="tamanho">
-                                            <h4 class="label">Tamanho:</h4>
-                                            <h4 class="dados">M</h4>
+
+                            <% carrinhoDB.forEach( item => { %>
+                                <tr class="linhas">
+                                    <td class="produto">
+                                        <img src="<%= item.Fotos[0].urlFoto %>" alt="">
+                                        <div>
+                                            <h3 class="label"><%= item.nomeProduto %></h3>
+                                            <%  item.DescTecs.forEach( desctec => { %>
+                                                <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
+                                                <div class="tamanho">
+                                                    <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
+                                                    <h4 class="dados"><%= desctec.valor %></h4>
+                                                </div>
+                                                <% } %>
+                                            <% }) %>
                                         </div>
-                                        <div class="cor">
-                                            <h4 class="label">Cor:</h4>
-                                            <h4 class="dados">BEGE</h4>
+                                    </td>
+
+                                    <% if (carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].frete != 0) { %>
+                                        <td><%= carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].frete %></td>
+                                    <% } else { %>
+                                        <td>a calcular</td>
+                                    <% } %>
+                                    <td><%= (item.preco * (100-item.promocao) / 100).toFixed(2) %></td>
+                                    <td>
+                                        <div class="quantidade">
+
+                                            <form action="/removecart" method="POST">
+                                                <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
+                                                <input type="text" hidden name="source" value="/carrinho">
+                                                <button type="submit">-</button>
+                                            </form>
+                                            <p class="qtd"><%= carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
+                                   
+                                            <form action="/addcart" method="POST">
+                                                <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
+                                                <input type="text" hidden name="source" value="/carrinho">
+                                                <button type="submit">+</button>
+                                            </form>
                                         </div>
-                                        <div class="cor">
-                                            <h6 class="label">código do produto:</h4>
-                                            <h6 class="dados">205455548</h4>
+                                    <td class="acoes-produto">
+                                        <div>
+                                            <!-- Este a tem que ser um form -->
+                                            <a href="/produto/<%=item.idProduto%>"><img src="/icon/carrinho-editar.png" alt=""></a>
+                                            <!-- Este a tem que ser um form -->
+                                            <a href=""><img src="/icon/carrinho-lixeira.png" alt=""></a>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>a calcular</td>
-                                <td>R$ 100,00</td>
-                                <td>
-                                    <div class="quantidade">
-                                        <button type="">-</button>
-                                        <p class="qtd">2</p>
-                                        <button type="">+</button>
-                                    </div>
-                                <td class="acoes-produto">
-                                    <div>
-                                        <a href=""><img src="/icon/carrinho-editar.png" alt=""></a>
-                                        <a href=""><img src="/icon/carrinho-lixeira.png" alt=""></a>
-                                    </div>
-                                </td>
-                                </td>
-                            </tr>
+                                    </td>
+                                    </td>
+                                </tr>
+                            <% }) %>
+
                         </table>
-    
+                        
+                        <% carrinhoDB.forEach( item => { %>
                         <div class="table-mobile">
-                            <img src="images/calca-bege.png" alt="calça bege">
+                            <img src="<%= item.Fotos[0].urlFoto %>" alt="calça bege">
                             <div class="dados-produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <h4 class="label">Tamanho: M</h4>
-                                <h4 class="label">Cor: BEGE</h4>
+                                <h3 class="label"><%= item.nomeProduto %></h3>
+                                <%  item.DescTecs.forEach( desctec => { %>
+                                    <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
+                                    <div class="tamanho">
+                                        <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
+                                        <h4 class="dados"><%= desctec.valor %></h4>
+                                    </div>
+                                    <% } %>
+                                <% }) %>
                             </div>
                             <div class="quantidade">
-                                <button type="">+</button>
-                                <p class="qtd">2</p>
-                                <button type="">-</button>
+                                <form action="/addcart" method="POST">
+                                    <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
+                                    <input type="text" hidden name="source" value="/carrinho">
+                                    <button type="submit">+</button>
+                                </form>
+                                <p class="qtd"><%= carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
+                                <form action="/removecart" method="POST">
+                                    <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
+                                    <input type="text" hidden name="source" value="/carrinho">
+                                    <button type="submit">-</button>
+                                </form>
                             </div>
                         </div>
+                        <% }) %>
     
                     </div>
                 </section>
@@ -96,20 +130,41 @@
                         <div class="total">
                             <div>
                                 <p>Subtotal</p>
-                                <p>R$ 100,00</p>
+                                <% let subtotal = 0 %>
+                                <% carrinhoDB.forEach( item => { %>
+                                <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
+                                <% }) %>
+                                <p>R$ <%= subtotal.toFixed(2) %></p>
                             </div>
                             <div>
                                 <p>Taxa de entrega</p>
-                                <p>à calcular</p>
+
+                                <% let totalFrete = 0 %>
+                                <% carrinho.forEach(item => { %>
+                                    <% totalFrete += item.frete %>
+                                <% }) %>
+
+                                <% if(totalFrete > 0) { %>
+                                    <p><%= totalFrete %></p>
+                                <% } else { %>
+                                    <p>à calcular</p>
+                                <% } %>
+
                             </div>
                             <div class="total">
                                 <p>Total</p>
-                                <p>R$ 100,00</p>
+
+                                <% if(totalFrete > 0) { %>
+                                    <p>R$ <%= (totalFrete + subtotal).toFixed(2) %></p>
+                                <% } else { %>
+                                    <p>R$ <%= subtotal.toFixed(2) %></p>
+                                <% } %>
+
                             </div>
                         </div>
                         <div>
                             <button class="finalizar" type="submit" href="/compra/entrega/">Finalizar Compra</button>
-                            <button class="continuar-comprando" type="submit">CONTINUAR COMPRANDO</button>
+                            <a class="continuar-comprando" href="/">CONTINUAR COMPRANDO</a>
                         </div>
                     </div>
                 </section>

@@ -184,8 +184,10 @@ align-items: center;
 }
 
 .carrinho-sacola .container-carrinho .container-sacola img {
-height: 80px;
-margin: 20px;
+    height: 72px;
+    width: 60px;
+    object-fit: cover;
+    margin: 20px;
 }
 
 .carrinho-sacola .container-carrinho .container-sacola .tamanho,
@@ -474,11 +476,6 @@ font-size: 20px;
     .carrinho-sacola .container-carrinho .container-sacola .table-mobile {
         display: flex;
         background-color: white;
-    }
-
-    .carrinho-sacola .container-carrinho .container-sacola img {
-        width: 130px;
-        height: unset;
     }
 
     .carrinho-sacola .container-carrinho .container-sacola .quantidade {

@@ -44,6 +44,7 @@ router.get('/carrinho/identificacao', CompraController.identificacao)
 router.get('/carrinho/entrega', CompraController.entrega)
 router.get('/carrinho/pagamento', CompraController.pagamento)
 router.post('/addcart', CompraController.addCart);
+router.post('/removecart', CompraController.removeCart);
 router.post('/comprar', CompraController.comprar);
 
 /*GET Página do Trabalhe Conosco*/
