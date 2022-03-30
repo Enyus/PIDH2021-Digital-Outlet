@@ -208,10 +208,6 @@ module.exports = {
 
     },
 
-    carrinho: (req, res, next) => {
-        res.render('carrinho-sacola', {title:"Carrinho"})
-    },
-
     trabalheconosco: (req, res, next) => {
         res.render('trabalheconosco', {title:"Trabalhe Conosco!"})
     },
@@ -238,10 +234,6 @@ module.exports = {
             console.log(err)
             return res.status(400).render('error', {title: 'Falha', error: err, message: err.errors[0].message })
         };
-    },
-
-    cadastroproduto: (req, res, next) => {
-        res.render('cadastroproduto', {title:"Cadastro de Produto"})
     },
 
     paginacliente: (req, res, next) => {
