@@ -38,8 +38,14 @@
                         <p>Frete: R$ -</p>
                         <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </p>
                         <div class="compra">
-                            <button>Adicionar ao Carrinho</button>
-                            <button>Comprar</button>                            
+                            <form action="/addcart" method="POST">
+                                <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <button type="submit">Adicionar ao Carrinho</button>
+                            </form>
+                            <form action="/comprar" method="POST">
+                                <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <button type="submit">Comprar</button>
+                            </form>                          
                         </div>
                     </div>
                 </div>

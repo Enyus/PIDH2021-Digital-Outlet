@@ -120,6 +120,21 @@ header section.buscamobile a {
   left: -29px;
 }
 
+p.notificacaocarrinho {
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  margin: 0;
+  top: 10px;
+  left: 70%;
+}
+
 footer {
   background-color: #FFFFFF;
   width: 100vw;
@@ -604,7 +619,7 @@ main.paginaproduto div.descgeral div.subcontainer div.compra {
   flex-direction: column;
 }
 
-main.paginaproduto div.descgeral div.subcontainer div.compra button {
+main.paginaproduto div.descgeral div.subcontainer div.compra form button {
   border-radius: 20px;
   border-style: none;
   background-color: #E84118;

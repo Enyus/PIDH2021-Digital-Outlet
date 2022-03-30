@@ -26,6 +26,7 @@
         <a href="/resultadobusca" id="botaobuscar"><img src="/images/search-icon.png" alt="search"></a>
       </div>
       <div class="hbutton">
+
         <div>
           <% if(usuario != undefined) { %>
             <a href="/cliente">
@@ -42,6 +43,7 @@
           <% } %>
           </a>
         </div>
+
         <div>
           <% if(loja != undefined) { %>
           <a href="/loja">
@@ -51,19 +53,30 @@
               <img src='/images/login.svg' alt="login">
             <% } %>
             <p><%= loja.nomeFantasia %></p>
-          <% } else { %>
+            <% } else { %>
             <a href="/cadastroloja">
             <img src="/images/lojista.svg" alt="login lojista">
             <p>VENDA CONOSCO</p>
-            </a>
-          <% } %>          
+            <% } %>  
+          </a>        
         </div>
+
         <div>
           <a href="/carrinho">
-          <img src="/images/carrinho.svg" alt="carrinho">
-          <p>SEU CARRINHO</p>
+            <% if (carrinho.length > 0) { %>
+              <p class="notificacaocarrinho">
+                <% let totalItens = 0 %>
+                <% carrinho.forEach( item => { %>
+                  <% totalItens += item.quantidade %>
+                <% }) %>
+                <%= totalItens %>
+              </p>
+            <% } %>
+            <img src="/images/carrinho.svg" alt="carrinho">
+            <p>SEU CARRINHO</p>
           </a>
         </div>
+
       </div>
     </section>
 

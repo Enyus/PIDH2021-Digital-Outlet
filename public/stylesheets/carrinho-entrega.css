@@ -275,6 +275,8 @@ left: -29px;
     justify-content: center;
     padding: 0 10px;
     border: 1px solid rgb(120, 120, 120);
+    height: fit-content;
+    width: 100%;
 }
 .carrinho-entrega .entrega .modalidade-entrega .container label {
     color: black;

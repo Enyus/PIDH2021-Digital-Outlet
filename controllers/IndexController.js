@@ -200,7 +200,7 @@ module.exports = {
                 };
             }
 
-            return res.render('produto', {title:"Produto", produto: produtoLoad});
+            return res.render('produto', {title:"Produto", idProduto, produto: produtoLoad});
         
         } catch(err) {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "vish" })

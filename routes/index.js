@@ -40,10 +40,11 @@ router.post('/cadastro', userController.cadastrarUsuario);
 
 /*GET Página do Carrinho*/
 router.get('/carrinho', CompraController.index);
-router.get('/carrinho/sacola', CompraController.sacola)
 router.get('/carrinho/identificacao', CompraController.identificacao)
 router.get('/carrinho/entrega', CompraController.entrega)
 router.get('/carrinho/pagamento', CompraController.pagamento)
+router.post('/addcart', CompraController.addCart);
+router.post('/comprar', CompraController.comprar);
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)
