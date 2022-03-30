@@ -441,6 +441,15 @@ font-size: 20px;
     display: none;
 }
 
+td.acoes-produto div {
+    display: flex;
+}
+
+td.acoes-produto div button {
+    border: none;
+    cursor: pointer;
+}
+
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
     header .logo, header .header-principal .hbutton {

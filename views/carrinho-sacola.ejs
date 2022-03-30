@@ -28,9 +28,9 @@
                             <% carrinhoDB.forEach( item => { %>
                                 <tr class="linhas">
                                     <td class="produto">
-                                        <img src="<%= item.Fotos[0].urlFoto %>" alt="">
+                                        <a href="/produto/<%=item.idProduto%>"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></a>
                                         <div>
-                                            <h3 class="label"><%= item.nomeProduto %></h3>
+                                            <h3 class="label"><a href="/produto/<%=item.idProduto%>"><%= item.nomeProduto %></a></h3>
                                             <%  item.DescTecs.forEach( desctec => { %>
                                                 <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
                                                 <div class="tamanho">
@@ -66,10 +66,13 @@
                                         </div>
                                     <td class="acoes-produto">
                                         <div>
-                                            <!-- Este a tem que ser um form -->
                                             <a href="/produto/<%=item.idProduto%>"><img src="/icon/carrinho-editar.png" alt=""></a>
                                             <!-- Este a tem que ser um form -->
-                                            <a href=""><img src="/icon/carrinho-lixeira.png" alt=""></a>
+                                            <form action="/removecartitem" method="POST">
+                                                <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
+                                                <input type="text" hidden name="source" value="/carrinho">
+                                                <button type="submit"><img src="/icon/carrinho-lixeira.png" alt="deletar produto"></button>
+                                            </form>
                                         </div>
                                     </td>
                                     </td>

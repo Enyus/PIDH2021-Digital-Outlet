@@ -121,6 +121,16 @@ module.exports = {
         res.redirect(`${source}`);
     },
 
+    removeCartItem: (req, res, next) => {
+        const {idProduto, source} = req.body
+
+        let index = req.session.carrinho.findIndex( element => element.idProduto == idProduto);
+
+        req.session.carrinho.splice(index,1);
+        
+        res.redirect(`${source}`);
+    },
+
     comprar: (req, res, next) => {
         const {idProduto} = req.body
 
