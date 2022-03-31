@@ -75,14 +75,6 @@ module.exports = {
         };
     },
 
-    identificacao: (req, res, next) => {
-        res.render('carrinho-identificacao', {title: "Identificacao" })
-    },
-
-    entrega: (req, res, next) => {
-        res.render('carrinho-entrega', {title: "Entrega" })
-    },
-
     pagamento: (req, res, next) => {
         res.render('carrinho-pagamento', {title: "Pagamento" })
     },
@@ -150,4 +142,82 @@ module.exports = {
 
         res.redirect(`/carrinho`);
     },
+
+    identicacao: async (req, res, next) => {
+        let carrinho = req.session.carrinho;
+        
+        const listaIDs = [];
+        carrinho.forEach( element => {listaIDs.push(element.idProduto)});
+        let carrinhoDB=[];
+
+        try {
+            
+            carrinhoDB = await db.Produtos.findAll({
+                where: {
+                    idProduto: {
+                        [Op.in]: listaIDs
+                    }
+                },
+                attributes: ['idProduto', 'nomeProduto', 'idLoja', 'preco', 'promocao'],
+                include: [
+                    { model: db.Fotos,
+                    attributes: ['urlFoto'] },
+                    { model: db.DescTec,
+                    attributes: ['nomeDescTec', 'valor'] }
+                ],
+                order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+            });
+
+           res.render('carrinho-identificacao', {title: "Identificação", carrinho, carrinhoDB});
+
+        } catch(error) {
+
+            console.log(error);
+            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+
+        };
+    },
+
+    entrega: async (req, res, next) => {
+        usuario = req.session.usuario;
+        dadosPreenchidos = req.body;
+        let carrinho = req.session.carrinho;
+        
+        const listaIDs = [];
+        carrinho.forEach( element => {listaIDs.push(element.idProduto)});
+        let carrinhoDB=[];
+
+        try {
+
+            carrinhoDB = await db.Produtos.findAll({
+                where: {
+                    idProduto: {
+                        [Op.in]: listaIDs
+                    }
+                },
+                attributes: ['idProduto', 'nomeProduto', 'idLoja', 'preco', 'promocao'],
+                include: [
+                    { model: db.Fotos,
+                    attributes: ['urlFoto'] },
+                    { model: db.DescTec,
+                    attributes: ['nomeDescTec', 'valor'] }
+                ],
+                order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+            });
+
+            usuarioDB = await db.Usuarios.findOne({
+                where: {email: dadosPreenchidos.email},
+                include: {model: db.Enderecos}
+            });
+            console.log(usuarioDB.Enderecos);
+
+            res.render('carrinho-entrega', {title: "Entrega", dadosPreenchidos, carrinhoDB, usuarioDB })
+
+        } catch {
+
+            console.log(error);
+            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+
+        }
+    }
 }

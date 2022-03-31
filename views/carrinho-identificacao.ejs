@@ -7,9 +7,9 @@
         <section class="processo-da-compra">
             <div>
                 <a class="sacola" href="/carrinho">Sacola</a>
-                <a class="identificacao" href="/carrinho/identificacao">Identificação</a>
-                <a class="entrega" href="/carrinho/entrega">Entrega</a>
-                <a class="pagamento" href="#">Pagamento</a>
+                <a class="identificacao">Identificação</a>
+                <a class="entrega">Entrega</a>
+                <a class="pagamento">Pagamento</a>
             </div>
         </section>
 
@@ -17,44 +17,51 @@
             <section class="dados-pessoais">
                 <div>
                     <h3>Dados Pessoais</h3>
-                    <form class="formulario-dados-pessoais">
+                    <form class="formulario-dados-pessoais" action="/dadosentrega" method="post">
                         <div>
                             <label for="email">Email:</label>
-                            <input type="text" id="input-email" />
+                            <% if (usuario != undefined) { %>
+                                <input type="text" id="email" name="email" value="<%= usuario.email %>" />
+                            <% } else { %>
+                                <input type="text" id="email" name="email" />
+                            <% } %>
                         </div>
 
                         <div class="form-nome-sobrenome">
                             <div>
                                 <label for="nome">Nome</label>
-                                <input type="text" name="input-nome" id="input-nome" />
+                                <% if (usuario != undefined) { %>
+                                    <input type="text" name="nome" id="nome" value="<%= usuario.nome %>"/>
+                                <% } else { %>
+                                    <input type="text" name="nome" id="nome" />
+                                <% } %>
                             </div>
                             <div>
                                 <label for="sobrenome">Sobrenome:</label>
-                                <input type="text" id="input-sobrenome" />
+                                <% if (usuario != undefined) { %>
+                                    <input type="text" id="sobrenome" name="sobrenome" value="<%= usuario.sobrenome %>"/>
+                                <% } else { %>
+                                    <input type="text" id="sobrenome" name="sobrenome" />
+                                <% } %>
                             </div>
                         </div>
 
                         <div class="form-cpf-telefone">
                             <div>
                                 <label for="cpf">CPF:</label>
-                                <input type="text" id="input-cpf" />
-                            </div>
-                            <div>
-                                <label for="telefone">Telefone:</label>
-                                <input type="text" id="input-telefone" />
+                                <% if (usuario != undefined) { %>
+                                    <input type="text" id="cpf" name="cpf" value="<%= usuario.cpf %>" />
+                                <% } else { %>
+                                    <input type="text" id="cpf" name="cpf" />
+                                <% } %>
                             </div>
                         </div>
 
+                        <div>
+                            <button class="ir-entrega" type="submit">Ir para entrega</button>
+                        </div>
+
                     </form>
-
-                    <div>
-                        <input type="checkbox" name="checkbox-newsletter" id="checkbox-newsletter">
-                        <label for="checkbox-newsletter">Quero receber e-mail de promoções.</label>
-                    </div>
-
-                    <div>
-                        <button class="ir-entrega" type="submit" onClick="">Ir para entrega</button>
-                    </div>
 
                 </div>
             </section>
@@ -63,61 +70,57 @@
                 <div>
                     <h3>Resumo da Compra</h3>
                     <table>
-                        <tr>
-                            <td class="img"><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
+
+                        <% carrinhoDB.forEach( item => { %>
+                            <tr>
+                                <td class="img"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></td>
+                                <td class="produto">
+                                    <h3 class="label"><%= item.nomeProduto %></h3>
+                                    <%  item.DescTecs.forEach( desctec => { %>
+                                        <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
+                                        <div class="tamanho">
+                                            <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
+                                            <h4 class="dados"><%= desctec.valor %></h4>
+                                        </div>
+                                        <% } %>
+                                    <% }) %>
+                                </td>
+                                <td>
+                                    <h4>R$ <%= (item.preco * (100-item.promocao) / 100).toFixed(2) %></h4>
+                                </td>
+                            </tr>
+                        <% }) %>
+
                     </table>
                     <div class="total">
                         <div>
                             <p>Subtotal</p>
-                            <p>R$ 100,00</p>
+                            <% let subtotal = 0 %>  
+                            <% carrinhoDB.forEach( item => { %>
+                            <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
+                            <% }) %>
+                            <p>R$ <%= subtotal.toFixed(2) %></p>
                         </div>
                         <div>
                             <p>Taxa de entrega</p>
-                            <p>à calcular</p>
+                            <% let totalFrete = 0 %>
+                            <% carrinho.forEach(item => { %>
+                                <% totalFrete += item.frete %>
+                            <% }) %>
+
+                            <% if(totalFrete > 0) { %>
+                                <p><%= totalFrete %></p>
+                            <% } else { %>
+                                <p>à calcular</p>
+                            <% } %>
                         </div>
                         <div class="total">
                             <p>Total</p>
-                            <p>R$ 100,00</p>
+                            <% if(totalFrete > 0) { %>
+                                <p>R$ <%= (totalFrete + subtotal).toFixed(2) %></p>
+                            <% } else { %>
+                                <p>R$ <%= subtotal.toFixed(2) %></p>
+                            <% } %>
                         </div>
                     </div>
                 </div>
