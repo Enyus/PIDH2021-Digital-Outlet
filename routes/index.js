@@ -47,7 +47,7 @@ router.post('/removecartitem', CompraController.removeCartItem);
 router.post('/comprar', CompraController.comprar);
 router.get('/identificacaocliente', CompraController.identicacao);
 router.post('/identificacaocliente', CompraController.identicacao);
-router.post('/dadosentrega', CompraController.entrega);
+router.post('/dadosdestinatario', CompraController.entrega);
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)

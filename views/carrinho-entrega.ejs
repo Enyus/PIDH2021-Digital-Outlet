@@ -1,6 +1,6 @@
 <%- include('./partials/header') %>
 <link rel="stylesheet" href="/stylesheets/carrinho-entrega.css">    
-    
+
     <main class="carrinho-entrega">
         <section class="processo-da-compra">
             <div>
@@ -16,19 +16,27 @@
                     <h3>Dados do Destinatário</h3>
                     <a href="/identificacaocliente"><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
                 </div>
-                <p><%= dadosPreenchidos.nome %> <%= dadosPreenchidos.sobrenome %></p>
+                <p><%= carrinho.destinatario.nome %> <%= carrinho.destinatario.sobrenome %></p>
                 <div class="contato">
-                    <p><%= dadosPreenchidos.email %></p>
+                    <p><%= carrinho.destinatario.email %></p>
                 </div>
             </section>
 
             <section class="entrega">
-                <form>
+                <form action="/dadosentrega" method="post">
                     <h3>Entrega</h3>
                     <% if(usuarioDB != null) { %>
                         <ul>
                             <% usuarioDB.Enderecos.forEach( endereco => { %>
-                                <li><input type="radio" name="endereco" value="<%= endereco.idEndereco %>"><%= endereco.logradouro %>, <%= endereco.numero %> <%= endereco.complemento %>, <%= endereco.cidade %>/<%= endereco.estado %>, CEP: <%= endereco.cep %> </li>
+                                <li>
+                                    <input onclick="autoEndereco(event)" type="radio" name="enderecoauto" value="<%= endereco.idEndereco %>" id="endereco<%=endereco.idEndereco%>"><label for="endereco<%=endereco.idEndereco%>"><%= endereco.logradouro %>, <%= endereco.numero %> <%= endereco.complemento %>, <%= endereco.cidade %>/<%= endereco.estado %>, CEP: <%= endereco.cep %></label>
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.logradouro %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.numero %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.complemento %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.cidade %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.estado %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.cep %>">
+                                </li>
                             <% }) %>
                         </ul>
                     <% } %>
@@ -36,29 +44,37 @@
                     <div class="cep">
                         <label for="cep">CEP</label>
                         <div>
-                            <input type="text" id="cep" placeholder="xxxxx-xxx">
-                            <a class="nao-sei-cep" href="">Não sei o CEP</a>
+                            <input type="text" name="cep" id="cep" placeholder="xxxxx-xxx">
+                            <a class="nao-sei-cep" href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">Não sei o CEP</a>
                         </div>
                     </div>
                     <div>
                         <label for="">Endereço de entrega</label>
-                        <div class="endereco-entrega">
-                            <p>Rua Pedro Paulo</p>
-                            <p>Guaianases - São Paulo - SP</p>
-                        </div>
+                        <input type="text" name="logradouro" id="logradouro" class="endereco-entrega">
                     </div>    
                     <div class="numero-compl">
                         <div>
                             <div>
-                                <label for="numero-endereco">Número</label>
-                                <input type="text" name="numero-endereco" id="numero-endereco">
+                                <label for="numero">Número</label>
+                                <input type="text" name="numero" id="numero">
                             </div>
                             <div>
-                                <label for="complemento-endereco">Complemento</label>
-                                <input type="text" name="compl-endereco" id="compl-endereco" placeholder="Apart. nº / Casa A">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" name="complemento" id="complemento" placeholder="Apart. nº / Casa A">
                             </div>
                         </div>
-                        <a href="">Escolher outro endereço</a>
+                    </div>
+                    <div class="numero-compl">
+                        <div>
+                            <div>
+                                <label for="cidade">Cidade</label>
+                                <input type="text" name="cidade" id="cidade">
+                            </div>
+                            <div>
+                                <label for="estado">Estado</label>
+                                <input type="text" name="estado" id="estado">
+                            </div>
+                        </div>
                     </div>
                     <div class="modalidade-entrega">
                         <label for="">Selecione a forma de entrega</label>
@@ -80,14 +96,14 @@
                             <div class="retirar">
                                 <div>
                                     <input type="radio" name="modalidade-entrega" value="retirar" id="retirar">
-                                    <label for="padrao">Retirar na loja<br>Em até 2 dias úteis</label>
+                                    <label for="retirar">Retirar na loja<br>Em até 2 dias úteis</label>
                                 </div>
                                 <p>Grátis</p>
                             </div>
                         </div>
                     </div>
+                    <button id="ir-pagamento" hidden type="submit"></button>
                 </form>
-                <!-- <button class="ir-pagamento">IR PARA O PAGAMENTO</button> -->
             </section>
 
             <section class="resumo">
@@ -149,12 +165,13 @@
                     </div>
                 </div>
                 <div>
-                    <button class="ir-pagamento" type="submit">Ir para pagamento</button>
+                    <button class="ir-pagamento" type="submit" onclick="document.getElementById('ir-pagamento').click()">Ir para pagamento</button>
                 </div>
             </section>
         </div>
     </main>
-    
-    <%- include('./partials/footer') %>
-</body>
-</html>
+
+<script src="/scripts/carrinhoEntrega.js"></script>
+
+
+<%- include('./partials/footer') %>

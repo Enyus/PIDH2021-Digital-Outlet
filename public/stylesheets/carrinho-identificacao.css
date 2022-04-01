@@ -123,6 +123,8 @@
     background-color: #F1F1F1;
     width: 400px;
     height: 600px;
+    height: fit-content;
+    z-index: -1;
 }
 
 .container-identificacao .resumo-compra div {

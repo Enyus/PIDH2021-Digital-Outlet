@@ -181,6 +181,13 @@ module.exports = {
     entrega: async (req, res, next) => {
         usuario = req.session.usuario;
         dadosPreenchidos = req.body;
+        req.session.carrinho.destinatario = {
+            email: dadosPreenchidos.email,
+            nome: dadosPreenchidos.nome,
+            sobrenome: dadosPreenchidos.sobrenome,
+            cpf: dadosPreenchidos.cpf
+        }
+
         let carrinho = req.session.carrinho;
         
         const listaIDs = [];
@@ -211,7 +218,7 @@ module.exports = {
             });
             console.log(usuarioDB.Enderecos);
 
-            res.render('carrinho-entrega', {title: "Entrega", dadosPreenchidos, carrinhoDB, usuarioDB })
+            res.render('carrinho-entrega', {title: "Entrega", carrinhoDB, usuarioDB })
 
         } catch {
 
