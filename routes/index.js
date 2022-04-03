@@ -48,6 +48,8 @@ router.post('/comprar', CompraController.comprar);
 router.get('/identificacaocliente', CompraController.identicacao);
 router.post('/identificacaocliente', CompraController.identicacao);
 router.post('/dadosdestinatario', CompraController.entrega);
+router.post('/dadosentrega', CompraController.pagamento);
+router.post('/finalizarpedido', CompraController.finalizarPedido);
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)

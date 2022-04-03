@@ -353,7 +353,6 @@ height: 20px;
     border: none;
     font-size: 18px;
     font-weight: 800;
-    background-color: white;
     cursor: pointer;
     transition: color 0.1s;
 }.carrinho-sacola .resumo .continuar-comprando:hover {
@@ -448,6 +447,7 @@ td.acoes-produto div {
 td.acoes-produto div button {
     border: none;
     cursor: pointer;
+    background-color: #FFFFFF;
 }
 
 /* Fazendo as alterações para mobile: */

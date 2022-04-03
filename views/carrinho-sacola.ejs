@@ -42,8 +42,8 @@
                                         </div>
                                     </td>
 
-                                    <% if (carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].frete != 0) { %>
-                                        <td><%= carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].frete %></td>
+                                    <% if (carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].frete != 0) { %>
+                                        <td><%= carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].frete %></td>
                                     <% } else { %>
                                         <td>a calcular</td>
                                     <% } %>
@@ -56,7 +56,7 @@
                                                 <input type="text" hidden name="source" value="/carrinho">
                                                 <button type="submit">-</button>
                                             </form>
-                                            <p class="qtd"><%= carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
+                                            <p class="qtd"><%= carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
                                    
                                             <form action="/addcart" method="POST">
                                                 <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
@@ -101,7 +101,7 @@
                                     <input type="text" hidden name="source" value="/carrinho">
                                     <button type="submit">+</button>
                                 </form>
-                                <p class="qtd"><%= carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
+                                <p class="qtd"><%= carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
                                 <form action="/removecart" method="POST">
                                     <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
                                     <input type="text" hidden name="source" value="/carrinho">
@@ -135,7 +135,7 @@
                                 <p>Subtotal</p>
                                 <% let subtotal = 0 %>
                                 <% carrinhoDB.forEach( item => { %>
-                                <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho[carrinho.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
+                                <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
                                 <% }) %>
                                 <p>R$ <%= subtotal.toFixed(2) %></p>
                             </div>
@@ -143,7 +143,7 @@
                                 <p>Taxa de entrega</p>
 
                                 <% let totalFrete = 0 %>
-                                <% carrinho.forEach(item => { %>
+                                <% carrinho.produtos.forEach(item => { %>
                                     <% totalFrete += item.frete %>
                                 <% }) %>
 

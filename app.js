@@ -30,7 +30,9 @@ app.use( function(req, res, next) {
   usuario = req.session.usuario;
   loja = req.session.loja;
   if (req.session.carrinho == undefined) {
-    req.session.carrinho = [];
+    req.session.carrinho = {
+      produtos: [],
+    };
   }
   carrinho = req.session.carrinho;
   next();

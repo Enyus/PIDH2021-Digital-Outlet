@@ -63,10 +63,10 @@
 
         <div>
           <a href="/carrinho">
-            <% if (carrinho.length > 0) { %>
+            <% if (carrinho.produtos.length > 0) { %>
               <p class="notificacaocarrinho">
                 <% let totalItens = 0 %>
-                <% carrinho.forEach( item => { %>
+                <% carrinho.produtos.forEach( item => { %>
                   <% totalItens += item.quantidade %>
                 <% }) %>
                 <%= totalItens %>

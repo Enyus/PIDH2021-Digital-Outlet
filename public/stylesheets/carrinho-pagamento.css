@@ -168,12 +168,14 @@ left: -29px;
 .carrinho-pagamento .destinatario-entrega section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 26px;
     background-color: white;
     height: 156px;
 }
-.carrinho-pagamento .destinatario-entrega section h3,
+.carrinho-pagamento .destinatario-entrega section h3 {
+    margin: 0 0 10px 0;
+}
+
 .carrinho-pagamento .destinatario-entrega section p {
     margin: 0;
 }
@@ -192,7 +194,7 @@ left: -29px;
 }
 .container-pagamento .pagamento {
     padding: 26px;
-    height: 505px;
+    height: fit-content;
     margin-top: 16px;
     background-color: white;
 }
@@ -236,7 +238,6 @@ left: -29px;
     width: 298px;
 }
 .container-pagamento .img-cartoes {
-    margin-top: 60px;
     height: 45px;
 }
 .container-pagamento .dados-pagamento div {
