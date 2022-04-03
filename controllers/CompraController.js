@@ -305,7 +305,7 @@ module.exports = {
                 const hash = bcrypt.hashSync(senha, 10);
                 usuarioTemp = await db.Usuarios.create(
                     {
-                        email: carrinho.destinatario.cpf,
+                        email: carrinho.destinatario.email,
                         nome: carrinho.destinatario.nome,
                         sobrenome: carrinho.destinatario.sobrenome,
                         dataNasc: new Date(2000,0,1),
