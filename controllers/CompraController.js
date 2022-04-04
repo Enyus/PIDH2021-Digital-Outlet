@@ -88,7 +88,7 @@ module.exports = {
                 {
                   idProduto: idProduto,
                   quantidade: 1,
-                  frete: null //ainda precisa implementar
+                  frete: 0 //ainda precisa implementar
                 }
             );
         } else {
@@ -398,6 +398,7 @@ module.exports = {
                     // console.log(carrinhoDB.findIndex(element => element.idProduto==produto.idProduto))
                     // console.log(carrinhoDB[carrinhoDB.findIndex(element => element.idProduto==produto.idProduto)])
                     // console.log(carrinhoDB[carrinhoDB.findIndex(element => element.idProduto==produto.idProduto)].preco)
+                    console.log(carrinho);
                     await db.PedidosProdutos.create({
                         idProduto: produto.idProduto,
                         idPedido: pedidosCriados[loja].idPedido,

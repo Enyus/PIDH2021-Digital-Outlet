@@ -40,6 +40,7 @@ module.exports = (sequelize, DataType) => {
         frete: {
             type: DataType.FLOAT,
             allowNull: false,
+            defaultValue: 0,
             validate: {
                 isFloat: {msg: "O frete deve ser um número do tipo FLOAT"}
             }
