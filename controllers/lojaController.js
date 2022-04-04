@@ -305,7 +305,29 @@ module.exports = {
                 {dataProcess: new Date()},
                 {where: {idPedido}}
             );
+
+            let produtoBaixa = await db.Pedidos.findOne({
+                where:{idPedido},
+                include: {
+                    model: db.Produtos
+                }
+            });
+            console.log(produtoBaixa);
+
+            for await (let produto of produtoBaixa.Produtos) {
+                db.Estoque.update(
+                    {quantidade: Sequelize.literal(`quantidade - ${produto.PedidosProdutos.quantidade}`)},
+                    {where: {
+                        [Op.and]: [
+                            {idLoja: produtoBaixa.idLoja},
+                            {idProduto: produto.idProduto}
+                        ]
+                    }}
+                )
+            };
+
             return res.redirect('/loja');
+
 
         } catch (error) {
             console.log(error)
