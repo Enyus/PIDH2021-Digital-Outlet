@@ -67,7 +67,6 @@
                                     <td class="acoes-produto">
                                         <div>
                                             <a href="/produto/<%=item.idProduto%>"><img src="/icon/carrinho-editar.png" alt=""></a>
-                                            <!-- Este a tem que ser um form -->
                                             <form action="/removecartitem" method="POST">
                                                 <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
                                                 <input type="text" hidden name="source" value="/carrinho">
@@ -117,19 +116,18 @@
                     <div>
                         <p class="resumo">Resumo</p>
                         <div class="forma-de-recebimento">
-                            <a class="entrega" href="">Entrega</a>
-                            <a class="retirada-loja" href="">Retirar na loja</a>
+                            <a class="entrega" id="entrega">Entrega</a>
+                            <a class="retirada-loja" id="retirar">Retirar na loja</a>
                         </div>
                         
-                        
-                        <div class="teste-espacoBranco"></div>
-                        
-                        
-                        <div class="cep">
-                            <input class= "input-cep" type="text" name="cep" placeholder="Insira seu CEP">
-                            <button class="ok-cep" type="submit">OK</button>
+                        <div id="containercep">
+                            <form class="cep">
+                                <input class= "input-cep" type="text" name="cep" id="cep" placeholder="Insira seu CEP">
+                                <button class="ok-cep" id="submitcep" type="submit">OK</button>
+                            </form>
+                            <a class="nao-sei-o-cep" href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">Não sei o CEP</a>
                         </div>
-                        <a class="nao-sei-o-cep" href="">Não sei o CEP</a>
+                        
                         <div class="total">
                             <div>
                                 <p>Subtotal</p>
@@ -148,9 +146,9 @@
                                 <% }) %>
 
                                 <% if(totalFrete > 0) { %>
-                                    <p><%= totalFrete %></p>
+                                    <p id="totalfrete"><%= totalFrete %></p>
                                 <% } else { %>
-                                    <p>à calcular</p>
+                                    <p id="totalfrete">a calcular</p>
                                 <% } %>
 
                             </div>
@@ -183,5 +181,7 @@
         <% } %>
 
     </main>
+
+    <script src="/scripts/validateSacola.js"></script>
 
 <%- include('./partials/footer') %>
