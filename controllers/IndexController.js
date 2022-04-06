@@ -244,8 +244,16 @@ module.exports = {
         res.render('cadastroloja', {title:"Seja nosso Parceiro!"})
     },
 
-    cadastroproduto: (req, res, next) => {
-        res.render('cadastroproduto', {title:"Cadastro de Produto"})
+    cadastroproduto: async (req, res, next) => {
+        const marcadb = await db.Marcas.findAll();
+        const categoriadb = await db.Categorias.findAll();
+
+        res.render('cadastroproduto', {
+            title:"Cadastro de Produto",
+            usuario: req.session.usuario, //verificar se cliente ou loja
+            marcas: marcadb,
+            categorias: categoriadb
+        });
     },
 
     paginacliente: (req, res, next) => {
