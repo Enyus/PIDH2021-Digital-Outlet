@@ -240,10 +240,6 @@ module.exports = {
         };
     },
 
-    cadastroloja: (req, res, next) => {
-        res.render('cadastroloja', {title:"Seja nosso Parceiro!"})
-    },
-
     cadastroproduto: (req, res, next) => {
         res.render('cadastroproduto', {title:"Cadastro de Produto"})
     },
@@ -251,9 +247,5 @@ module.exports = {
     paginacliente: (req, res, next) => {
         res.render('paginacliente', {title:"Bem-Vindo!"})
     },
-
-    paginaloja: (req, res, next) => {
-        res.render('paginaloja', {title:"Bem-Vindo!"})
-    }
 
 };
