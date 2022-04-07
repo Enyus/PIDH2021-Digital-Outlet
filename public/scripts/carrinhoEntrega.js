@@ -41,7 +41,7 @@ function checkValidationEndereco () {
     };
 }
 
-form.onclick = (e) => {checkValidation()}
+form.onclick = (e) => {checkValidationEndereco()}
 
 inputCEP.onfocus = (e) => {
     inputCEP.value = "";

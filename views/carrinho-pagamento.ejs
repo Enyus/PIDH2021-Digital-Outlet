@@ -61,8 +61,8 @@
 
                 <div class="pagamento">
                     <section>
-                        <form action="/finalizarpedido" method="post">
-                            <div class="forma-pagamento">
+                        <form action="/finalizarpedido" method="post" id="form">
+                            <div class="forma-pagamento" id="formapagamento">
                                 <p>Formas de pagamento</p>
                                 <div>
                                     <input type="radio" name="formapagamento" id="cartaopresente">
@@ -87,8 +87,8 @@
                                 <div class="numero-cartao">
                                     <img src="/images/cartões-bandeiras.png" class="img-cartoes"
                                         alt="bandeiras-cartoes">
-                                    <label for="numero-cartao">Número do Cartão</label>
-                                    <input type="text" name="numerocartao" id="numero-cartao" required>
+                                    <label for="numerocartao">Número do Cartão</label>
+                                    <input type="text" name="numerocartao" id="numerocartao" required>
                                 </div>
                                 <div class="parcelamento">
                                     <label for="parcelamento">Parcelamento</label>
@@ -99,7 +99,7 @@
                                         <option value="4x">4x s/ juros</option>
                                         <option value="5x">5x s/ juros</option>
                                         <option value="6x">6x s/ juros</option>
-                                        <option value="7x">7x s/ juros/option>
+                                        <option value="7x">7x s/ juros</option>
                                         <option value="8x">8x s/ juros</option>
                                         <option value="9x">9x s/ juros</option>
                                         <option value="10x">10x s/ juros </option>
@@ -108,14 +108,14 @@
                                     </select>
                                 </div>
                                 <div class="nome-cartao">
-                                    <label for="nome-cartao">Nome impresso no cartão</label>
-                                    <input type="text" name="nomecartao" id="nome-cartao">
+                                    <label for="nomecartao">Nome impresso no cartão</label>
+                                    <input type="text" name="nomecartao" id="nomecartao">
                                 </div>
                                 <div class="validade-cartao">
-                                    <label for="validade-cartao">Validade</label>
+                                    <label for="validadecartao">Validade</label>
                                     <div>
                                         <div class="mes-validade">
-                                            <select name="validadecartao" id="validade-cartao">
+                                            <select name="validadecartao" id="validadecartao">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -132,9 +132,8 @@
                                         </div>
                                         <p>/</p>
                                         <div class="ano-validade">
-                                            <label for="ano-validade"></label>
-                                            <select name="anovalidade" id="ano-validade">
-                                                <option value="2021">2021</option>
+                                            <label for="anovalidade"></label>
+                                            <select name="anovalidade" id="anovalidade">
                                                 <option value="2022">2022</option>
                                                 <option value="2023">2023</option>
                                                 <option value="2024">2024</option>
@@ -152,12 +151,12 @@
                                 </div>
 
                                 <div class="cod-seguranca">
-                                    <label for="cod-seguranca">Código de segurança</label>
-                                    <input type="text" name="codseguranca" id="cod-seguranca">
+                                    <label for="codseguranca">Código de segurança</label>
+                                    <input type="text" name="codseguranca" id="codseguranca">
                                 </div>
                                 <div class="cpf-titular-cartao">
-                                    <label for="cpf-titular-cartao">CPF do titular</label>
-                                    <input type="text" name="cpftitularcartao" id="cpf-titular-cartao"
+                                    <label for="cpftitularcartao">CPF do titular</label>
+                                    <input type="text" name="cpftitularcartao" id="cpftitularcartao"
                                         placeholder="999.999.999-99">
                                 </div>
                             </div>
@@ -242,15 +241,13 @@
                     </div>
                 </div>
                 <div>
-                    <button class="finalizar-compra" type="submit"
+                    <button class="finalizar-compra" type="submit" id="fakesubmit"
                         onclick="document.getElementById('submitpagamento').click()">FINALIZAR COMPRA</button>
                 </div>
             </section>
         </div>
     </main>
 
+    <script src="/scripts/validatePagamento.js"></script>
 
     <%- include('./partials/footer') %>
-        </body>
-
-        </html>

@@ -303,6 +303,10 @@
                         <input type="password" id="confirmapassword" name="confirmapassword">
                       </div>
                       <div class="formrow">
+                        <label for="cep">CEP:</label>
+                        <input type="number" id="cep" name="cep" value="<%=loja.cep%>">
+                    </div>
+                      <div class="formrow">
                           <label for="logradouro">Logradouro:</label>
                           <input type="text" id="logradouro" name="logradouro" value="<%=loja.logradouro%>">
                       </div>
@@ -321,10 +325,6 @@
                       <div class="formrow">
                           <label for="estado">Estado:</label>
                           <input type="text" id="estado" name="estado" value="<%=loja.estado%>">
-                      </div>
-                      <div class="formrow">
-                          <label for="cep">CEP:</label>
-                          <input type="number" id="cep" name="cep" value="<%=loja.cep%>">
                       </div>
                       <button type="submit" id="submit">Alterar</button>
                   </form>
@@ -477,5 +477,6 @@
   <% } %>
 
   <script src="/scripts/validateLoja.js"></script>
+  <script src="/api/validaCep.js"></script>
 
 <%- include('./partials/footer') %>

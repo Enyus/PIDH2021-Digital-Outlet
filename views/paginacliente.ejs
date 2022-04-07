@@ -319,6 +319,10 @@
               <form action="/adicionarEnderecoCliente" method="POST" class="cadastrousuario">
                 <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
                 <div class="formrow">
+                  <label for="cep">CEP:</label>
+                  <input type="number" id="cep" name="cep">
+                </div>
+                <div class="formrow">
                   <label for="logradouro">Logradouro:</label>
                   <input type="text" id="logradouro" name="logradouro">
                 </div>
@@ -338,10 +342,6 @@
                   <label for="estado">Estado:</label>
                   <input type="text" id="estado" name="estado">
                 </div>
-                <div class="formrow">
-                  <label for="cep">CEP:</label>
-                  <input type="number" id="cep" name="cep">
-                </div>
                 <button type="submit" id="botaoCadastraEndereco">Cadastrar Novo Endereço</button>
               </form>
             </div>
@@ -357,5 +357,6 @@
 
   <script src="/scripts/cliente.js"></script>
   <script src="/scripts/validateCliente.js"></script>
+  <script src="/api/validaCep.js"></script>
 
 <%- include('./partials/footer') %>
