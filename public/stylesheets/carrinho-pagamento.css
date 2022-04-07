@@ -218,7 +218,8 @@ left: -29px;
 }
 .container-pagamento .forma-pagamento input {
     display: none;
-}.container-pagamento .forma-pagamento input:checked ~ label {
+}
+input:checked ~ label {
     border: none;
     color: white;
     background-color: #e84218;

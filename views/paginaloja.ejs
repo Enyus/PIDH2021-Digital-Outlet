@@ -154,7 +154,7 @@
                               <% if (pedido.StatusPedido.dataProcess != null) { %>
                                 <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataProcess) %></td>
                               <% } else { %>
-                                <td><
+                                <td>
                                   <form action="/processarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
                                     <button type="submit" style="color:blue; text-decoration:underline">Processar</button>
                                   </form>
@@ -167,7 +167,7 @@
                                 <% } else { %>
                                   <td rowspan="<%=pedido.Produtos.length%>">
                                     <form action="/processarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
-                                      <button type="submit" style="color:blue; text-decoration:underline">Processar</button>
+                                      <button type="submit" style="color:blue; text-decoration:underline"> Processar </button>
                                     </form>
                                   </td>
                                 <% } %>

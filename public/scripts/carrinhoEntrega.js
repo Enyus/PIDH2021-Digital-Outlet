@@ -6,11 +6,11 @@ const inputCidade = document.getElementById('cidade');
 const inputEstado = document.getElementById('estado');
 const buttonSubmit = document.getElementById('submit');
 const modalidadeEntrega = document.getElementById('modalidadeentrega');
+const form = document.getElementById('form');
 
 const inputsAutoEndereco = document.getElementsByName('enderecoauto');
-const inputsModalidadeEntrega = document.getElementsByName('modalidadeEntrega');
 
-const errosEndereco=[];
+const errosEndereco=['modalidade'];
 buttonSubmit.disabled = 'true';
 
 function autoEndereco(event) {
@@ -29,20 +29,19 @@ function uncheckAutoEndereco() {
 };
 
 function checkValidationEndereco () {
-    let checkInputs = Array.prototype.slice.call(inputsModalidadeEntrega).map(input => {input.checked == true});
-
     if (errosEndereco.length == 0 &&
         inputLogradouro.value != '' &&
         inputNumero.value != '' &&
         inputCidade.value != '' &&
         inputEstado.value != '' &&
-        inputCEP.value != '' &&
-        !checkInputs.includes(true)) {
+        inputCEP.value != '') {
             buttonSubmit.disabled = false;
     } else {
         buttonSubmit.disabled = true;
     };
 }
+
+form.onclick = (e) => {checkValidation()}
 
 inputCEP.onfocus = (e) => {
     inputCEP.value = "";
@@ -90,7 +89,7 @@ inputLogradouro.onblur = (e) => {
 };
 
 inputNumero.onblur = (e) => {
-    if (inputNumero.value.length < 0) {
+    if (inputNumero.value.length <= 0) {
         inputNumero.style.borderColor = "red";
         if (!errosEndereco.includes("numero")) {
             errosEndereco.push("numero");
@@ -152,6 +151,9 @@ inputCEP.onblur = (e) => {
 modalidadeEntrega.onclick = (e) => {
     if (e.target.nodeName == 'INPUT') {
         modalidadeEntrega.style.borderColor = 'green';
+        if (errosEndereco.includes("modalidade")) {
+            errosEndereco.splice(errosEndereco.indexOf("modalidade"), 1);
+        };
     };
     checkValidationEndereco();
 };

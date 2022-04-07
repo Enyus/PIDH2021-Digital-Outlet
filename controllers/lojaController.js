@@ -80,12 +80,14 @@ module.exports = {
                      ( (pedido.dataPedido.getDate() == (new Date()).getDate() ) )) {
                     pedidosHoje += 1;
                     faturadoHoje += pedido.valor;
-                } else if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() ) &&
-                    ( pedido.dataPedido.getMonth() == (new Date()).getMonth() )) {
+                };
+                if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() ) &&
+                    ( pedido.dataPedido.getMonth()==(new Date()).getMonth() ) ) {
                     pedidosMes += 1;
                     faturadoMes += pedido.valor;
                     idsPedidosMes.push(pedidos.indexOf(pedido));
-                } else if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() )) {
+                };
+                if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() )) {
                     pedidosAno += 1;
                     faturadoAno += pedido.valor;
                     idsPedidosAno.push(pedidos.indexOf(pedido));
@@ -93,7 +95,7 @@ module.exports = {
             });
 
             resumoPedidos = {pedidosHoje, faturadoHoje, pedidosMes, faturadoMes, idsPedidosMes, pedidosAno, faturadoAno, idsPedidosAno};
-
+ 
             const lojaUsuario = await db.Lojas.findOne({
                 where: {idLoja},
                 attributes: ['idLoja'],

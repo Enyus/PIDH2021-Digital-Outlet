@@ -1,6 +1,6 @@
 <%- include('./partials/header') %>
-<link rel="stylesheet" href="/stylesheets/carrinho-pagamento.css">
-    
+    <link rel="stylesheet" href="/stylesheets/carrinho-pagamento.css">
+
     <main class="carrinho-pagamento">
         <section class="processo-da-compra">
             <div>
@@ -19,12 +19,18 @@
                         <div class="titulo-div">
                             <div>
                                 <h3>Dados do Destinatário</h3>
-                                <a href="/identificacaocliente"><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
+                                <a href="/identificacaocliente"><img src="/icon/carrinho-editar.png"
+                                        alt="edit-destinatario"></a>
                             </div>
-                            <p><%=carrinho.destinatario.nome%> <%=carrinho.destinatario.sobrenome%></p>
+                            <p>
+                                <%=carrinho.destinatario.nome%>
+                                    <%=carrinho.destinatario.sobrenome%>
+                            </p>
                         </div>
                         <div class="contato">
-                            <p><%=carrinho.destinatario.email%></p>
+                            <p>
+                                <%=carrinho.destinatario.email%>
+                            </p>
                         </div>
                     </section>
                     <section class="dados-entrega">
@@ -35,11 +41,19 @@
                             </div>
                         </div>
                         <div class="endereco-entrega">
-                            <p><%= carrinho.entrega.logradouro %>, <%= carrinho.entrega.numero %></p>
-                            <p><%= carrinho.entrega.cidade %> - <%= carrinho.entrega.estado %></p>
-                            <p><%= carrinho.entrega.cep %></p>
+                            <p>
+                                <%= carrinho.entrega.logradouro %>, <%= carrinho.entrega.numero %>
+                            </p>
+                            <p>
+                                <%= carrinho.entrega.cidade %> - <%= carrinho.entrega.estado %>
+                            </p>
+                            <p>
+                                <%= carrinho.entrega.cep %>
+                            </p>
                             <div>
-                                <p><%= carrinho.entrega.modalidadeEntrega %></p>
+                                <p>
+                                    <%= carrinho.entrega.modalidadeEntrega %>
+                                </p>
                             </div>
                         </div>
                     </section>
@@ -52,11 +66,11 @@
                                 <p>Formas de pagamento</p>
                                 <div>
                                     <input type="radio" name="formapagamento" id="cartaopresente">
-                                    <label for="cartao-presente">CARTÃO PRESENTE</label>
+                                    <label for="cartaopresente">CARTÃO PRESENTE</label>
                                 </div>
                                 <div>
                                     <input type="radio" name="formapagamento" id="cartaocredito">
-                                    <label for="cartao-credito">CARTÃO DE CRÉDITO</label>
+                                    <label for="cartaocredito">CARTÃO DE CRÉDITO</label>
                                 </div>
                                 <div>
                                     <input type="radio" name="formapagamento" id="pix">
@@ -71,7 +85,8 @@
                             <div class="dados-pagamento">
                                 <p>Dados do cartão</p>
                                 <div class="numero-cartao">
-                                    <img src="/images/cartões-bandeiras.png" class="img-cartoes" alt="bandeiras-cartoes">
+                                    <img src="/images/cartões-bandeiras.png" class="img-cartoes"
+                                        alt="bandeiras-cartoes">
                                     <label for="numero-cartao">Número do Cartão</label>
                                     <input type="text" name="numerocartao" id="numero-cartao" required>
                                 </div>
@@ -135,19 +150,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="cod-seguranca">
                                     <label for="cod-seguranca">Código de segurança</label>
                                     <input type="text" name="codseguranca" id="cod-seguranca">
                                 </div>
                                 <div class="cpf-titular-cartao">
                                     <label for="cpf-titular-cartao">CPF do titular</label>
-                                    <input type="text" name="cpftitularcartao" id="cpf-titular-cartao" placeholder="999.999.999-99">
+                                    <input type="text" name="cpftitularcartao" id="cpf-titular-cartao"
+                                        placeholder="999.999.999-99">
                                 </div>
                             </div>
                             <button type="submit" id="submitpagamento" hidden></button>
                         </form>
-                       
+
                     </section>
                 </div>
 
@@ -157,67 +173,84 @@
                 <h3 class="resumo">Resumo</h3>
                 <div>
                     <table>
-                        <% carrinhoDB.forEach( item => { %>
+                        <% carrinhoDB.forEach( item=> { %>
                             <tr>
                                 <td class="img"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></td>
                                 <td class="produto">
-                                    <h3 class="label"><%= item.nomeProduto %></h3>
-                                    <%  item.DescTecs.forEach( desctec => { %>
-                                        <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
-                                        <div class="tamanho">
-                                            <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
-                                            <h4 class="dados"><%= desctec.valor %></h4>
-                                        </div>
-                                        <% } %>
-                                    <% }) %>
+                                    <h3 class="label">
+                                        <%= item.nomeProduto %>
+                                    </h3>
+                                    <% item.DescTecs.forEach( desctec=> { %>
+                                        <% if ( item.DescTecs.findIndex( element=> element.nomeDescTec ==
+                                            desctec.nomeDescTec) <= 2) { %>
+                                                <div class="tamanho">
+                                                    <h4 class="label">
+                                                        <%= desctec.nomeDescTec %>:
+                                                    </h4>
+                                                    <h4 class="dados">
+                                                        <%= desctec.valor %>
+                                                    </h4>
+                                                </div>
+                                                <% } %>
+                                                    <% }) %>
                                 </td>
                                 <td>
-                                    <h4>R$ <%= (item.preco * (100-item.promocao) / 100).toFixed(2) %></h4>
+                                    <h4>R$ <%= (item.preco * (100-item.promocao) / 100).toFixed(2) %>
+                                    </h4>
                                 </td>
                             </tr>
-                        <% }) %>
+                            <% }) %>
 
                     </table>
                 </div>
                 <div class="total">
                     <div>
                         <p>Subtotal</p>
-                        <% let subtotal = 0 %>  
-                        <% carrinhoDB.forEach( item => { %>
-                        <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
-                        <% }) %>
-                        <p>R$ <%= subtotal.toFixed(2) %></p>
+                        <% let subtotal=0 %>
+                            <% carrinhoDB.forEach( item=> { %>
+                                <% subtotal +=(item.preco * (100-item.promocao) / 100) *
+                                    carrinho.produtos[carrinho.produtos.findIndex( element=> element.idProduto ==
+                                    item.idProduto )].quantidade %>
+                                    <% }) %>
+                                        <p>R$ <%= subtotal.toFixed(2) %>
+                                        </p>
                     </div>
                     <div>
                         <p>Taxa de entrega</p>
-                        <% let totalFrete = 0 %>
-                        <% carrinho.produtos.forEach(item => { %>
-                            <% totalFrete += item.frete %>
-                        <% }) %>
+                        <% let totalFrete=0 %>
+                            <% carrinho.produtos.forEach(item=> { %>
+                                <% totalFrete +=item.frete %>
+                                    <% }) %>
 
-                        <% if(totalFrete > 0) { %>
-                            <p><%= totalFrete %></p>
-                        <% } else { %>
-                            <p>à calcular</p>
-                        <% } %>
+                                        <% if(totalFrete> 0) { %>
+                                            <p>
+                                                <%= totalFrete %>
+                                            </p>
+                                            <% } else { %>
+                                                <p>à calcular</p>
+                                                <% } %>
                     </div>
                     <div class="total">
                         <p>Total</p>
-                        <% if(totalFrete > 0) { %>
-                            <p>R$ <%= (totalFrete + subtotal).toFixed(2) %></p>
-                        <% } else { %>
-                            <p>R$ <%= subtotal.toFixed(2) %></p>
-                        <% } %>
+                        <% if(totalFrete> 0) { %>
+                            <p>R$ <%= (totalFrete + subtotal).toFixed(2) %>
+                            </p>
+                            <% } else { %>
+                                <p>R$ <%= subtotal.toFixed(2) %>
+                                </p>
+                                <% } %>
                     </div>
                 </div>
                 <div>
-                    <button class="finalizar-compra" type="submit" onclick="document.getElementById('submitpagamento').click()">FINALIZAR COMPRA</button>
+                    <button class="finalizar-compra" type="submit"
+                        onclick="document.getElementById('submitpagamento').click()">FINALIZAR COMPRA</button>
                 </div>
             </section>
         </div>
     </main>
 
-    
+
     <%- include('./partials/footer') %>
-</body>
-</html>
+        </body>
+
+        </html>

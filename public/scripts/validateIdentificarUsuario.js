@@ -3,6 +3,7 @@ const inputNome = document.getElementById("nome");
 const inputSobrenome = document.getElementById("sobrenome");
 const inputCpf = document.getElementById("cpf");
 const buttonSubmit = document.getElementById("submit");
+const form = document.getElementById('form');
 
 const erros = [];
 
@@ -19,6 +20,8 @@ function checkValidation () {
         buttonSubmit.disabled = "true";
     };
 };
+
+form.onclick = (e) => {checkValidation()}
 
 inputEmail.onblur = (e) => {
     if (inputEmail.value.length <= 3 ||

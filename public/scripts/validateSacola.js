@@ -3,7 +3,7 @@ const submitCEP = document.getElementById('submitcep');
 const divCEP = document.getElementById('containercep');
 const linkEntrega = document.getElementById('entrega');
 const linkRetirar = document.getElementById('retirar');
-const totalFrete = document.getElementById('totalfrete')
+const totalFrete = document.getElementById('totalfrete');
 
 submitCEP.disabled = true;
 
