@@ -4,7 +4,6 @@
   box-sizing: border-box;
   font-family: 'Rajdhani', sans-serif;
   text-decoration: none;
-  /* color: black; */
 }
 
 body {
@@ -90,6 +89,11 @@ header .header-principal .hbutton div {
   padding: 10px 3%;
   height: 5vh;
   align-items: center;
+}
+
+header .fotoPerfil {
+  height: 50px !important;
+  border-radius: 50%;
 }
 
 header a, footer a, .header-menu a {
