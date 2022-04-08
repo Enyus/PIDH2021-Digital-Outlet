@@ -6,7 +6,8 @@ module.exports = {
     cadastroView: async (req, res, next) => {
         res.render('cadastroproduto', {
             title:"Cadastro de Produto",
-            usuario: req.session.usuario
+            // usuario: req.session.usuario
+
         })
     },
     create: async (req, res, next) => {
@@ -29,9 +30,10 @@ module.exports = {
                 preco: dadosProdutos.preco,
                 idCategoria: categoriadb.idCategoria, 
                 desc: dadosProdutos.descproduto,
-                idLoja: req.session.loja,
+                idLoja: 1,
+                idLoja: req.session.loja.idLoja
             })
-            
+
             // idProduto para salvar nos outras tabelas
             const idProduto = produtoCreate.idProduto;
             
@@ -46,7 +48,7 @@ module.exports = {
                     });
                 };
             });
-
+            console.log(req.files)
             req.files.forEach(async element => {
                 const urlFoto = element.path.
                                 slice(element.path.indexOf('images')-1, element.path.length).
@@ -56,7 +58,8 @@ module.exports = {
                     urlFoto: urlFoto
                 });
             });
-            return res.send(produtoCreate);
+            // return res.redirect("/cadastroproduto");
+            return res.send(produtoCreate)
         } catch (error) {
             console.log(error);
         }
