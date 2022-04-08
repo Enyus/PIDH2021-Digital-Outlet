@@ -105,11 +105,11 @@
                             <p>Taxa de entrega</p>
                             <% let totalFrete = 0 %>
                             <% carrinho.produtos.forEach(item => { %>
-                                <% totalFrete += item.frete %>
+                                <% totalFrete += parseFloat(item.frete) %>
                             <% }) %>
 
                             <% if(totalFrete > 0) { %>
-                                <p><%= totalFrete %></p>
+                                <p>R$ <%= totalFrete.toFixed(2) %></p>
                             <% } else { %>
                                 <p>à calcular</p>
                             <% } %>

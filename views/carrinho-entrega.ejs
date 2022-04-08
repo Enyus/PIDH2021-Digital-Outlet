@@ -81,24 +81,21 @@
                         <div class="container" id="modalidadeentrega">
                             <div class="expressa">
                                 <div>
-                                    <input type="radio" name="modalidadeEntrega" value="Expressa" id="expressa">
-                                    <label for="expressa">Expressa<br>Em até 4 dias úteis</label>
+                                    <input type="radio" name="modalidadeEntrega" value="expressa" id="expressa">
+                                    <label for="expressa">Expressa Em até 4 dias úteis</label>
                                 </div>
-                                <p>R$ 30,00</p>
                             </div>
                             <div class="padrao">
                                 <div>
                                     <input type="radio" name="modalidadeEntrega" value="padrao" id="padrao">
-                                    <label for="padrao">Padrão<br>Em até 10 dias úteis</label>
+                                    <label for="padrao">Padrão Em até 10 dias úteis</label>
                                 </div>
-                                <p>Grátis</p>
                             </div>
                             <div class="retirar">
                                 <div>
                                     <input type="radio" name="modalidadeEntrega" value="retirar" id="retirar">
-                                    <label for="retirar">Retirar na loja<br>Em até 2 dias úteis</label>
+                                    <label for="retirar">Retirar na loja Em até 2 dias úteis</label>
                                 </div>
-                                <p>Grátis</p>
                             </div>
                         </div>
                     </div>
@@ -146,11 +143,11 @@
                         <p>Taxa de entrega</p>
                         <% let totalFrete = 0 %>
                         <% carrinho.produtos.forEach(item => { %>
-                            <% totalFrete += item.frete %>
+                            <% totalFrete += parseFloat(item.frete) %>
                         <% }) %>
 
                         <% if(totalFrete > 0) { %>
-                            <p><%= totalFrete %></p>
+                            <p>R$ <%= totalFrete.toFixed(2) %></p>
                         <% } else { %>
                             <p>à calcular</p>
                         <% } %>

@@ -2,16 +2,17 @@ const db = require('../models');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const bcrypt = require('bcrypt');
+const { calcularPrecoPrazo } = require('correios-brasil');
 const { produto } = require('./IndexController');
 
 module.exports = {
     index: async (req, res, next) => {
         let carrinho = req.session.carrinho;
         // console.log(carrinho)
-        
+
         const listaIDs = [];
-        carrinho.produtos.forEach( element => {listaIDs.push(element.idProduto)});
-        let carrinhoDB=[];
+        carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
+        let carrinhoDB = [];
 
         try {
 
@@ -25,17 +26,21 @@ module.exports = {
                     },
                     attributes: ['idProduto', 'nomeProduto', 'idLoja', 'preco', 'promocao'],
                     include: [
-                        { model: db.Fotos,
-                        attributes: ['urlFoto'] },
-                        { model: db.DescTec,
-                        attributes: ['nomeDescTec', 'valor'] }
+                        {
+                            model: db.Fotos,
+                            attributes: ['urlFoto']
+                        },
+                        {
+                            model: db.DescTec,
+                            attributes: ['nomeDescTec', 'valor']
+                        }
                     ],
-                    order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+                    order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
                 });
                 // console.log(carrinhoDB);
                 // console.log(carrinho);
                 // console.log(carrinho.findIndex( element => element.idProduto == carrinhoDB[0].idProduto));
-                
+
                 /* carrinhoDB retorna:
                     [
                         {
@@ -62,77 +67,78 @@ module.exports = {
                     ]
                 */
 
-               res.render('carrinho-sacola', {title: "Sacola", carrinho, carrinhoDB});
+                res.render('carrinho-sacola', { title: "Sacola", carrinho, carrinhoDB });
 
             } else {
-                
-                res.render('carrinho-sacola', {title: "Sacola", carrinho, carrinhoDB});
+
+                res.render('carrinho-sacola', { title: "Sacola", carrinho, carrinhoDB });
 
             }
 
-        } catch(error) {
+        } catch (error) {
 
             console.log(error);
-            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+            return res.status(400).render('error', { title: 'Falha', error, message: "Ih deu erro" });
 
         };
     },
 
     addCart: (req, res, next) => {
-        const {idProduto, source} = req.body
+        const { idProduto, source, frete } = req.body
+        // console.log(frete);
 
-        let index = req.session.carrinho.produtos.findIndex( element => element.idProduto == idProduto)
+        let index = req.session.carrinho.produtos.findIndex(element => element.idProduto == idProduto)
 
-        if ( index == -1) {
+        if (index == -1) {
             req.session.carrinho.produtos.push(
                 {
-                  idProduto: idProduto,
-                  quantidade: 1,
-                  frete: 0 //ainda precisa implementar
+                    idProduto: idProduto,
+                    quantidade: 1,
+                    frete: frete
                 }
             );
         } else {
             req.session.carrinho.produtos[index].quantidade += 1;
         };
-        
+        // console.log(req.session.carrinho);
         res.redirect(`${source}`);
     },
 
     removeCart: (req, res, next) => {
-        const {idProduto, source} = req.body
+        const { idProduto, source } = req.body
 
-        let index = req.session.carrinho.produtos.findIndex( element => element.idProduto == idProduto);
+        let index = req.session.carrinho.produtos.findIndex(element => element.idProduto == idProduto);
 
-        if ( req.session.carrinho.produtos[index].quantidade > 1) {
+        if (req.session.carrinho.produtos[index].quantidade > 1) {
             req.session.carrinho.produtos[index].quantidade -= 1;
         } else {
-            req.session.carrinho.produtos.splice(index,1);
+            req.session.carrinho.produtos.splice(index, 1);
         };
-        
+
         res.redirect(`${source}`);
     },
 
     removeCartItem: (req, res, next) => {
-        const {idProduto, source} = req.body
+        const { idProduto, source } = req.body
 
-        let index = req.session.carrinho.produtos.findIndex( element => element.idProduto == idProduto);
+        let index = req.session.carrinho.produtos.findIndex(element => element.idProduto == idProduto);
 
-        req.session.carrinho.produtos.splice(index,1);
-        
+        req.session.carrinho.produtos.splice(index, 1);
+
         res.redirect(`${source}`);
     },
 
     comprar: (req, res, next) => {
-        const {idProduto} = req.body
+        const { idProduto, frete } = req.body
 
-        let index = req.session.carrinho.produtos.findIndex( element => element.idProduto == idProduto)
+        let index = req.session.carrinho.produtos.findIndex(element => element.idProduto == idProduto)
 
-        if ( index == -1) {
+        if (index == -1) {
             req.session.carrinho.produtos.push(
                 {
-                  idProduto: idProduto,
-                  quantidade: 1,
-                  frete: 0 //ainda precisa implementar
+                    idProduto: idProduto,
+                    quantidade: 1,
+                    frete: frete
                 }
             );
         } else {
@@ -144,13 +150,13 @@ module.exports = {
 
     identicacao: async (req, res, next) => {
         let carrinho = req.session.carrinho;
-        
+
         const listaIDs = [];
-        carrinho.produtos.forEach( element => {listaIDs.push(element.idProduto)});
-        let carrinhoDB=[];
+        carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
+        let carrinhoDB = [];
 
         try {
-            
+
             carrinhoDB = await db.Produtos.findAll({
                 where: {
                     idProduto: {
@@ -159,20 +165,24 @@ module.exports = {
                 },
                 attributes: ['idProduto', 'nomeProduto', 'idLoja', 'preco', 'promocao'],
                 include: [
-                    { model: db.Fotos,
-                    attributes: ['urlFoto'] },
-                    { model: db.DescTec,
-                    attributes: ['nomeDescTec', 'valor'] }
+                    {
+                        model: db.Fotos,
+                        attributes: ['urlFoto']
+                    },
+                    {
+                        model: db.DescTec,
+                        attributes: ['nomeDescTec', 'valor']
+                    }
                 ],
-                order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+                order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
             });
 
-           res.render('carrinho-identificacao', {title: "Identificação", carrinho, carrinhoDB});
+            res.render('carrinho-identificacao', { title: "Identificação", carrinho, carrinhoDB });
 
-        } catch(error) {
+        } catch (error) {
 
             console.log(error);
-            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+            return res.status(400).render('error', { title: 'Falha', error, message: "Ih deu erro" });
 
         };
     },
@@ -189,10 +199,10 @@ module.exports = {
 
         let carrinho = req.session.carrinho;
         // console.log(req.session.carrinho);
-        
+
         const listaIDs = [];
-        carrinho.produtos.forEach( element => {listaIDs.push(element.idProduto)});
-        let carrinhoDB=[];
+        carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
+        let carrinhoDB = [];
 
         try {
 
@@ -204,32 +214,36 @@ module.exports = {
                 },
                 attributes: ['idProduto', 'nomeProduto', 'idLoja', 'preco', 'promocao'],
                 include: [
-                    { model: db.Fotos,
-                    attributes: ['urlFoto'] },
-                    { model: db.DescTec,
-                    attributes: ['nomeDescTec', 'valor'] }
+                    {
+                        model: db.Fotos,
+                        attributes: ['urlFoto']
+                    },
+                    {
+                        model: db.DescTec,
+                        attributes: ['nomeDescTec', 'valor']
+                    }
                 ],
-                order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+                order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
             });
 
             usuarioDB = await db.Usuarios.findOne({
-                where: {email: dadosPreenchidos.email},
-                include: {model: db.Enderecos}
+                where: { email: dadosPreenchidos.email },
+                include: { model: db.Enderecos }
             });
             // console.log(usuarioDB.Enderecos);
 
-            res.render('carrinho-entrega', {title: "Entrega", carrinhoDB, usuarioDB })
+            res.render('carrinho-entrega', { title: "Entrega", carrinhoDB, usuarioDB })
 
         } catch {
 
             console.log(error);
-            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+            return res.status(400).render('error', { title: 'Falha', error, message: "Ih deu erro" });
 
         }
     },
 
     pagamento: async (req, res, next) => {
-        const {cep, logradouro, numero, complemento, cidade, estado, modalidadeEntrega} = req.body;
+        const { cep, logradouro, numero, complemento, cidade, estado, modalidadeEntrega } = req.body;
         req.session.carrinho.entrega = {
             cep,
             logradouro,
@@ -244,8 +258,23 @@ module.exports = {
         // console.log(carrinho);
 
         const listaIDs = [];
-        carrinho.produtos.forEach( element => {listaIDs.push(element.idProduto)});
-        let carrinhoDB=[];
+        carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
+        let carrinhoDB = [];
+
+        switch (modalidadeEntrega) {
+            case 'expressa':
+                codigoModalidadeEntrega = '04014';
+                break;
+            case 'padrao':
+                codigoModalidadeEntrega = '04510';
+                break;
+            case 'retirar':
+                codigoModalidadeEntrega = '0';
+                break;
+            default:
+                codigoModalidadeEntrega = '04510';
+                break;
+        }
 
         try {
 
@@ -257,33 +286,61 @@ module.exports = {
                 },
                 attributes: ['idProduto', 'nomeProduto', 'idLoja', 'preco', 'promocao'],
                 include: [
-                    { model: db.Fotos,
-                    attributes: ['urlFoto'] },
-                    { model: db.DescTec,
-                    attributes: ['nomeDescTec', 'valor'] }
+                    {
+                        model: db.Fotos,
+                        attributes: ['urlFoto']
+                    },
+                    {
+                        model: db.DescTec,
+                        attributes: ['nomeDescTec', 'valor']
+                    },
+                    {
+                        model: db.Lojas,
+                        attributes: ['cep']
+                    }
                 ],
-                order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+                order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
             });
 
+            for await (item of carrinhoDB) {
+                if (codigoModalidadeEntrega != 0) {
+                    let args = {
+                        sCepOrigem: item.Loja.cep,
+                        sCepDestino: cep,
+                        nVlPeso: '1',
+                        nCdFormato: '1',
+                        nVlComprimento: '20',
+                        nVlAltura: '20',
+                        nVlLargura: '20',
+                        nCdServico: [codigoModalidadeEntrega],
+                        nVlDiametro: '0',
+                    };
+                    let response = await calcularPrecoPrazo(args);
+                    req.session.carrinho.produtos[req.session.carrinho.produtos.findIndex(element => element.idProduto == item.idProduto)].frete = parseFloat(response[0].Valor.replace(',', '.'))
+                } else {
+                    req.session.carrinho.produtos[req.session.carrinho.produtos.findIndex(element => element.idProduto == item.idProduto)].frete = 0
+                }
+            }
 
-            res.render('carrinho-pagamento', {title: "Pagamento", carrinhoDB, carrinho })
+
+            res.render('carrinho-pagamento', { title: "Pagamento", carrinhoDB, carrinho })
 
         } catch {
 
             console.log(error);
-            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+            return res.status(400).render('error', { title: 'Falha', error, message: "Ih deu erro" });
 
         }
     },
 
     finalizarPedido: async (req, res) => {
-        const {formapagamento, numerocartao, parcelamento, nomecartao, validadecartao, anovalidade, codseguranca, cpftitularcartao} = req.body;
+        const { formapagamento, numerocartao, parcelamento, nomecartao, validadecartao, anovalidade, codseguranca, cpftitularcartao } = req.body;
 
         let carrinho = req.session.carrinho;
 
         const listaIDs = [];
-        carrinho.produtos.forEach( element => {listaIDs.push(element.idProduto)});
-        let carrinhoDB=[];
+        carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
+        let carrinhoDB = [];
 
         try {
 
@@ -294,10 +351,10 @@ module.exports = {
                     }
                 },
                 attributes: ['idProduto', 'idLoja', 'preco', 'promocao'],
-                order: Sequelize.literal( `FIELD(Produtos.idProduto, ${listaIDs})`)
+                order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
             });
 
-            buscarUsuario = await db.Usuarios.findOne({where: {email: carrinho.destinatario.email}});
+            buscarUsuario = await db.Usuarios.findOne({ where: { email: carrinho.destinatario.email } });
 
             // Criando um usuário temporário para criar o pedido na tabela de pedidos:
             if (buscarUsuario == null) {
@@ -308,9 +365,9 @@ module.exports = {
                         email: carrinho.destinatario.email,
                         nome: carrinho.destinatario.nome,
                         sobrenome: carrinho.destinatario.sobrenome,
-                        dataNasc: new Date(2000,0,1),
+                        dataNasc: new Date(2000, 0, 1),
                         cpf: carrinho.destinatario.cpf,
-                        senha:hash
+                        senha: hash
                     }
                 );
 
@@ -352,8 +409,8 @@ module.exports = {
 
             // Criando o pedido no banco de dados:
             let listaLojas = [];
-            carrinhoDB.forEach(produto=>{
-                if(!listaLojas.includes(produto.idLoja)) {
+            carrinhoDB.forEach(produto => {
+                if (!listaLojas.includes(produto.idLoja)) {
                     listaLojas.push(produto.idLoja);
                 }
             })
@@ -366,10 +423,10 @@ module.exports = {
                     // console.log((produto.preco * (100-produto.promocao)/100) + carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == produto.idProduto)].frete)
                     if (produto.idLoja == loja) {
                         // console.log(totalPedido[loja])
-                        if(totalPedido[loja] == undefined) {
-                            totalPedido[loja] = (produto.preco * (100-produto.promocao)/100) + carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == produto.idProduto)].frete;
+                        if (totalPedido[loja] == undefined) {
+                            totalPedido[loja] = (produto.preco * (100 - produto.promocao) / 100) + parseFloat(carrinho.produtos[carrinho.produtos.findIndex(element => element.idProduto == produto.idProduto)].frete);
                         } else {
-                            totalPedido[loja] += (produto.preco * (100-produto.promocao)/100) + carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == produto.idProduto)].frete;
+                            totalPedido[loja] += (produto.preco * (100 - produto.promocao) / 100) + parseFloat(carrinho.produtos[carrinho.produtos.findIndex(element => element.idProduto == produto.idProduto)].frete);
                         }
                         // console.log(totalPedido[loja])
                     }
@@ -377,7 +434,7 @@ module.exports = {
             })
             // console.log(totalPedido)
 
-            let pedidosCriados =[]
+            let pedidosCriados = []
 
             for await (let loja of listaLojas) {
                 pedidosCriados[loja] = await db.Pedidos.create(
@@ -387,7 +444,7 @@ module.exports = {
                         dataPedido: new Date(),
                         valor: totalPedido[loja]
                     });
-                
+
                 await db.StatusPedido.create({
                     idPedido: pedidosCriados[loja].idPedido
                 })
@@ -403,8 +460,8 @@ module.exports = {
                         idProduto: produto.idProduto,
                         idPedido: pedidosCriados[loja].idPedido,
                         quantidade: produto.quantidade,
-                        preco: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto==produto.idProduto)].preco,
-                        desconto: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto==produto.idProduto)].promocao,
+                        preco: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].preco,
+                        desconto: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].promocao,
                         frete: produto.frete
                     })
                 }
@@ -412,13 +469,61 @@ module.exports = {
 
             req.session.carrinho = undefined;
 
-            return res.render('checkout', {title: 'Checkout'});
+            return res.render('checkout', { title: 'Checkout' });
 
-        } catch(error) {
+        } catch (error) {
 
             console.log(error);
-            return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" });
+            return res.status(400).render('error', { title: 'Falha', error, message: "Ih deu erro" });
 
         };
+    },
+
+    previsaoFrete: async (req, res, next) => {
+        let { cep } = req.body;
+        let carrinho = req.session.carrinho;
+
+        const listaIDs = [];
+        carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
+        let carrinhoDB = [];
+
+        try {
+
+            carrinhoDB = await db.Produtos.findAll({
+                where: {
+                    idProduto: {
+                        [Op.in]: listaIDs
+                    }
+                },
+                attributes: ['idProduto', 'idLoja', 'preco', 'promocao'],
+                include: { model: db.Lojas },
+                order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
+            });
+            // console.log(carrinhoDB);
+
+            for await (item of carrinhoDB) {
+                let args = {
+                    sCepOrigem: item.Loja.cep,
+                    sCepDestino: cep,
+                    nVlPeso: '1',
+                    nCdFormato: '1',
+                    nVlComprimento: '20',
+                    nVlAltura: '20',
+                    nVlLargura: '20',
+                    nCdServico: ['04510'],
+                    nVlDiametro: '0',
+                };
+                let response = await calcularPrecoPrazo(args);
+                req.session.carrinho.produtos[req.session.carrinho.produtos.findIndex(element => element.idProduto == item.idProduto)].frete = parseFloat(response[0].Valor.replace(',', '.'))
+            }
+
+            return res.redirect(`/carrinho`);
+
+        } catch (error) {
+
+            console.log(error);
+            return res.status(400).render('error', { title: 'Falha', error, message: "Ih deu erro" });
+
+        }
     }
 }

@@ -280,12 +280,12 @@ left: -29px;
 .carrinho-entrega .entrega .modalidade-entrega .container div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 0;
+    margin: 5px 0;
 }
 .carrinho-entrega .entrega .modalidade-entrega input {
     height: 20px;
     width: 20px;
+    margin: 5px;
 }
 
 
@@ -299,7 +299,6 @@ left: -29px;
     margin: 0
 }
 .carrinho-entrega section.resumo table {
-    margin: 20px 0 60px 0;
     width: 100%;
     border: 1px solid black;
 }

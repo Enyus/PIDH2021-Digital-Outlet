@@ -9,7 +9,7 @@ module.exports = {
       complemento: 'apt 01',
       cidade: 'Birigui',
       estado: 'São Paulo',
-      cep: '16200000',
+      cep: '16200001',
       createdAt: new Date(),
       updatedAt: new Date()
     },

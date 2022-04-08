@@ -28,6 +28,7 @@ router.get('/resultadobusca', IndexController.resultadobusca)
 
 /*GET Página do Produto*/
 router.get('/produto/:idProduto', IndexController.produto)
+router.post('/apifrete', IndexController.apiFrete)
 
 /* Página do Login*/
 router.get('/login', userController.login);
@@ -50,6 +51,7 @@ router.post('/identificacaocliente', CompraController.identicacao);
 router.post('/dadosdestinatario', CompraController.entrega);
 router.post('/dadosentrega', CompraController.pagamento);
 router.post('/finalizarpedido', CompraController.finalizarPedido);
+router.post('/previsaofrete', CompraController.previsaoFrete);
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)

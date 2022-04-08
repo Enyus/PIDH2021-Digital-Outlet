@@ -121,7 +121,7 @@
                         </div>
                         
                         <div id="containercep">
-                            <form class="cep">
+                            <form class="cep" method="POST" action="/previsaofrete">
                                 <input class= "input-cep" type="text" name="cep" id="cep" placeholder="Insira seu CEP">
                                 <button class="ok-cep" id="submitcep" type="submit">OK</button>
                             </form>
@@ -138,15 +138,15 @@
                                 <p>R$ <%= subtotal.toFixed(2) %></p>
                             </div>
                             <div>
-                                <p>Taxa de entrega</p>
+                                <p>Previsão de Taxa de entrega:</p>
 
                                 <% let totalFrete = 0 %>
                                 <% carrinho.produtos.forEach(item => { %>
-                                    <% totalFrete += item.frete %>
+                                    <% totalFrete += parseFloat(item.frete) %>
                                 <% }) %>
 
                                 <% if(totalFrete > 0) { %>
-                                    <p id="totalfrete"><%= totalFrete %></p>
+                                    <p id="totalfrete">R$ <%= totalFrete.toFixed(2) %></p>
                                 <% } else { %>
                                     <p id="totalfrete">a calcular</p>
                                 <% } %>
