@@ -11,12 +11,16 @@ const storageFotoProduto = multer.diskStorage({
         const date = new Date(Date.now()).toISOString().slice("",10).replace(/-/gi,"");
         const hour = new Date(Date.now()).toLocaleTimeString().replace(/:/gi,"");
         
-        const uniqueSuffix = date + hour;
+        const qtd = req.files.length;
         
-        let qtd = req.files.length;
+        const uniqueSuffix = date + hour;
+        const extension = file.mimetype.slice(6);
+        cb(null, `${uniqueSuffix}-${nomeproduto.replace(/ /gi,"-").toLowerCase()}-${qtd}.${extension}`);
+    },
+    mimetype: function (req, file, cb) {
+        console.log(req.files)
+        cb('teste');
 
-        cb(null, `${uniqueSuffix}-${nomeproduto.replace(/ /gi,"-").toLowerCase()}-${qtd}.jpg`);
-        // cb(null, `${uniqueSuffix}-${file.fieldname}.jpg`);
     }
   });
   
