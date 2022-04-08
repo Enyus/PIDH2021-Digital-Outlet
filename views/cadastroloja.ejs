@@ -28,6 +28,10 @@
           <input type="text" id="cnpj" name="cnpj">
         </div>
         <div class="formrow">
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="cep">
+        </div>
+        <div class="formrow">
           <label for="logradouro">Logradouro:</label>
           <input type="text" id="logradouro" name="logradouro">
         </div>
@@ -48,10 +52,6 @@
           <input type="text" id="estado" name="estado">
         </div>
         <div class="formrow">
-          <label for="cep">CEP:</label>
-          <input type="text" id="cep" name="cep">
-        </div>
-        <div class="formrow">
           <label for="password">Senha:</label>
           <input type="password" id="password" name="senha">
         </div>
@@ -65,5 +65,6 @@
   </main>
 
   <script src="/scripts/validateLoja.js"></script>
+  <script src="/api/validaCep.js"></script>
 
 <%- include('./partials/footer') %>

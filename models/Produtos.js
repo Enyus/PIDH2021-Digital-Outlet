@@ -36,6 +36,7 @@ module.exports = (sequelize, DataType) => {
         promocao: {
             type: DataType.DECIMAL,
             allowNull: false,
+            defaultValue: 0,
             validate: {
                 isDecimal: {msg: "O desconto deve ser um número do tipo DECIMAL"}
             }

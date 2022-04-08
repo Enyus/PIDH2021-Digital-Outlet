@@ -14,10 +14,8 @@
     - Deletar Endereço do Usuário; => OK
     - Aidicionar Foto de Perfil do Usuário; => OK
     - Criar Loja; => OK
-    - Alterar Dados da Loja;
-    - Adicionar Endereço da Loja;
-    - Deletar Endereço da Loja;
-    - Adicionar Foto de Perfil da Loja;
+    - Alterar Dados da Loja; => OK
+    - Adicionar Foto de Perfil da Loja; => OK
     - Criar Produto;
     - Alterar Dados do Produto;
     - Deletar Produto;
@@ -87,7 +85,7 @@
 
 Anotações:
 - Precisa alterar o front para incluir complemento do endereço. => OK
-- Precisa conferir o front para verificar os forms
+- Precisa conferir o front para verificar os forms => OK
 - Alterar o Figma com Complemento e CEP como VARCHAR. => OK
 
 Para criar as tabelas com o migrate:
