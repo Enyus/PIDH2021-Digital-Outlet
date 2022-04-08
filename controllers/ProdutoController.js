@@ -58,8 +58,8 @@ module.exports = {
                     urlFoto: urlFoto
                 });
             });
-            // return res.redirect("/cadastroproduto");
-            return res.send(produtoCreate)
+            return res.redirect("/cadastroproduto");
+            
         } catch (error) {
             console.log(error);
         }
