@@ -29,7 +29,7 @@ module.exports = (sequelize, DataType) => {
 		},
 
 		inscEst: {
-			type: DataType.INTEGER(9),
+			type: DataType.STRING(9),
 			allowNull: false,
 			unique: true,
 			validate: {
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataType) => {
 		},
 
 		cnpj: {
-			type: DataType.BIGINT(14),
+			type: DataType.STRING(14),
 			allowNull: false,
 			unique: true,
 			validate: {
@@ -72,6 +72,11 @@ module.exports = (sequelize, DataType) => {
 			}
 		},
 
+		complemento: {
+            type: DataType.STRING,
+            allowNull: true,
+        },
+
 		cidade: {
 			type: DataType.STRING,
 			allowNull: false,
@@ -83,7 +88,7 @@ module.exports = (sequelize, DataType) => {
 		},
 
 		cep: {
-			type: DataType.INTEGER(8),
+			type: DataType.STRING(8),
 			allowNull: false,
 			validate: {
 				isInt: {msg: "O campo de CEP deve ser composto de oito caracteres numéricos"},
@@ -94,12 +99,19 @@ module.exports = (sequelize, DataType) => {
 			}
 		},
 
+		fotoPerfil: {
+			type: DataType.STRING,
+			allowNull: true,
+			defaultValue: null
+		},
+
 		createdAt: DataType.DATE,
 
 		updatedAt: DataType.DATE
 
 	},{
 	   tableName: 'Lojas',
+	   paranoid: true,
 	});
 
 	Lojas.associate = (models) => {

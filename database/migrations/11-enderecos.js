@@ -41,7 +41,7 @@ module.exports = {
                 allowNull: false,
             },
             cep: {
-                type: Sequelize.INTEGER(8),
+                type: Sequelize.STRING(8),
                 allowNull: false,
                 validate: {
                   isInt: {msg: "O campo de CEP deve ser composto de oito caracteres numéricos"},

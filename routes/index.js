@@ -4,7 +4,9 @@ const IndexController = require("../controllers/IndexController");
 const userController = require('../controllers/userController');
 const ProdutoController = require('../controllers/ProdutoController');
 const CompraController = require('../controllers/CompraController');
+const lojaController = require('../controllers/lojaController');
 var auth = require ('../middlewares/auth');
+var authLoja = require ('../middlewares/authLoja');
 const uploadFile = require('../middlewares/multerConfig');
 const uploadFotoPerfil = require('../middlewares/uploadFotoPerfil')
 const uploadFotoProduto = require('../middlewares/uploadFotoProduto')
@@ -32,6 +34,7 @@ router.get('/produto/:idProduto', IndexController.produto)
 router.get('/login', userController.login);
 router.post('/login', userController.logarUsuario);
 router.get('/logout', userController.logout);
+router.get('/logoutLoja', lojaController.logout);
 
 /*GET Página do Cadastro de Usuário*/
 router.get('/cadastro', userController.cadastro);
@@ -61,8 +64,16 @@ router.delete('/deleteEndereco/:idEndereco', auth, userController.excluirEnderec
 router.delete('/deletarCliente/:idUsuario', auth, userController.excluirCliente);
 
 /*GET Página do Lojista*/
-router.get('/loja', IndexController.paginaloja);
-router.get('/cadastroloja', userController.cadastroLoja);
-router.post('/cadastroloja', userController.cadastrarLoja);
+router.get('/loja', authLoja, lojaController.paginaloja);
+router.get('/cadastroloja', lojaController.cadastroLoja);
+router.post('/cadastrarloja', lojaController.cadastrarLoja);
+router.put('/alterarloja', authLoja, lojaController.alterarLoja);
+router.put('/adicionaPerfilLoja', authLoja, uploadFotoPerfil.single('perfil'), lojaController.adicionarProfilePic);
+router.delete('/deletarLoja/:idLoja', authLoja, lojaController.excluirLoja);
+router.post('/adicionaradministrador', authLoja, lojaController.addAdmin);
+router.delete('/deletaAdministrador/:idUsuario', authLoja, lojaController.deleteAdmin);
+router.put('/processarpedido/:idPedido', authLoja, lojaController.processarPedido);
+router.put('/transportarpedido/:idPedido', authLoja, lojaController.transportarPedido);
+router.put('/confirmarentrega/:idPedido', authLoja, lojaController.confirmarEntrega);
 
 module.exports = router;
