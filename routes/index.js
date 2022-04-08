@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 const IndexController = require("../controllers/IndexController");
 const userController = require('../controllers/userController');
+const ProdutoController = require('../controllers/ProdutoController');
 const CompraController = require('../controllers/CompraController');
 const lojaController = require('../controllers/lojaController');
 var auth = require ('../middlewares/auth');
 var authLoja = require ('../middlewares/authLoja');
 const uploadFile = require('../middlewares/multerConfig');
 const uploadFotoPerfil = require('../middlewares/uploadFotoPerfil')
+const uploadFotoProduto = require('../middlewares/uploadFotoProduto')
 
 /* GET home page. */
 router.get('/', IndexController.index);
@@ -50,7 +52,8 @@ router.get('/trabalheconosco', IndexController.trabalheconosco)
 router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.cadastrarCurriculo)
 
 /*GET Página do Cadastro de Produto*/
-router.get('/cadastroproduto', IndexController.cadastroproduto)
+router.get('/cadastroproduto', IndexController.cadastroproduto);
+router.post('/cadastroproduto', authLoja, uploadFotoProduto.array('gallery', 6), ProdutoController.create);
 
 /*GET Página do Cliente*/
 router.get('/cliente', auth, userController.paginacliente);

@@ -47,7 +47,7 @@ module.exports = {
         createdAt: new Date("2022-02-28T18:14:00"),
         updatedAt: new Date("2022-02-28T18:14:00")
       },
-      // idPedidosProdutos=4
+      // idPedidosProdutos=5
       {
         idProduto: 9,
         idPedido: 3,
@@ -58,7 +58,7 @@ module.exports = {
         createdAt: new Date("2022-02-28T18:14:00"),
         updatedAt: new Date("2022-02-28T18:14:00")
       },
-      // idPedidosProdutos=5
+      // idPedidosProdutos=6
       {
         idProduto: 13,
         idPedido: 3,
@@ -69,7 +69,7 @@ module.exports = {
         createdAt: new Date("2022-02-28T18:14:00"),
         updatedAt: new Date("2022-02-28T18:14:00")
       },
-      // idPedidosProdutos=6
+      // idPedidosProdutos=7
       {
         idProduto: 1,
         idPedido: 4,
