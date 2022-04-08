@@ -4,9 +4,9 @@ const Op = Sequelize.Op
 const bcrypt = require('bcrypt');
 
 const logarCookie = async (req, res, next) => {
-    console.log(req.cookies.idUsuario);
+    // console.log(req.cookies.idUsuario);
     idCookie = req.cookies.idUsuario;
-    console.log(idCookie);
+    // console.log(idCookie);
     if (idCookie != null && idCookie != 'undefined' && req.session.usuario == undefined) {
         const user = await db.Usuarios.findByPk(idCookie);
         req.session.usuario = {
