@@ -115,19 +115,11 @@ inputNomeProduto.onkeydown = (e) => {
     checkValidation();
 }
 
-<<<<<<< HEAD
 function selectMarcaCategoria(select, str) {
     if (select.value == "") {
         select.style.borderColor = "red";
         if (!erros.includes(str)) {
             erros.push(str);
-=======
-inputMarca.onblur = (e) => {
-    if (inputMarca.value.length < 2) {
-        inputMarca.style.borderColor = "red";
-        if (!erros.includes("Marca")) {
-            erros.push("Marca");
->>>>>>> 7e6a83c4bba3c78deca6b60d10def47a0ca3d159
         };
     } else {
         select.style.borderColor = "green";
@@ -161,27 +153,12 @@ inputPreco.onkeydown = (e) => {
     checkValidation();
 }
 
-<<<<<<< HEAD
 selectCategoria.onclick = (e) => {
     selectMarcaCategoria(selectCategoria, "Categoria");
     checkValidation();
 }
 selectCategoria.onblur = (e) => {
     selectMarcaCategoria(selectCategoria, "Categoria");
-=======
-inputCategoria.onblur = (e) => {
-    if (inputCategoria.value.length < 1) {
-        inputCategoria.style.borderColor = "red";
-        if (!erros.includes("Categoria")) {
-            erros.push("Categoria");
-        };
-    } else {
-        inputCategoria.style.borderColor = "green";
-        if (erros.includes("Categoria")) {
-            erros.splice(erros.indexOf("Categoria"), 1);
-        };
-    }
->>>>>>> 7e6a83c4bba3c78deca6b60d10def47a0ca3d159
     checkValidation();
 }
 
