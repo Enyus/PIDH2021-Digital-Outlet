@@ -342,6 +342,11 @@ module.exports = {
         carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
         let carrinhoDB = [];
 
+        message = {
+            destinatario: carrinho.destinatario.nome + ' ' + carrinho.destinatario.sobrenome,
+            enderecoEntrega: carrinho.entrega.logradouro + ', número ' + carrinho.entrega.numero + ', ' + carrinho.entrega.complemento + ', ' + carrinho.entrega.cidade + '/' + carrinho.entrega.estado + ', CEP ' + carrinho.entrega.cep
+        };
+
         try {
 
             carrinhoDB = await db.Produtos.findAll({
@@ -357,6 +362,7 @@ module.exports = {
             buscarUsuario = await db.Usuarios.findOne({ where: { email: carrinho.destinatario.email } });
 
             // Criando um usuário temporário para criar o pedido na tabela de pedidos:
+            
             if (buscarUsuario == null) {
                 const senha = `${carrinho.destinatario.nome}123`
                 const hash = bcrypt.hashSync(senha, 10);
@@ -383,6 +389,10 @@ module.exports = {
                     cep: carrinho.entrega.cep,
                 });
 
+                message.novoUsuario = 1;
+                message.email = carrinho.destinatario.email;
+                message.senha = senha;
+
             } else {
                 idUsuario = buscarUsuario.idUsuario;
                 enderecoDB = db.Enderecos.findOne({
@@ -405,6 +415,8 @@ module.exports = {
                         cep: carrinho.entrega.cep,
                     });
                 }
+
+                message.novoUsuario = 0;
             };
 
             // Criando o pedido no banco de dados:
@@ -470,11 +482,11 @@ module.exports = {
                     }
                 }
             }
-            console.log(carrinho);
+            // console.log(carrinho);
             req.session.carrinho = undefined;
-            console.log(carrinho);
+            // console.log(carrinho);
 
-            return res.render('checkout', { title: 'Checkout' });
+            return res.render('checkout', { title: 'Checkout', message });
 
         } catch (error) {
 

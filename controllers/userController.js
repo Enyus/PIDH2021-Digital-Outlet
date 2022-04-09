@@ -70,7 +70,6 @@ module.exports = {
                     )
                 };
             };
-            // console.log(pedidos);
 
             const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
             // console.log(enderecos);

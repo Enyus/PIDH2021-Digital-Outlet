@@ -223,7 +223,7 @@ module.exports = {
     },
 
     trabalheconosco: (req, res, next) => {
-        res.render('trabalheconosco', { title: "Trabalhe Conosco!" })
+        res.render('trabalheconosco', { title: "Trabalhe Conosco!", message:'' })
     },
 
     cadastrarCurriculo: async (req, res, next) => {

@@ -2,356 +2,515 @@
 
   <main class="paginacliente">
     <section class="containergeral">
-        <h1 class="bemvindo">Seja Bem-Vindo, <%= usuario.nome %>!</h1>
-        <div class="containersecundario">
-            <div class="menu-cliente">
-                <a id="irparainicio">Início</a>
-                <a id="irparapedidos">Meus Pedidos</a>
-                <a id="irparadesejos">Lista de Desejos</a>
-                <a id="irparadados">Alterar Dados Cadastrais</a>
-                <a id="irparaenderecos">Endereços</a>
-                <a id="irparavale">Vale Compras</a>
-                <a href="/logout">Sair</a>
-            </div>
-            
-            <div class="containerterciario" id="inicio">
-
-              <div class="pedidosrecentes">
-                  <p><b>Seus Pedidos Recentes:</b></p>
-                  
-                  <% if (pedidos.length>0) { %>
-                    <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>" >
-                      <div class="container">
-                        <img src=<%= pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
-                        <h1><%= pedidos[0].produtos[0].nomeProduto %></h1>
-                        <div class="precos">
-                          <ul>
-                            <% if (pedidos[0].produtos[0].promocao > 0) { %>
-                              <li class="preco-antes"><%= pedidos[0].produtos[0].preco.toFixed(2) %></li>
-                              <li class="preco-agora">R$ <%= (pedidos[0].produtos[0].preco * (100-pedidos[0].produtos[0].promocao)/100).toFixed(2) %> </li>
-                              <li class="off"><%= pedidos[0].produtos[0].promocao %>% OFF</li>
-                            <% } else { %>
-                              <li class="preco-agora">R$ <%= pedidos[0].produtos[0].preco.toFixed(2) %> </li>
-                            <% } %>
-                          </ul>
-                        </div>
-                      </div>
-                    </a>
-  
-                    <a href="/produto/<%= pedidos[0].produtos[1].idProduto %>" >
-                      <div class="container">
-                        <img src=<%= pedidos[0].produtos[1].fotoProduto %> alt=<%= pedidos[0].produtos[1].nomeProduto %> >
-                        <h1><%= pedidos[0].produtos[1].nomeProduto %></h1>
-                        <div class="precos">
-                          <ul>
-                            <% if (pedidos[0].produtos[1].promocao > 0) { %>
-                              <li class="preco-antes"><%= pedidos[0].produtos[1].preco.toFixed(2) %></li>
-                              <li class="preco-agora">R$ <%= (pedidos[0].produtos[1].preco * (100-pedidos[0].produtos[1].promocao)/100).toFixed(2) %> </li>
-                              <li class="off"><%= pedidos[0].produtos[1].promocao %>% OFF</li>
-                            <% } else { %>
-                              <li class="preco-agora">R$ <%= pedidos[0].produtos[1].preco.toFixed(2) %> </li>
-                            <% } %>
-                          </ul>
-                        </div>
-                      </div>
-                    </a>
-                  <% } else { %>
-                    <p>Você ainda não realizou nenhum pedido.</p>
-                  <% } %>
-
-              </div>
-
-              <div class="buscasrecentes">
-                  <p><b>Suas Buscas Recentes:</b></p>
-
-                  <% if (buscasRecentes.length < 1 ) { %>
-                  <p>Você ainda não visitou nenhum produto enquanto logado.</p>
-                  <% } %>
-
-                  <% if (buscasRecentes.length > 0 ) { %>
-                    <a href="/produto/<%= buscasRecentes[0].idProduto %>" >
-                      <div class="container">
-                        <img src=<%= buscasRecentes[0].Fotos[0].urlFoto %> alt=<%= buscasRecentes[0].nomeProduto %> >
-                        <h1><%= buscasRecentes[0].nomeProduto %></h1>
-                        <div class="precos">
-                          <ul>
-                            <% if (buscasRecentes[0].promocao > 0) { %>
-                              <li class="preco-antes"><%= buscasRecentes[0].preco.toFixed(2) %></li>
-                              <li class="preco-agora">R$ <%= (buscasRecentes[0].preco * (100-buscasRecentes[0].promocao)/100).toFixed(2) %> </li>
-                              <li class="off"><%= buscasRecentes[0].promocao %>% OFF</li>
-                            <% } else { %>
-                              <li class="preco-agora">R$ <%= buscasRecentes[0].preco.toFixed(2) %> </li>
-                            <% } %>
-                          </ul>
-                        </div>
-                      </div>
-                    </a>
-                  <% } %>
-
-                  <% if (buscasRecentes.length > 1 ) { %>
-                    <a href="/produto/<%= buscasRecentes[1].idProduto %>" >
-                      <div class="container">
-                        <img src=<%= buscasRecentes[1].Fotos[0].urlFoto %> alt=<%= buscasRecentes[1].nomeProduto %> >
-                        <h1><%= buscasRecentes[1].nomeProduto %></h1>
-                        <div class="precos">
-                          <ul>
-                            <% if (buscasRecentes[1].promocao > 0) { %>
-                              <li class="preco-antes"><%= buscasRecentes[1].preco.toFixed(2) %></li>
-                              <li class="preco-agora">R$ <%= (buscasRecentes[1].preco * (100-buscasRecentes[1].promocao)/100).toFixed(2) %> </li>
-                              <li class="off"><%= buscasRecentes[1].promocao %>% OFF</li>
-                            <% } else { %>
-                              <li class="preco-agora">R$ <%= buscasRecentes[1].preco.toFixed(2) %> </li>
-                            <% } %>
-                          </ul>
-                        </div>
-                      </div>
-                    </a>
-                  <% }  %>
-                  
-
-              </div>
-
-            </div>
-            
-            <div class="containerterciario" id="pedidos">
-              <div class="pedidosrecentes">
-                <p><b>Seus Pedidos Recentes:</b></p>
-                <table>
-                  <tr>
-                    <th>Número</th>
-                    <th>Loja</th>
-                    <th>Quantidade</th>
-                    <th>Produto</th>
-                    <th>Valor Unitário</th>
-                    <th>Frete</th>
-                    <th>Total Produto (R$)</th>
-                    <th>Total Pedido (R$)</th>
-                    <th>Data Pedido</th>
-                    <th>Data Processamento</th>
-                    <th>Data Transporte</th>
-                    <th>Data Entrega</th>
-                  </tr>
-                  <% pedidos.forEach (pedido => { %>
-                    <% pedido.produtos.forEach(produto => { %>
-                      <tr>
-                        <% if (pedido.produtos.length == 1) { %>
-                          <td><%=pedido.idPedido%></td>
-                        <% } else { %>
-                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
-                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.idPedido%></td>
-                          <% } %>
-                        <% } %>
-                        <% if (pedido.produtos.length == 1) { %>
-                          <td><%=pedido.loja%></td>
-                        <% } else { %>
-                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
-                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.loja%></td>
-                          <% } %>
-                        <% } %>
-                        <td><%=produto.quantidade%></td>
-                        <td><%=produto.nomeProduto%></td>
-                        <td><%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
-                        <td><%=produto.frete%></td>
-                        <td><%= (produto.quantidade * (produto.preco * (100-produto.desconto)/100)).toFixed(2) %></td>
-                        <td><%=pedido.valor.toFixed(2)%></td>
-                        <% if (pedido.produtos.length == 1) { %>
-                          <td><%=pedido.dataPedido%></td>
-                        <% } else { %>
-                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
-                            <td rowspan="<%=pedido.produtos.length%>"><%=pedido.dataPedido%></td>
-                          <% } %>
-                        <% } %>
-
-                        <% if (pedido.produtos.length == 1) { %>
-                          <% if (pedido.dataProcess != null) { %>
-                            <td><%= ((pedido.dataProcess.getDate() )) + "/" + ((pedido.dataProcess.getMonth() + 1)) + "/" + pedido.dataProcess.getFullYear() %></td>
-                          <% } else { %>
-                            <td>-</td>
-                          <% } %>
-                        <% } else { %>
-                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
-                            <% if (pedido.dataProcess != null) { %>
-                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataProcess.getDate() )) + "/" + ((pedido.dataProcess.getMonth() + 1)) + "/" + pedido.dataProcess.getFullYear() %></td>
-                            <% } else { %>
-                              <td rowspan="<%=pedido.produtos.length%>">-</td>
-                            <% } %>
-                          <% } %>
-                        <% } %>
-
-                        <% if (pedido.produtos.length == 1) { %>
-                          <% if (pedido.dataTransp != null) { %>
-                            <td><%= ((pedido.dataTransp.getDate() )) + "/" + ((pedido.dataTransp.getMonth() + 1)) + "/" + pedido.dataTransp.getFullYear() %></td>
-                          <% } else { %>
-                            <td>-</td>
-                          <% } %>
-                        <% } else { %>
-                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
-                            <% if (pedido.dataTransp != null) { %>
-                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataTransp.getDate() )) + "/" + ((pedido.dataTransp.getMonth() + 1)) + "/" + pedido.dataTransp.getFullYear() %></td>
-                            <% } else { %>
-                              <td rowspan="<%=pedido.produtos.length%>">-</td>
-                            <% } %>
-                          <% } %>
-                        <% } %>
-
-                        <% if (pedido.produtos.length == 1) { %>
-                          <% if (pedido.dataEntrega != null) { %>
-                            <td><%= ((pedido.dataEntrega.getDate() )) + "/" + ((pedido.dataEntrega.getMonth() + 1)) + "/" + pedido.dataEntrega.getFullYear() %></td>
-                          <% } else { %>
-                            <td>-</td>
-                          <% } %>
-                        <% } else { %>
-                          <% if (produto.idProduto == pedido.produtos[0].idProduto) { %>
-                            <% if (pedido.dataEntrega != null) { %>
-                              <td rowspan="<%=pedido.produtos.length%>"><%= ((pedido.dataEntrega.getDate() )) + "/" + ((pedido.dataEntrega.getMonth() + 1)) + "/" + pedido.dataEntrega.getFullYear() %></td>
-                            <% } else { %>
-                              <td rowspan="<%=pedido.produtos.length%>">-</td>
-                            <% } %>
-                          <% } %>
-                        <% } %>
-                      </tr>
-                    <% }) %>
-                  <% }) %>
-                </table>
-              </div>
-            </div>
-
-            <div class="containerterciario" id="desejos">
-              <p><b>Lista de Desejos Aqui</b></p>
-              <% if (buscasRecentes.length > 0 ) { %>
-                <div class="ofertasrow">
-                  <% buscasRecentes.forEach( buscaRecente => { %>
-                    <a href="/produto/<%= buscaRecente.idProduto %>" >
-                      <div class="container">
-                        <img src=<%= buscaRecente.Fotos[0].urlFoto %> alt=<%= buscaRecente.nomeProduto %> >
-                        <h1><%= buscaRecente.nomeProduto %></h1>
-                        <div class="precos">
-                          <ul>
-                            <% if (buscaRecente.promocao > 0) { %>
-                              <li class="preco-antes"><%= buscaRecente.preco.toFixed(2) %></li>
-                              <li class="preco-agora">R$ <%= (buscaRecente.preco * (100-buscaRecente.promocao)/100).toFixed(2) %> </li>
-                              <li class="off"><%= buscaRecente.promocao %>% OFF</li>
-                            <% } else { %>
-                              <li class="preco-agora">R$ <%= buscaRecente.preco.toFixed(2) %> </li>
-                            <% } %>
-                          </ul>
-                        </div>
-                      </div>
-                    </a>
-                  <% }) %>
-                </div>
-              <% } %>
-            </div>
-            
-            <div class="containerterciario" id="dados">
-
-              <p><b>Altere seus dados Cadastrais:</b></p>
-              <form action="/alterarcliente?_method=PUT" method="POST" class="cadastrousuario">
-                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
-                <div class="formrow">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" value=<%= usuario.email %>>
-                </div>
-                <div class="formrow">
-                  <label for="nome">Nome:</label>
-                  <input type="text" id="nome" name="nome" value=<%= usuario.nome %> >
-                </div>
-                <div class="formrow">
-                  <label for="sobrenome">Sobrenome:</label>
-                  <input type="text" id="sobrenome" name="sobrenome" value=<%= usuario.sobrenome %> >
-                </div>
-                <div class="formrow">
-                  <label for="dataNasc">Data de Nascimento:</label>
-                  <input type="date" id="dataNasc" name="dataNasc" value=<%= usuario.dataNasc %> >
-                </div>
-                <div class="formrow">
-                  <label for="cpf">CPF:</label>
-                  <input type="text" id="cpf" name="cpf" disabled value=<%= usuario.cpf %> >
-                </div>
-                <div class="formrow">
-                  <label for="password">Alterar Senha:</label>
-                  <input type="password" id="password" name="senha">
-                </div>
-                <div class="formrow">
-                  <label for="password">Confirma Nova Senha:</label>
-                  <input type="password" id="confirmapassword" name="confirmasenha">
-                </div>
-                <button type="submit" id="submit">Alterar Dados</button>
-              </form>
-
-              <p><b>Adicione/Altere sua Foto de Perfil:</b></p>
-              <form action="/adicionaPerfilCliente?_method=PUT" method="POST" class="fotoPerfil" enctype="multipart/form-data">
-                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
-                <button type="button" onclick="document.getElementById('fotoPerfil').click()">
-                  <% if (usuario.fotoPerfil != null) { %>
-                    <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" id="perfilUsuario">
-                  <% } else { %>
-                    <img src="/images/login.svg" class="fotoPerfil" id="perfilUsuario">
-                  <% } %>
-                </button>
-                <input type="file" id="fotoPerfil" accept=".png, .jpg" name="perfil" style="display: none;">
-                <button type="submit" id="submitPerfil">Alterar Dados</button>
-              </form>
-
-              <p><b>Deletar conta</b></p>
-              <form action="/deletarCliente/<%=usuario.idUsuario%>?_method=DELETE" method="POST" class="fotoPerfil">
-                <div>
-                  <input type="checkbox" name="confirmadeletausuario" value="confirma" id="confirmadeletausuario">
-                  <label for="confirmadeletausuario">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
-                </div>
-                <button type="submit" id="botaoDeletaUsuario">Deletar Conta</button>
-              </form>
-
-            </div>
-            
-            <div class="containerterciario" id="enderecos">
-              <p><b>Seus Endereços:</b></p>
-              <ul>
-                <% enderecos.forEach( endereco => { %>
-                  <li><%=endereco.logradouro%>, <%=endereco.numero%>, <%=endereco.complemento%>, <%=endereco.cidade%>/<%=endereco.estado%> - CEP: <%=endereco.cep%>
-                    <form action="/deleteEndereco/<%=endereco.idEndereco%>?_method=DELETE" method="POST">
-                      <button type="submit"><img src="/icon/carrinho-lixeira.png" alt="excluir"></button>
-                    </form>
-                  </li>
-                <% }) %>
-              </ul>
-              <p><b>Adicione Aqui um Endereço:</b></p>
-              <form action="/adicionarEnderecoCliente" method="POST" class="cadastrousuario">
-                <input type="number" name="idUsuario" hidden value=<%= usuario.idUsuario %>>
-                <div class="formrow">
-                  <label for="cep">CEP:</label>
-                  <input type="number" id="cep" name="cep">
-                </div>
-                <div class="formrow">
-                  <label for="logradouro">Logradouro:</label>
-                  <input type="text" id="logradouro" name="logradouro">
-                </div>
-                <div class="formrow">
-                  <label for="numero">Número:</label>
-                  <input type="number" id="numero" name="numero">
-                </div>
-                <div class="formrow">
-                  <label for="complemento">Complemento:</label>
-                  <input type="text" id="complemento" name="complemento">
-                </div>
-                <div class="formrow">
-                  <label for="cidade">Cidade:</label>
-                  <input type="text" id="cidade" name="cidade">
-                </div>
-                <div class="formrow">
-                  <label for="estado">Estado:</label>
-                  <input type="text" id="estado" name="estado">
-                </div>
-                <button type="submit" id="botaoCadastraEndereco">Cadastrar Novo Endereço</button>
-              </form>
-            </div>
-            
-            <div class="containerterciario" id="vale">
-              <p><b>Você não possui nenhum vale-presente no momento</b></p>
-            </div>
-            
-            </div>
+      <h1 class="bemvindo">Seja Bem-Vindo, <%= usuario.nome %>!</h1>
+      <div class="containersecundario">
+        <div class="menu-cliente">
+          <a id="irparainicio">Início</a>
+          <a id="irparapedidos">Meus Pedidos</a>
+          <a id="irparadesejos">Lista de Desejos</a>
+          <a id="irparadados">Alterar Dados Cadastrais</a>
+          <a id="irparaenderecos">Endereços</a>
+          <a id="irparavale">Vale Compras</a>
+          <a href="/logout">Sair</a>
         </div>
+
+        <div class="containerterciario" id="inicio">
+
+          <div class="pedidosrecentes">
+            <p><b>Seus Pedidos Recentes:</b></p>
+
+            <% if (pedidos.length==1) { %>
+              <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>">
+                <div class="container">
+                  <img src=<%=pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
+                    <h1>
+                      <%= pedidos[0].produtos[0].nomeProduto %>
+                    </h1>
+                    <div class="precos">
+                      <ul>
+                        <% if (pedidos[0].produtos[0].promocao> 0) { %>
+                          <li class="preco-antes">
+                            <%= pedidos[0].produtos[0].preco.toFixed(2) %>
+                          </li>
+                          <li class="preco-agora">R$ <%= (pedidos[0].produtos[0].preco *
+                              (100-pedidos[0].produtos[0].promocao)/100).toFixed(2) %>
+                          </li>
+                          <li class="off">
+                            <%= pedidos[0].produtos[0].promocao %>% OFF
+                          </li>
+                          <% } else { %>
+                            <li class="preco-agora">R$ <%= pedidos[0].produtos[0].preco.toFixed(2) %>
+                            </li>
+                            <% } %>
+                      </ul>
+                    </div>
+                </div>
+              </a>
+              <% } else if (pedidos.length> 1) { %>
+                <a href="/produto/<%= pedidos[0].produtos[0].idProduto %>">
+                  <div class="container">
+                    <img src=<%=pedidos[0].produtos[0].fotoProduto %> alt=<%= pedidos[0].produtos[0].nomeProduto %> >
+                      <h1>
+                        <%= pedidos[0].produtos[0].nomeProduto %>
+                      </h1>
+                      <div class="precos">
+                        <ul>
+                          <% if (pedidos[0].produtos[0].promocao> 0) { %>
+                            <li class="preco-antes">
+                              <%= pedidos[0].produtos[0].preco.toFixed(2) %>
+                            </li>
+                            <li class="preco-agora">R$ <%= (pedidos[0].produtos[0].preco *
+                                (100-pedidos[0].produtos[0].promocao)/100).toFixed(2) %>
+                            </li>
+                            <li class="off">
+                              <%= pedidos[0].produtos[0].promocao %>% OFF
+                            </li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= pedidos[0].produtos[0].preco.toFixed(2) %>
+                              </li>
+                              <% } %>
+                        </ul>
+                      </div>
+                  </div>
+                </a>
+
+                <a href="/produto/<%= pedidos[1].produtos[0].idProduto %>">
+                  <div class="container">
+                    <img src=<%=pedidos[1].produtos[0].fotoProduto %> alt=<%= pedidos[1].produtos[0].nomeProduto %> >
+                      <h1>
+                        <%= pedidos[1].produtos[0].nomeProduto %>
+                      </h1>
+                      <div class="precos">
+                        <ul>
+                          <% if (pedidos[1].produtos[0].promocao> 0) { %>
+                            <li class="preco-antes">
+                              <%= pedidos[1].produtos[0].preco.toFixed(2) %>
+                            </li>
+                            <li class="preco-agora">R$ <%= (pedidos[1].produtos[0].preco *
+                                (100-pedidos[1].produtos[0].promocao)/100).toFixed(2) %>
+                            </li>
+                            <li class="off">
+                              <%= pedidos[1].produtos[0].promocao %>% OFF
+                            </li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= pedidos[1].produtos[0].preco.toFixed(2) %>
+                              </li>
+                              <% } %>
+                        </ul>
+                      </div>
+                  </div>
+                </a>
+                <% } else { %>
+                  <p>Você ainda não realizou nenhum pedido.</p>
+                  <% } %>
+
+          </div>
+
+          <div class="buscasrecentes">
+            <p><b>Suas Buscas Recentes:</b></p>
+
+            <% if (buscasRecentes.length < 1 ) { %>
+              <p>Você ainda não visitou nenhum produto enquanto logado.</p>
+              <% } %>
+
+                <% if (buscasRecentes.length> 0 ) { %>
+                  <a href="/produto/<%= buscasRecentes[0].idProduto %>">
+                    <div class="container">
+                      <img src=<%=buscasRecentes[0].Fotos[0].urlFoto %> alt=<%= buscasRecentes[0].nomeProduto %> >
+                        <h1>
+                          <%= buscasRecentes[0].nomeProduto %>
+                        </h1>
+                        <div class="precos">
+                          <ul>
+                            <% if (buscasRecentes[0].promocao> 0) { %>
+                              <li class="preco-antes">
+                                <%= buscasRecentes[0].preco.toFixed(2) %>
+                              </li>
+                              <li class="preco-agora">R$ <%= (buscasRecentes[0].preco *
+                                  (100-buscasRecentes[0].promocao)/100).toFixed(2) %>
+                              </li>
+                              <li class="off">
+                                <%= buscasRecentes[0].promocao %>% OFF
+                              </li>
+                              <% } else { %>
+                                <li class="preco-agora">R$ <%= buscasRecentes[0].preco.toFixed(2) %>
+                                </li>
+                                <% } %>
+                          </ul>
+                        </div>
+                    </div>
+                  </a>
+                  <% } %>
+
+                    <% if (buscasRecentes.length> 1 ) { %>
+                      <a href="/produto/<%= buscasRecentes[1].idProduto %>">
+                        <div class="container">
+                          <img src=<%=buscasRecentes[1].Fotos[0].urlFoto %> alt=<%= buscasRecentes[1].nomeProduto %> >
+                            <h1>
+                              <%= buscasRecentes[1].nomeProduto %>
+                            </h1>
+                            <div class="precos">
+                              <ul>
+                                <% if (buscasRecentes[1].promocao> 0) { %>
+                                  <li class="preco-antes">
+                                    <%= buscasRecentes[1].preco.toFixed(2) %>
+                                  </li>
+                                  <li class="preco-agora">R$ <%= (buscasRecentes[1].preco *
+                                      (100-buscasRecentes[1].promocao)/100).toFixed(2) %>
+                                  </li>
+                                  <li class="off">
+                                    <%= buscasRecentes[1].promocao %>% OFF
+                                  </li>
+                                  <% } else { %>
+                                    <li class="preco-agora">R$ <%= buscasRecentes[1].preco.toFixed(2) %>
+                                    </li>
+                                    <% } %>
+                              </ul>
+                            </div>
+                        </div>
+                      </a>
+                      <% } %>
+
+
+          </div>
+
+        </div>
+
+        <div class="containerterciario" id="pedidos">
+          <div class="pedidosrecentes">
+            <p><b>Seus Pedidos Recentes:</b></p>
+            <table>
+              <tr>
+                <th>Número</th>
+                <th>Loja</th>
+                <th>Quantidade</th>
+                <th>Produto</th>
+                <th>Valor Unitário</th>
+                <th>Frete</th>
+                <th>Total Produto (R$)</th>
+                <th>Total Pedido (R$)</th>
+                <th>Data Pedido</th>
+                <th>Data Processamento</th>
+                <th>Data Transporte</th>
+                <th>Data Entrega</th>
+              </tr>
+              <% pedidos.forEach (pedido=> { %>
+                <% pedido.produtos.forEach(produto=> { %>
+                  <tr>
+                    <% if (pedido.produtos.length==1) { %>
+                      <td>
+                        <%=pedido.idPedido%>
+                      </td>
+                      <% } else { %>
+                        <% if (produto.idProduto==pedido.produtos[0].idProduto) { %>
+                          <td rowspan="<%=pedido.produtos.length%>">
+                            <%=pedido.idPedido%>
+                          </td>
+                          <% } %>
+                            <% } %>
+                              <% if (pedido.produtos.length==1) { %>
+                                <td>
+                                  <%=pedido.loja%>
+                                </td>
+                                <% } else { %>
+                                  <% if (produto.idProduto==pedido.produtos[0].idProduto) { %>
+                                    <td rowspan="<%=pedido.produtos.length%>">
+                                      <%=pedido.loja%>
+                                    </td>
+                                    <% } %>
+                                      <% } %>
+                                        <td>
+                                          <%=produto.quantidade%>
+                                        </td>
+                                        <td>
+                                          <%=produto.nomeProduto%>
+                                        </td>
+                                        <td>
+                                          <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %>
+                                        </td>
+                                        <td>
+                                          <%=produto.frete%>
+                                        </td>
+                                        <td>
+                                          <%= (produto.quantidade * (produto.preco *
+                                            (100-produto.desconto)/100)).toFixed(2) %>
+                                        </td>
+                                        <td>
+                                          <%=pedido.valor.toFixed(2)%>
+                                        </td>
+                                        <% if (pedido.produtos.length==1) { %>
+                                          <td>
+                                            <%=pedido.dataPedido%>
+                                          </td>
+                                          <% } else { %>
+                                            <% if (produto.idProduto==pedido.produtos[0].idProduto) { %>
+                                              <td rowspan="<%=pedido.produtos.length%>">
+                                                <%=pedido.dataPedido%>
+                                              </td>
+                                              <% } %>
+                                                <% } %>
+
+                                                  <% if (pedido.produtos.length==1) { %>
+                                                    <% if (pedido.dataProcess !=null) { %>
+                                                      <td>
+                                                        <%= ((pedido.dataProcess.getDate() )) + "/" +
+                                                          ((pedido.dataProcess.getMonth() + 1)) + "/" +
+                                                          pedido.dataProcess.getFullYear() %>
+                                                      </td>
+                                                      <% } else { %>
+                                                        <td>-</td>
+                                                        <% } %>
+                                                          <% } else { %>
+                                                            <% if (produto.idProduto==pedido.produtos[0].idProduto) { %>
+                                                              <% if (pedido.dataProcess !=null) { %>
+                                                                <td rowspan="<%=pedido.produtos.length%>">
+                                                                  <%= ((pedido.dataProcess.getDate() )) + "/" +
+                                                                    ((pedido.dataProcess.getMonth() + 1)) + "/" +
+                                                                    pedido.dataProcess.getFullYear() %>
+                                                                </td>
+                                                                <% } else { %>
+                                                                  <td rowspan="<%=pedido.produtos.length%>">-</td>
+                                                                  <% } %>
+                                                                    <% } %>
+                                                                      <% } %>
+
+                                                                        <% if (pedido.produtos.length==1) { %>
+                                                                          <% if (pedido.dataTransp !=null) { %>
+                                                                            <td>
+                                                                              <%= ((pedido.dataTransp.getDate() )) + "/"
+                                                                                + ((pedido.dataTransp.getMonth() + 1))
+                                                                                + "/" + pedido.dataTransp.getFullYear()
+                                                                                %>
+                                                                            </td>
+                                                                            <% } else { %>
+                                                                              <td>-</td>
+                                                                              <% } %>
+                                                                                <% } else { %>
+                                                                                  <% if
+                                                                                    (produto.idProduto==pedido.produtos[0].idProduto)
+                                                                                    { %>
+                                                                                    <% if (pedido.dataTransp !=null) {
+                                                                                      %>
+                                                                                      <td
+                                                                                        rowspan="<%=pedido.produtos.length%>">
+                                                                                        <%=
+                                                                                          ((pedido.dataTransp.getDate()
+                                                                                          )) + "/" +
+                                                                                          ((pedido.dataTransp.getMonth()
+                                                                                          + 1)) + "/" +
+                                                                                          pedido.dataTransp.getFullYear()
+                                                                                          %>
+                                                                                      </td>
+                                                                                      <% } else { %>
+                                                                                        <td
+                                                                                          rowspan="<%=pedido.produtos.length%>">
+                                                                                          -</td>
+                                                                                        <% } %>
+                                                                                          <% } %>
+                                                                                            <% } %>
+
+                                                                                              <% if
+                                                                                                (pedido.produtos.length==1)
+                                                                                                { %>
+                                                                                                <% if
+                                                                                                  (pedido.dataEntrega
+                                                                                                  !=null) { %>
+                                                                                                  <td>
+                                                                                                    <%=
+                                                                                                      ((pedido.dataEntrega.getDate()
+                                                                                                      )) + "/" +
+                                                                                                      ((pedido.dataEntrega.getMonth()
+                                                                                                      + 1)) + "/" +
+                                                                                                      pedido.dataEntrega.getFullYear()
+                                                                                                      %>
+                                                                                                  </td>
+                                                                                                  <% } else { %>
+                                                                                                    <td>-</td>
+                                                                                                    <% } %>
+                                                                                                      <% } else { %>
+                                                                                                        <% if
+                                                                                                          (produto.idProduto==pedido.produtos[0].idProduto)
+                                                                                                          { %>
+                                                                                                          <% if
+                                                                                                            (pedido.dataEntrega
+                                                                                                            !=null) { %>
+                                                                                                            <td
+                                                                                                              rowspan="<%=pedido.produtos.length%>">
+                                                                                                              <%=
+                                                                                                                ((pedido.dataEntrega.getDate()
+                                                                                                                )) + "/"
+                                                                                                                +
+                                                                                                                ((pedido.dataEntrega.getMonth()
+                                                                                                                + 1))
+                                                                                                                + "/" +
+                                                                                                                pedido.dataEntrega.getFullYear()
+                                                                                                                %>
+                                                                                                            </td>
+                                                                                                            <% } else {
+                                                                                                              %>
+                                                                                                              <td
+                                                                                                                rowspan="<%=pedido.produtos.length%>">
+                                                                                                                -</td>
+                                                                                                              <% } %>
+                                                                                                                <% } %>
+                                                                                                                  <% }
+                                                                                                                    %>
+                  </tr>
+                  <% }) %>
+                    <% }) %>
+            </table>
+          </div>
+        </div>
+
+        <div class="containerterciario" id="desejos">
+          <p><b>Lista de Desejos Aqui</b></p>
+          <% if (buscasRecentes.length> 0 ) { %>
+            <div class="ofertasrow">
+              <% buscasRecentes.forEach( buscaRecente=> { %>
+                <a href="/produto/<%= buscaRecente.idProduto %>">
+                  <div class="container">
+                    <img src=<%=buscaRecente.Fotos[0].urlFoto %> alt=<%= buscaRecente.nomeProduto %> >
+                      <h1>
+                        <%= buscaRecente.nomeProduto %>
+                      </h1>
+                      <div class="precos">
+                        <ul>
+                          <% if (buscaRecente.promocao> 0) { %>
+                            <li class="preco-antes">
+                              <%= buscaRecente.preco.toFixed(2) %>
+                            </li>
+                            <li class="preco-agora">R$ <%= (buscaRecente.preco *
+                                (100-buscaRecente.promocao)/100).toFixed(2) %>
+                            </li>
+                            <li class="off">
+                              <%= buscaRecente.promocao %>% OFF
+                            </li>
+                            <% } else { %>
+                              <li class="preco-agora">R$ <%= buscaRecente.preco.toFixed(2) %>
+                              </li>
+                              <% } %>
+                        </ul>
+                      </div>
+                  </div>
+                </a>
+                <% }) %>
+            </div>
+            <% } %>
+        </div>
+
+        <div class="containerterciario" id="dados">
+
+          <p><b>Altere seus dados Cadastrais:</b></p>
+          <form action="/alterarcliente?_method=PUT" method="POST" class="cadastrousuario">
+            <input type="number" name="idUsuario" hidden value=<%=usuario.idUsuario %>>
+            <div class="formrow">
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" value=<%=usuario.email %>>
+            </div>
+            <div class="formrow">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" name="nome" value=<%=usuario.nome %> >
+            </div>
+            <div class="formrow">
+              <label for="sobrenome">Sobrenome:</label>
+              <input type="text" id="sobrenome" name="sobrenome" value=<%=usuario.sobrenome %> >
+            </div>
+            <div class="formrow">
+              <label for="dataNasc">Data de Nascimento:</label>
+              <input type="date" id="dataNasc" name="dataNasc" value=<%=usuario.dataNasc %> >
+            </div>
+            <div class="formrow">
+              <label for="cpf">CPF:</label>
+              <input type="text" id="cpf" name="cpf" disabled value=<%=usuario.cpf %> >
+            </div>
+            <div class="formrow">
+              <label for="password">Alterar Senha:</label>
+              <input type="password" id="password" name="senha">
+            </div>
+            <div class="formrow">
+              <label for="password">Confirma Nova Senha:</label>
+              <input type="password" id="confirmapassword" name="confirmasenha">
+            </div>
+            <button type="submit" id="submit">Alterar Dados</button>
+          </form>
+
+          <p><b>Adicione/Altere sua Foto de Perfil:</b></p>
+          <form action="/adicionaPerfilCliente?_method=PUT" method="POST" class="fotoPerfil"
+            enctype="multipart/form-data">
+            <input type="number" name="idUsuario" hidden value=<%=usuario.idUsuario %>>
+            <button type="button" onclick="document.getElementById('fotoPerfil').click()">
+              <% if (usuario.fotoPerfil !=null) { %>
+                <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" id="perfilUsuario">
+                <% } else { %>
+                  <img src="/images/login.svg" class="fotoPerfil" id="perfilUsuario">
+                  <% } %>
+            </button>
+            <input type="file" id="fotoPerfil" accept=".png, .jpg" name="perfil" style="display: none;">
+            <button type="submit" id="submitPerfil">Alterar Dados</button>
+          </form>
+
+          <p><b>Deletar conta</b></p>
+          <form action="/deletarCliente/<%=usuario.idUsuario%>?_method=DELETE" method="POST" class="fotoPerfil">
+            <div>
+              <input type="checkbox" name="confirmadeletausuario" value="confirma" id="confirmadeletausuario">
+              <label for="confirmadeletausuario">Ao clicar aqui, você confirma que está ciente que a deleção de seu
+                usuário é irreversível</label>
+            </div>
+            <button type="submit" id="botaoDeletaUsuario">Deletar Conta</button>
+          </form>
+
+        </div>
+
+        <div class="containerterciario" id="enderecos">
+          <p><b>Seus Endereços:</b></p>
+          <ul>
+            <% enderecos.forEach( endereco=> { %>
+              <li>
+                <%=endereco.logradouro%>, <%=endereco.numero%>, <%=endereco.complemento%>, <%=endereco.cidade%>/
+                        <%=endereco.estado%> - CEP: <%=endereco.cep%>
+                            <form action="/deleteEndereco/<%=endereco.idEndereco%>?_method=DELETE" method="POST">
+                              <button type="submit"><img src="/icon/carrinho-lixeira.png" alt="excluir"></button>
+                            </form>
+              </li>
+              <% }) %>
+          </ul>
+          <p><b>Adicione Aqui um Endereço:</b></p>
+          <form action="/adicionarEnderecoCliente" method="POST" class="cadastrousuario">
+            <input type="number" name="idUsuario" hidden value=<%=usuario.idUsuario %>>
+            <div class="formrow">
+              <label for="cep">CEP:</label>
+              <input type="number" id="cep" name="cep">
+            </div>
+            <div class="formrow">
+              <label for="logradouro">Logradouro:</label>
+              <input type="text" id="logradouro" name="logradouro">
+            </div>
+            <div class="formrow">
+              <label for="numero">Número:</label>
+              <input type="number" id="numero" name="numero">
+            </div>
+            <div class="formrow">
+              <label for="complemento">Complemento:</label>
+              <input type="text" id="complemento" name="complemento">
+            </div>
+            <div class="formrow">
+              <label for="cidade">Cidade:</label>
+              <input type="text" id="cidade" name="cidade">
+            </div>
+            <div class="formrow">
+              <label for="estado">Estado:</label>
+              <input type="text" id="estado" name="estado">
+            </div>
+            <button type="submit" id="botaoCadastraEndereco">Cadastrar Novo Endereço</button>
+          </form>
+        </div>
+
+        <div class="containerterciario" id="vale">
+          <p><b>Você não possui nenhum vale-presente no momento</b></p>
+        </div>
+
+      </div>
+      </div>
     </section>
   </main>
 
@@ -359,4 +518,4 @@
   <script src="/scripts/validateCliente.js"></script>
   <script src="/api/validaCep.js"></script>
 
-<%- include('./partials/footer') %>
+  <%- include('./partials/footer') %>
