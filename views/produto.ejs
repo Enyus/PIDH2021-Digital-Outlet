@@ -41,7 +41,11 @@
                         <% if(produto.prazo != '') { %>
                             <p>Prazo de Entrega Previsto: <%=produto.prazo%> dias</p>
                         <% } %>
-                        <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100 + parseFloat(produto.frete)).toFixed(2) %> </p>
+                        <% if(produto.frete != '-') { %>
+                            <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100 + parseFloat(produto.frete)).toFixed(2) %> </p>
+                        <% } else { %>
+                            <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </p>
+                        <% } %>
                         <div class="compra">
                             <form action="/addcart" method="POST">
                                 <input type="number" hidden name="idProduto" value="<%=idProduto%>">
