@@ -1063,7 +1063,7 @@ main.paginaloja div.resumopedidos div.containerinfo p {
   justify-content: center;
 }
 
-#pedidos, #desejos, #dados, #enderecos, #vale, #listaprodutos  {
+#pedidos, #desejos, #dados, #enderecos, #vale, #resumo, #listaprodutos  {
   display: none;
 }
 

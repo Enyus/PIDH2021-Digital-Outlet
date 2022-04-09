@@ -272,4 +272,16 @@ module.exports = {
             return res.redirect(`/produto/${idProduto}?frete=${response[0].Valor.replace(',', '.')}&prazo=${response[0].PrazoEntrega}`);
         });
     }
+
+    cadastroproduto: async (req, res, next) => {
+        const marcadb = await db.Marcas.findAll();
+        const categoriadb = await db.Categorias.findAll();
+
+        res.render('cadastroproduto', {
+            title:"Cadastro de Produto",
+            usuario: req.session.usuario, //verificar se cliente ou loja
+            marcas: marcadb,
+            categorias: categoriadb
+        });
+    }
 };

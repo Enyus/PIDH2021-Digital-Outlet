@@ -208,10 +208,36 @@ module.exports = {
             console.log(usuarioCriado)
         } catch (error) {
             console.log(error)
-            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
         }
         return res.redirect('/')
 
+    },
+
+    //TODO: Testar login de usuario loja
+    cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
+
+    cadastrarLoja: async (req, res) => {
+        const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, cidade, estado, cep } = req.body;
+        try {
+            const hash = bcrypt.hashSync(senha, 10);
+            const lojaCriada = await db.Lojas.create({
+                email,
+                razaoSocial,
+                nomeFantasia,
+                inscEst,
+                cnpj,
+                senha: hash,
+                logradouro,
+                numero,
+                cidade,
+                estado,
+                cep,
+            })
+            console.log(lojaCriada);
+        } catch (error) {
+            console.log(error)
+        }
+        return res.redirect('/');
     },
 
     carrinho: (req, res) => res.render('carrinho-sacola', { title: "Carrinho!" }),
@@ -230,7 +256,6 @@ module.exports = {
             console.log(usuarioAlterado);
 
             req.session.usuario = undefined;
-            res.cookie('idUsuario', undefined);
             return res.redirect('/login');
 
         } catch (err) {
