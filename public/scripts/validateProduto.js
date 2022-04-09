@@ -1,7 +1,7 @@
 const inputNomeProduto = document.getElementById("nomeproduto");
-const inputMarca = document.getElementById("marca");
+const selectMarca = document.getElementById("marca");
 const inputPreco = document.getElementById("preco");
-const inputCategoria = document.getElementById("categoria");
+const selectCategoria = document.getElementById("categoria");
 const inputDescProduto = document.getElementById("descproduto");
 
 const divFoto = document.getElementById("fotoproduto");
@@ -47,6 +47,7 @@ const buttonSubmit = document.getElementById("submit");
 const erros = [];
 
 buttonSubmit.disabled = "true";
+buttonSubmit.setAttribute('style', "background-color: gray")
 
 function checkValidation () {
     if (inputImgUpload1.value == '' &&
@@ -57,6 +58,7 @@ function checkValidation () {
         inputImgUpload6.value == '') {
         divFoto.style.border = "solid red 1px";
         buttonSubmit.disabled = true;
+        buttonSubmit.setAttribute('style', "background-color: gray")
     } else {
         divFoto.style.border = "unset";
     };
@@ -65,24 +67,27 @@ function checkValidation () {
         (inputCatDesc2.value == '' || inputDescTec2.value == '' || inputCheckDesc2.checked == false) &&
         (inputCatDesc3.value == '' || inputDescTec3.value == '' || inputCheckDesc3.checked == false) &&
         (inputCatDesc4.value == '' || inputDescTec4.value == '' || inputCheckDesc4.checked == false) &&
-        (inputCatDesc5.value == '' || inputDescTec5.value == '' || inputCheckDesc5.vchecked == false) &&
+        (inputCatDesc5.value == '' || inputDescTec5.value == '' || inputCheckDesc5.checked == false) &&
         (inputCatDesc6.value == '' || inputDescTec6.value == '' || inputCheckDesc6.checked == false)) {
         divDescTec.style.border = "solid red 1px";
         buttonSubmit.disabled = true;
+        buttonSubmit.setAttribute('style', "background-color: gray")
     } else {
         divDescTec.style.border = "unset";
     };
 
     if (erros.length == 0 &&
         inputNomeProduto.value != '' &&
-        inputMarca.value != '' &&
-        inputCategoria.value != '' &&
+        selectMarca.selected != '' &&
+        selectCategoria.selected != '' &&
         inputDescProduto.value != '' &&
         inputCatDesc1.value != '' &&
         inputDescTec1.value != '') {
             buttonSubmit.disabled = false
+            buttonSubmit.removeAttribute('style')
     } else {
         buttonSubmit.disabled = true;
+        buttonSubmit.setAttribute('style', "background-color: gray")
     };
 };
 
@@ -95,7 +100,7 @@ function showPreview (event, i) {
     };
 };
 
-inputNomeProduto.onblur = (e) => {
+inputNomeProduto.onkeydown = (e) => {
     if (inputNomeProduto.value.length < 2) {
         inputNomeProduto.style.borderColor = "red";
         if (!erros.includes("Nome Produto")) {
@@ -110,22 +115,30 @@ inputNomeProduto.onblur = (e) => {
     checkValidation();
 }
 
-inputMarca.onblur = (e) => {
-    if (inputMarca.value.length < 2) {
-        inputMarca.style.borderColor = "red";
-        if (!erros.includes("Marca")) {
-            erros.push("Marca");
+function selectMarcaCategoria(select, str) {
+    if (select.value == "") {
+        select.style.borderColor = "red";
+        if (!erros.includes(str)) {
+            erros.push(str);
         };
     } else {
-        inputMarca.style.borderColor = "green";
-        if (erros.includes("Marca")) {
-            erros.splice(erros.indexOf("Marca"), 1);
+        select.style.borderColor = "green";
+        if (erros.includes(str)) {
+            erros.splice(erros.indexOf(str), 1);
         };
     }
+}
+
+selectMarca.onclick = (e) => {
+    selectMarcaCategoria(selectMarca, "Marca");
+    checkValidation();
+}
+selectMarca.onblur = (e) => {
+    selectMarcaCategoria(selectMarca, "Marca");
     checkValidation();
 }
 
-inputPreco.onblur = (e) => {
+inputPreco.onkeydown = (e) => {
     if (inputPreco.value.length < 1) {
         inputPreco.style.borderColor = "red";
         if (!erros.includes("Preço")) {
@@ -140,22 +153,16 @@ inputPreco.onblur = (e) => {
     checkValidation();
 }
 
-inputCategoria.onblur = (e) => {
-    if (inputCategoria.value.length < 1) {
-        inputCategoria.style.borderColor = "red";
-        if (!erros.includes("Categoria")) {
-            erros.push("Categoria");
-        };
-    } else {
-        inputCategoria.style.borderColor = "green";
-        if (erros.includes("Categoria")) {
-            erros.splice(erros.indexOf("Categoria"), 1);
-        };
-    }
+selectCategoria.onclick = (e) => {
+    selectMarcaCategoria(selectCategoria, "Categoria");
+    checkValidation();
+}
+selectCategoria.onblur = (e) => {
+    selectMarcaCategoria(selectCategoria, "Categoria");
     checkValidation();
 }
 
-inputDescProduto.onblur = (e) => {
+inputDescProduto.onkeyup = (e) => {
     if (inputDescProduto.value.length < 10) {
         inputDescProduto.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto")) {
@@ -264,7 +271,7 @@ inputImgUpload6.onchange = (e) => {
 
 // Validações das Descrições Técnicas
 
-inputCatDesc1.onblur = (e) => {
+inputCatDesc1.onkeyup = (e) => {
     if (inputCatDesc1.value.length == '') {
         inputCatDesc1.style.borderColor = "red";
         if (!erros.includes("Cat. Descrição do Produto 1")) {
@@ -280,7 +287,7 @@ inputCatDesc1.onblur = (e) => {
     checkValidation();
 };
 
-inputDescTec1.onblur = (e) => {
+inputDescTec1.onkeyup = (e) => {
     if (inputDescTec1.value.length == '') {
         inputDescTec1.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto 1")) {
@@ -296,7 +303,7 @@ inputDescTec1.onblur = (e) => {
     checkValidation();
 };
 
-inputCatDesc2.onblur = (e) => {
+inputCatDesc2.onkeyup = (e) => {
     if (inputCatDesc2.value.length == '') {
         inputCatDesc2.style.borderColor = "red";
         if (!erros.includes("Cat. Descrição do Produto 2")) {
@@ -312,7 +319,7 @@ inputCatDesc2.onblur = (e) => {
     checkValidation();
 };
 
-inputDescTec2.onblur = (e) => {
+inputDescTec2.onkeyup = (e) => {
     if (inputDescTec2.value.length == '') {
         inputDescTec2.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto 2")) {
@@ -328,7 +335,7 @@ inputDescTec2.onblur = (e) => {
     checkValidation();
 };
 
-inputCatDesc3.onblur = (e) => {
+inputCatDesc3.onkeyup = (e) => {
     if (inputCatDesc3.value.length == '') {
         inputCatDesc3.style.borderColor = "red";
         if (!erros.includes("Cat. Descrição do Produto 3")) {
@@ -344,7 +351,7 @@ inputCatDesc3.onblur = (e) => {
     checkValidation();
 };
 
-inputDescTec3.onblur = (e) => {
+inputDescTec3.onkeyup = (e) => {
     if (inputDescTec3.value.length == '') {
         inputDescTec3.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto 3")) {
@@ -360,7 +367,7 @@ inputDescTec3.onblur = (e) => {
     checkValidation();
 };
 
-inputCatDesc4.onblur = (e) => {
+inputCatDesc4.onkeyup = (e) => {
     if (inputCatDesc4.value.length == '') {
         inputCatDesc4.style.borderColor = "red";
         if (!erros.includes("Cat. Descrição do Produto 4")) {
@@ -376,7 +383,7 @@ inputCatDesc4.onblur = (e) => {
     checkValidation();
 };
 
-inputDescTec4.onblur = (e) => {
+inputDescTec4.onkeyup = (e) => {
     if (inputDescTec4.value.length == '') {
         inputDescTec4.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto 4")) {
@@ -392,7 +399,7 @@ inputDescTec4.onblur = (e) => {
     checkValidation();
 };
 
-inputCatDesc5.onblur = (e) => {
+inputCatDesc5.onkeyup = (e) => {
     if (inputCatDesc5.value.length == '') {
         inputCatDesc5.style.borderColor = "red";
         if (!erros.includes("Cat. Descrição do Produto 5")) {
@@ -408,7 +415,7 @@ inputCatDesc5.onblur = (e) => {
     checkValidation();
 };
 
-inputDescTec5.onblur = (e) => {
+inputDescTec5.onkeyup = (e) => {
     if (inputDescTec5.value.length == '') {
         inputDescTec5.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto 5")) {
@@ -424,7 +431,7 @@ inputDescTec5.onblur = (e) => {
     checkValidation();
 };
 
-inputCatDesc6.onblur = (e) => {
+inputCatDesc6.onkeyup = (e) => {
     if (inputCatDesc6.value.length == '') {
         inputCatDesc6.style.borderColor = "red";
         if (!erros.includes("Cat. Descrição do Produto 6")) {
@@ -440,7 +447,7 @@ inputCatDesc6.onblur = (e) => {
     checkValidation();
 };
 
-inputDescTec6.onblur = (e) => {
+inputDescTec6.onkeyup = (e) => {
     if (inputDescTec6.value.length == '') {
         inputDescTec6.style.borderColor = "red";
         if (!erros.includes("Descrição do Produto 6")) {

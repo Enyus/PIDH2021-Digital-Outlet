@@ -642,6 +642,30 @@ module.exports = {
       valor: 'Português',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idDescTec=80
+    {
+      idProduto: 18,
+      nomeDescTec: 'Tamanho',
+      valor: '41',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=81
+    {
+      idProduto: 18,
+      nomeDescTec: 'Estilo',
+      valor: 'Topzera',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=82
+    {
+      idProduto: 18,
+      nomeDescTec: 'Cor',
+      valor: 'Dourado e Preto',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

@@ -1,9 +1,11 @@
+<%- include('./partials/head') %>
+    <link rel='stylesheet' href='/stylesheets/carrinho-identificacao.css' />
+    <title>Carrinho - Identificação</title>
+</head>
 <%- include('./partials/header') %>
-<link rel="stylesheet" href="/stylesheets/style.css">
-<link rel="stylesheet" href="/stylesheets/carrinho-sacola.css">
-<link rel="stylesheet" href="/stylesheets/carrinho-identificacao.css">
-
+<body>
     <main class="carrinho-identificacao">
+
         <section class="processo-da-compra">
             <div>
                 <a class="sacola" href="/carrinho">Sacola</a>
@@ -128,10 +130,6 @@
         </div>
     </main>
 
-    <%- include('./partials/footer') %>
-
-</body>
-
 <script src="/scripts/validateIdentificarUsuario.js"></script>
 
-</html>
+<%- include('./partials/footer') %>

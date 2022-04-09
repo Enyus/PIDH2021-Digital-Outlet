@@ -1,0 +1,132 @@
+.cadastroproduto * {
+    margin: 0
+}
+.cadastroproduto {
+    display: flex;
+    justify-content: center;
+}
+.cadastroproduto input,
+.cadastroproduto select,
+.cadastroproduto textarea,
+.cadastroproduto .fotoproduto,
+.cadastroproduto .desctec {
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    border: 1px solid #C8D6E5;
+    outline: none;
+}
+.cadastroproduto .containergeral {
+    margin: 20px 0 70px 0;
+    padding: 20px;
+    background-color: white;
+    width: 80%;
+}
+.cadastroproduto .containergeral h1 {
+    margin: 20px;
+    text-align: center;
+    font-size: 36px;
+}
+.cadastroproduto .containergeral p {
+    text-align: center;
+}
+.cadastroproduto .subContainers {
+    display: flex;
+    align-items: center;
+}
+.cadastroproduto .subContainers .titleContainer {
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+}
+.cadastroproduto .subContainers .container {    
+    margin: 2px;
+    padding: 2px 15px;
+    border: 1px solid #C8D6E5;
+    border-radius: 5px;
+    width: 75%;
+}
+.cadastroproduto .sections {
+    display: flex;
+    justify-content: space-around;
+}
+.cadastroproduto .descProduto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+}
+.cadastroproduto .descProduto .formrow {
+    display: flex;
+    align-items: center;
+}
+.cadastroproduto .descProduto .formrow label {
+    margin-right: 10px;
+    text-align: end;
+    width: 20%;
+}
+.cadastroproduto .descProduto input, 
+.cadastroproduto .descProduto select {
+    height: 33px;
+    width: 80%;
+}
+.cadastroproduto .descProduto textarea {
+    height: 149px;
+    width: 80%;
+}
+.cadastroproduto .fotoproduto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.cadastroproduto .fotoproduto button img {
+    width: 80px;
+    height: 80px;
+    margin-top: 3px;
+}
+.cadastroproduto .fotoproduto input[type="file"] {
+    display: none;
+}
+.cadastroproduto .desctec .formrow {
+    display: flex;
+    align-items: center;
+}
+.cadastroproduto .desctec .formrow input {
+    font-size: 14px;
+    margin: 5px
+}
+.cadastroproduto .desctec .formrow .col1 {
+    width: 40%;
+}
+.cadastroproduto .desctec .formrow .col2 {
+    width: 60%;
+}
+.cadastroproduto .buttonsSendDelete {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.cadastroproduto .containergeral .button {
+    margin: 0 20px 20px 0;
+    width: 300px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    border-style: none;
+    border-radius: 20px;
+    border-width: 1px;
+    background-color: #E84118;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+  @media screen and (max-width: 720px) {
+    main.cadastroproduto section.containergeral form div.formrow div.desctec div.formrow {
+        display: flex !important;
+    }
+    main.cadastroproduto div.containersecundario div {
+        width: 100%;
+        margin: 0;
+    }
+
+    main.cadastroproduto section.containergeral button {
+        margin-left: 5%;
+    }
+  }
