@@ -146,6 +146,14 @@ module.exports = {
         quantidade: 33,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      // idEstoque=19
+      {
+        idLoja: 2,
+        idProduto: 19,
+        quantidade: 200,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

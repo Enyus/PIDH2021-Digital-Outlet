@@ -37,35 +37,6 @@ module.exports = {
                     ],
                     order: Sequelize.literal(`FIELD(Produtos.idProduto, ${listaIDs})`)
                 });
-                // console.log(carrinhoDB);
-                // console.log(carrinho);
-                // console.log(carrinho.findIndex( element => element.idProduto == carrinhoDB[0].idProduto));
-
-                /* carrinhoDB retorna:
-                    [
-                        {
-                            idProduto: 6,
-                            nomeProduto: 'Paletó Off White Masculino',
-                            idLoja: 1,
-                            preco: 220,
-                            promocao: '0',
-                            Fotos: [
-                                {
-                                    ulFoto = xxx
-                                },
-                                ...
-                            ],
-                            DescTecs: [
-                                {
-                                    nomeDescTec: xxx,
-                                    valor: xxx
-                                },
-                                ...
-                            ]
-                        },
-                        ...
-                    ]
-                */
 
                 res.render('carrinho-sacola', { title: "Sacola", carrinho, carrinhoDB });
 

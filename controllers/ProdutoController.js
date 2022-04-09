@@ -3,13 +3,6 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 module.exports = {
-    cadastroView: async (req, res, next) => {
-        res.render('cadastroproduto', {
-            title:"Cadastro de Produto",
-            // usuario: req.session.usuario
-
-        })
-    },
     create: async (req, res, next) => {
         const dadosProdutos = req.body;
 

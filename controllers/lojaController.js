@@ -369,9 +369,5 @@ module.exports = {
             console.log(error)
             return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" })
         };
-    },
-
-    cadastroproduto: (req, res, next) => {
-        res.render('cadastroproduto', {title:"Cadastro de Produto"})
     }
 };

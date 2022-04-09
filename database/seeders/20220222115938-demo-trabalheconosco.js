@@ -8,7 +8,7 @@ module.exports = {
       departamento: 'Desenvolvedor',
       disp: 'freela',
       mensagem: 'Me contrata, pelo amor de Deus!!!',
-      curriculo: '\curriculos\curriculo-1648590723793.pdf',
+      curriculo: '/curriculos/curriculo-1648590723793.pdf',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

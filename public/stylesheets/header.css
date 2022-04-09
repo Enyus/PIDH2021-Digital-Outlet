@@ -125,3 +125,18 @@ header section.buscamobile a {
   position: relative;
   left: -29px;
 }
+
+p.notificacaocarrinho {
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  margin: 0;
+  top: 10px;
+  left: 70%;
+}

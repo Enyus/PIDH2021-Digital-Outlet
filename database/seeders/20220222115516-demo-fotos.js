@@ -310,6 +310,27 @@ module.exports = {
       urlFoto: '/images/2022-04-08-calçadotop(2).jpg',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idFoto=45
+    {
+      idProduto: 19,
+      urlFoto: '/images/20220409193700-tênis-top-1.jpeg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=46
+    {
+      idProduto: 19,
+      urlFoto: '/images/20220409193700-tênis-top-2.jpeg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=47
+    {
+      idProduto: 19,
+      urlFoto: '/images/20220409193700-tênis-top-3.jpeg',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

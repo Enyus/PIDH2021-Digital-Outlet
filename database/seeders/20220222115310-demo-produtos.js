@@ -218,6 +218,18 @@ module.exports = {
         promocao: 9,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      // idProduto=19
+      {
+        nomeProduto: "Tênis Top",
+        idMarca: 3,
+        preco: 650,
+        idCategoria: 3,
+        desc: "O Cabedal confeccionado em tecido super macio e de alta resistência proporcionando muito mais conforto e segurança aos seus pés. O design do tênis e compostos por materiais bonitos, mas simples, de cores sóbrias, que dão ao tênis um ar elegante, refinado e atemporal. Tudo isso traduz a busca por um estilo effortless. Juntando matérias e tecnologia de ponta, destemido para o futuro da moda urbana.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },
