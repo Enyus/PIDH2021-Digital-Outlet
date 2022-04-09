@@ -9,7 +9,8 @@
 .carrinho-sacola .container-carrinho {
 display: flex;
 justify-content: space-between;
-margin: 0
+margin: 0;
+width: 100%;
 }
 
 .carrinho-sacola .container-carrinho .container-sacola {

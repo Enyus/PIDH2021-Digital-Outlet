@@ -1,3 +1,5 @@
+const cep = document.getElementById('cep')
+
 const searchCep = async () => {
     try {
         const cep = document.getElementById("cep").value;
@@ -12,7 +14,7 @@ const searchCep = async () => {
         return error;
     }
 };
-addEventListener("focusout", searchCep);
+cep.addEventListener("focusout", searchCep);
 
 const preencherDados = (dados) => {
     document.getElementById("logradouro").value = dados.logradouro;

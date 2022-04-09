@@ -666,6 +666,30 @@ module.exports = {
       valor: 'Dourado e Preto',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idDescTec=83
+    {
+      idProduto: 19,
+      nomeDescTec: 'Cor',
+      valor: 'Preto ou Vermelho',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=84
+    {
+      idProduto: 19,
+      nomeDescTec: 'Estilo',
+      valor: 'Topzera',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=85
+    {
+      idProduto: 19,
+      nomeDescTec: 'Corte',
+      valor: 'Descolado',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

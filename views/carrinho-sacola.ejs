@@ -1,190 +1,244 @@
 <%- include('./partials/head') %>
-<link rel='stylesheet' href='/stylesheets/carrinho-sacola.css' />
-</head>
-<%- include('./partials/header') %>
-<body>
-    
-    <main class="carrinho-sacola">
+    <link rel='stylesheet' href='/stylesheets/carrinho-sacola.css' />
+    </head>
+    <%- include('./partials/header') %>
 
-        <div class="container-carrinho">
-            <section class="processo-da-compra">
-                <div>
-                    <a class="sacola" href="/carrinho">Sacola</a>
-                    <a class="identificacao">Identificação</a>
-                    <a class="entrega">Entrega</a>
-                    <a class="pagamento" >Pagamento</a>
-                </div>
-            </section>
+   
 
-            <div class="container-carrinho">
-                <section class="container-sacola">
-                    <div>
-                        <table>
-                            <tr class="colunas">
-                                <td>Produto(s)</td>
-                                <td>Frete</td>
-                                <td>Valor</td>
-                                <td>Quantidade</td>
-                                <td></td>
-                            </tr>
+            <main class="carrinho-sacola">
+                <% if(carrinho.produtos.length> 0) { %>
+                    <section class="processo-da-compra">
+                        <div class="menu-carrinho">
+                            <a class="sacola" href="/carrinho">Sacola</a>
+                            <a class="identificacao">Identificação</a>
+                            <a class="entrega">Entrega</a>
+                            <a class="pagamento">Pagamento</a>
+                        </div>
+                    </section>
 
-                            <% carrinhoDB.forEach( item => { %>
-                                <tr class="linhas">
-                                    <td class="produto">
-                                        <a href="/produto/<%=item.idProduto%>"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></a>
-                                        <div>
-                                            <h3 class="label"><a href="/produto/<%=item.idProduto%>"><%= item.nomeProduto %></a></h3>
-                                            <%  item.DescTecs.forEach( desctec => { %>
-                                                <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
-                                                <div class="tamanho">
-                                                    <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
-                                                    <h4 class="dados"><%= desctec.valor %></h4>
-                                                </div>
-                                                <% } %>
+                    <div class="container-carrinho">
+
+                        <div class="container-carrinho">
+                            <section class="container-sacola">
+                                <div>
+                                    <table>
+                                        <tr class="colunas">
+                                            <td>Produto(s)</td>
+                                            <td>Frete</td>
+                                            <td>Valor</td>
+                                            <td>Quantidade</td>
+                                            <td></td>
+                                        </tr>
+
+                                        <% carrinhoDB.forEach( item=> { %>
+                                            <tr class="linhas">
+                                                <td class="produto">
+                                                    <a href="/produto/<%=item.idProduto%>"><img
+                                                            src="<%= item.Fotos[0].urlFoto %>" alt=""></a>
+                                                    <div>
+                                                        <h3 class="label"><a href="/produto/<%=item.idProduto%>">
+                                                                <%= item.nomeProduto %>
+                                                            </a></h3>
+                                                        <% item.DescTecs.forEach( desctec=> { %>
+                                                            <% if ( item.DescTecs.findIndex( element=>
+                                                                element.nomeDescTec
+                                                                == desctec.nomeDescTec) <= 2) { %>
+                                                                    <div class="tamanho">
+                                                                        <h4 class="label">
+                                                                            <%= desctec.nomeDescTec %>:
+                                                                        </h4>
+                                                                        <h4 class="dados">
+                                                                            <%= desctec.valor %>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <% }) %>
+                                                    </div>
+                                                </td>
+
+                                                <% if (carrinho.produtos[carrinho.produtos.findIndex( element=>
+                                                    element.idProduto == item.idProduto )].frete != 0) { %>
+                                                    <td>
+                                                        <%= carrinho.produtos[carrinho.produtos.findIndex( element=>
+                                                            element.idProduto == item.idProduto )].frete %>
+                                                    </td>
+                                                    <% } else { %>
+                                                        <td>a calcular</td>
+                                                        <% } %>
+                                                            <td>
+                                                                <%= (item.preco * (100-item.promocao) / 100).toFixed(2)
+                                                                    %>
+                                                            </td>
+                                                            <td>
+                                                                <div class="quantidade">
+
+                                                                    <form action="/removecart" method="POST">
+                                                                        <input type="number" hidden name="idProduto"
+                                                                            value="<%=item.idProduto%>">
+                                                                        <input type="text" hidden name="source"
+                                                                            value="/carrinho">
+                                                                        <button type="submit">-</button>
+                                                                    </form>
+                                                                    <p class="qtd">
+                                                                        <%= carrinho.produtos[carrinho.produtos.findIndex(
+                                                                            element=> element.idProduto ==
+                                                                            item.idProduto
+                                                                            )].quantidade %>
+                                                                    </p>
+
+                                                                    <form action="/addcart" method="POST">
+                                                                        <input type="number" hidden name="idProduto"
+                                                                            value="<%=item.idProduto%>">
+                                                                        <input type="text" hidden name="source"
+                                                                            value="/carrinho">
+                                                                        <button type="submit">+</button>
+                                                                    </form>
+                                                                </div>
+                                                            <td class="acoes-produto">
+                                                                <div>
+                                                                    <a href="/produto/<%=item.idProduto%>"><img
+                                                                            src="/icon/carrinho-editar.png" alt=""></a>
+                                                                    <form action="/removecartitem" method="POST">
+                                                                        <input type="number" hidden name="idProduto"
+                                                                            value="<%=item.idProduto%>">
+                                                                        <input type="text" hidden name="source"
+                                                                            value="/carrinho">
+                                                                        <button type="submit"><img
+                                                                                src="/icon/carrinho-lixeira.png"
+                                                                                alt="deletar produto"></button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                            </td>
+                                            </tr>
                                             <% }) %>
-                                        </div>
-                                    </td>
 
-                                    <% if (carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].frete != 0) { %>
-                                        <td><%= carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].frete %></td>
-                                    <% } else { %>
-                                        <td>a calcular</td>
-                                    <% } %>
-                                    <td><%= (item.preco * (100-item.promocao) / 100).toFixed(2) %></td>
-                                    <td>
-                                        <div class="quantidade">
+                                    </table>
 
-                                            <form action="/removecart" method="POST">
-                                                <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
-                                                <input type="text" hidden name="source" value="/carrinho">
-                                                <button type="submit">-</button>
-                                            </form>
-                                            <p class="qtd"><%= carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
-                                   
-                                            <form action="/addcart" method="POST">
-                                                <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
-                                                <input type="text" hidden name="source" value="/carrinho">
-                                                <button type="submit">+</button>
-                                            </form>
+                                    <% carrinhoDB.forEach( item=> { %>
+                                        <div class="table-mobile">
+                                            <img src="<%= item.Fotos[0].urlFoto %>" alt="calça bege">
+                                            <div class="dados-produto">
+                                                <h3 class="label">
+                                                    <%= item.nomeProduto %>
+                                                </h3>
+                                                <% item.DescTecs.forEach( desctec=> { %>
+                                                    <% if ( item.DescTecs.findIndex( element=> element.nomeDescTec ==
+                                                        desctec.nomeDescTec) <= 2) { %>
+                                                            <div class="tamanho">
+                                                                <h4 class="label">
+                                                                    <%= desctec.nomeDescTec %>:
+                                                                </h4>
+                                                                <h4 class="dados">
+                                                                    <%= desctec.valor %>
+                                                                </h4>
+                                                            </div>
+                                                            <% } %>
+                                                                <% }) %>
+                                            </div>
+                                            <div class="quantidade">
+                                                <form action="/addcart" method="POST">
+                                                    <input type="number" hidden name="idProduto"
+                                                        value="<%=item.idProduto%>">
+                                                    <input type="text" hidden name="source" value="/carrinho">
+                                                    <button type="submit">+</button>
+                                                </form>
+                                                <p class="qtd">
+                                                    <%= carrinho.produtos[carrinho.produtos.findIndex( element=>
+                                                        element.idProduto == item.idProduto )].quantidade %>
+                                                </p>
+                                                <form action="/removecart" method="POST">
+                                                    <input type="number" hidden name="idProduto"
+                                                        value="<%=item.idProduto%>">
+                                                    <input type="text" hidden name="source" value="/carrinho">
+                                                    <button type="submit">-</button>
+                                                </form>
+                                            </div>
                                         </div>
-                                    <td class="acoes-produto">
-                                        <div>
-                                            <a href="/produto/<%=item.idProduto%>"><img src="/icon/carrinho-editar.png" alt=""></a>
-                                            <form action="/removecartitem" method="POST">
-                                                <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
-                                                <input type="text" hidden name="source" value="/carrinho">
-                                                <button type="submit"><img src="/icon/carrinho-lixeira.png" alt="deletar produto"></button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                    </td>
-                                </tr>
-                            <% }) %>
+                                        <% }) %>
 
-                        </table>
-                        
-                        <% carrinhoDB.forEach( item => { %>
-                        <div class="table-mobile">
-                            <img src="<%= item.Fotos[0].urlFoto %>" alt="calça bege">
-                            <div class="dados-produto">
-                                <h3 class="label"><%= item.nomeProduto %></h3>
-                                <%  item.DescTecs.forEach( desctec => { %>
-                                    <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
-                                    <div class="tamanho">
-                                        <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
-                                        <h4 class="dados"><%= desctec.valor %></h4>
+                                </div>
+                            </section>
+                            <section class="resumo">
+                                <div>
+                                    <p class="resumo">Resumo</p>
+                                    <div class="forma-de-recebimento">
+                                        <a class="entrega" id="entrega">Entrega</a>
+                                        <a class="retirada-loja" id="retirar">Retirar na loja</a>
                                     </div>
-                                    <% } %>
-                                <% }) %>
-                            </div>
-                            <div class="quantidade">
-                                <form action="/addcart" method="POST">
-                                    <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
-                                    <input type="text" hidden name="source" value="/carrinho">
-                                    <button type="submit">+</button>
-                                </form>
-                                <p class="qtd"><%= carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %></p>
-                                <form action="/removecart" method="POST">
-                                    <input type="number" hidden name="idProduto" value="<%=item.idProduto%>">
-                                    <input type="text" hidden name="source" value="/carrinho">
-                                    <button type="submit">-</button>
-                                </form>
-                            </div>
+
+                                    <div id="containercep">
+                                        <form class="cep" method="POST" action="/previsaofrete">
+                                            <input class="input-cep" type="text" name="cep" id="cep"
+                                                placeholder="Insira seu CEP">
+                                            <button class="ok-cep" id="submitcep" type="submit">OK</button>
+                                        </form>
+                                        <a class="nao-sei-o-cep"
+                                            href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+                                            target="_blank">Não sei o CEP</a>
+                                    </div>
+
+                                    <div class="total">
+                                        <div>
+                                            <p>Subtotal</p>
+                                            <% let subtotal=0 %>
+                                                <% carrinhoDB.forEach( item=> { %>
+                                                    <% subtotal +=(item.preco * (100-item.promocao) / 100) *
+                                                        carrinho.produtos[carrinho.produtos.findIndex( element=>
+                                                        element.idProduto == item.idProduto )].quantidade %>
+                                                        <% }) %>
+                                                            <p>R$ <%= subtotal.toFixed(2) %>
+                                                            </p>
+                                        </div>
+                                        <div>
+                                            <p>Previsão de Taxa de entrega:</p>
+
+                                            <% let totalFrete=0 %>
+                                                <% carrinho.produtos.forEach(item=> { %>
+                                                    <% totalFrete +=parseFloat(item.frete) %>
+                                                        <% }) %>
+
+                                                            <% if(totalFrete> 0) { %>
+                                                                <p id="totalfrete">R$ <%= totalFrete.toFixed(2) %>
+                                                                </p>
+                                                                <% } else { %>
+                                                                    <p id="totalfrete">a calcular</p>
+                                                                    <% } %>
+
+                                        </div>
+                                        <div class="total">
+                                            <p>Total</p>
+
+                                            <% if(totalFrete> 0) { %>
+                                                <p>R$ <%= (totalFrete + subtotal).toFixed(2) %>
+                                                </p>
+                                                <% } else { %>
+                                                    <p>R$ <%= subtotal.toFixed(2) %>
+                                                    </p>
+                                                    <% } %>
+
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <form action="/identificacaocliente" method="post">
+                                            <button class="finalizar" type="submit" href="/compra/entrega/">Finalizar
+                                                Compra</button>
+                                        </form>
+                                        <a class="continuar-comprando" href="/">CONTINUAR COMPRANDO</a>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <% }) %>
-    
-                    </div>
-                </section>
-                <section class="resumo">
-                    <div>
-                        <p class="resumo">Resumo</p>
-                        <div class="forma-de-recebimento">
-                            <a class="entrega" id="entrega">Entrega</a>
-                            <a class="retirada-loja" id="retirar">Retirar na loja</a>
-                        </div>
-                        
-                        <div id="containercep">
-                            <form class="cep" method="POST" action="/previsaofrete">
-                                <input class= "input-cep" type="text" name="cep" id="cep" placeholder="Insira seu CEP">
-                                <button class="ok-cep" id="submitcep" type="submit">OK</button>
-                            </form>
-                            <a class="nao-sei-o-cep" href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">Não sei o CEP</a>
-                        </div>
-                        
-                        <div class="total">
-                            <div>
-                                <p>Subtotal</p>
-                                <% let subtotal = 0 %>
-                                <% carrinhoDB.forEach( item => { %>
-                                <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
-                                <% }) %>
-                                <p>R$ <%= subtotal.toFixed(2) %></p>
-                            </div>
-                            <div>
-                                <p>Previsão de Taxa de entrega:</p>
 
-                                <% let totalFrete = 0 %>
-                                <% carrinho.produtos.forEach(item => { %>
-                                    <% totalFrete += parseFloat(item.frete) %>
-                                <% }) %>
+                        <script src="/scripts/validateSacola.js"></script>
 
-                                <% if(totalFrete > 0) { %>
-                                    <p id="totalfrete">R$ <%= totalFrete.toFixed(2) %></p>
-                                <% } else { %>
-                                    <p id="totalfrete">a calcular</p>
-                                <% } %>
+                <% } else { %>
+                    <section class="containergeral">
+                        <h1>Carrinho</h1>
+                        <p>Seu carrinho ainda não tem produtos, continue comprando!</p>
+                    </section>
+                <% } %>
 
-                            </div>
-                            <div class="total">
-                                <p>Total</p>
+            </main>
 
-                                <% if(totalFrete > 0) { %>
-                                    <p>R$ <%= (totalFrete + subtotal).toFixed(2) %></p>
-                                <% } else { %>
-                                    <p>R$ <%= subtotal.toFixed(2) %></p>
-                                <% } %>
-
-                            </div>
-                        </div>
-                        <div style="text-align: center;">
-                            <form action="/identificacaocliente" method="post">
-                                <button class="finalizar" type="submit" href="/compra/entrega/">Finalizar Compra</button>
-                            </form>
-                            <a class="continuar-comprando" href="/">CONTINUAR COMPRANDO</a>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <script src="/scripts/validateSacola.js"></script>
-
-        <% } else { %>
-            <section class="containergeral">
-                <h1>Carrinho</h1>
-                <p>Seu carrinho ainda não tem produtos, continue comprando!</p>
-            </section>
-        <% } %>
-
-    </main>
-
-<%- include('./partials/footer') %>
+            <%- include('./partials/footer') %>

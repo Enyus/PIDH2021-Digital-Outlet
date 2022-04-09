@@ -271,7 +271,7 @@ module.exports = {
             // console.log(response[0]);
             return res.redirect(`/produto/${idProduto}?frete=${response[0].Valor.replace(',', '.')}&prazo=${response[0].PrazoEntrega}`);
         });
-    }
+    },
 
     cadastroproduto: async (req, res, next) => {
         const marcadb = await db.Marcas.findAll();

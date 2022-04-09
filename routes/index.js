@@ -60,7 +60,7 @@ router.get('/trabalheconosco', IndexController.trabalheconosco)
 router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.cadastrarCurriculo)
 
 /*GET Página do Cadastro de Produto*/
-router.get('/cadastroproduto', authLoja, lojaController.cadastroproduto)
+router.get('/cadastroproduto', authLoja, IndexController.cadastroproduto)
 router.post('/cadastroproduto', authLoja, uploadFotoProduto.array('gallery', 6), ProdutoController.create);
 
 /*GET Página do Cliente*/
