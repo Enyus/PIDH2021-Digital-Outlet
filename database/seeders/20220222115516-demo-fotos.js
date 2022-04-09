@@ -296,6 +296,20 @@ module.exports = {
       urlFoto: '/images/202203031047-dozeregrasvida2.jpg',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idFoto=43
+    {
+      idProduto: 18,
+      urlFoto: '/images/2022-04-08-calçadotop(1).jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idFoto=44
+    {
+      idProduto: 18,
+      urlFoto: '/images/2022-04-08-calçadotop(2).jpg',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

@@ -6,146 +6,175 @@
     
     <main class="carrinho-entrega">
 
-        <%- include('./partials/processos-carrinho') %>
+        <section class="processo-da-compra">
+            <div>
+                <a class="sacola" href="/carrinho">Sacola</a>
+                <a class="identificacao" href="/identificacaocliente">Identificação</a>
+                <a class="entrega">Entrega</a>
+                <a class="pagamento">Pagamento</a>
+            </div>
+        </section>
     
         <div class="container-entrega">
             <section class="dados-destinatario">
                 <div>
                     <h3>Dados do Destinatário</h3>
-                    <a href=""><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
+                    <a href="/identificacaocliente"><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
                 </div>
-                <p>Fulano de Tal</p>
+                <p><%= carrinho.destinatario.nome %> <%= carrinho.destinatario.sobrenome %></p>
                 <div class="contato">
-                    <p>fulano@tal.com.br</p>
-                    <p>(11) 99999-9999</p>
+                    <p><%= carrinho.destinatario.email %></p>
                 </div>
             </section>
+
             <section class="entrega">
-                <h3>Entrega</h3>
-                <div class="cep">
-                    <label for="cep">CEP</label>
-                    <div>
-                        <input type="text" id="cep" placeholder="xxxxx-xxx">
-                        <a class="nao-sei-cep" href="">Não sei o CEP</a>
-                    </div>
-                </div>
-                <div>
-                    <label for="">Endereço de entrega</label>
-                    <div class="endereco-entrega">
-                        <p>Rua Pedro Paulo</p>
-                        <p>Guaianases - São Paulo - SP</p>
-                    </div>
-                </div>    
-                <div class="numero-compl">
-                    <div>
+                <form action="/dadosentrega" method="post" id="form">
+                    <h3>Entrega</h3>
+                    <% if(usuarioDB != null) { %>
+                        <ul>
+                            <% usuarioDB.Enderecos.forEach( endereco => { %>
+                                <li>
+                                    <input onclick="autoEndereco(event)" type="radio" name="enderecoauto" value="<%= endereco.idEndereco %>" id="endereco<%=endereco.idEndereco%>"><label for="endereco<%=endereco.idEndereco%>"><%= endereco.logradouro %>, <%= endereco.numero %> <%= endereco.complemento %>, <%= endereco.cidade %>/<%= endereco.estado %>, CEP: <%= endereco.cep %></label>
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.logradouro %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.numero %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.complemento %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.cidade %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.estado %>">
+                                    <input hidden type="text" class="autoendereco" value="<%= endereco.cep %>">
+                                </li>
+                            <% }) %>
+                        </ul>
+                    <% } %>
+
+                    <div class="cep">
+                        <label for="cep">CEP</label>
                         <div>
-                            <label for="numero-endereco">Número</label>
-                            <input type="text" name="numero-endereco" id="numero-endereco">
+                            <input type="text" name="cep" id="cep" placeholder="xxxxx-xxx">
+                            <a class="nao-sei-cep" href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank">Não sei o CEP</a>
                         </div>
+                    </div>
+                    <div>
+                        <label for="">Endereço de entrega</label>
+                        <input type="text" name="logradouro" id="logradouro" class="endereco-entrega">
+                    </div>    
+                    <div class="numero-compl">
                         <div>
-                            <label for="complemento-endereco">Complemento</label>
-                            <input type="text" name="compl-endereco" id="compl-endereco" placeholder="Apart. nº / Casa A">
+                            <div>
+                                <label for="numero">Número</label>
+                                <input type="text" name="numero" id="numero">
+                            </div>
+                            <div>
+                                <label for="complemento">Complemento</label>
+                                <input type="text" name="complemento" id="complemento" placeholder="Apart. nº / Casa A">
+                            </div>
                         </div>
                     </div>
-                    <a href="">Escolher outro endereço</a>
-                </div>
-                <div class="modalidade-entrega">
-                    <label for="">Selecione a forma de entrega</label>
-                    <div class="container">
-                        <div class="expressa">
+                    <div class="numero-compl">
+                        <div>
                             <div>
-                                <input type="radio" name="modalidade-entrega" value="Expressa" id="expressa">
-                                <label for="expressa">Expressa<br>Em até 4 dias úteis</label>
+                                <label for="cidade">Cidade</label>
+                                <input type="text" name="cidade" id="cidade">
                             </div>
-                            <p>R$ 30,00</p>
-                        </div>
-                        <div class="padrao">
                             <div>
-                                <input type="radio" name="modalidade-entrega" value="padrao" id="padrao">
-                                <label for="padrao">Padrão<br>Em até 10 dias úteis</label>
+                                <label for="estado">Estado</label>
+                                <input type="text" name="estado" id="estado">
                             </div>
-                            <p>Grátis</p>
-                        </div>
-                        <div class="retirar">
-                            <div>
-                                <input type="radio" name="modalidade-entrega" value="retirar" id="retirar">
-                                <label for="padrao">Retirar na loja<br>Em até 2 dias úteis</label>
-                            </div>
-                            <p>Grátis</p>
                         </div>
                     </div>
-                </div>
-                <!-- <button class="ir-pagamento">IR PARA O PAGAMENTO</button> -->
+                    <div class="modalidade-entrega">
+                        <label for="">Selecione a forma de entrega</label>
+                        <div class="container" id="modalidadeentrega">
+                            <div class="expressa">
+                                <div>
+                                    <input type="radio" name="modalidadeEntrega" value="expressa" id="expressa">
+                                    <label for="expressa">Expressa Em até 4 dias úteis</label>
+                                </div>
+                            </div>
+                            <div class="padrao">
+                                <div>
+                                    <input type="radio" name="modalidadeEntrega" value="padrao" id="padrao">
+                                    <label for="padrao">Padrão Em até 10 dias úteis</label>
+                                </div>
+                            </div>
+                            <div class="retirar">
+                                <div>
+                                    <input type="radio" name="modalidadeEntrega" value="retirar" id="retirar">
+                                    <label for="retirar">Retirar na loja Em até 2 dias úteis</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="ir-pagamento" hidden type="submit"></button>
+                </form>
             </section>
+
             <section class="resumo">
                 <h3 class="resumo">Resumo</h3>
                 <div>
                     <table>
-                        <tr>
-                            <td class="img"><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
+
+                        <% carrinhoDB.forEach( item => { %>
+                            <tr>
+                                <td class="img"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></td>
+                                <td class="produto">
+                                    <h3 class="label"><%= item.nomeProduto %></h3>
+                                    <%  item.DescTecs.forEach( desctec => { %>
+                                        <% if ( item.DescTecs.findIndex( element => element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
+                                        <div class="tamanho">
+                                            <h4 class="label"><%= desctec.nomeDescTec %>:</h4>
+                                            <h4 class="dados"><%= desctec.valor %></h4>
+                                        </div>
+                                        <% } %>
+                                    <% }) %>
+                                </td>
+                                <td>
+                                    <h4>R$ <%= (item.preco * (100-item.promocao) / 100).toFixed(2) %></h4>
+                                </td>
+                            </tr>
+                        <% }) %>
+                        
                     </table>
                 </div>
                 <div class="total">
                     <div>
                         <p>Subtotal</p>
-                        <p>R$ 100,00</p>
+                        <% let subtotal = 0 %>  
+                        <% carrinhoDB.forEach( item => { %>
+                        <% subtotal += (item.preco * (100-item.promocao) / 100) * carrinho.produtos[carrinho.produtos.findIndex( element => element.idProduto == item.idProduto )].quantidade %>
+                        <% }) %>
+                        <p>R$ <%= subtotal.toFixed(2) %></p>
                     </div>
                     <div>
                         <p>Taxa de entrega</p>
-                        <p>à calcular</p>
+                        <% let totalFrete = 0 %>
+                        <% carrinho.produtos.forEach(item => { %>
+                            <% totalFrete += parseFloat(item.frete) %>
+                        <% }) %>
+
+                        <% if(totalFrete > 0) { %>
+                            <p>R$ <%= totalFrete.toFixed(2) %></p>
+                        <% } else { %>
+                            <p>à calcular</p>
+                        <% } %>
                     </div>
                     <div class="total">
                         <p>Total</p>
-                        <p>R$ 100,00</p>
+                        <% if(totalFrete > 0) { %>
+                            <p>R$ <%= (totalFrete + subtotal).toFixed(2) %></p>
+                        <% } else { %>
+                            <p>R$ <%= subtotal.toFixed(2) %></p>
+                        <% } %>
                     </div>
                 </div>
                 <div>
-                    <button class="ir-pagamento" type="submit">Ir para pagamento</button>
+                    <button class="ir-pagamento" type="submit" id="submit" onclick="document.getElementById('ir-pagamento').click()">Ir para pagamento</button>
                 </div>
             </section>
         </div>
     </main>
-    
-    <%- include('./partials/footer') %>
-</body>
-</html>
+
+<script src="/scripts/carrinhoEntrega.js"></script>
+<script src="/api/validaCep.js"></script>
+
+
+<%- include('./partials/footer') %>
