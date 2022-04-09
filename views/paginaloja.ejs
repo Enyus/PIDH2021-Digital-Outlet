@@ -32,6 +32,7 @@
                                           <p> <%= pedidos[element].Produtos[0].nomeProduto %> + ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
                                         <% } else { %>
                                           <p> <%= pedidos[element].Produtos[0].nomeProduto %> ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
+                                          <!-- problema aqui -->
                                         <% } %>
                                         <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">R$ <%= (pedidos[element].valor * 0.1).toFixed(2) %></ins></p>
                                         <p>Total Lojista --- <ins style="color: greenyellow;">R$ <%= (pedidos[element].valor - (pedidos[element].valor * 0.1)).toFixed(2) %></ins></p>

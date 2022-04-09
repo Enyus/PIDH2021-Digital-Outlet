@@ -455,19 +455,24 @@ module.exports = {
                     // console.log(carrinhoDB.findIndex(element => element.idProduto==produto.idProduto))
                     // console.log(carrinhoDB[carrinhoDB.findIndex(element => element.idProduto==produto.idProduto)])
                     // console.log(carrinhoDB[carrinhoDB.findIndex(element => element.idProduto==produto.idProduto)].preco)
-                    console.log(carrinho);
-                    await db.PedidosProdutos.create({
-                        idProduto: produto.idProduto,
-                        idPedido: pedidosCriados[loja].idPedido,
-                        quantidade: produto.quantidade,
-                        preco: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].preco,
-                        desconto: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].promocao,
-                        frete: produto.frete
-                    })
+                    // console.log(carrinho);
+                    // produto.idLoja == loja
+                    if (carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].idProduto == produto.idProduto &&
+                        carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].idLoja == loja) {
+                        await db.PedidosProdutos.create({
+                            idProduto: produto.idProduto,
+                            idPedido: pedidosCriados[loja].idPedido,
+                            quantidade: produto.quantidade,
+                            preco: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].preco,
+                            desconto: carrinhoDB[carrinhoDB.findIndex(element => element.idProduto == produto.idProduto)].promocao,
+                            frete: produto.frete
+                        })
+                    }
                 }
             }
-
+            console.log(carrinho);
             req.session.carrinho = undefined;
+            console.log(carrinho);
 
             return res.render('checkout', { title: 'Checkout' });
 
