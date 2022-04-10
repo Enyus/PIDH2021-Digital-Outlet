@@ -1,3 +1,7 @@
+<%- include('./partials/head') %>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
 <%- include('./partials/header') %>
 
   <main class="contato">
@@ -18,16 +22,18 @@
             </div>
         </div>
         <p class="pcontato">Não encontrou a sua dúvida? Nos conte aqui:</p>
-        <form id="contato" class="contato">
+        <form id="contato" class="contato" action="/contato" method="POST">
             <div>
-                <input type="text" id="nome" value="Nome Completo">
-                <input type="email" id="email" value="E-mail">
-                <input type="tel"id="telefone" value="Telefone para contato (xx) xxxxx-xxxx">
+                <input type="text" id="nome" value="Nome Completo" name="nome">
+                <input type="email" id="email" value="E-mail" name="email">
+                <input type="tel" id="telefone" value="Telefone para contato (xx) xxxxx-xxxx" name="telefone">
             </div>
-            <div><textarea id="mensagem">Digite aqui sua dúvida</textarea></div>
-            <input type="submit" value="Enviar">
+            <div><textarea id="mensagem" name="mensagem">Digite aqui sua dúvida</textarea></div>
+            <button type="submit" id="submit">Enviar</button>
         </form>
     </section>
   </main>
+
+<script src="/scripts/validateContato.js"></script>
 
 <%- include('./partials/footer') %>
