@@ -14,7 +14,8 @@
 .carrinho-entrega .container-entrega section {
     display: flex;
     background-color: #FFFFFF;
-    padding: 35px;
+    padding: 20px;
+    height: fit-content;
 }
 
 .carrinho-entrega .dados-destinatario {
@@ -47,25 +48,24 @@
 
 .carrinho-entrega .entrega {
     flex-direction: column;
-    margin: 0 34px;
-    height: 657px;
+    margin: 0 30px;
     width: 31%;
 }
 .carrinho-entrega .entrega div {
     margin-bottom: 5px;
 }
 .carrinho-entrega .entrega h3 {
-    margin: 0 0 30px 0;
+    margin: 0;
 }
 .carrinho-entrega .entrega label {
     padding-left: 5px;
     font-size: 14px;
     color: #999999;
 }
-.carrinho-entrega .entrega input {
+.carrinho-entrega .entrega input[type='text'] {
     padding-left: 10px;
     height: 42px;
-    width: 70%;
+    width: 100%;
     font-size: 16px;
 }
 .carrinho-entrega .entrega .cep {
@@ -80,6 +80,7 @@
 .carrinho-entrega .entrega .cep .nao-sei-cep {
     font-weight: 800;
     font-size: 14px;
+    text-align: center;
 } 
 .carrinho-entrega .entrega .endereco-entrega {
     border: 1px solid rgb(120, 120, 120);
@@ -93,16 +94,11 @@
     display: flex;
 }
 .carrinho-entrega .entrega .numero-compl div div{
-    margin: 0;
+    margin: 2px;
     display: flex;
     flex-direction: column;
 }
-.carrinho-entrega .entrega #numero-endereco {
-    width: 90%;
-}
-.carrinho-entrega .entrega #compl-endereco {
-    width: 100%;
-}
+
 .carrinho-entrega .entrega .numero-compl a{
     color: rgb(85, 85, 85);
     font-size: 10px;
@@ -128,6 +124,8 @@
     justify-content: center;
     padding: 0 10px;
     border: 1px solid rgb(120, 120, 120);
+    height: fit-content;
+    width: 100%;
 }
 .carrinho-entrega .entrega .modalidade-entrega .container label {
     color: black;
@@ -135,12 +133,12 @@
 .carrinho-entrega .entrega .modalidade-entrega .container div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 0;
+    margin: 5px 0;
 }
 .carrinho-entrega .entrega .modalidade-entrega input {
     height: 20px;
     width: 20px;
+    margin: 5px;
 }
 
 
@@ -154,7 +152,6 @@
     margin: 0
 }
 .carrinho-entrega section.resumo table {
-    margin: 20px 0 60px 0;
     width: 100%;
     border: 1px solid black;
 }
@@ -207,7 +204,17 @@
     background-color: #fff2ef ;
 }
 
+section.entrega ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: justify;
+}
 
+section.entrega ul li {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
 
 
 

@@ -7,6 +7,7 @@ const CompraController = require('../controllers/CompraController');
 const lojaController = require('../controllers/lojaController');
 var auth = require ('../middlewares/auth');
 var authLoja = require ('../middlewares/authLoja');
+var authCarrinho = require('../middlewares/authCarrinho');
 const uploadFile = require('../middlewares/multerConfig');
 const uploadFotoPerfil = require('../middlewares/uploadFotoPerfil')
 const uploadFotoProduto = require('../middlewares/uploadFotoProduto')
@@ -29,6 +30,7 @@ router.get('/resultadobusca', IndexController.resultadobusca)
 
 /*GET Página do Produto*/
 router.get('/produto/:idProduto', IndexController.produto)
+router.post('/apifrete', IndexController.apiFrete)
 
 /* Página do Login*/
 router.get('/login', userController.login);
@@ -42,17 +44,23 @@ router.post('/cadastro', userController.cadastrarUsuario);
 
 /*GET Página do Carrinho*/
 router.get('/carrinho', CompraController.index);
-router.get('/carrinho/sacola', CompraController.sacola)
-router.get('/carrinho/identificacao', CompraController.identificacao)
-router.get('/carrinho/entrega', CompraController.entrega)
-router.get('/carrinho/pagamento', CompraController.pagamento)
+router.post('/addcart', CompraController.addCart);
+router.post('/removecart', CompraController.removeCart);
+router.post('/removecartitem', CompraController.removeCartItem);
+router.post('/comprar', CompraController.comprar);
+router.get('/identificacaocliente', CompraController.identicacao);
+router.post('/identificacaocliente', CompraController.identicacao);
+router.post('/dadosdestinatario', CompraController.entrega);
+router.post('/dadosentrega', CompraController.pagamento);
+router.post('/finalizarpedido', CompraController.finalizarPedido);
+router.post('/previsaofrete', CompraController.previsaoFrete);
 
 /*GET Página do Trabalhe Conosco*/
 router.get('/trabalheconosco', IndexController.trabalheconosco)
 router.post('/trabalheconosco', uploadFile.single('curriculo'), IndexController.cadastrarCurriculo)
 
 /*GET Página do Cadastro de Produto*/
-router.get('/cadastroproduto', IndexController.cadastroproduto);
+router.get('/cadastroproduto', authLoja, IndexController.cadastroproduto)
 router.post('/cadastroproduto', authLoja, uploadFotoProduto.array('gallery', 6), ProdutoController.create);
 
 /*GET Página do Cliente*/

@@ -80,12 +80,14 @@ module.exports = {
                      ( (pedido.dataPedido.getDate() == (new Date()).getDate() ) )) {
                     pedidosHoje += 1;
                     faturadoHoje += pedido.valor;
-                } else if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() ) &&
-                    ( pedido.dataPedido.getMonth() == (new Date()).getMonth() )) {
+                };
+                if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() ) &&
+                    ( pedido.dataPedido.getMonth()==(new Date()).getMonth() ) ) {
                     pedidosMes += 1;
                     faturadoMes += pedido.valor;
                     idsPedidosMes.push(pedidos.indexOf(pedido));
-                } else if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() )) {
+                };
+                if ( ( pedido.dataPedido.getFullYear() == (new Date()).getFullYear() )) {
                     pedidosAno += 1;
                     faturadoAno += pedido.valor;
                     idsPedidosAno.push(pedidos.indexOf(pedido));
@@ -93,7 +95,7 @@ module.exports = {
             });
 
             resumoPedidos = {pedidosHoje, faturadoHoje, pedidosMes, faturadoMes, idsPedidosMes, pedidosAno, faturadoAno, idsPedidosAno};
-
+ 
             const lojaUsuario = await db.Lojas.findOne({
                 where: {idLoja},
                 attributes: ['idLoja'],
@@ -305,7 +307,29 @@ module.exports = {
                 {dataProcess: new Date()},
                 {where: {idPedido}}
             );
+
+            let produtoBaixa = await db.Pedidos.findOne({
+                where:{idPedido},
+                include: {
+                    model: db.Produtos
+                }
+            });
+            console.log(produtoBaixa);
+
+            for await (let produto of produtoBaixa.Produtos) {
+                db.Estoque.update(
+                    {quantidade: Sequelize.literal(`quantidade - ${produto.PedidosProdutos.quantidade}`)},
+                    {where: {
+                        [Op.and]: [
+                            {idLoja: produtoBaixa.idLoja},
+                            {idProduto: produto.idProduto}
+                        ]
+                    }}
+                )
+            };
+
             return res.redirect('/loja');
+
 
         } catch (error) {
             console.log(error)
@@ -345,5 +369,5 @@ module.exports = {
             console.log(error)
             return res.status(400).render('error', {title: 'Falha', error, message: "Ih deu erro" })
         };
-    },
+    }
 };

@@ -2,98 +2,123 @@
 <link rel='stylesheet' href='/stylesheets/carrinho-pagamento.css' />
 </head>
 <%- include('./partials/header') %>
-<body>
+
     <main class="carrinho-pagamento">
 
-        <%- include('./partials/processos-carrinho') %>
+        <section class="processo-da-compra">
+            <div class="menu-carrinho">
+                <a class="sacola" href="/carrinho">Sacola</a>
+                <a class="identificacao" href="/identificacaocliente">Identificação</a>
+                <a class="entrega">Entrega</a>
+                <a class="pagamento">Pagamento</a>
+            </div>
+        </section>
 
         <div class="container-pagamento">
             <div class="dest-entr-pag">
+
                 <div class="destinatario-entrega">
                     <section class="dados-destinatario">
                         <div class="titulo-div">
                             <div>
                                 <h3>Dados do Destinatário</h3>
-                                <a href=""><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
+                                <a href="/identificacaocliente"><img src="/icon/carrinho-editar.png"
+                                        alt="edit-destinatario"></a>
                             </div>
-                            <p>Fulano de Tal</p>
+                            <p>
+                                <%=carrinho.destinatario.nome%>
+                                    <%=carrinho.destinatario.sobrenome%>
+                            </p>
                         </div>
                         <div class="contato">
-                            <p>fulano@tal.com.br</p>
-                            <p>(11) 99999-9999</p>
+                            <p>
+                                <%=carrinho.destinatario.email%>
+                            </p>
                         </div>
                     </section>
                     <section class="dados-entrega">
                         <div class="titulo-div">
                             <div>
                                 <h3>Entrega</h3>
-                                <a href=""><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
+                                <a><img src="/icon/carrinho-editar.png" alt="edit-destinatario"></a>
                             </div>
                         </div>
                         <div class="endereco-entrega">
-                            <p>Rua Pedro Paulo, 12, Casa A</p>
-                            <p>Guaianases - São Paulo - SP</p>
-                            <p>XXXX-XXX</p>
+                            <p>
+                                <%= carrinho.entrega.logradouro %>, <%= carrinho.entrega.numero %>
+                            </p>
+                            <p>
+                                <%= carrinho.entrega.cidade %> - <%= carrinho.entrega.estado %>
+                            </p>
+                            <p>
+                                <%= carrinho.entrega.cep %>
+                            </p>
                             <div>
-                                <p>Expressa - Em até 2 dias úteis</p>
+                                <p>
+                                    <%= carrinho.entrega.modalidadeEntrega %>
+                                </p>
                             </div>
                         </div>
                     </section>
                 </div>
+
                 <div class="pagamento">
                     <section>
-                        <form action="">
-                            <div class="forma-pagamento">
+                        <form action="/finalizarpedido" method="post" id="form">
+                            <div class="forma-pagamento" id="formapagamento">
                                 <p>Formas de pagamento</p>
                                 <div>
-                                    <input type="radio" name="forma-pagamento" id="cartao-presente">
-                                    <label for="cartao-presente">CARTÃO PRESENTE</label>
+                                    <input type="radio" name="formapagamento" id="cartaopresente">
+                                    <label for="cartaopresente">CARTÃO PRESENTE</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="forma-pagamento" id="cartao-credito">
-                                    <label for="cartao-credito">CARTÃO DE CRÉDITO</label>
+                                    <input type="radio" name="formapagamento" id="cartaocredito">
+                                    <label for="cartaocredito">CARTÃO DE CRÉDITO</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="forma-pagamento" id="pix">
+                                    <input type="radio" name="formapagamento" id="pix">
                                     <label for="pix">PIX</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="forma-pagamento" id="boleto">
+                                    <input type="radio" name="formapagamento" id="boleto">
                                     <label for="boleto">BOLETO</label>
                                 </div>
                             </div>
+
                             <div class="dados-pagamento">
                                 <p>Dados do cartão</p>
                                 <div class="numero-cartao">
-                                    <label for="numero-cartao">Número do Cartão</label>
-                                    <input type="text" name="numero-cartao" id="numero-cartao" required>
+                                    <img src="/images/cartões-bandeiras.png" class="img-cartoes"
+                                        alt="bandeiras-cartoes">
+                                    <label for="numerocartao">Número do Cartão</label>
+                                    <input type="text" name="numerocartao" id="numerocartao" required>
                                 </div>
                                 <div class="parcelamento">
                                     <label for="parcelamento">Parcelamento</label>
                                     <select name="parcelamento" id="parcelamento">
-                                        <option value="1">À vista</option>
-                                        <option value="2">2x s/ juros</option>
-                                        <option value="3">3x s/ juros</option>
-                                        <option value="4">4x s/ juros</option>
-                                        <option value="5">5x s/ juros</option>
-                                        <option value="6">6x s/ juros</option>
-                                        <option value="7">7x s/ juros/option>
-                                        <option value="8">8x s/ juros</option>
-                                        <option value="9">9x s/ juros</option>
-                                        <option value="10">10x s/ juros </option>
-                                        <option value="11">11x s/ juros</option>
-                                        <option value="12">12x s/ juros</option>
+                                        <option value="avista">À vista</option>
+                                        <option value="2x">2x s/ juros</option>
+                                        <option value="3x">3x s/ juros</option>
+                                        <option value="4x">4x s/ juros</option>
+                                        <option value="5x">5x s/ juros</option>
+                                        <option value="6x">6x s/ juros</option>
+                                        <option value="7x">7x s/ juros</option>
+                                        <option value="8x">8x s/ juros</option>
+                                        <option value="9x">9x s/ juros</option>
+                                        <option value="10x">10x s/ juros </option>
+                                        <option value="11x">11x s/ juros</option>
+                                        <option value="12x">12x s/ juros</option>
                                     </select>
                                 </div>
                                 <div class="nome-cartao">
-                                    <label for="nome-cartao">Nome impresso no cartão</label>
-                                    <input type="text" name="nome-cartao" id="nome-cartao">
+                                    <label for="nomecartao">Nome impresso no cartão</label>
+                                    <input type="text" name="nomecartao" id="nomecartao">
                                 </div>
                                 <div class="validade-cartao">
-                                    <label for="validade-cartao">Validade</label>
+                                    <label for="validadecartao">Validade</label>
                                     <div>
                                         <div class="mes-validade">
-                                            <select name="validade-cartao" id="validade-cartao">
+                                            <select name="validadecartao" id="validadecartao">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -110,9 +135,8 @@
                                         </div>
                                         <p>/</p>
                                         <div class="ano-validade">
-                                            <label for="ano-validade"></label>
-                                            <select name="ano-validade" id="ano-validade">
-                                                <option value="2021">2021</option>
+                                            <label for="anovalidade"></label>
+                                            <select name="anovalidade" id="anovalidade">
                                                 <option value="2022">2022</option>
                                                 <option value="2023">2023</option>
                                                 <option value="2024">2024</option>
@@ -128,92 +152,105 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="cod-seguranca">
-                                    <label for="cod-seguranca">Código de segurança</label>
-                                    <input type="text" name="cod-seguranca" id="cod-seguranca">
+                                    <label for="codseguranca">Código de segurança</label>
+                                    <input type="text" name="codseguranca" id="codseguranca">
                                 </div>
                                 <div class="cpf-titular-cartao">
-                                    <label for="cpf-titular-cartao">CPF do titular</label>
-                                    <input type="text" name="cpf-titular-cartao" id="cpf-titular-cartao" placeholder="999.999.999-99">
+                                    <label for="cpftitularcartao">CPF do titular</label>
+                                    <input type="text" name="cpftitularcartao" id="cpftitularcartao"
+                                        placeholder="999.999.999-99">
                                 </div>
                             </div>
-                            <img src="/images/cartões-bandeiras.png" class="img-cartoes" alt="bandeiras-cartoes">
+                            <button type="submit" id="submitpagamento" hidden></button>
                         </form>
-                       
+
                     </section>
                 </div>
+
             </div>
+
             <section class="resumo">
                 <h3 class="resumo">Resumo</h3>
                 <div>
                     <table>
-                        <tr>
-                            <td class="img"><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
+                        <% carrinhoDB.forEach( item=> { %>
+                            <tr>
+                                <td class="img"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></td>
+                                <td class="produto">
+                                    <h3 class="label">
+                                        <%= item.nomeProduto %>
+                                    </h3>
+                                    <% item.DescTecs.forEach( desctec=> { %>
+                                        <% if ( item.DescTecs.findIndex( element=> element.nomeDescTec ==
+                                            desctec.nomeDescTec) <= 2) { %>
+                                                <div class="tamanho">
+                                                    <h4 class="label">
+                                                        <%= desctec.nomeDescTec %>:
+                                                    </h4>
+                                                    <h4 class="dados">
+                                                        <%= desctec.valor %>
+                                                    </h4>
+                                                </div>
+                                                <% } %>
+                                                    <% }) %>
+                                </td>
+                                <td>
+                                    <h4>R$ <%= (item.preco * (100-item.promocao) / 100).toFixed(2) %>
+                                    </h4>
+                                </td>
+                            </tr>
+                            <% }) %>
+
                     </table>
                 </div>
                 <div class="total">
                     <div>
                         <p>Subtotal</p>
-                        <p>R$ 100,00</p>
+                        <% let subtotal=0 %>
+                            <% carrinhoDB.forEach( item=> { %>
+                                <% subtotal +=(item.preco * (100-item.promocao) / 100) *
+                                    carrinho.produtos[carrinho.produtos.findIndex( element=> element.idProduto ==
+                                    item.idProduto )].quantidade %>
+                                    <% }) %>
+                                        <p>R$ <%= subtotal.toFixed(2) %>
+                                        </p>
                     </div>
                     <div>
                         <p>Taxa de entrega</p>
-                        <p>à calcular</p>
+                        <% let totalFrete=0 %>
+                            <% carrinho.produtos.forEach(item=> { %>
+                                <% totalFrete +=parseFloat(item.frete) %>
+                                    <% }) %>
+
+                                        <% if(totalFrete> 0) { %>
+                                            <p>
+                                                R$ <%= totalFrete.toFixed(2) %>
+                                            </p>
+                                            <% } else { %>
+                                                <p>-</p>
+                                                <% } %>
                     </div>
                     <div class="total">
                         <p>Total</p>
-                        <p>R$ 100,00</p>
+                        <% if(totalFrete> 0) { %>
+                            <p>R$ <%= (totalFrete + subtotal).toFixed(2) %>
+                            </p>
+                            <% } else { %>
+                                <p>R$ <%= subtotal.toFixed(2) %>
+                                </p>
+                                <% } %>
                     </div>
                 </div>
                 <div>
-                    <button class="finalizar-compra" type="submit">FINALIZAR COMPRA</button>
+                    <button class="finalizar-compra" type="submit" id="fakesubmit"
+                        onclick="document.getElementById('submitpagamento').click()">FINALIZAR COMPRA</button>
                 </div>
             </section>
         </div>
     </main>
 
-    
+    <script src="/scripts/validatePagamento.js"></script>
+
     <%- include('./partials/footer') %>
-</body>
-</html>

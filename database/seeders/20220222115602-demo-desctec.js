@@ -642,6 +642,54 @@ module.exports = {
       valor: 'Português',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idDescTec=80
+    {
+      idProduto: 18,
+      nomeDescTec: 'Tamanho',
+      valor: '41',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=81
+    {
+      idProduto: 18,
+      nomeDescTec: 'Estilo',
+      valor: 'Topzera',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=82
+    {
+      idProduto: 18,
+      nomeDescTec: 'Cor',
+      valor: 'Dourado e Preto',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=83
+    {
+      idProduto: 19,
+      nomeDescTec: 'Cor',
+      valor: 'Preto ou Vermelho',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=84
+    {
+      idProduto: 19,
+      nomeDescTec: 'Estilo',
+      valor: 'Topzera',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=85
+    {
+      idProduto: 19,
+      nomeDescTec: 'Corte',
+      valor: 'Descolado',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 
