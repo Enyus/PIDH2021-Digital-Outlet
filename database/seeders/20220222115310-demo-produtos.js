@@ -220,8 +220,20 @@ module.exports = {
         updatedAt: new Date()
       },
 
-
       // idProduto=19
+      {
+        nomeProduto: "Tênis Top",
+        idMarca: 3,
+        preco: 650,
+        idCategoria: 3,
+        desc: "O Cabedal confeccionado em tecido super macio e de alta resistência proporcionando muito mais conforto e segurança aos seus pés. O design do tênis e compostos por materiais bonitos, mas simples, de cores sóbrias, que dão ao tênis um ar elegante, refinado e atemporal. Tudo isso traduz a busca por um estilo effortless. Juntando matérias e tecnologia de ponta, destemido para o futuro da moda urbana.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+
+      // idProduto=20
       {
         nomeProduto: "Tênis Air Jordan 1 Retro High OG",
         idMarca: 7,
@@ -233,7 +245,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // idProduto=20
+      // idProduto=21
       {
         nomeProduto: "Vans Authentic Vermelho",
         idMarca: 6,
@@ -245,7 +257,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // idProduto=21
+      // idProduto=22
       {
         nomeProduto: "Cafeteira Moka Bialetti",
         idMarca: 8,
@@ -257,7 +269,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // idProduto=22
+      // idProduto=23
       {
         nomeProduto: "Faca de corte rápido",
         idMarca: 8,
@@ -269,7 +281,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // idProduto=23
+      // idProduto=24
       {
         nomeProduto: "Porta tempero com suporte aleatório",
         idMarca: 8,
@@ -281,7 +293,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      // idProduto=24
+      // idProduto=25
       {
         nomeProduto: "Mesa de jantar retangular mel",
         idMarca: 8,
