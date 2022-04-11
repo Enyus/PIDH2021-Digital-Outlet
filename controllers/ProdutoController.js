@@ -21,12 +21,11 @@ module.exports = {
                 nomeProduto: dadosProdutos.nomeproduto,
                 idMarca: marcadb.idMarca,
                 preco: dadosProdutos.preco,
-                idCategoria: categoriadb.idCategoria, 
+                idCategoria: categoriadb.idCategoria,
                 desc: dadosProdutos.descproduto,
                 idLoja: 1,
                 idLoja: req.session.loja.idLoja
             })
-
             // idProduto para salvar nos outras tabelas
             const idProduto = produtoCreate.idProduto;
             
@@ -34,7 +33,7 @@ module.exports = {
             descricaoProduto.forEach(async element => {
                 const positionElement = descricaoProduto.indexOf(element)
                 if (element && positionElement % 2 == 0) {
-                    const descProdCreate = await db.DescTec.create({
+                   await db.DescTec.create({
                         idProduto: idProduto,
                         nomeDescTec: descricaoProduto[positionElement],
                         valor: descricaoProduto[positionElement + 1],
@@ -46,7 +45,7 @@ module.exports = {
                 const urlFoto = element.path.
                                 slice(element.path.indexOf('images')-1, element.path.length).
                                 replace(/[\\"]/gi, "/");
-                const fotosCreate = await db.Fotos.create({
+                await db.Fotos.create({
                     idProduto: idProduto,
                     urlFoto: urlFoto
                 });

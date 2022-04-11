@@ -10,7 +10,6 @@ module.exports = {
         const {idUsuario} = req.session.usuario;
         let pedidos = [];
         let buscasRecentes = [];
-        let lojaPedido = []
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
@@ -37,8 +36,6 @@ module.exports = {
                     attributes: ['idStatusPedido', 'idPedido', 'dataProcess', 'dataTransp', 'dataEntrega']
                 }]
             });
-            // console.log(pedidosDB);
-            // console.log(pedidosDB[0].Loja);
 
             for (i=0; i<pedidosDB.length; i++) {
                 pedidos.push(
@@ -72,7 +69,6 @@ module.exports = {
             };
 
             const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
-            // console.log(enderecos);
 
             if( usuario.buscasRecentes.length > 0) {
                 buscasRecentes = await db.Produtos.findAll({
@@ -109,10 +105,8 @@ module.exports = {
                     where: {email: email},
                     include: {model: db.Lojas}
                 });
-            // console.log(user.Lojas);
 
             const loja = await db.Lojas.findOne({where:{email:email}});
-            // console.log(loja);
 
             if (user != null) {
                 if (!bcrypt.compareSync(senha, user.senha)) {
@@ -174,14 +168,11 @@ module.exports = {
                     return res.redirect('/loja');
                 }
             }
-            
         } catch(err) {
 
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
-
         }
-        
     },
 
     logout: (req, res) => {
@@ -252,16 +243,12 @@ module.exports = {
                 {email, nome, sobrenome, dataNasc, cpf, senha:hash},
                 {where:{idUsuario}}
             )
-
             console.log(usuarioAlterado);
-
             req.session.usuario = undefined;
             return res.redirect('/login');
 
         } catch (err) {
-
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
-
         }
     },
 
@@ -271,19 +258,15 @@ module.exports = {
         console.log(fotoPerfil);
 
         try {
-            const perfilCliente = await db.Usuarios.update(
+            await db.Usuarios.update(
                 {fotoPerfil},
                 {where:{idUsuario}}
             )
-
             req.session.usuario.fotoPerfil = fotoPerfil;
-            
             return res.redirect('/cliente');
 
         } catch (err) {
-
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
-
         }
     },
 
@@ -334,22 +317,17 @@ module.exports = {
     excluirCliente: async (req, res) => {
         const {idUsuario} = req.params;
         const {confirmadeletausuario} = req.body;
-        // console.log(confirmadeletausuario);
 
         if (confirmadeletausuario != "confirma") {
             return res.status(412).render('error', {title: 'Falha', error: {erro: "O usuário não confirmou a deleção de sua conta corretamente"}, message: "O usuário não confirmou a deleção de sua conta corretamente" })
         }
-        
-        
         try {
-
             await db.Usuarios.destroy({where: {idUsuario}});
             req.session.usuario = undefined;
             res.cookie('idUsuario', undefined);
             return res.redirect('/');
 
         } catch(err) {
-
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
 

@@ -130,7 +130,7 @@ module.exports = {
         const { email, razaoSocial, nomeFantasia, inscEst, cnpj, senha, logradouro, numero, complemento, cidade, estado, cep } = req.body;
         try {
             const hash = bcrypt.hashSync(senha, 10);
-            const lojaCriada = await db.Lojas.create({
+            await db.Lojas.create({
                 email,
                 razaoSocial,
                 nomeFantasia,
@@ -144,7 +144,6 @@ module.exports = {
                 estado,
                 cep,
             })
-            // console.log(lojaCriada);
             return res.redirect('/');
         } catch (error) {
             console.log(error)
@@ -198,18 +197,17 @@ module.exports = {
         console.log(fotoPerfil);
 
         try {
-            const perfilLoja = await db.Lojas.update(
+            await db.Lojas.update(
                 {fotoPerfil},
                 {where:{idLoja}}
             )
-
             req.session.loja.fotoPerfil = fotoPerfil;
             
             return res.redirect('/loja');
 
         } catch (err) {
 
-            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro ao adicionar foto" })
 
         }
     },
@@ -222,9 +220,7 @@ module.exports = {
             return res.status(412).render('error', {title: 'Falha', error: {erro: "A loja não confirmou a deleção de sua conta corretamente"}, message: "A loja não confirmou a deleção de sua conta corretamente" })
         }
         
-        
         try {
-
             await db.Lojas.destroy({where: {idLoja}});
             req.session.loja = undefined;
             res.cookie('idLoja', undefined);
@@ -232,10 +228,8 @@ module.exports = {
             return res.redirect('/');
 
         } catch(err) {
-
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
-
         }
     },
 
@@ -245,7 +239,6 @@ module.exports = {
         console.log(cpfAdmin);
 
         try {
-
             const adminAdded = await db.Usuarios.findOne({
                 where: {cpf: cpfAdmin},
                 attributes: ['idUsuario']
@@ -271,27 +264,21 @@ module.exports = {
             };
 
         } catch(err) {
-
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
-
         }
     },
 
     deleteAdmin: async (req, res) => {
         const {idLoja} = req.session.loja;
         const {idUsuario} = req.params;
-
         try {
-
             await db.UsuarioLoja.destroy({
                 where: {
                     [Op.and]: [ { idLoja } , { idUsuario } ]
                 }
             });
-
             return res.redirect('/loja');
-
         } catch (err) {
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
@@ -302,7 +289,6 @@ module.exports = {
         const {idPedido} = req.params;
 
         try {
-            
             await db.StatusPedido.update(
                 {dataProcess: new Date()},
                 {where: {idPedido}}
@@ -341,7 +327,6 @@ module.exports = {
         const {idPedido} = req.params;
 
         try {
-            
             await db.StatusPedido.update(
                 {dataTransp: new Date()},
                 {where: {idPedido}}
@@ -358,7 +343,6 @@ module.exports = {
         const {idPedido} = req.params;
 
         try {
-            
             await db.StatusPedido.update(
                 {dataEntrega: new Date()},
                 {where: {idPedido}}

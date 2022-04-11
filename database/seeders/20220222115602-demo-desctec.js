@@ -690,6 +690,150 @@ module.exports = {
       valor: 'Descolado',
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    // idDescTec=86
+    {
+      idProduto: 20,
+      nomeDescTec: 'Composição Exterior',
+      valor: 'Couro 100%',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=87
+    {
+      idProduto: 20,
+      nomeDescTec: 'Composição Solado',
+      valor: 'Borracha 100%',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=88
+    {
+      idProduto: 20,
+      nomeDescTec: 'Cor',
+      valor: 'Preto e Pêssego',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=89
+    {
+      idProduto: 21,
+      nomeDescTec: 'Cor',
+      valor: 'Vermelho',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=90
+    {
+      idProduto: 21,
+      nomeDescTec: 'Referência',
+      valor: 'V1002000450013',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=91
+    {
+      idProduto: 22,
+      nomeDescTec: 'Materal',
+      valor: 'Alumínio',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=92
+    {
+      idProduto: 22,
+      nomeDescTec: 'Cor',
+      valor: 'Alumínio',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=93
+    {
+      idProduto: 22,
+      nomeDescTec: 'Tipo',
+      valor: 'Cafeteira Moka',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=94
+    {
+      idProduto: 22,
+      nomeDescTec: 'Marca',
+      valor: 'Bialetti',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=95
+    {
+      idProduto: 23,
+      nomeDescTec: 'Materal',
+      valor: 'Aço inoxidável',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=96
+    {
+      idProduto: 23,
+      nomeDescTec: 'Dimensões',
+      valor: '33.7 x 4.7 x 1.8 centímetros',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=97
+    {
+      idProduto: 23,
+      nomeDescTec: 'Peso',
+      valor: '0,26 Kg',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=98
+    {
+      idProduto: 24,
+      nomeDescTec: 'Marca',
+      valor: 'DH Comércio',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=99
+    {
+      idProduto: 24,
+      nomeDescTec: 'Modelo',
+      valor: 'Giratório',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=100
+    {
+      idProduto: 24,
+      nomeDescTec: 'Quantidade de Frascos',
+      valor: '20',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=101
+    {
+      idProduto: 25,
+      nomeDescTec: 'Material do Tampo',
+      valor: 'MDF',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=102
+    {
+      idProduto: 25,
+      nomeDescTec: 'Material dos Pés',
+      valor: 'Eucalipto',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idDescTec=103
+    {
+      idProduto: 25,
+      nomeDescTec: 'Tamanho',
+      valor: 'A: 76 cm, L: 120 cm, P: 84 cm',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

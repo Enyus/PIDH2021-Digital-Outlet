@@ -32,7 +32,26 @@ module.exports = {
       nomeMarca: 'Get Over',
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    },
+    // idMarca=6
+    {
+      nomeMarca: 'Vans',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idMarca=7
+    {
+      nomeMarca: 'Nike',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    // idMarca=8
+    {
+      nomeMarca: 'Bialetti',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  ], {});
   },
 
   async down (queryInterface, Sequelize) {
