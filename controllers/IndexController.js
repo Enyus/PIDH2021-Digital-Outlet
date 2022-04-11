@@ -8,14 +8,11 @@ module.exports = {
     index: async (req, res, next) => {
         try {
             const count = await db.Produtos.count();
-            // console.log(count);
-
             // Escolhendo 8 produtos aleatórios:
             let list = [];
             for (i = 0; i < count; i++) {
                 list[i] = i + 1;
             };
-            // console.log(list);
             for (i = list.length; i;) {
                 randomNumber = Math.random() * i-- | 0;
                 tmp = list[randomNumber];
@@ -23,8 +20,6 @@ module.exports = {
                 list[i] = tmp;
             }
             list = list.splice(0, 8);
-            // console.log(list);
-
             // Puxando os dados do banco de dados dos 8 produtos de id aleatório:
             let produtos = await db.Produtos.findAll({ where: { idProduto: list }, include: { model: db.Fotos } });
 
@@ -41,10 +36,7 @@ module.exports = {
                     }
                 );
             };
-            // console.log(listaProdutos);
-
             return res.render('index', { title: 'Digital Outlet $', produtos: listaProdutos });
-
         } catch (err) {
             return res.status(400).render('error', { title: 'Falha', error: err, message: "vish" })
         }
@@ -62,14 +54,17 @@ module.exports = {
 
     enviaContato: async (req, res) => {
         const { nome, email, telefone, mensagem } = req.body;
-
-        const mensagemContato = await db.FaleConosco.create({
-            nome,
-            email,
-            telefone,
-            mensagem
-        })
-
+        try {
+            await db.FaleConosco.create({
+                nome,
+                email,
+                telefone,
+                mensagem
+            })
+        } catch (error) {
+            console.log(error);
+            return res.status(400).render('error', {title: 'Falha ao enviar o contato', error: error, message: 'vish, houve falha ao enviar o contato'});
+        }
         return res.redirect('/contato')
     },
 
@@ -79,9 +74,6 @@ module.exports = {
         let objetoBusca = {};
         let totalItens = null;
         let totalPaginas = null;
-
-        // console.log(busca)
-        // console.log(busca[busca.lastIndexOf('')-1])
 
         if (categoria != undefined) { objetoBusca.idCategoria = { [Op.like]: `%${categoria}%` } };
 
@@ -107,10 +99,8 @@ module.exports = {
                 filtro = [];
         }
 
-
         try {
             totalItens = await db.Produtos.count({ where: objetoBusca })
-
             const resultadoBuscaId = await db.Produtos.findAll({
                 where: objetoBusca,
                 attributes: ['idProduto'],
@@ -118,7 +108,6 @@ module.exports = {
                 offset: page * 6 - 6,
                 order: filtro
             });
-
             let listaIdsBuscados = []
 
             for (i = 0; i < resultadoBuscaId.length; i++) {
@@ -134,8 +123,6 @@ module.exports = {
                 include: { model: db.Fotos },
                 order: filtro
             });
-
-
             for (i = 0; i < resultadoBuscaId.length; i++) {
                 listaFinal.push({
                     idProduto: buscaFinal[i].idProduto,
@@ -147,9 +134,7 @@ module.exports = {
             };
 
         } catch (err) {
-
             return res.status(400).render('error', { title: 'Falha', error: err, message: "vish" });
-
         };
 
         if (totalItens % 6 == 0) {
@@ -157,8 +142,6 @@ module.exports = {
         } else {
             totalPaginas = Math.ceil(totalItens / 6);
         };
-        // console.log(totalPaginas);
-
         return res.render('resultadobusca', { title: "Resultado da Busca", produtos: listaFinal, busca, categoria, filtropreco, page: req.query.page, totalPaginas });
 
     },
@@ -195,8 +178,6 @@ module.exports = {
                 valorDescTec: descTecProdutoDB.map(element => element.dataValues.valor)
             };
 
-            // console.log(produtoLoad);
-
             if (usuario != undefined) {
                 if (!usuario.buscasRecentes.includes(idProduto)) {
                     usuario.buscasRecentes.unshift(idProduto)
@@ -219,7 +200,6 @@ module.exports = {
         } catch (err) {
             return res.status(400).render('error', { title: 'Falha', error: err, message: "vish" })
         }
-
     },
 
     trabalheconosco: (req, res, next) => {
@@ -230,7 +210,7 @@ module.exports = {
         const { email, nome, departamento, disp, mensagem } = req.body;
 
         try {
-            const curriculo = await db.TrabalheConosco.create({
+            await db.TrabalheConosco.create({
                 email,
                 nome,
                 departamento,
@@ -238,11 +218,6 @@ module.exports = {
                 mensagem,
                 curriculo: req.file.path.slice(-39)
             });
-
-            // console.log(req.file.path.slice(-39));
-
-            // console.log(curriculo);
-
             return res.render('trabalheconosco', { title: 'Sucesso', message: "Currículo enviado com Sucesso!" });
         } catch (err) {
             console.log(err)
@@ -252,7 +227,6 @@ module.exports = {
 
     apiFrete: async (req, res, next) => {
         let {cep, idProduto, cepLoja} = req.body;
-        // console.log(`CEP: ${cep}; CEP Loja: ${cepLoja}`)
 
         let args = {
             // Não se preocupe com a formatação dos valores de entrada do cep, qualquer uma será válida (ex: 21770-200, 21770 200, 21asa!770@###200 e etc),
@@ -268,7 +242,6 @@ module.exports = {
         };
 
         calcularPrecoPrazo(args).then((response) => {
-            // console.log(response[0]);
             return res.redirect(`/produto/${idProduto}?frete=${response[0].Valor.replace(',', '.')}&prazo=${response[0].PrazoEntrega}`);
         });
     },

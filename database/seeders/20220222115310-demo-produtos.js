@@ -219,18 +219,80 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
+
       // idProduto=19
       {
-        nomeProduto: "Tênis Top",
-        idMarca: 3,
-        preco: 650,
+        nomeProduto: "Tênis Air Jordan 1 Retro High OG",
+        idMarca: 7,
+        preco: 1000,
         idCategoria: 3,
-        desc: "O Cabedal confeccionado em tecido super macio e de alta resistência proporcionando muito mais conforto e segurança aos seus pés. O design do tênis e compostos por materiais bonitos, mas simples, de cores sóbrias, que dão ao tênis um ar elegante, refinado e atemporal. Tudo isso traduz a busca por um estilo effortless. Juntando matérias e tecnologia de ponta, destemido para o futuro da moda urbana.",
+        desc: "Bico arredondado, solado flat de borracha, fechamento frontal por amarração e detalhe de logo Swoosh. Material: couro. Este item é fornecido por um marketplace premium de tênis que reúne peças raras e já esgotadas.",
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      // idProduto=20
+      {
+        nomeProduto: "Vans Authentic Vermelho",
+        idMarca: 6,
+        preco: 300,
+        idCategoria: 3,
+        desc: "O tênis Authentic da Vans une o original e agora icônico estilo cano baixo da Vans ao cabedal de lona resistente. Possui ilhós de metal e a original sola Waffle de borracha vulcanizada da marca.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idProduto=21
+      {
+        nomeProduto: "Cafeteira Moka Bialetti",
+        idMarca: 8,
+        preco: 250,
+        idCategoria: 5,
+        desc: "Praticidade no seu dia a dia com essa maravilhosa cafeteira com capacidade de 3 xícaras.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idProduto=22
+      {
+        nomeProduto: "Faca de corte rápido",
+        idMarca: 8,
+        preco: 80,
+        idCategoria: 5,
+        desc: "Faca de corte rápido com dimensões de 33.7 x 4.7 x 1.8 centímetros feito em aço inoxidável.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idProduto=23
+      {
+        nomeProduto: "Porta tempero com suporte aleatório",
+        idMarca: 8,
+        preco: 150,
+        idCategoria: 5,
+        desc: "Os suportes são feito de inox e vidro que é totalmente vedado o diferencial deste produto é o suporte que deixa o uso muito prático para escolher o tempero que irá usar.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idProduto=24
+      {
+        nomeProduto: "Mesa de jantar retangular mel",
+        idMarca: 8,
+        preco: 1500,
+        idCategoria: 5,
+        desc: "possui estrutura em madeira eucalipto, tampo em MDF laminado e acabamento fosco. Dimensão de 120 x 84 x 76 cm.",
+        idLoja: 2,
+        promocao: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 
