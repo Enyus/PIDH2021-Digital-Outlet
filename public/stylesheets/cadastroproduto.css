@@ -5,6 +5,11 @@
     display: flex;
     justify-content: center;
 }
+.cadastroproduto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .cadastroproduto input,
 .cadastroproduto select,
 .cadastroproduto textarea,
@@ -13,6 +18,9 @@
     box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
     border: 1px solid #C8D6E5;
     outline: none;
+}
+.cadastroproduto .preco {
+    font-weight: 700;
 }
 .cadastroproduto .containergeral {
     margin: 20px 0 70px 0;
@@ -39,9 +47,10 @@
 }
 .cadastroproduto .subContainers .container {    
     margin: 2px;
-    padding: 2px 15px;
+    /* padding: 0 15px; */
     border: 1px solid #C8D6E5;
     border-radius: 5px;
+    height: 210px;
     width: 75%;
 }
 .cadastroproduto .sections {
@@ -53,6 +62,10 @@
     flex-direction: column;
     justify-content: space-between;
     text-align: right;
+    width: 50%;
+}
+.cadastroproduto .fotosInfoTec {
+    width: 50%;
 }
 .cadastroproduto .descProduto .formrow {
     display: flex;
@@ -75,11 +88,19 @@
 .cadastroproduto .fotoproduto {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    padding: 4px 12px;
+    /* justify-content: space-around; */
+}
+
+.cadastroproduto .fotoproduto button {
+    width: 95.98px;
+    height: 95.98px;
+    margin: 0 8px;
+    padding: 0;
 }
 .cadastroproduto .fotoproduto button img {
-    width: 80px;
-    height: 80px;
+    width: 87px;
+    height: 87px;
     margin-top: 3px;
 }
 .cadastroproduto .fotoproduto input[type="file"] {
@@ -99,11 +120,19 @@
 .cadastroproduto .desctec .formrow .col2 {
     width: 60%;
 }
-.cadastroproduto .buttonsSendDelete {
+.cadastroproduto .estoquePromocao {
+    margin: 30px;
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    align-items: center;
 }
+.cadastroproduto .estoquePromocao input {
+    width: 15%;
+}
+.cadastroproduto .estoquePromocao label {
+    margin: 0 10px;
+}
+
 .cadastroproduto .containergeral .button {
     margin: 0 20px 20px 0;
     width: 300px;
@@ -113,10 +142,12 @@
     border-style: none;
     border-radius: 20px;
     border-width: 1px;
-    background-color: #E84118;
+    
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
+.cadastroproduto .containergeral .delete {background-color: #830000;}
+.cadastroproduto .containergeral .submit {background-color: #E84118;}
   @media screen and (max-width: 720px) {
     main.cadastroproduto section.containergeral form div.formrow div.desctec div.formrow {
         display: flex !important;
