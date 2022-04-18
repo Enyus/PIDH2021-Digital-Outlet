@@ -158,7 +158,7 @@
                               <% if (pedido.StatusPedido.dataProcess != null) { %>
                                 <td><%= new Intl.DateTimeFormat('pt-BR').format(pedido.StatusPedido.dataProcess) %></td>
                               <% } else { %>
-                                <td><
+                                <td>
                                   <form action="/processarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
                                     <button type="submit" style="color:blue; text-decoration:underline">Processar</button>
                                   </form>
@@ -264,7 +264,7 @@
                                       <% } %>
                                       <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
                                       <td><%= produto.estoque %></td>
-                                      <td><a href="/"><img src="icon/carrinho-editar.png" alt=""></a></td>
+                                      <td><a href="/editarProduto/<%=produto.idProduto%>"><img src="icon/carrinho-editar.png" alt="editar_produto"></a></td>
                                   </tr>
                               <% }) %>
                           <% } else { %>
