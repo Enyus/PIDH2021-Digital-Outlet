@@ -245,12 +245,16 @@ module.exports = {
     },
 
     cadastroproduto: async (req, res, next) => {
-        const marcadb = await db.Marcas.findAll();
-        const categoriadb = await db.Categorias.findAll();
+        const marcadb = await db.Marcas.findAll({
+            order: [['nomeMarca', 'ASC']]
+        });
+        const categoriadb = await db.Categorias.findAll({
+            order: [['nomeCategoria', 'ASC']]
+        });
 
         res.render('cadastroproduto', {
             title:"Cadastro de Produto",
-            usuario: req.session.usuario, //verificar se cliente ou loja
+            usuario: req.session.loja.Loja, //verificar se cliente ou loja
             marcas: marcadb,
             categorias: categoriadb
         });
