@@ -1,0 +1,158 @@
+  <%- include('./partials/head') %>
+  <link rel='stylesheet' href='/stylesheets/cadastroproduto.css' />
+</head>
+
+<%- include('./partials/header') %>
+
+<main class="cadastroproduto">
+  <section class="containergeral">
+    <h1>Edite seu Produto</h1>
+    <div class="containersecundario">
+      <form action="/editarProduto?_method=PUT" method="POST" enctype="multipart/form-data">
+        <input type="text" name="idProduto" value="<%=idProduto%>" style="display:none">
+        <div class="sections">
+          <section class="descProduto">
+            <p class="lembrete">Lembre-se a descrição de seu produto tem importância ìmpar à decisão do consumidor!</p>     
+            <div class="formrow">
+              <label for="nomeproduto">Produto:</label>
+              <input type="text" id="nomeproduto" name="nomeproduto" value="<%= produto.nomeProduto %>" >
+            </div>
+            <div class="formrow">
+              <label for="marca">Marca:</label>
+              <select name="marca" id="marca">
+                <% marcas.forEach(marca => { %>
+                  <% if (marca.idMarca == marcaProduto.idMarca) { %>
+                    <option value="<%- marca.nomeMarca %>" selected><%= marca.nomeMarca %></option>
+                  <% } else { %>
+                    <option value="<%- marca.nomeMarca %>"><%= marca.nomeMarca %></option>
+                  <% } %>
+                <% }) %>
+              </select>
+                
+            </div>
+            <div class="formrow">
+              <label for="preco">Preço:</label>
+              <input type="text" id="preco" class="preco" name="preco" maxlength="10" value="<%= produto.preco.toFixed(2).replace('.',',') %>" >
+            </div>
+            <div class="formrow">
+              <label for="categoria">Categoria:</label>
+              <select name="categoria" id="categoria">
+                <% categorias.forEach(categoria => { %>
+                  <% if (categoria.idCategoria == categoriaProduto.idCategoria) { %>
+                    <option value="<%- categoria.nomeCategoria %>" selected><%= categoria.nomeCategoria %></option>
+                  <% } else { %>
+                    <option value="<%- categoria.nomeCategoria %>"><%= categoria.nomeCategoria %></option>
+                  <% } %>
+                <% }) %>
+              </select>
+            </div>
+            <div class="formrow">
+              <label for="descproduto">Descrição:</label>
+              <textarea id="descproduto" name="descproduto" rows="5" ><%= produto.desc %></textarea>
+            </div>
+          </section>          
+          <section class="fotosInfoTec">
+            <div class="formrow subContainers">
+              <div class="titleContainer">
+                <label for="fotoproduto">Fotos:</label>
+              </div>
+              <div class="fotoproduto container" id="fotoproduto">
+
+                <% let count = 1 %>
+                <% fotos.forEach((element, index) => { %>
+                  <button type="button" class="img" id="buttonimg<%=index+1%>" onclick="document.getElementById('imgupload<%=index+1%>').click()">
+                    <input type="file" accept="image/*" id="imgupload<%=index+1%>" class="nomeProduto" name="gallery" oninput="document.getElementById('changed<%=index+1%>').value='true'" >
+                    <img <% if (element != undefined) { %> src="<%=element.urlFoto %>" <%} else { %> src="/images/sample-img.svg" <% } %>>
+                    <input type="hidden" name="gallery<%=index+1%>" <%if (element != undefined) { %> value="<%=element.urlFoto %>" <%} %>>
+                    <input type="hidden" id="changed<%=index+1%>" name="changed<%=index+1%>" value="false">
+                  </button>
+                  <% count += 1 %>
+                <% }) %>
+                <% for( let i = 1 ; i <= 6; i++ ) { %>                  
+                  <% if (i >= count) { %>
+                    <!-- <button type="button" class="img" id="buttonimg<%=i%>" onclick="document.getElementById('imgupload<%=i%>').click()">
+                      <input type="file" accept="image/*" id="imgupload<%=i%>" class="nomeProduto" name="gallery" oninput="document.getElementById('changed<%=i%>').value='true'" >
+                      <img src="/images/sample-img.svg">
+                      <input type="hidden" name="gallery<%=i%>">
+                      <input type="hidden" id="changed<%=i%>" name="changed<%=i%>" value="false">
+                    </button> -->
+                    <button type="button" class="img" id="buttonimg<%=[i]%>" onclick="document.getElementById('imgupload<%=[i]%>').click()">
+                      <input type="file" accept="image/*" id="imgupload<%=[i]%>" class="nomeProduto" name="gallery">
+                      <img src="/images/sample-img.svg">
+                    </button>
+                    <% break %>
+                  <% } %>
+                <% } %>
+                <button style="display: none;" type="button" class="img" id="buttonimg6" onclick="document.getElementById('imgupload6').click()">
+                  <input type="file" accept="image/*" id="imgupload6" class="nomeProduto" name="gallery">
+                  <img src="/images/sample-img.svg">
+                </button>
+
+              </div>
+            </div>
+            <div class="formrow subContainers">
+              <div class="titleContainer">
+                <label for="desctec" class="col0">Descrição Técnica:</label>
+              </div>
+              <div class="desctec container" id="desctec">
+                <div class="formrow">
+                  <input type="checkbox" id="checkdesc1" <% if (descTec[0] != undefined) {%> checked <% } %>>
+                  <input value="<%= descTec[0].nomeDescTec %>" type="text" class="col1" id="catdesc1" name="descTecValor">
+                  <p>:</p>
+                  <input value="<%= descTec[0].valor %>" type="text" class="col2" id="desctec1" name="descTecValor">
+                </div>
+                <div class="formrow">
+                  <input type="checkbox" id="checkdesc2" <% if (descTec[1] != undefined) {%> checked <% } %>>
+                  <input <% if (descTec[1] != undefined) { %> value="<%= descTec[1].nomeDescTec %>" <% } %> type="text" class="col1" id="catdesc2" name="descTecValor">
+                  <p>:</p>
+                  <input <% if (descTec[1] != undefined) { %> value="<%= descTec[1].valor %>" <% } %> type="text" class="col2" id="desctec2" name="descTecValor">
+                </div>
+                <div class="formrow">
+                  <input type="checkbox" id="checkdesc3" <% if (descTec[2] != undefined) {%> checked <% } %>>
+                  <input <% if (descTec[2] != undefined) { %> value="<%= descTec[2].nomeDescTec %>" <% } %> type="text" class="col1"  id="catdesc3" name="descTecValor">
+                  <p>:</p>
+                  <input <% if (descTec[2] != undefined) { %> value="<%= descTec[2].valor %>" <% } %> type="text" class="col2" id="desctec3" name="descTecValor">
+                </div>
+                <div class="formrow">
+                  <input type="checkbox" id="checkdesc4" <% if (descTec[3] != undefined) {%> checked <% } %>>
+                  <input <% if (descTec[3] != undefined) { %> value="<%= descTec[3].nomeDescTec %>" <% } %> type="text" class="col1" id="catdesc4" name="descTecValor">
+                  <p>:</p>
+                  <input <% if (descTec[3] != undefined) { %> value="<%= descTec[3].valor %>" <% } %> type="text" class="col2" id="desctec4" name="descTecValor">
+                </div>
+                <div class="formrow">
+                  <input type="checkbox" id="checkdesc5" <% if (descTec[4] != undefined) {%> checked <% } %>>
+                  <input <% if (descTec[4] != undefined) { %> value="<%= descTec[4].nomeDescTec %>" <% } %> type="text" class="col1" id="catdesc5" name="descTecValor">
+                  <p>:</p>
+                  <input <% if (descTec[4] != undefined) { %> value="<%= descTec[4].valor %>" <% } %> type="text" class="col2" id="desctec5" name="descTecValor">
+                </div>
+                <div class="formrow">
+                  <input type="checkbox" id="checkdesc6" <% if (descTec[5] != undefined) {%> checked <% } %>>
+                  <input <% if (descTec[5] != undefined) { %> value="<%= descTec[5].nomeDescTec %>" <% } %> type="text" class="col1" id="catdesc6" name="descTecValor">
+                  <p>:</p>
+                  <input <% if (descTec[5] != undefined) { %> value="<%= descTec[5].valor %>" <% } %> type="text" class="col2" id="desctec6" name="descTecValor">
+                </div>
+
+              </div>
+            </div>            
+          </section>
+        </div>
+        <section class="estoquePromocao">
+            <label for="estoque">Estoque:</label>
+            <input type="number" id="estoque" class="estoque" name="estoque" min="0" max="999" value="<%= estoque.quantidade %>">
+            <label for="promocao">Promocão:</label>
+            <input type="text" id="promocao" class="promocao" name="promocao" min="0" maxlength="3" value="<%= promocao %>">
+            <p>%</p>
+        </section>
+        <section class="buttonsSendDelete">
+          <button class="button delete" >Deletar</button>
+          <button class="button submit" id="submit" type="submit">Salvar</button>
+        </section>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="/scripts/mascara.js"></script>
+<script src="/scripts/validateProduto.js"></script>
+
+<%- include('./partials/footer') %>
