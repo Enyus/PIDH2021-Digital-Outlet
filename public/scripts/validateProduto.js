@@ -42,6 +42,10 @@ const inputDescTec5 = document.getElementById("desctec5");
 const inputCatDesc6 = document.getElementById("catdesc6");
 const inputDescTec6 = document.getElementById("desctec6");
 
+const inputEstoque = document.getElementById("estoque")
+
+const inputPromocao = document.getElementById("promocao")
+
 const buttonSubmit = document.getElementById("submit");
 
 const erros = [];
@@ -82,21 +86,13 @@ function checkValidation () {
         selectCategoria.selected != '' &&
         inputDescProduto.value != '' &&
         inputCatDesc1.value != '' &&
-        inputDescTec1.value != '') {
+        inputDescTec1.value != '' && 
+        inputEstoque.value != 0) {
             buttonSubmit.disabled = false
             buttonSubmit.removeAttribute('style')
     } else {
         buttonSubmit.disabled = true;
         buttonSubmit.setAttribute('style', "background-color: gray")
-    };
-};
-
-buttonsImg = [null, buttonImg1, buttonImg2, buttonImg3, buttonImg4, buttonImg5, buttonImg6]
-
-function showPreview (event, i) {
-    if(event.target.files.length > 0){
-        let src = URL.createObjectURL(event.target.files[0]);
-        buttonsImg[i].children[1].src = src;
     };
 };
 
@@ -139,7 +135,7 @@ selectMarca.onblur = (e) => {
 }
 
 inputPreco.onkeydown = (e) => {
-    if (inputPreco.value.length < 1) {
+    if (inputPreco.value == '0,00') {
         inputPreco.style.borderColor = "red";
         if (!erros.includes("Preço")) {
             erros.push("Preço");
@@ -177,9 +173,24 @@ inputDescProduto.onkeyup = (e) => {
     checkValidation();
 }
 
-//Quais validações usar para imagens?
+// Quais validações usar para imagens?
 
-inputImgUpload1.onchange = (e) => {
+let buttonsImg = [null, buttonImg1, buttonImg2, buttonImg3, buttonImg4, buttonImg5, buttonImg6]
+
+function showPreview (event, i) {
+    if(event.target.files.length > 0){
+        let src = URL.createObjectURL(event.target.files[0]);
+        buttonsImg[i].children[1].src = src;
+        buttonsImg[i+1].style.display = 'inline-block'
+        // let iconFoto =  `<button type="button" class="img" id="buttonimg${i+1}" onclick="document.getElementById('imgupload${i+1}').click()">
+        //                     <input type="file" accept="image/*" id="imgupload${i+1}" class="nomeProduto" name="gallery">
+        //                     <img src="/images/sample-img.svg">
+        //                 </button>`
+        // divFoto.innerHTML += iconFoto;
+    };
+};
+
+inputImgUpload1.addEventListener('change', function (e) {
     showPreview(e, 1);
     if (inputImgUpload1.value == '') {
         if (!erros.includes("Imagem1")) {
@@ -192,9 +203,9 @@ inputImgUpload1.onchange = (e) => {
         };
     }
     checkValidation();
-}
+})
 
-inputImgUpload2.onchange = (e) => {
+inputImgUpload2.addEventListener('change', function (e) {
     showPreview(e, 2);
     if (inputImgUpload2.value == '') {
         if (!erros.includes("Imagem2")) {
@@ -207,7 +218,7 @@ inputImgUpload2.onchange = (e) => {
         };
     }
     checkValidation();
-}
+})
 
 inputImgUpload3.onchange = (e) => {
     showPreview(e, 3);
@@ -462,3 +473,35 @@ inputDescTec6.onkeyup = (e) => {
     }
     checkValidation();
 };
+
+inputEstoque.addEventListener('click', function (e) {
+    if (inputEstoque.value < 1) {
+        inputEstoque.style.borderColor = "red";
+        if (!erros.includes("Estoque")) {
+            erros.push("Estoque");
+        };
+    } else {
+        inputEstoque.style.borderColor = "green";
+        if (erros.includes("Estoque")) {
+            erros.splice(erros.indexOf("Estoque"), 1);
+        };
+    }
+    checkValidation();
+    }
+)
+
+inputEstoque.addEventListener('keyup', function (e) {
+    if (inputEstoque.value < 1) {
+        inputEstoque.style.borderColor = "red";
+        if (!erros.includes("Estoque")) {
+            erros.push("Estoque");
+        };
+    } else {
+        inputEstoque.style.borderColor = "green";
+        if (erros.includes("Estoque")) {
+            erros.splice(erros.indexOf("Estoque"), 1);
+        };
+    }
+    checkValidation();
+    }
+)
