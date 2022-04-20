@@ -1062,6 +1062,116 @@ main.paginaloja table {
   text-align: center;
 }
 
+main.paginaloja table .col-nomeProduto {
+  width: 44%;
+}
+
+main.paginaloja table tr {
+  transition: background-color .15s ;
+}
+main.paginaloja table tr:hover {
+  background-color: rgb(231, 231, 231);
+}
+
+main.paginaloja #listaprodutos .modal button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+main.paginaloja #listaprodutos .modal button:hover {
+  opacity:1;
+}
+main.paginaloja #listaprodutos .modal .cancelbtn,
+main.paginaloja #listaprodutos .modal .deletebtn {
+  width: 50%;
+  font-weight: bold;
+}
+
+main.paginaloja #listaprodutos .modal .cancelbtn {
+  height: 10%;
+  font-size: 16px;
+  background-color: #ccc;
+  color: black;
+}
+main.paginaloja #listaprodutos .modal .deletebtn {
+  font-size: 26px;
+  background-color: #f44336;
+}
+
+main.paginaloja #listaprodutos .modal .modal-container {
+  position: relative;
+  padding: 16px;
+  text-align: center;
+}
+
+main.paginaloja #listaprodutos .modal .modal-container p {
+  font-size: 16px;
+  text-align: center;
+}
+
+main.paginaloja #listaprodutos .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #00000065;
+  /* padding-top: 50px; */
+}
+
+main.paginaloja #listaprodutos .modal-content {
+  background-color: #fefefe;
+  /* margin: 15% auto 15% auto; */
+  margin: 3% auto 15% auto;
+  border: 1px solid #888;
+  width: 50%;
+  opacity: 1;
+  transition: margin .8s;
+}
+main.paginaloja #listaprodutos a.deletarProduto:hover + div.modal > form.modal-content {
+  margin: 0% auto 15%;
+  opacity: 0;
+}
+
+main.paginaloja #listaprodutos hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+main.paginaloja #listaprodutos .close {
+  position: absolute;
+  right: 5px;
+  top: -5px;
+  font-size: 40px;
+  font-weight: bold;
+  /* color: #f1f1f1; */
+  color: black;
+}
+
+main.paginaloja #listaprodutos .close:hover,
+main.paginaloja #listaprodutos .close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+main.paginaloja #listaprodutos .clearfix {
+  display: flex;
+  justify-content: space-between;
+}
+main.paginaloja #listaprodutos .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
 div.colaboradores {
   display: flex;
   justify-content: space-evenly;
