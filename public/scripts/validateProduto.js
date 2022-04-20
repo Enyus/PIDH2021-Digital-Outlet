@@ -181,12 +181,7 @@ function showPreview (event, i) {
     if(event.target.files.length > 0){
         let src = URL.createObjectURL(event.target.files[0]);
         buttonsImg[i].children[1].src = src;
-        buttonsImg[i+1].style.display = 'inline-block'
-        // let iconFoto =  `<button type="button" class="img" id="buttonimg${i+1}" onclick="document.getElementById('imgupload${i+1}').click()">
-        //                     <input type="file" accept="image/*" id="imgupload${i+1}" class="nomeProduto" name="gallery">
-        //                     <img src="/images/sample-img.svg">
-        //                 </button>`
-        // divFoto.innerHTML += iconFoto;
+        buttonsImg[i+1].style.display = 'block'
     };
 };
 
