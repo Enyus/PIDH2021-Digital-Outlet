@@ -70,24 +70,12 @@
                 <% }) %>
                 <% for( let i = 1 ; i <= 6; i++ ) { %>                  
                   <% if (i >= count) { %>
-                    <!-- <button type="button" class="img" id="buttonimg<%=i%>" onclick="document.getElementById('imgupload<%=i%>').click()">
-                      <input type="file" accept="image/*" id="imgupload<%=i%>" class="nomeProduto" name="gallery" oninput="document.getElementById('changed<%=i%>').value='true'" >
-                      <img src="/images/sample-img.svg">
-                      <input type="hidden" name="gallery<%=i%>">
-                      <input type="hidden" id="changed<%=i%>" name="changed<%=i%>" value="false">
-                    </button> -->
                     <button type="button" class="img" id="buttonimg<%=[i]%>" onclick="document.getElementById('imgupload<%=[i]%>').click()">
                       <input type="file" accept="image/*" id="imgupload<%=[i]%>" class="nomeProduto" name="gallery">
                       <img src="/images/sample-img.svg">
                     </button>
-                    <% break %>
                   <% } %>
                 <% } %>
-                <button style="display: none;" type="button" class="img" id="buttonimg6" onclick="document.getElementById('imgupload6').click()">
-                  <input type="file" accept="image/*" id="imgupload6" class="nomeProduto" name="gallery">
-                  <img src="/images/sample-img.svg">
-                </button>
-
               </div>
             </div>
             <div class="formrow subContainers">
@@ -144,8 +132,22 @@
             <p>%</p>
         </section>
         <section class="buttonsSendDelete">
-          <button class="button delete" >Deletar</button>
-          <button class="button submit" id="submit" type="submit">Salvar</button>
+          <button type="submit" class="button delete" >Deletar</button>
+          <div id="id<%=produto.idProduto%>" class="modal">
+            <form class="modal-content" action="/deletarProduto/<%=produto.idProduto%>?_method=DELETE" method="POST">
+              <div class="modal-container">
+                <span class="close" >&times;</span>
+                <h1>ATENÇÃO</h1>
+                <p>Tem certeza que deseja deletar este produto? Esta ação será irreversível. </p>
+                <div class="clearfix">
+                  <button type="button" class="cancelbtn"  >Cancelar</button>
+                  <button type="submit" class="deletebtn">Deletar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <button type="submit" class="button submit" id="submit">Salvar</button>
         </section>
       </form>
     </div>
@@ -154,5 +156,6 @@
 
 <script src="/scripts/mascara.js"></script>
 <script src="/scripts/validateProduto.js"></script>
+<script src="/scripts/modalDeleteProduto.js"></script>
 
 <%- include('./partials/footer') %>
