@@ -238,38 +238,57 @@
                       <thead>
                           <tr>
                               <th scope="col">Id do Produto</th>
-                              <th scope="col">Produto</th>
+                              <th class="col-nomeProduto" scope="col">Produto</th>
                               <th scope="col">Marca</th>
                               <th scope="col">Categoria</th>
                               <th scope="col">Preço</th>
                               <th scope="col">Desconto</th>
                               <th scope="col">Valor Atual</th>
                               <th scope="col">Em Estoque</th>
-                              <th scope="col">Editar</th>
+                              <th scope="col">Ações</th>
                           </tr>
                       </thead>
                       <tbody>
-                          <% if(listaProdutos.length > 0) { %>
-                              <% listaProdutos.forEach( produto => { %>
-                                  <tr>
-                                      <td><%= produto.idProduto %></td>
-                                      <td><a href="/produto/<%= produto.idProduto %>"><%= produto.nomeProduto %></a></td>
-                                      <td><%= produto.marca %></td>
-                                      <td><%= produto.categoria %></td>
-                                      <td>R$ <%= produto.preco.toFixed(2) %></td>
-                                      <% if(produto.desconto>0) { %>
-                                          <td><%= produto.desconto %>%</td>
-                                      <% } else { %>
-                                          <td>-</td>
-                                      <% } %>
-                                      <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
-                                      <td><%= produto.estoque %></td>
-                                      <td><a href="/editarProduto/<%=produto.idProduto%>"><img src="icon/carrinho-editar.png" alt="editar_produto"></a></td>
-                                  </tr>
-                              <% }) %>
-                          <% } else { %>
-                              <p>Você ainda não tem produtos cadastrados. <a href="/cadastroproduto"><b>Cadastre um produto aqui!</b></a></p>
-                          <% } %>
+                        <% if(listaProdutos.length> 0) { %>
+                          <% listaProdutos.forEach( produto=> { %>
+                            <tr>
+                              <td><%= produto.idProduto %></td>
+                              <td><a href="/produto/<%= produto.idProduto %>"><%= produto.nomeProduto %></a></td>
+                              <td><%= produto.marca %></td>
+                              <td><%= produto.categoria %></td>
+                              <td>R$ <%= produto.preco.toFixed(2) %></td>
+                              <% if(produto.desconto>0) { %>
+                                <td><%= produto.desconto %>%</td>
+                              <% } else { %>
+                                <td>-</td>
+                              <% } %>
+                              <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
+                              <td><%= produto.estoque %></td>
+                              <td>
+                                <a href="/editarProduto/<%=produto.idProduto%>"><img src="icon/carrinho-editar.png" alt="editar_produto"></a>
+                                <!-- <a value="<%=produto.idProduto%>" class="deletarProduto"><img src="icon/carrinho-lixeira.png" alt="deletar_produto" onclick="document.getElementById('id<%=produto.idProduto%>').style.display='block'"></a> -->
+                                <a class="deletarProduto"><img src="icon/carrinho-lixeira.png" alt="deletar_produto"></a>
+                                
+                                <div id="id<%=produto.idProduto%>" class="modal" value="<%=produto.idProduto%>">
+                                  <form class="modal-content" action="/deletarProduto/<%=produto.idProduto%>?_method=DELETE" method="POST">
+                                    <div class="modal-container">
+                                      <span class="close" >&times;</span>
+                                      <h1>ATENÇÃO</h1>
+                                      <p>Tem certeza que deseja deletar este produto? Esta ação será irreversível. </p>
+                                      <div class="clearfix">
+                                        <button type="button" class="cancelbtn"  >Cancelar</button>
+                                        <button type="submit" class="deletebtn">Deletar</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              
+                              </td>
+                            </tr>
+                          <% }) %>
+                        <% } else { %>
+                          <p>Você ainda não tem produtos cadastrados. <a href="/cadastroproduto"><b>Cadastre um produto aqui!</b></a></p>
+                        <% } %>
                       </tbody>
                   </table>
               </div>
@@ -479,7 +498,7 @@
   <% } else { %>
     <script src="/scripts/loja.js"></script>
   <% } %>
-
   <script src="/scripts/validateLoja.js"></script>
+  <script src="/scripts/modalDeleteProduto.js"></script>
 
 <%- include('./partials/footer') %>
