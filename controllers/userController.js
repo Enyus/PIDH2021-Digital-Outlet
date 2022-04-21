@@ -10,7 +10,6 @@ module.exports = {
         const {idUsuario} = req.session.usuario;
         let pedidos = [];
         let buscasRecentes = [];
-        let lojaPedido = []
         
         try {
             const pedidosDB = await db.Pedidos.findAll({
@@ -37,8 +36,6 @@ module.exports = {
                     attributes: ['idStatusPedido', 'idPedido', 'dataProcess', 'dataTransp', 'dataEntrega']
                 }]
             });
-            // console.log(pedidosDB);
-            // console.log(pedidosDB[0].Loja);
 
             for (i=0; i<pedidosDB.length; i++) {
                 pedidos.push(
@@ -70,10 +67,8 @@ module.exports = {
                     )
                 };
             };
-            // console.log(pedidos);
 
             const enderecos = await db.Enderecos.findAll({where: {idUsuario}})
-            // console.log(enderecos);
 
             if( usuario.buscasRecentes.length > 0) {
                 buscasRecentes = await db.Produtos.findAll({
@@ -105,11 +100,13 @@ module.exports = {
 
         try {
 
-            const user = await db.Usuarios.findOne({where: {email: email,}});
-            console.log(user);
+            const user = await db.Usuarios.findOne(
+                {
+                    where: {email: email},
+                    include: {model: db.Lojas}
+                });
 
             const loja = await db.Lojas.findOne({where:{email:email}});
-            console.log(loja);
 
             if (user != null) {
                 if (!bcrypt.compareSync(senha, user.senha)) {
@@ -126,6 +123,24 @@ module.exports = {
                         buscasRecentes: []
                     }
                     res.cookie('idUsuario', user.idUsuario, {maxAge: 86400000})
+                    if(user.Lojas.length>0) {
+                        req.session.loja = {
+                            idLoja: user.Lojas[0].idLoja,
+                            email: user.Lojas[0].email,
+                            razaoSocial: user.Lojas[0].razaoSocial,
+                            nomeFantasia: user.Lojas[0].nomeFantasia,
+                            inscEst: user.Lojas[0].inscEst,
+                            cnpj: user.Lojas[0].cnpj,
+                            logradouro: user.Lojas[0].logradouro,
+                            numero: user.Lojas[0].numero,
+                            complemento: user.Lojas[0].complemento,
+                            cidade: user.Lojas[0].cidade,
+                            estado: user.Lojas[0].estado,
+                            cep: user.Lojas[0].cep,
+                            fotoPerfil: user.Lojas[0].fotoPerfil
+                        }
+                        res.cookie('idLoja', user.Lojas[0].idLoja, {maxAge: 86400000})
+                    }
                     return res.redirect('/cliente');
                 }
             }
@@ -147,21 +162,17 @@ module.exports = {
                         cidade: loja.cidade,
                         estado: loja.estado,
                         cep: loja.cep,
-                        fotoPerfil: loja.fotoPerfil,
-                        buscasRecentes: []
+                        fotoPerfil: loja.fotoPerfil
                     }
                     res.cookie('idLoja', loja.idLoja, {maxAge: 86400000})
                     return res.redirect('/loja');
                 }
             }
-            
         } catch(err) {
 
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
-
         }
-        
     },
 
     logout: (req, res) => {
@@ -232,16 +243,12 @@ module.exports = {
                 {email, nome, sobrenome, dataNasc, cpf, senha:hash},
                 {where:{idUsuario}}
             )
-
             console.log(usuarioAlterado);
-
             req.session.usuario = undefined;
             return res.redirect('/login');
 
         } catch (err) {
-
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
-
         }
     },
 
@@ -251,19 +258,15 @@ module.exports = {
         console.log(fotoPerfil);
 
         try {
-            const perfilCliente = await db.Usuarios.update(
+            await db.Usuarios.update(
                 {fotoPerfil},
                 {where:{idUsuario}}
             )
-
             req.session.usuario.fotoPerfil = fotoPerfil;
-            
             return res.redirect('/cliente');
 
         } catch (err) {
-
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
-
         }
     },
 
@@ -314,22 +317,17 @@ module.exports = {
     excluirCliente: async (req, res) => {
         const {idUsuario} = req.params;
         const {confirmadeletausuario} = req.body;
-        // console.log(confirmadeletausuario);
 
         if (confirmadeletausuario != "confirma") {
             return res.status(412).render('error', {title: 'Falha', error: {erro: "O usuário não confirmou a deleção de sua conta corretamente"}, message: "O usuário não confirmou a deleção de sua conta corretamente" })
         }
-        
-        
         try {
-
             await db.Usuarios.destroy({where: {idUsuario}});
             req.session.usuario = undefined;
             res.cookie('idUsuario', undefined);
             return res.redirect('/');
 
         } catch(err) {
-
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" });
 

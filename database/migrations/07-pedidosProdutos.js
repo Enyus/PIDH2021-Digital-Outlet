@@ -39,6 +39,7 @@ module.exports = {
             desconto: {
                 type: Sequelize.FLOAT,
                 allowNull: false,
+                defaultValue: 0,
                 validate: {
                     isFloat: {msg: "O desc6nt6 deve ser um número do tipo FLOAT"}
                 }

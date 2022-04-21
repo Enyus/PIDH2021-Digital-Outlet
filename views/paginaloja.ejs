@@ -36,6 +36,7 @@
                                           <p> <%= pedidos[element].Produtos[0].nomeProduto %> + ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
                                         <% } else { %>
                                           <p> <%= pedidos[element].Produtos[0].nomeProduto %> ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
+                                          <!-- problema aqui -->
                                         <% } %>
                                         <p>Participação  <img src="/images/logo-mini.svg" alt="mini logo"> --- <ins style="color:red;">R$ <%= (pedidos[element].valor * 0.1).toFixed(2) %></ins></p>
                                         <p>Total Lojista --- <ins style="color: greenyellow;">R$ <%= (pedidos[element].valor - (pedidos[element].valor * 0.1)).toFixed(2) %></ins></p>
@@ -171,7 +172,7 @@
                                 <% } else { %>
                                   <td rowspan="<%=pedido.Produtos.length%>">
                                     <form action="/processarpedido/<%=pedido.idPedido%>?_method=PUT" method="POST">
-                                      <button type="submit" style="color:blue; text-decoration:underline">Processar</button>
+                                      <button type="submit" style="color:blue; text-decoration:underline"> Processar </button>
                                     </form>
                                   </td>
                                 <% } %>
@@ -326,6 +327,10 @@
                         <input type="password" id="confirmapassword" name="confirmapassword">
                       </div>
                       <div class="formrow">
+                        <label for="cep">CEP:</label>
+                        <input type="number" id="cep" name="cep" value="<%=loja.cep%>">
+                    </div>
+                      <div class="formrow">
                           <label for="logradouro">Logradouro:</label>
                           <input type="text" id="logradouro" name="logradouro" value="<%=loja.logradouro%>">
                       </div>
@@ -344,10 +349,6 @@
                       <div class="formrow">
                           <label for="estado">Estado:</label>
                           <input type="text" id="estado" name="estado" value="<%=loja.estado%>">
-                      </div>
-                      <div class="formrow">
-                          <label for="cep">CEP:</label>
-                          <input type="number" id="cep" name="cep" value="<%=loja.cep%>">
                       </div>
                       <button type="submit" id="submit">Alterar</button>
                   </form>
@@ -500,5 +501,6 @@
   <% } %>
   <script src="/scripts/validateLoja.js"></script>
   <script src="/scripts/modalDeleteProduto.js"></script>
+  <script src="/api/validaCep.js"></script>
 
 <%- include('./partials/footer') %>

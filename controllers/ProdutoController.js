@@ -5,13 +5,6 @@ const fs = require('fs')
 const path = require('path');
 
 module.exports = {
-    cadastroView: async (req, res, next) => {
-        res.render('cadastroproduto', {
-            title:"Cadastro de Produto",
-            // usuario: req.session.usuario
-
-        })
-    },
     create: async (req, res, next) => {
         const dadosProduto = req.body;
         
@@ -36,7 +29,6 @@ module.exports = {
                 idLoja: loja,
                 promocao: dadosProduto.promocao,
             })
-
             // idProduto para salvar nos outras tabelas
             const idProduto = produtoCreate.idProduto;
             
@@ -44,7 +36,7 @@ module.exports = {
             descricaoProduto.forEach(async element => {
                 const positionElement = descricaoProduto.indexOf(element)
                 if (element && positionElement % 2 == 0) {
-                    const descProdCreate = await db.DescTec.create({
+                   await db.DescTec.create({
                         idProduto: idProduto,
                         nomeDescTec: descricaoProduto[positionElement],
                         valor: descricaoProduto[positionElement + 1],

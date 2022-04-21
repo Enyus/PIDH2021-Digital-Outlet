@@ -35,15 +35,41 @@
                         <% } %>
                     </div>
                     <div class="comprar">
-                        <form action="" method="POST">
-                            <input type="text" name="CEP" id="CEP" value="Insira seu CEP">
+                        <form action="/apifrete" method="POST">
+                            <input type="text" name="idProduto" hidden value="<%=idProduto%>">
+                            <input type="text" name="cepLoja" hidden value="<%=produto.cepLoja%>">
+                            <input type="text" name="cep" id="CEP" placeholder="Insira seu CEP">
                             <button type="submit">Calcular Frete</button>
                         </form>
-                        <p>Frete: R$ -</p>
-                        <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </p>
+                        <p>Frete: R$ <%=produto.frete%></p>
+                        <% if(produto.prazo != '') { %>
+                            <p>Prazo de Entrega Previsto: <%=produto.prazo%> dias</p>
+                        <% } %>
+                        <% if(produto.frete != '-') { %>
+                            <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100 + parseFloat(produto.frete)).toFixed(2) %> </p>
+                        <% } else { %>
+                            <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </p>
+                        <% } %>
                         <div class="compra">
-                            <button>Adicionar ao Carrinho</button>
-                            <button>Comprar</button>                            
+                            <form action="/addcart" method="POST">
+                                <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <input type="text" hidden name="source" value="/produto/<%=idProduto%>">
+                                <% if (produto.frete != '-') { %>
+                                    <input type="text" hidden name="frete" value="<%=produto.frete%>">
+                                <% } else { %>
+                                    <input type="text" hidden name="frete" value="0">
+                                <% } %>
+                                <button type="submit">Adicionar ao Carrinho</button>
+                            </form>
+                            <form action="/comprar" method="POST">
+                                <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <% if (produto.frete != '-') { %>
+                                    <input type="text" hidden name="frete" value="<%=produto.frete%>">
+                                <% } else { %>
+                                    <input type="text" hidden name="frete" value="0">
+                                <% } %>
+                                <button type="submit">Comprar</button>
+                            </form>                          
                         </div>
                     </div>
                 </div>

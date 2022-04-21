@@ -6,67 +6,84 @@
       </div>
       <div class="busca">
         <p>Pesquise sua marca/produto:</p>
-        <% if (typeof(busca) != 'undefined') { %>
+        <% if (typeof(busca) !='undefined' ) { %>
           <input type="text" id="campobusca" value="<%=busca%>">
-        <% } else { %>
-          <input type="text" id="campobusca">
-        <% } %>
-        <a href="/resultadobusca" id="botaobuscar"><img src="/images/search-icon.png" alt="search"></a>
+          <% } else { %>
+            <input type="text" id="campobusca">
+            <% } %>
+              <a href="/resultadobusca" id="botaobuscar"><img src="/images/search-icon.png" alt="search"></a>
       </div>
       <div class="hbutton">
+
         <div>
-          <% if(usuario != undefined) { %>
+          <% if(usuario !=undefined) { %>
             <a href="/cliente">
-              <% if (usuario.fotoPerfil != null) { %>
+              <% if (usuario.fotoPerfil !=null) { %>
                 <img src=<%=usuario.fotoPerfil %> class="fotoPerfil" alt="login">
-              <% } else { %>
-                <img src='/images/login.svg' alt="login">
-              <% } %>
-            <p><%= usuario.nome %></p>
-          <% } else { %>
-            <a href="/login">
-            <img src='/images/login.svg' alt="login">
-            <p>LOG IN</p>
-          <% } %>
-          </a>
+                <% } else { %>
+                  <img src='/images/login.svg' alt="login">
+                  <% } %>
+                    <p>
+                      <%= usuario.nome %>
+                    </p>
+                    <% } else { %>
+                      <a href="/login">
+                        <img src='/images/login.svg' alt="login">
+                        <p>LOG IN</p>
+                        <% } %>
+                      </a>
         </div>
+
         <div>
-          <% if(loja != undefined) { %>
-          <a href="/loja">
-            <% if (loja.fotoPerfil != null) { %>
-              <img src=<%=loja.fotoPerfil %> class="fotoPerfil" alt="login">
-            <% } else { %>
-              <img src='/images/login.svg' alt="login">
-            <% } %>
-            <p><%= loja.nomeFantasia %></p>
-          <% } else { %>
-            <a href="/cadastroloja">
-            <img src="/images/lojista.svg" alt="login lojista">
-            <p>VENDA CONOSCO</p>
-            </a>
-          <% } %>          
+          <% if(loja !=undefined) { %>
+            <a href="/loja">
+              <% if (loja.fotoPerfil !=null) { %>
+                <img src=<%=loja.fotoPerfil %> class="fotoPerfil" alt="login">
+                <% } else { %>
+                  <img src='/images/login.svg' alt="login">
+                  <% } %>
+                    <p>
+                      <%= loja.nomeFantasia %>
+                    </p>
+                    <% } else { %>
+                      <a href="/cadastroloja">
+                        <img src="/images/lojista.svg" alt="login lojista">
+                        <p>VENDA CONOSCO</p>
+                        <% } %>
+                      </a>
         </div>
+
         <div>
           <a href="/carrinho">
-          <img src="/images/carrinho.svg" alt="carrinho">
-          <p>SEU CARRINHO</p>
+            <% if (carrinho.produtos.length> 0) { %>
+              <p class="notificacaocarrinho">
+                <% let totalItens=0 %>
+                  <% carrinho.produtos.forEach( item=> { %>
+                    <% totalItens +=item.quantidade %>
+                      <% }) %>
+                        <%= totalItens %>
+              </p>
+              <% } %>
+                <img src="/images/carrinho.svg" alt="carrinho">
+                <p>SEU CARRINHO</p>
           </a>
         </div>
+
       </div>
     </section>
 
     <section class="buscamobile">
       <p>busca:</p>
-      <% if (typeof(busca) != 'undefined') { %>
-        <input type="text" id="campobuscamobile" value=<%= busca %>>
-      <% } else { %>
-        <input type="text" id="campobuscamobile">
-      <% } %>
-      <a href="/resultadobusca" id="botaobuscarmobile"><img src="/images/search-icon.png" alt="search"></a>
+      <% if (typeof(busca) !='undefined' ) { %>
+        <input type="text" id="campobuscamobile" value=<%=busca %>>
+        <% } else { %>
+          <input type="text" id="campobuscamobile">
+          <% } %>
+            <a href="/resultadobusca" id="botaobuscarmobile"><img src="/images/search-icon.png" alt="search"></a>
     </section>
 
   </header>
-  
+
   <section class="header-menu">
     <a href="/resultadobusca?page=1&categoria=1">ROUPAS</a>
     <a href="/resultadobusca?page=1&categoria=2">LIVROS</a>
