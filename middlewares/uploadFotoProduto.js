@@ -15,13 +15,8 @@ const storageFotoProduto = multer.diskStorage({
         
         const uniqueSuffix = date + hour;
         const extension = file.mimetype.slice(6);
-        cb(null, `${uniqueSuffix}-${nomeproduto.replace(/ /gi,"-").toLowerCase()}-${qtd}.${extension}`);
+        cb(null, `${uniqueSuffix}-${nomeproduto.replace(/[^0-9a-zA-Z]+/gi,"-").toLowerCase()}-${qtd}.${extension}`);
     },
-    mimetype: function (req, file, cb) {
-        console.log(req.files)
-        cb('teste');
-
-    }
   });
   
   const uploadFotoProduto = multer({ storage: storageFotoProduto });
