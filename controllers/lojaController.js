@@ -54,7 +54,8 @@ module.exports = {
                 include: [
                     {
                         model: db.Produtos,
-                        attributes: ['idProduto', 'nomeProduto', 'preco', 'promocao']
+                        attributes: ['idProduto', 'nomeProduto', 'preco', 'promocao'],
+                        paranoid: false
                     } , {
                         model: db.Usuarios,
                         attributes: ['idUsuario', 'cpf']

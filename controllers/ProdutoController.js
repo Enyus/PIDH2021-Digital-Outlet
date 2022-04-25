@@ -191,9 +191,9 @@ module.exports = {
     delete: async (req, res) => {
         const {idProduto} = req.params;
         try {
-            await db.Estoque.destroy({where: {idProduto}});
-            await db.Fotos.destroy({where: {idProduto}});
-            await db.DescTec.destroy({where: {idProduto}});
+            // await db.Estoque.destroy({where: {idProduto}});
+            // await db.Fotos.destroy({where: {idProduto}});
+            // await db.DescTec.destroy({where: {idProduto}});
             await db.Produtos.destroy({where: {idProduto}});
             res.redirect("/loja");
         } catch (err) {

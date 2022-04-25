@@ -20,13 +20,15 @@ module.exports = {
                 include: [{
                     model: db.Produtos,
                     attributes:{
-                        exclude: ['createdAt', 'updatedAt']
+                        exclude: ['createdAt', 'updatedAt'],
                     },
+                    paranoid: false,
                     include: {
                         model: db.Fotos,
                         attributes:{
                             exclude: ['Produtos.Fotos.idFoto', 'createdAt', 'updatedAt']
                         },
+                        paranoid: false
                     },
                 }, {
                     model: db.Lojas,
