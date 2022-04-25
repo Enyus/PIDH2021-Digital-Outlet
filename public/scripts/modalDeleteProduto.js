@@ -1,21 +1,9 @@
-// const modalId = document.querySelectorAll('#id01');
-const modal = document.querySelectorAll(".modal");
+const modal = document.querySelectorAll("div.modal");
 const closeModal = document.querySelectorAll("span.close");
 const cancelButton = document.querySelectorAll("button.cancelbtn");
-const modalContent = document.querySelector("form.modal-content");
-const form = document.querySelector("#id01 form")
 
 const showModalLoja = document.querySelectorAll("a.deletarProduto");
 const showModalEditProduto = document.querySelectorAll("button.delete");
-
-
-modal.forEach(element => {
-  showModalLoja.forEach(el => {
-    el.addEventListener('click', function(e) {
-      alert()
-    })
-  })
-})
 
 modal.forEach(elementModal => {
   cancelButton.forEach(elementCancel => {
@@ -34,3 +22,13 @@ modal.forEach(elementModal => {
     }
   })
 });
+
+// Página editar produto
+
+const formProduto = document.querySelector('.produto');
+const idProduto = document.querySelector('.idProduto');
+const deleteButton = document.querySelector('.deletebtn')
+
+deleteButton.addEventListener('click', function(){
+  formProduto.setAttribute('action', `/deletarProduto/${idProduto.value}?_method=DELETE`)
+})
