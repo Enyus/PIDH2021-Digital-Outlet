@@ -289,7 +289,7 @@ main section.containergeral div.container h1 {
 
 section.containergeral strong, 
 section.containergeral p {
-  /* margin: 0 3% 10px 3%; */
+  margin: 0 3% 10px 3%;
   font-size: 18px;
   line-height: 23px;
   text-align: justify;
