@@ -20,13 +20,11 @@ module.exports = (sequelize, DataType) => {
 			type: DataType.STRING,
 			allowNull: false,
 		},
-		
 		createdAt: DataType.DATE,
-		
-		updatedAt: DataType.DATE
-		
+		updatedAt: DataType.DATE,		
 	},{
 	   tableName: 'DescTec',
+	   paranoid: true,
 	});
 
 	DescTec.associate = (models) => {
