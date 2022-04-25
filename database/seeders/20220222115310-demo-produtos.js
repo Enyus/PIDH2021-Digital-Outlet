@@ -13,7 +13,8 @@ module.exports = {
         idLoja: 1,
         promocao: 10,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=2
       {
@@ -25,7 +26,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=3
       {
@@ -37,7 +39,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=4
       {
@@ -49,7 +52,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=5
       {
@@ -61,7 +65,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=6
       {
@@ -73,7 +78,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=7
       {
@@ -85,7 +91,8 @@ module.exports = {
         idLoja: 1,
         promocao: 5,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=8
       {
@@ -97,7 +104,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=9
       {
@@ -109,7 +117,8 @@ module.exports = {
         idLoja: 1,
         promocao: 15,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=10
       {
@@ -121,7 +130,8 @@ module.exports = {
         idLoja: 1,
         promocao: 5,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=11
       {
@@ -133,7 +143,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=12
       {
@@ -145,7 +156,8 @@ module.exports = {
         idLoja: 1,
         promocao: 2,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=13
       {
@@ -157,7 +169,8 @@ module.exports = {
         idLoja: 1,
         promocao: 10,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=14
       {
@@ -169,7 +182,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=15
       {
@@ -181,7 +195,8 @@ module.exports = {
         idLoja: 1,
         promocao: 10,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=16
       {
@@ -193,7 +208,8 @@ module.exports = {
         idLoja: 1,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=17
       {
@@ -205,7 +221,8 @@ module.exports = {
         idLoja: 1,
         promocao: 20,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=18
       {
@@ -217,7 +234,8 @@ module.exports = {
         idLoja: 2,
         promocao: 9,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
 
       // idProduto=19
@@ -230,7 +248,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
 
       // idProduto=20
@@ -243,7 +262,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=21
       {
@@ -255,7 +275,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=22
       {
@@ -267,7 +288,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=23
       {
@@ -279,7 +301,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=24
       {
@@ -291,7 +314,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
       // idProduto=25
       {
@@ -303,7 +327,8 @@ module.exports = {
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        deletedAt: null
       },
     ], {});
   },
