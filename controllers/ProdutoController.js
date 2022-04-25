@@ -92,7 +92,6 @@ module.exports = {
             
             res.render('editarproduto', {
                 title: 'Editar Produto',
-                usuario: req.session.loja, //verificar se cliente ou loja
                 idProduto: idProduto,
                 produto,
                 marcaProduto: marca,
