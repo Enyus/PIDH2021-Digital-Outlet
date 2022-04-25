@@ -8,8 +8,8 @@
   <section class="containergeral">
     <h1>Edite seu Produto</h1>
     <div class="containersecundario">
-      <form action="/editarProduto?_method=PUT" method="POST" enctype="multipart/form-data">
-        <input type="text" name="idProduto" value="<%=idProduto%>" style="display:none">
+      <form class="produto" action="/editarProduto?_method=PUT" method="POST" enctype="multipart/form-data">
+        <input type="text" class="idProduto" name="idProduto" value="<%=idProduto%>" style="display:none">
         <div class="sections">
           <section class="descProduto">
             <p class="lembrete">Lembre-se a descrição de seu produto tem importância ìmpar à decisão do consumidor!</p>     
@@ -132,24 +132,29 @@
             <p>%</p>
         </section>
         <section class="buttonsSendDelete">
-          <button type="submit" class="button delete" >Deletar</button>
+          <button type="button" class="button delete" onclick="document.getElementById('id<%=produto.idProduto%>').style.display='block'" >Deletar</button>
+          
           <div id="id<%=produto.idProduto%>" class="modal">
-            <form class="modal-content" action="/deletarProduto/<%=produto.idProduto%>?_method=DELETE" method="POST">
+            <!-- <form class="modal-content" action="/deletarProduto/<%=produto.idProduto%>?_method=DELETE" method="POST"> -->
+            <div class="modal-content">
               <div class="modal-container">
                 <span class="close" >&times;</span>
-                <h1>ATENÇÃO</h1>
+                <h1 class="atencao">ATENÇÃO</h1>
                 <p>Tem certeza que deseja deletar este produto? Esta ação será irreversível. </p>
                 <div class="clearfix">
-                  <button type="button" class="cancelbtn"  >Cancelar</button>
+                  <button type="button" class="cancelbtn">Cancelar</button>
                   <button type="submit" class="deletebtn">Deletar</button>
                 </div>
               </div>
-            </form>
+            </div>
+            <!-- </form> -->
           </div>
           
           <button type="submit" class="button submit" id="submit">Salvar</button>
         </section>
       </form>
+      
+
     </div>
   </section>
 </main>
