@@ -46,10 +46,11 @@
                               </div>
                           </div>
                           <div class="estasemana">
-                              <p>Esta Ano:</p>
+                              <p>Este Ano:</p>
                               <div class="infocard">                              
                                   
                                 <% resumoPedidos.idsPedidosAno.forEach( element => { %>
+                                  
                                   <div class="info">
                                       <% if( pedidos[element].Produtos.length > 1 ) { %>
                                         <p> <%= pedidos[element].Produtos[0].nomeProduto %> + ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
