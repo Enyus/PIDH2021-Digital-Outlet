@@ -189,25 +189,17 @@ module.exports = {
 
     },
     delete: async (req, res) => {
-        console.log(":::::::::::::::::")
         const {idProduto} = req.params;
-        console.log(idProduto)
-        res.send("Entrou no id " + idProduto)
-        // try {
-        //     await db.Estoque.destroy({where: {idProduto}});
-        //     console.log(':::::::::::: passei por estoque')
-        //     await db.Fotos.destroy({where: {idProduto}});
-        //     console.log(':::::::::::: passei por fotos')
-        //     await db.DescTec.destroy({where: {idProduto}})            
-        //     console.log(':::::::::::: passei por DescTec')
-        //     await db.Produtos.destroy({where: {idProduto}});
-        //     console.log(':::::::::::: passei por produtos')
-
-        //     res.redirect("/loja");
-        // } catch (err) {
-        //     console.log(err)
-        //     return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })            
-        // }
+        try {
+            await db.Estoque.destroy({where: {idProduto}});
+            await db.Fotos.destroy({where: {idProduto}});
+            await db.DescTec.destroy({where: {idProduto}});
+            await db.Produtos.destroy({where: {idProduto}});
+            res.redirect("/loja");
+        } catch (err) {
+            console.log(err)
+            return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })            
+        }
 
     }
 }
