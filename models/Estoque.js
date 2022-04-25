@@ -20,13 +20,11 @@ module.exports = (sequelize, DataType) => {
               isInt: {msg: "O campo de quantidade de itens em estoque deve ser composto caracteres numéricos"}
             }
         },
-
 		createdAt: DataType.DATE,
-
-		updatedAt: DataType.DATE
-
+		updatedAt: DataType.DATE,        
     }, {
         tableName: 'Estoque',
+        paranoid: true, 
     });
 
     Estoque.associate = (models) => {

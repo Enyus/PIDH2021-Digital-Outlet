@@ -7,11 +7,11 @@ const { calcularPrecoPrazo } = require('correios-brasil');
 module.exports = {
     index: async (req, res, next) => {
         try {
-            const count = await db.Produtos.count();
+            const count = await db.Produtos.findAll({attributes:['idProduto']});
             // Escolhendo 8 produtos aleatórios:
             let list = [];
-            for (i = 0; i < count; i++) {
-                list[i] = i + 1;
+            for (i = 0; i < count.length; i++) {
+                list[i] = count[i].idProduto;
             };
             for (i = list.length; i;) {
                 randomNumber = Math.random() * i-- | 0;
@@ -20,6 +20,7 @@ module.exports = {
                 list[i] = tmp;
             }
             list = list.splice(0, 8);
+            console.log(list)
             // Puxando os dados do banco de dados dos 8 produtos de id aleatório:
             let produtos = await db.Produtos.findAll({ where: { idProduto: list }, include: { model: db.Fotos } });
 
@@ -247,12 +248,16 @@ module.exports = {
     },
 
     cadastroproduto: async (req, res, next) => {
-        const marcadb = await db.Marcas.findAll();
-        const categoriadb = await db.Categorias.findAll();
+        const marcadb = await db.Marcas.findAll({
+            order: [['nomeMarca', 'ASC']]
+        });
+        const categoriadb = await db.Categorias.findAll({
+            order: [['nomeCategoria', 'ASC']]
+        });
 
         res.render('cadastroproduto', {
             title:"Cadastro de Produto",
-            usuario: req.session.usuario, //verificar se cliente ou loja
+            usuario: req.session.loja.Loja, //verificar se cliente ou loja
             marcas: marcadb,
             categorias: categoriadb
         });

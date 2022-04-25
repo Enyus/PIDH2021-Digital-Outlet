@@ -1,6 +1,6 @@
 const config = {
   username: 'root',
-  password: '123456',
+  password: '',
   database: 'dho_db',
   host: 'localhost',
   dialect: 'mysql'

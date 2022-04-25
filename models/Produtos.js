@@ -12,7 +12,7 @@ module.exports = (sequelize, DataType) => {
         nomeProduto: {
             type: DataType.STRING,
             allowNull: false
-          },
+        },
 
         idMarca: DataType.INTEGER,
 
@@ -41,11 +41,10 @@ module.exports = (sequelize, DataType) => {
                 isDecimal: {msg: "O desconto deve ser um número do tipo DECIMAL"}
             }
         },
-
 		createdAt: DataType.DATE,
-
-		updatedAt: DataType.DATE
-
+		updatedAt: DataType.DATE,    
+	},{
+        paranoid: true, 
     });
 
     Produtos.associate = (models) => {
