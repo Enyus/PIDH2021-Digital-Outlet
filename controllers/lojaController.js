@@ -304,10 +304,6 @@ module.exports = {
             // console.log(produtoBaixa);
 
             for await (let produto of produtoBaixa.Produtos) {
-                console.log("-----------------------------------"+produto)
-                console.log("-----------------------------------"+produto.PedidosProdutos.quantidade)
-                console.log("-----------------------------------"+produtoBaixa.idLoja)
-                console.log("-----------------------------------"+produto.idProduto)
                 db.Estoque.update(
                     {quantidade: Sequelize.literal(`quantidade - ${produto.PedidosProdutos.quantidade}`)},
                     {where: {idProduto: produto.idProduto}}
