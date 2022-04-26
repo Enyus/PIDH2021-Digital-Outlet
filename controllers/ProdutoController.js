@@ -7,6 +7,7 @@ const path = require('path');
 module.exports = {
     create: async (req, res, next) => {
         const dadosProduto = req.body;
+        console.log("aaaaaaaa",dadosProduto.preco)
         
         try {
             const marcadb = await db.Marcas.findOne({
@@ -23,12 +24,15 @@ module.exports = {
             const produtoCreate = await db.Produtos.create({
                 nomeProduto: dadosProduto.nomeproduto,
                 idMarca: marcadb.idMarca,
-                preco: dadosProduto.preco.replace(",","."),
+                preco: dadosProduto.preco.replace('.','').replace(",","."),
                 idCategoria: categoriadb.idCategoria, 
                 desc: dadosProduto.descproduto,
                 idLoja: loja,
                 promocao: dadosProduto.promocao,
-            })
+            }
+            
+            )
+            
             // idProduto para salvar nos outras tabelas
             const idProduto = produtoCreate.idProduto;
             

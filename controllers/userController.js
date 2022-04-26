@@ -97,7 +97,6 @@ module.exports = {
 
     logarUsuario: async (req, res) => {
         const { email, senha } = req.body;
-
         if(!email || !senha) {res.status(401).render('login', {title: "Campos Invalidos", message: "Usuário ou senha Inválidos"})};
 
         try {
