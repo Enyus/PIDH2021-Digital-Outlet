@@ -169,8 +169,11 @@ module.exports = {
                     return res.redirect('/loja');
                 }
             }
-        } catch(err) {
 
+            if (user == null && loja == null) {
+                return res.status(404).render('login', {title: 'Falha', message: "Usuário não cadastrado no nosso banco de dados, faça seu cadastro" })
+            }
+        } catch(err) {
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
         }
@@ -205,7 +208,6 @@ module.exports = {
 
     },
 
-    //TODO: Testar login de usuario loja
     cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
 
     cadastrarLoja: async (req, res) => {
@@ -246,6 +248,7 @@ module.exports = {
             )
             console.log(usuarioAlterado);
             req.session.usuario = undefined;
+            res.cookie('idUsuario', undefined);
             return res.redirect('/login');
 
         } catch (err) {

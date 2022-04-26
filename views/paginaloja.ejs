@@ -476,7 +476,7 @@
                                 <td><%= curriculo.email %></td>
                                 <td><%= curriculo.departamento %></td>
                                 <td><%= curriculo.disp %></td>
-                                <td><a href="/public<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img src="/icon/paper.svg"></a></td>
+                                <td><a href="<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img src="/icon/paper.svg"></a></td>
                                 <td><%= curriculo.mensagem %></td>
                               </tr>
                             <% }) %>

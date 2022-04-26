@@ -180,6 +180,20 @@
     background-color: #fff2ef ;
 }
 
+.menu-carrinho {
+    height: 45px;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 280px;
+    background-color: #C4C4C4;
+}
+
+.menu-carrinho a {
+    margin: 0 10px;
+}
+
 /* Fazendo as alterações para mobile: */
 @media screen and (max-width: 720px) {
 
