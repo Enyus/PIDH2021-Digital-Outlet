@@ -301,17 +301,16 @@ module.exports = {
                     model: db.Produtos
                 }
             });
-            console.log(produtoBaixa);
+            // console.log(produtoBaixa);
 
             for await (let produto of produtoBaixa.Produtos) {
+                console.log("-----------------------------------"+produto)
+                console.log("-----------------------------------"+produto.PedidosProdutos.quantidade)
+                console.log("-----------------------------------"+produtoBaixa.idLoja)
+                console.log("-----------------------------------"+produto.idProduto)
                 db.Estoque.update(
                     {quantidade: Sequelize.literal(`quantidade - ${produto.PedidosProdutos.quantidade}`)},
-                    {where: {
-                        [Op.and]: [
-                            {idLoja: produtoBaixa.idLoja},
-                            {idProduto: produto.idProduto}
-                        ]
-                    }}
+                    {where: {idProduto: produto.idProduto}}
                 )
             };
 

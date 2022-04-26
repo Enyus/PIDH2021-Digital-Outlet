@@ -133,7 +133,7 @@ module.exports = {
             const produtoUpdate = await db.Produtos.update({
                 nomeProduto: dadosProduto.nomeproduto,
                 idMarca: marcadb.idMarca,
-                preco: dadosProduto.preco.replace(",","."),
+                preco: dadosProduto.preco.replace('.','').replace(",","."),
                 idCategoria: categoriadb.idCategoria, 
                 desc: dadosProduto.descproduto,
                 idLoja: loja,
