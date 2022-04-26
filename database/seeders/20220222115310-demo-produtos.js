@@ -323,7 +323,7 @@ module.exports = {
         idMarca: 8,
         preco: 1500,
         idCategoria: 5,
-        desc: "possui estrutura em madeira eucalipto, tampo em MDF laminado e acabamento fosco. Dimensão de 120 x 84 x 76 cm.",
+        desc: "Possui estrutura em madeira eucalipto, tampo em MDF laminado e acabamento fosco. Dimensão de 120 x 84 x 76 cm.",
         idLoja: 2,
         promocao: 0,
         createdAt: new Date(),

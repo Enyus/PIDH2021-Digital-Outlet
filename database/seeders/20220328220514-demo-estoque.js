@@ -154,6 +154,54 @@ module.exports = {
         quantidade: 200,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      // idEstoque=20
+      {
+        idLoja: 2,
+        idProduto: 20,
+        quantidade: 150,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idEstoque=21
+      {
+        idLoja: 2,
+        idProduto: 21,
+        quantidade: 8000,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idEstoque=22
+      {
+        idLoja: 2,
+        idProduto: 22,
+        quantidade: 519,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idEstoque=23
+      {
+        idLoja: 2,
+        idProduto: 23,
+        quantidade: 800,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idEstoque=24
+      {
+        idLoja: 2,
+        idProduto: 24,
+        quantidade: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      // idEstoque=25
+      {
+        idLoja: 2,
+        idProduto: 25,
+        quantidade: 67,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },
