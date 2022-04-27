@@ -1,201 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('./partials/head') %>
+    <link rel='stylesheet' href='/stylesheets/carrinho-identificacao.css' />
+    <link rel='stylesheet' href='/stylesheets/processoscarrinho.css' />
     <title>Carrinho - Identificação</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/carrinho-sacola.css">
-    <link rel="stylesheet" href="/stylesheets/carrinho-identificacao.css">
+    </head>
+    <%- include('./partials/header') %>
 
-</head>
 
-<body>
-    <header>
-        <section class="header-principal">
-            <div class="logo">
-                <a href="/"><img src="/images/logo.png" alt="Logo DO$"></a>
-            </div>
-            <div class="busca">
-                <p>Pesquise sua marca/produto:</p>
-                <input type="text">
-                <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
-            </div>
-            <div class="hbutton">
-                <div>
-                    <a href="/usuario/login">
-                        <img src='/images/login.svg' alt="login">
-                        <p>LOG IN</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="../cadastroloja">
-                        <img src="/images/lojista.svg" alt="login lojista">
-                        <p>VENDA CONOSCO</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="../carrinho">
-                        <img src="/images/carrinho.svg" alt="carrinho">
-                        <p>SEU CARRINHO</p>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <main class="carrinho-identificacao">
 
-        <section class="buscamobile">
-            <p>busca:</p>
-            <input type="text">
-            <a href="/resultadobusca"><img src="/images/search-icon.png" alt="search"></a>
-        </section> 
-    </header>
-    <section class="header-menu">
-        <a href="">
-            ROUPAS
-        </a>
-        <a href="">
-            LIVROS
-        </a>
-        <a href="">
-            CALÇADOS
-        </a>
-        <a href="">
-            ACESSÓRIOS
-        </a>
-        <a href="">
-            PARA A CASA
-        </a>
-        <a href="">
-            ESPORTE
-        </a>
-    </section>
-
-    <main class="carrinho-identificacao">
-        <section class="processo-da-compra">
-            <div>
-                <a class="sacola" href="/compra/sacola">Sacola</a>
-                <a class="identificacao" href="/compra/identificacao">Identificação</a>
-                <a class="entrega" href="/compra/entrega">Entrega</a>
-                <a class="pagamento" href="#">Pagamento</a>
-            </div>
-        </section>
-
-        <div class="container-identificacao">
-            <section class="dados-pessoais">
-                <div>
-                    <h3>Dados Pessoais</h3>
-                    <form class="formulario-dados-pessoais">
-                        <div>
-                            <label for="email">Email:</label>
-                            <input type="text" id="input-email" />
-                        </div>
-
-                        <div class="form-nome-sobrenome">
-                            <div>
-                                <label for="nome">Nome</label>
-                                <input type="text" name="input-nome" id="input-nome" />
-                            </div>
-                            <div>
-                                <label for="sobrenome">Sobrenome:</label>
-                                <input type="text" id="input-sobrenome" />
-                            </div>
-                        </div>
-
-                        <div class="form-cpf-telefone">
-                            <div>
-                                <label for="cpf">CPF:</label>
-                                <input type="text" id="input-cpf" />
-                            </div>
-                            <div>
-                                <label for="telefone">Telefone:</label>
-                                <input type="text" id="input-telefone" />
-                            </div>
-                        </div>
-
-                    </form>
-
-                    <div>
-                        <input type="checkbox" name="checkbox-newsletter" id="checkbox-newsletter">
-                        <label for="checkbox-newsletter">Quero receber e-mail de promoções.</label>
-                    </div>
-
-                    <div>
-                        <button class="ir-entrega" type="submit" onClick="">Ir para entrega</button>
-                    </div>
-
+            <section class="processo-da-compra">
+                <div class="menu-carrinho">
+                    <a class="sacola" href="/carrinho">Sacola</a>
+                    <a class="identificacao">Identificação</a>
+                    <a class="entrega">Entrega</a>
+                    <a class="pagamento">Pagamento</a>
                 </div>
             </section>
 
-            <section class="resumo-compra">
-                <div>
-                    <h3>Resumo da Compra</h3>
-                    <table>
-                        <tr>
-                            <td class="img"><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
+            <div class="container-identificacao">
+                <section class="dados-pessoais">
+                    <div>
+                        <h3>Dados Pessoais</h3>
+                        <form class="formulario-dados-pessoais" action="/dadosdestinatario" method="post" id="form">
+                            <div>
+                                <label for="email">Email:</label>
+                                <% if (usuario !=undefined) { %>
+                                    <input type="text" id="email" name="email" value="<%= usuario.email %>" />
+                                    <% } else { %>
+                                        <input type="text" id="email" name="email" />
+                                        <% } %>
+                            </div>
+
+                            <div class="form-nome-sobrenome">
+                                <div>
+                                    <label for="nome">Nome</label>
+                                    <% if (usuario !=undefined) { %>
+                                        <input type="text" name="nome" id="nome" value="<%= usuario.nome %>" />
+                                        <% } else { %>
+                                            <input type="text" name="nome" id="nome" />
+                                            <% } %>
                                 </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
+                                <div>
+                                    <label for="sobrenome">Sobrenome:</label>
+                                    <% if (usuario !=undefined) { %>
+                                        <input type="text" id="sobrenome" name="sobrenome"
+                                            value="<%= usuario.sobrenome %>" />
+                                        <% } else { %>
+                                            <input type="text" id="sobrenome" name="sobrenome" />
+                                            <% } %>
                                 </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
+                            </div>
+
+                            <div class="form-cpf-telefone">
+                                <div>
+                                    <label for="cpf">CPF:</label>
+                                    <% if (usuario !=undefined) { %>
+                                        <input type="text" id="cpf" name="cpf" value="<%= usuario.cpf %>" />
+                                        <% } else { %>
+                                            <input type="text" id="cpf" name="cpf" />
+                                            <% } %>
                                 </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="/images/calca-bege.png" alt=""></td>
-                            <td class="produto">
-                                <h3 class="label">CALÇA BEGE</h3>
-                                <div class="tamanho">
-                                    <h4 class="label">Tamanho:</h4>
-                                    <h4 class="dados">M</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">Cor:</h4>
-                                    <h4 class="dados">BEGE</h4>
-                                </div>
-                                <div class="cor">
-                                    <h4 class="label">cód.: </h4>
-                                    <h4 class="dados">205455548</h4>
-                                </div>
-                            </td>
-                            <td>
-                                <h4>R$ 100,00</h4>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="total">
-                        <div>
-                            <p>Subtotal</p>
-                            <p>R$ 100,00</p>
-                        </div>
-                        <div>
-                            <p>Taxa de entrega</p>
-                            <p>à calcular</p>
-                        </div>
+                            </div>
+
+                            <div>
+                                <button class="ir-entrega" type="submit" id="submit">Ir para entrega</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </section>
+
+                <section class="resumo-compra">
+                    <div>
+                        <h3>Resumo da Compra</h3>
+                        <table>
+
+                            <% carrinhoDB.forEach( item=> { %>
+                                <tr>
+                                    <td class="img"><img src="<%= item.Fotos[0].urlFoto %>" alt=""></td>
+                                    <td class="produto">
+                                        <h3 class="label">
+                                            <%= item.nomeProduto %>
+                                        </h3>
+                                        <% item.DescTecs.forEach( desctec=> { %>
+                                            <% if ( item.DescTecs.findIndex( element=> element.nomeDescTec == desctec.nomeDescTec) <= 2) { %>
+                                                <div class="tamanho">
+                                                    <h4 class="label">
+                                                        <%= desctec.nomeDescTec %>:
+                                                    </h4>
+                                                    <h4 class="dados">
+                                                        <%= desctec.valor %>
+                                                    </h4>
+                                                </div>
+                                            <% } %>
+                                        <% }) %>
+                                    </td>
+                                    <td>
+                                        <h4>R$ <%= (item.preco * (100-item.promocao) / 100).toFixed(2) %>
+                                        </h4>
+                                    </td>
+                                </tr>
+                            <% }) %>
+
+                        </table>
                         <div class="total">
-                            <p>Total</p>
-                            <p>R$ 100,00</p>
+                            <div>
+                                <p>Subtotal</p>
+                                <% let subtotal=0 %>
+                                <% carrinhoDB.forEach( item=> { %>
+                                    <% subtotal +=(item.preco * (100-item.promocao) / 100) * carrinho.produtos[carrinho.produtos.findIndex( element=> element.idProduto == item.idProduto )].quantidade %>
+                                <% }) %>
+                                <p>R$ <%= subtotal.toFixed(2) %></p>
+                            </div>
+                            <div>
+                                <p>Taxa de entrega</p>
+                                <% let totalFrete=0 %>
+                                <% carrinho.produtos.forEach(item=> { %>
+                                    <% totalFrete +=parseFloat(item.frete) %>
+                                <% }) %>
+
+                                <% if(totalFrete> 0) { %>
+                                    <p>R$ <%= totalFrete.toFixed(2) %></p>
+                                <% } else { %>
+                                    <p>à calcular</p>
+                                <% } %>
+                            </div>
+                            <div class="total">
+                                <p>Total</p>
+                                <% if(totalFrete> 0) { %>
+                                    <p>R$ <%= (totalFrete + subtotal).toFixed(2) %></p>
+                                <% } else { %>
+                                    <p>R$ <%= subtotal.toFixed(2) %></p>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    </main>
+                </section>
+            </div>
+        </main>
 
-    <%- include('./partials/footer') %>
+        <script src="/scripts/validateIdentificarUsuario.js"></script>
 
-</body>
-
-</html>
+        <%- include('./partials/footer') %>

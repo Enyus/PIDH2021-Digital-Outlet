@@ -2,11 +2,14 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var logger = require('morgan');
+const methodOverride = require('method-override');
+const logarCookie = require('./middlewares/logarCookie');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const compraRouter = require('./routes/compra');
+// var usersRouter = require('./routes/users');
+// const compraRouter = require('./routes/compra');
 
 var app = express();
 
@@ -14,15 +17,30 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({secret: "asdfa1ds86fa1sd65fv4a1ds411$!$!R$!#$EFD$DEF$va58fd4ge45a1df5", resave: true, saveUninitialized:true}))
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
+app.use(logarCookie);
+app.use( function(req, res, next) {
+  usuario = req.session.usuario;
+  loja = req.session.loja;
+  if (req.session.carrinho == undefined) {
+    req.session.carrinho = {
+      produtos: [],
+    };
+  }
+  carrinho = req.session.carrinho;
+  next();
+});
 
 app.use('/', indexRouter);
-app.use('/usuario', usersRouter);
-app.use('/compra', compraRouter)
+// app.use('/usuario', usersRouter);
+// app.use('/compra', compraRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

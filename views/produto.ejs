@@ -1,45 +1,74 @@
+<%- include('./partials/head') %>
+</head>
+
 <%- include('./partials/header') %>
 
   <main class="paginaproduto">
     <section class="containergeral">
-        <h1>Calça Bege</h1>
+        <h1> <%= produto.nome %> </h1>
         <div class="produto">
             <div class="fotosproduto">
                 <div class="miniimg">
-                    <img src="/images/calca-bege.png" alt="calca-bege">
-                    <img src="/images/calca-bege.png" alt="calca-bege">
-                    <img src="/images/calca-bege.png" alt="calca-bege">
+                    <% produto.fotos.forEach( element => { %>
+                        <button onclick="expand()"><img src=<%= element %> alt=<%= produto.nome %> ></button>
+                    <% }) %>
                 </div>
-                <div class="focoimg">
-                    <img src="/images/calca-bege.png" alt="calca-bege">
-                </div>
+                <div class="focoimg"></div>
             </div>
             <div class="descgeral">
-                <h2 class="preco-agora">Preço: R$ 100,00</h2>
-                <div class="oferta">
-                    <p>Você economiza: <s class="preco-antes"> de R$ 111,00</s></p>
-                    <p class="off">10% OFF</p>
-                </div>
+                <h2 class="preco-agora">Preço: R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </h2>
+                <% if (produto.promocao > 0) { %>
+                    <div class="oferta">
+                            <p>Você economiza: <s class="preco-antes"> de R$ <%= produto.preco.toFixed(2) %> </s></p>
+                            <p class="off"> <%= produto.promocao %>% OFF</p>
+                    </div>
+                <% } else { %>
+                    <br>
+                <% } %>
                 <div class="subcontainer">
                     <div class="desc">
-                        <p>A calça masculina que te deixa elegante em qualquer ocasião. Esta é a melhor forma de apresentar a Calça Chino Preppy. Sua modelagem skinny evidencia as formas do corpo, dando um visual mais moderno. Seus bolsos são estratégicos pra você guardar com segurança o que precisar. Por fim, a elasticidade desta calça Reserva garante conforto para você usá-la por horas. Você vai usá-la tanto que ela mal vai parar no guarda-roupa! Produzida eticamente no Brasil. Comprando esta peça, você viabiliza cinco pratos de comida através do nosso programa 1P5P.</p>
+                        <p> <%= produto.desc %> </p>
                         <strong>Informações Técnicas:</strong>
-                        <p><b>Cor:</b> Beje</p>
-                        <p><b>Marca:</b> Calças AÊ</p>
-                        <p><b>Tamanho:</b> G</p>
-                        <p><b>Categoria:</b> Calças</p>
-                        <p><b>Composição:</b> 100% Algodão</p>
+                        <% for (i=0 ; i < produto.nomeDescTec.length; i++) { %>
+                            <p><b> <%= produto.nomeDescTec[i] %>: </b> <%= produto.valorDescTec[i] %> </p>
+                        <% } %>
                     </div>
                     <div class="comprar">
-                        <form action="" method="POST">
-                            <input type="text" name="CEP" id="CEP" value="Insira seu CEP">
+                        <form action="/apifrete" method="POST">
+                            <input type="text" name="idProduto" hidden value="<%=idProduto%>">
+                            <input type="text" name="cepLoja" hidden value="<%=produto.cepLoja%>">
+                            <input type="text" name="cep" id="CEP" placeholder="Insira seu CEP">
                             <button type="submit">Calcular Frete</button>
                         </form>
-                        <p>Frete: R$ -</p>
-                        <p class="total">Total: R$ 100,00</p>
+                        <p>Frete: R$ <%=produto.frete%></p>
+                        <% if(produto.prazo != '') { %>
+                            <p>Prazo de Entrega Previsto: <%=produto.prazo%> dias</p>
+                        <% } %>
+                        <% if(produto.frete != '-') { %>
+                            <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100 + parseFloat(produto.frete)).toFixed(2) %> </p>
+                        <% } else { %>
+                            <p class="total">Total: R$ <%= (produto.preco * (100-produto.promocao)/100).toFixed(2) %> </p>
+                        <% } %>
                         <div class="compra">
-                            <button>Adicionar ao Carrinho</button>
-                            <button>Comprar</button>                            
+                            <form action="/addcart" method="POST">
+                                <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <input type="text" hidden name="source" value="/produto/<%=idProduto%>">
+                                <% if (produto.frete != '-') { %>
+                                    <input type="text" hidden name="frete" value="<%=produto.frete%>">
+                                <% } else { %>
+                                    <input type="text" hidden name="frete" value="0">
+                                <% } %>
+                                <button type="submit">Adicionar ao Carrinho</button>
+                            </form>
+                            <form action="/comprar" method="POST">
+                                <input type="number" hidden name="idProduto" value="<%=idProduto%>">
+                                <% if (produto.frete != '-') { %>
+                                    <input type="text" hidden name="frete" value="<%=produto.frete%>">
+                                <% } else { %>
+                                    <input type="text" hidden name="frete" value="0">
+                                <% } %>
+                                <button type="submit">Comprar</button>
+                            </form>                          
                         </div>
                     </div>
                 </div>
@@ -47,5 +76,7 @@
         </div>
     </section>
   </main>
+
+  <script src="/scripts/paginaProduto.js"></script>
 
 <%- include('./partials/footer') %>

@@ -1,41 +1,73 @@
+<%- include('./partials/head') %>
+</head>
+
 <%- include('./partials/header') %>
 
   <main class="cadastroloja">
     <section class="containergeral">
-        <h1>Seja nosso Parceiro de Negócios!</h1>
-        <p>Preencha os campos abaixo:</p>
-        <form action="" method="POST">
-            <div class="formrow">
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email">
-            </div>
-            <div class="formrow">
-              <label for="razaosocial">Razão Social:</label>
-              <input type="text" id="razaosocial" name="razaosocial">
-            </div>
-            <div class="formrow">
-              <label for="nomefantasia">Nome Fantasia:</label>
-              <input type="text" id="nomefantasia" name="nomefantasia">
-            </div>
-            <div class="formrow">
-              <label for="ie">Inscrição Estadual:</label>
-              <input type="text" id="ie" name="ie" pattern="\d{3}\.\d{3}\.\d{3}.\d{3}/\[A-Z]{2}" value="xxx.xxx.xxx.xxx/UF">
-            </div>
-            <div class="formrow">
-              <label for="cnpj">C.N.P.J.:</label>
-              <input type="text" id="cnpj" name="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" value="xx.xxx.xxx/xxxx-xx">
-            </div>
-            <div class="formrow">
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password">
-            </div>
-            <div class="formrow">
-              <label for="confirmapassword">Confirmar Senha:</label>
-              <input type="password" id="confirmapassword" name="confirmapassword">
-            </div>
-            <button type="submit">Enviar</button>
-        </form>
+
+      <h1>Seja nosso Parceiro de Negócios!</h1>
+      <p>Já é cadastrado? <a href="/login" style="color: blue; text-decoration:underline;"><b>Clique aqui para fazer login</b></a></p>
+      <p>Preencha os campos abaixo:</p>
+      <form action="/cadastrarloja" method="POST">
+        <div class="formrow">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div class="formrow">
+          <label for="razaosocial">Razão Social:</label>
+          <input type="text" id="razaosocial" name="razaoSocial">
+        </div>
+        <div class="formrow">
+          <label for="nomefantasia">Nome Fantasia:</label>
+          <input type="text" id="nomefantasia" name="nomeFantasia">
+        </div>
+        <div class="formrow">
+          <label for="ie">Inscrição Estadual:</label>
+          <input placeholder="Deve ter entre 9 à 12 números." type="text" id="ie" name="inscEst">
+        </div>
+        <div class="formrow">
+          <label for="cnpj">C.N.P.J.:</label>
+          <input placeholder="Deve ter 14 números." type="text" id="cnpj" name="cnpj">
+        </div>
+        <div class="formrow">
+          <label for="cep">CEP:</label>
+          <input  type="text" id="cep" name="cep">
+        </div>
+        <div class="formrow">
+          <label for="logradouro">Logradouro:</label>
+          <input type="text" id="logradouro" name="logradouro">
+        </div>
+        <div class="formrow">
+          <label for="numero">Número:</label>
+          <input type="number" id="numero" name="numero">
+        </div>
+        <div class="formrow">
+          <label for="complemento">Complemento:</label>
+          <input type="text" id="complemento" name="complemento">
+        </div>
+        <div class="formrow">
+          <label for="cidade">Cidade:</label>
+          <input type="text" id="cidade" name="cidade">
+        </div>
+        <div class="formrow">
+          <label for="estado">Estado:</label>
+          <input type="text" id="estado" name="estado">
+        </div>
+        <div class="formrow">
+          <label for="password">Senha:</label>
+          <input placeholder="A senha deve ter pelo menos 6 caracteres." type="password" id="password" name="senha">
+        </div>
+        <div class="formrow">
+          <label for="confirmapassword">Confirmar Senha:</label>
+          <input type="password" id="confirmapassword" name="confirmapassword">
+        </div>
+        <button type="submit" id="submit">Enviar</button>
+      </form>
     </section>
   </main>
+
+  <script src="/scripts/validateLoja.js"></script>
+  <script src="/api/validaCep.js"></script>
 
 <%- include('./partials/footer') %>
