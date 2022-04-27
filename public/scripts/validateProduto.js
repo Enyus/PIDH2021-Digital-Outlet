@@ -42,11 +42,55 @@ const inputDescTec5 = document.getElementById("desctec5");
 const inputCatDesc6 = document.getElementById("catdesc6");
 const inputDescTec6 = document.getElementById("desctec6");
 
-const inputEstoque = document.getElementById("estoque")
-
-const inputPromocao = document.getElementById("promocao")
+const inputEstoque = document.getElementById("estoque");
 
 const buttonSubmit = document.getElementById("submit");
+
+const inputNewMarca = document.querySelector('.newMarca');
+const buttonAddMarca = document.querySelector(".addMarca");
+const closeNewMarca = document.querySelector('.closeContainer-newMarca');
+const containerNewMarca = document.querySelector('.container-newMarca');
+const labelMarca = document.querySelector('.labelMarca');
+const createMarca = document.querySelector('.createMarca');
+
+function closeMarca () {
+    containerNewMarca.removeAttribute("style");
+    inputNewMarca.removeAttribute("style");
+    closeNewMarca.removeAttribute("style");
+    labelMarca.removeAttribute("style");
+
+    selectMarca.removeAttribute("style");
+    
+    buttonAddMarca.removeAttribute("style");
+    buttonAddMarca.innerHTML = '✚';
+}
+
+buttonAddMarca.onclick = function (e) {
+    if (labelMarca.ariaValueText == 'false') {
+        labelMarca.ariaValueText = 'true'
+        containerNewMarca.setAttribute("style", "display: block");
+        inputNewMarca.setAttribute("style", "display: block; width: 66%");
+        inputNewMarca.focus();
+        closeNewMarca.setAttribute("style", "display: block");
+        
+        labelMarca.setAttribute("style", "font-weight: 900;");
+
+        selectMarca.setAttribute("style", "display: none");
+
+        this.style.backgroundColor = 'green';
+        this.innerHTML = '✔';
+        this.disabled;
+    } else {
+        document.querySelector('.marcaAdd').value = inputNewMarca.value
+        createMarca.click();
+        labelMarca.ariaValueText = 'false'
+    }
+
+}
+closeNewMarca.onclick = function (e) {
+    labelMarca.ariaValueText = 'false'
+    closeMarca();
+}
 
 const erros = [];
 

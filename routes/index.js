@@ -65,6 +65,7 @@ router.post('/cadastroproduto', uploadFotoProduto.array('gallery', 6), ProdutoCo
 router.get('/editarProduto/:idProduto', authLoja, ProdutoController.showProduto);
 router.put('/editarProduto', authLoja, uploadFotoProduto.array('gallery', 6), ProdutoController.update);
 router.delete('/deletarProduto/:idProduto', authLoja, ProdutoController.delete);
+router.post('/createMarca', authLoja, ProdutoController.createMarca);
 
 /*GET Página do Cliente*/
 router.get('/cliente', auth, userController.paginacliente);

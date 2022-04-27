@@ -12,20 +12,24 @@
         <div class="sections">
           <section class="descProduto">
             <p class="lembrete">Lembre-se a descrição de seu produto tem importância ìmpar à decisão do consumidor!</p>
-            
             <div class="formrow">
               <label for="nomeproduto">Produto:</label>
               <input type="text" id="nomeproduto" name="nomeproduto">
             </div>
             <div class="formrow">
-              <label for="marca">Marca:</label>
+
+              <label  aria-valuetext="false" class="labelMarca" for="marca">Marca:</label>
               <select name="marca" id="marca">
                 <option value="" disabled selected></option>
                 <% marcas.forEach(marca => { %>
                   <option value="<%- marca.nomeMarca %>"><%= marca.nomeMarca %></option>
-                <% }) %>
+                  <% }) %>
               </select>
-                
+              <div class="container-newMarca"></div>  
+              <input type="text" class="newMarca">
+              <a class="addMarca">✚</a>
+              <a class="closeContainer-newMarca">✖</a>
+
             </div>
             <div class="formrow">
               <label for="preco">Preço:</label>
@@ -138,6 +142,10 @@
       </form>
     </div>
   </section>
+  <form action="/createMarca" method="POST">
+    <input hidden type="text" class="marcaAdd" name="marcaAdd">
+    <button hidden class="createMarca" type="submit"></button>
+  </form>
 </main>
 
 <script src="/scripts/mascara.js"></script>

@@ -71,6 +71,21 @@ module.exports = {
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
         }
     },
+    createMarca: async (req, res, next) => {
+        const {marcaAdd} = req.body;
+        const listMarcas = await db.Marcas.findAll();
+        try {
+            if (marcaAdd != "" && listMarcas.indexOf({nomeMarca: marcaAdd}) < 0) {
+                await db.Marcas.create({
+                    nomeMarca: marcaAdd,
+                })
+                return res.redirect('/cadastroproduto')
+            }            
+        } catch (error) {
+            console.log(error)
+            return res.status(400).render('error', {title: 'Falha', error: error, message: "Ih deu erro" })
+        }
+    },
     showProduto: async (req, res, next) => {
         const {idProduto} = req.params;
         const {descTecValor} = req.body;
@@ -93,7 +108,7 @@ module.exports = {
                     valor: element.valor
                 })
             })
-            
+
             res.render('editarproduto', {
                 title: 'Editar Produto',
                 idProduto: idProduto,
