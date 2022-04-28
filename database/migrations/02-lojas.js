@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false
       },
 	    inscEst: {
-        type: Sequelize.STRING(9),
+        type: Sequelize.STRING(12),
         allowNull: false,
         unique: true,
         validate: {

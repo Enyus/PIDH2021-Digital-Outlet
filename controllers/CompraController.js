@@ -272,7 +272,7 @@ module.exports = {
         carrinho.produtos.forEach(element => { listaIDs.push(element.idProduto) });
         let carrinhoDB = [];
 
-        message = {
+        mensagem = {
             destinatario: carrinho.destinatario.nome + ' ' + carrinho.destinatario.sobrenome,
             enderecoEntrega: carrinho.entrega.logradouro + ', número ' + carrinho.entrega.numero + ', ' + carrinho.entrega.complemento + ', ' + carrinho.entrega.cidade + '/' + carrinho.entrega.estado + ', CEP ' + carrinho.entrega.cep
         };
@@ -316,9 +316,9 @@ module.exports = {
                     cep: carrinho.entrega.cep,
                 });
 
-                message.novoUsuario = 1;
-                message.email = carrinho.destinatario.email;
-                message.senha = senha;
+                mensagem.novoUsuario = 1;
+                mensagem.email = carrinho.destinatario.email;
+                mensagem.senha = senha;
 
             } else {
                 idUsuario = buscarUsuario.idUsuario;
@@ -342,7 +342,7 @@ module.exports = {
                         cep: carrinho.entrega.cep,
                     });
                 }
-                message.novoUsuario = 0;
+                mensagem.novoUsuario = 0;
             };
 
             // Criando o pedido no banco de dados:
@@ -397,7 +397,7 @@ module.exports = {
             }
             req.session.carrinho = undefined;
 
-            return res.render('checkout', { title: 'Checkout', message });
+            return res.render('checkout', { title: 'Checkout', mensagem });
 
         } catch (error) {
             console.log(error);

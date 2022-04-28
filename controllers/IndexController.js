@@ -257,7 +257,6 @@ module.exports = {
 
         res.render('cadastroproduto', {
             title:"Cadastro de Produto",
-            usuario: req.session.loja.Loja, //verificar se cliente ou loja
             marcas: marcadb,
             categorias: categoriadb
         });

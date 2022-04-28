@@ -45,10 +45,11 @@
                               </div>
                           </div>
                           <div class="estasemana">
-                              <p>Esta Ano:</p>
+                              <p>Este Ano:</p>
                               <div class="infocard">                              
                                   
                                 <% resumoPedidos.idsPedidosAno.forEach( element => { %>
+                                  
                                   <div class="info">
                                       <% if( pedidos[element].Produtos.length > 1 ) { %>
                                         <p> <%= pedidos[element].Produtos[0].nomeProduto %> + ---- R$ <%= pedidos[element].valor.toFixed(2) %> </p>
@@ -475,7 +476,7 @@
                                 <td><%= curriculo.email %></td>
                                 <td><%= curriculo.departamento %></td>
                                 <td><%= curriculo.disp %></td>
-                                <td><a href="/public<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img src="/icon/paper.svg"></a></td>
+                                <td><a href="<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img src="/icon/paper.svg"></a></td>
                                 <td><%= curriculo.mensagem %></td>
                               </tr>
                             <% }) %>

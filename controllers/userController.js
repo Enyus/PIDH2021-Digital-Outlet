@@ -20,13 +20,15 @@ module.exports = {
                 include: [{
                     model: db.Produtos,
                     attributes:{
-                        exclude: ['createdAt', 'updatedAt']
+                        exclude: ['createdAt', 'updatedAt'],
                     },
+                    paranoid: false,
                     include: {
                         model: db.Fotos,
                         attributes:{
                             exclude: ['Produtos.Fotos.idFoto', 'createdAt', 'updatedAt']
                         },
+                        paranoid: false
                     },
                 }, {
                     model: db.Lojas,
@@ -95,7 +97,6 @@ module.exports = {
 
     logarUsuario: async (req, res) => {
         const { email, senha } = req.body;
-
         if(!email || !senha) {res.status(401).render('login', {title: "Campos Invalidos", message: "Usuário ou senha Inválidos"})};
 
         try {
@@ -168,8 +169,11 @@ module.exports = {
                     return res.redirect('/loja');
                 }
             }
-        } catch(err) {
 
+            if (user == null && loja == null) {
+                return res.status(404).render('login', {title: 'Falha', message: "Usuário não cadastrado no nosso banco de dados, faça seu cadastro" })
+            }
+        } catch(err) {
             console.log(err);
             return res.status(400).render('error', {title: 'Falha', error: err, message: "Ih deu erro" })
         }
@@ -204,7 +208,6 @@ module.exports = {
 
     },
 
-    //TODO: Testar login de usuario loja
     cadastroLoja: (req, res) => res.render('cadastroloja', { title: "Seja nosso Parceiro!" }),
 
     cadastrarLoja: async (req, res) => {
@@ -245,6 +248,7 @@ module.exports = {
             )
             console.log(usuarioAlterado);
             req.session.usuario = undefined;
+            res.cookie('idUsuario', undefined);
             return res.redirect('/login');
 
         } catch (err) {

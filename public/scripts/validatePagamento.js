@@ -13,19 +13,37 @@ const erros = ['formapagamento'];
 
 buttonSubmit.disabled = true;
 
-function checkValidation () {
-    if( erros.length == 0 &&
+function checkValidation() {
+    if (erros.length == 0 &&
         numeroCartao.value != '' &&
         nomeCartao.value != '' &&
         codSeguranca.value != '' &&
         cpfTitular.value != '') {
-            buttonSubmit.disabled = false;
+        buttonSubmit.disabled = false;
     } else {
-        buttonSubmit.disabled = true; 
+        buttonSubmit.disabled = true;
     };
 };
 
-form.onclick = (e) => {checkValidation()};
+function checkValidadeCartao() {
+    if (validadeCartao.value < (new Date()).getMonth() + 1 &&
+        anoValidade.value == new Date().getFullYear()) {
+        validadeCartao.style.borderColor = "red";
+        anoValidade.style.borderColor = "red";
+        if (!erros.includes("validadecartao")) {
+            erros.push("validadecartao");
+        };
+    } else {
+        validadeCartao.style.borderColor = "green";
+        anoValidade.style.borderColor = "green";
+        if (erros.includes("validadecartao")) {
+            erros.splice(erros.indexOf("validadecartao"), 1);
+        };
+    }
+    checkValidation();
+};
+
+form.onclick = (e) => { checkValidation() };
 
 divFormaPagamento.onclick = (e) => {
     if (e.target.nodeName == 'INPUT') {
@@ -37,7 +55,7 @@ divFormaPagamento.onclick = (e) => {
 };
 
 numeroCartao.onblur = (e) => {
-    if ( numeroCartao.value.length < 13 || numeroCartao.value.length > 16  ) {
+    if (numeroCartao.value.length < 13 || numeroCartao.value.length > 16) {
         numeroCartao.style.borderColor = "red";
         if (!erros.includes("numerocartao")) {
             erros.push("numerocartao");
@@ -98,16 +116,11 @@ cpfTitular.onblur = (e) => {
 };
 
 validadeCartao.onblur = (e) => {
-    if (validadeCartao.value < (new Date()).getMonth()+1) {
-        validadeCartao.style.borderColor = "red";
-        if (!erros.includes("validadecartao")) {
-            erros.push("validadecartao");
-        };
-    } else {
-        validadeCartao.style.borderColor = "green";
-        if (erros.includes("validadecartao")) {
-            erros.splice(erros.indexOf("validadecartao"), 1);
-        };
-    }
+    checkValidadeCartao();
+    checkValidation();
+};
+
+anoValidade.onblur = (e) => {
+    checkValidadeCartao();
     checkValidation();
 };
