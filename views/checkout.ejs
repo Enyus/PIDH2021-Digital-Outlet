@@ -7,16 +7,16 @@
       <h1>Sucesso!</h1>
       <p>Seu pedido foi realizado com sucesso!</p>
 
-      <% if(message.novoUsuario == 1) { %>
+      <% if(mensagem.novoUsuario == 1) { %>
         <p>Após consulta em nosso Banco de Dados, notamos que você é um novo cliente, bem-bindo à Família DO$</p>
         <p>Para Consultar sua conta, basta fazer seu <a href="/login">Login</a> com os dados:</p>
-        <p>Email: <%=message.email%></p>
-        <p>Senha: <%=message.senha%></p>
+        <p>Email: <%=mensagem.email%></p>
+        <p>Senha: <%=mensagem.senha%></p>
       <% } else { %>
         <p>Obrigado por continuar sendo nosso estimado cliente!</p>
       <% } %>
-        <p>Seu pedido será entregue para o destinatario: <%=message.destinatario%></p>
-        <p>O endereço de entrega é: <%=message.enderecoEntrega%></p>
+        <p>Seu pedido será entregue para o destinatario: <%=mensagem.destinatario%></p>
+        <p>O endereço de entrega é: <%=mensagem.enderecoEntrega%></p>
     </section>
   </main>
 
