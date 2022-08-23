@@ -1,4 +1,5 @@
 <%- include('./partials/head') %>
+<link rel="stylesheet" href="/stylesheets/paginaLoja.css">
 </head>
 
 <%- include('./partials/header') %>
@@ -23,10 +24,10 @@
 
               <div class="containerterciario" id="resumo">
                   <div class="faturadorecentemente">
-                      <p><b>Faturado Recentemente:</b></p>
+                      <h2>Faturado Recentemente:</h2>
                       <div class="containerinfo">   
                           <div class="hoje">
-                              <p>Este Mês:</p>
+                              <p><b>Este Mês:</b></p>
                               <div class="infocard">   
 
                                   <% resumoPedidos.idsPedidosMes.forEach( element => { %>
@@ -45,7 +46,7 @@
                               </div>
                           </div>
                           <div class="estasemana">
-                              <p>Este Ano:</p>
+                              <p><b>Este Ano:</b></p>
                               <div class="infocard">                              
                                   
                                 <% resumoPedidos.idsPedidosAno.forEach( element => { %>
@@ -67,7 +68,7 @@
                   </div>
 
                   <div class="resumopedidos">
-                    <p><b>Resumo dos Pedidos:</b></p>
+                    <h2>Resumo dos Pedidos:</h2>
                     <div class="containerinfo">
                         <div class="info">
                             <p>Total de Pedidos Hoje:</p>
@@ -91,7 +92,7 @@
               </div>
 
               <div class="containerterciario" id="pedidos">
-                  <p><b>Pedidos da Loja:</b></p>
+                  <h2>Pedidos da Loja:</h2>
                   <table>
                       <tr>
                         <th>Número</th>
@@ -234,7 +235,7 @@
               </div>
 
               <div class="containerterciario" id="listaprodutos">
-                  <p><b>Seus produtos:</b></p>
+                  <h2>Seus produtos:</h2>
                   <table>
                       <thead>
                           <tr>
@@ -266,8 +267,8 @@
                               <td>R$ <%= (produto.preco * (100-produto.desconto)/100).toFixed(2) %></td>
                               <td><%= produto.estoque %></td>
                               <td>
-                                <a href="/editarProduto/<%=produto.idProduto%>"><img src="icon/carrinho-editar.png" alt="editar_produto"></a>
-                                <a value="<%=produto.idProduto%>" class="deletarProduto"><img src="icon/carrinho-lixeira.png" alt="deletar_produto" onclick="document.getElementById('id<%=produto.idProduto%>').style.display='block'"></a>
+                                <a href="/editarProduto/<%=produto.idProduto%>"><img class="icone" src="icon/carrinho-editar.png" alt="editar_produto"></a>
+                                <a value="<%=produto.idProduto%>" class="deletarProduto"><img class="icone" src="icon/carrinho-lixeira.png" alt="deletar_produto" onclick="document.getElementById('id<%=produto.idProduto%>').style.display='block'"></a>
                                 
                                 <div id="id<%=produto.idProduto%>" class="modal">
                                   <form class="modal-content" action="/deletarProduto/<%=produto.idProduto%>?_method=DELETE" method="POST">
@@ -294,7 +295,7 @@
               </div>
 
               <div class="containerterciario" id="dados">
-                  <p><b>Altere seus dados aqui:</b></p>
+                  <h2>Altere seus dados aqui:</h2>
                   <form action="/alterarloja?_method=PUT" method="POST" class="alteradadosloja">
                       <input type="number" name="idLoja" hidden value="<%=loja.idLoja%>">
                       <div class="formrow">
@@ -349,10 +350,10 @@
                           <label for="estado">Estado:</label>
                           <input type="text" id="estado" name="estado" value="<%=loja.estado%>">
                       </div>
-                      <button type="submit" id="submit">Alterar</button>
+                      <button class="red-button" type="submit" id="submit">Alterar</button>
                   </form>
 
-                  <p><b>Adicione/Altere sua Foto de Perfil:</b></p>
+                  <h2>Adicione/Altere sua Foto de Perfil:</h2>
                   <form action="/adicionaPerfilLoja?_method=PUT" method="POST" class="fotoPerfil" enctype="multipart/form-data">
                     <input type="number" name="idLoja" hidden value=<%= loja.idLoja %>>
                     <button type="button" onclick="document.getElementById('fotoPerfil').click()">
@@ -363,22 +364,22 @@
                       <% } %>
                     </button>
                     <input type="file" id="fotoPerfil" accept=".png, .jpg" name="perfil" style="display: none;">
-                    <button type="submit" id="submitPerfil">Alterar Foto Perfil</button>
+                    <button type="submit" id="submitPerfil" class="red-button">Alterar Foto Perfil</button>
                   </form>
 
-                  <p><b>Deletar conta</b></p>
-                  <form action="/deletarLoja/<%=loja.idLoja%>?_method=DELETE" method="POST" class="fotoPerfil">
+                  <h2>Deletar conta</h2>
+                  <form action="/deletarLoja/<%=loja.idLoja%>?_method=DELETE" method="POST">
                     <div>
                       <input type="checkbox" name="confirmadeletaloja" value="confirma" id="confirmadeletaloja">
                       <label for="confirmadeletaloja">Ao clicar aqui, você confirma que está ciente que a deleção de seu usuário é irreversível</label>
                     </div>
-                    <button type="submit" id="botaoDeletaLoja">Deletar Conta</button>
+                    <button type="submit" id="botaoDeletaLoja" class="red-button">Deletar Conta</button>
                   </form>
 
               </div>
 
               <div class="containerterciario" id="administradores" style="display: none;">
-                <p><b>Seus Administradores:</b></p>
+                <h2>Administradores:</h2>
                 <table style="margin-bottom: 50px;">
                     <thead>
                         <tr>
@@ -398,7 +399,7 @@
                                     <td>
                                       <form action="/deletaAdministrador/<%=admin.idUsuario%>?_method=DELETE" method="POST">
                                         <button type="submit">
-                                          <img src="/icon/carrinho-lixeira.png" alt="Excluir Administrador">
+                                          <img class="icone" src="/icon/carrinho-lixeira.png" alt="Excluir Administrador">
                                         </button>
                                       </form>
                                     </td>
@@ -411,19 +412,19 @@
                     </tbody>
                 </table>
 
-                <p><b>Adicione um Administrador:</b></p>
+                <h2>Adicione um Administrador:</h2>
                 <form action="/adicionaradministrador" method="POST" class="alteradadosloja">
                   <div class="formrow">
                     <label for="addaddmin">Pesquise um Usuário pelo CPF:</label>
                     <input id="addadmin" name="cpfAdmin" type="text">
                   </div>
-                  <button type="submit">Adicionar Admin</button>
+                  <button class="red-button" type="submit">Adicionar Admin</button>
                 </form>
               </div>
 
               <% if (idLoja == 1) { %>
                 <div class="containerterciario" id="mensagens" style="display: none;">
-                  <p><b>Suas Mensagens:</b></p>
+                  <h2>Suas Mensagens:</h2>
                   <% if( faleConosco.length > 0 ) { %>
                     <table>
                         <thead>
@@ -454,7 +455,7 @@
                 </div>
 
                 <div class="containerterciario" id="curriculos" style="display: none;">
-                  <p><b>Pessoas interessadas em trabalhar conosco:</b></p>
+                  <h2>Pessoas interessadas em trabalhar conosco:</h2>
                   <% if( curriculos.length > 0 ) { %>
                     <table>
                         <thead>
@@ -476,7 +477,7 @@
                                 <td><%= curriculo.email %></td>
                                 <td><%= curriculo.departamento %></td>
                                 <td><%= curriculo.disp %></td>
-                                <td><a href="<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img src="/icon/paper.svg"></a></td>
+                                <td><a href="<%= curriculo.curriculo %>" download="curriculo-<%=curriculo.nome%>.pdf"><img class="icone" src="/icon/paper.svg"></a></td>
                                 <td><%= curriculo.mensagem %></td>
                               </tr>
                             <% }) %>

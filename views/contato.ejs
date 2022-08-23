@@ -1,38 +1,85 @@
 <%- include('./partials/head') %>
-</head>
+  <link rel="stylesheet" href="/stylesheets/faleConosco.css">
+  </head>
 
-<%- include('./partials/header') %>
+  <%- include('./partials/header') %>
 
-  <main class="contato">
-    <section class="containergeral">
+    <main class="contato">
+      <section class="containergeral">
         <h1>Categorias</h1>
         <div class="buttonscontato">
-            <div>
-                <button><p>Lojas parceiras</p></button>
-                <button><p>Vale Troca</p></button>
-                <button><p>Cupom e Promoção</p></button>
-                <button><p>Formas de Pagamento</p></button>
-            </div>
-            <div>
-                <button><p>Dividas e Emprestimo</p></button>
-                <button><p>Trocas e Cancelamento</p></button>
-                <button><p>Pedidos</p></button>
-                <button><p>Cadastro</p></button>
-            </div>
+          <button>
+            <p>Lojas parceiras</p>
+          </button>
+          <button>
+            <p>Vale Troca</p>
+          </button>
+          <button>
+            <p>Cupom e Promoção</p>
+          </button>
+          <button>
+            <p>Formas de Pagamento</p>
+          </button>
+          <button>
+            <p>Dividas e Emprestimo</p>
+          </button>
+          <button>
+            <p>Trocas e Cancelamento</p>
+          </button>
+          <button>
+            <p>Pedidos</p>
+          </button>
+          <button>
+            <p>Cadastro</p>
+          </button>
+        </div>
+        <div id="respostas-categoria">
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
+          <p class="resposta-categoria inativo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, fuga at!
+            Itaque placeat
+            labore accusamus minima recusandae quae nobis sequi? Error, debitis recusandae iusto autem iste animi
+            consectetur sequi possimus.</p>
         </div>
         <p class="pcontato">Não encontrou a sua dúvida? Nos conte aqui:</p>
         <form id="contato" class="contato" action="/contato" method="POST">
-            <div>
-                <input type="text" id="nome" value="Nome Completo" name="nome">
-                <input type="email" id="email" value="E-mail" name="email">
-                <input type="tel" id="telefone" value="Telefone para contato (xx) xxxxx-xxxx" name="telefone">
-            </div>
-            <div><textarea id="mensagem" name="mensagem">Digite aqui sua dúvida</textarea></div>
-            <button type="submit" id="submit">Enviar</button>
+          <div>
+            <input type="text" id="nome" value="Nome Completo" name="nome">
+            <input type="email" id="email" value="E-mail" name="email">
+            <input type="tel" id="telefone" value="Telefone para contato (xx) xxxxx-xxxx" name="telefone">
+          </div>
+          <div><textarea id="mensagem" name="mensagem">Digite aqui sua dúvida</textarea></div>
+          <button type="submit" id="submit">Enviar</button>
         </form>
-    </section>
-  </main>
+      </section>
+    </main>
 
-<script src="/scripts/validateContato.js"></script>
+    <script src="/scripts/validateContato.js"></script>
 
-<%- include('./partials/footer') %>
+    <%- include('./partials/footer') %>

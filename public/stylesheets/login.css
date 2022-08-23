@@ -1,0 +1,13 @@
+.login {
+    text-align: center;
+}
+
+.login p {
+    margin-bottom: 20px;
+}
+
+.login a {
+    color: #40739E;
+    text-decoration: underline;
+    font-weight: bold;
+}

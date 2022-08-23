@@ -51,7 +51,6 @@ const buttonSubmit = document.getElementById("submit");
 const erros = [];
 
 buttonSubmit.disabled = "true";
-buttonSubmit.setAttribute('style', "background-color: gray")
 
 function checkValidation () {
     if (inputImgUpload1.value == '' &&
@@ -62,7 +61,6 @@ function checkValidation () {
         inputImgUpload6.value == '') {
         divFoto.style.border = "solid red 1px";
         buttonSubmit.disabled = true;
-        buttonSubmit.setAttribute('style', "background-color: gray")
     } else {
         divFoto.style.border = "unset";
     };
@@ -75,7 +73,6 @@ function checkValidation () {
         (inputCatDesc6.value == '' || inputDescTec6.value == '' || inputCheckDesc6.checked == false)) {
         divDescTec.style.border = "solid red 1px";
         buttonSubmit.disabled = true;
-        buttonSubmit.setAttribute('style', "background-color: gray")
     } else {
         divDescTec.style.border = "unset";
     };
@@ -92,7 +89,6 @@ function checkValidation () {
             buttonSubmit.removeAttribute('style')
     } else {
         buttonSubmit.disabled = true;
-        buttonSubmit.setAttribute('style', "background-color: gray")
     };
 };
 
